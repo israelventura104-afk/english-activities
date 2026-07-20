@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjectives Flashcards | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #ffffff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --brand-logo: url("Logo_circular2-removebg.png");
+      --card-w: min(520px, calc(100vw - 48px));
+      --card-ratio: 1136 / 912;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, var(--wash) 45%, #f5f7fb 100%);
+      min-height: 100vh;
+      padding: 18px 16px 48px;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER (sticky topbar) ===== */
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 12px 16px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      padding: 3px;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: #d7ecea;
+      font-size: 0.84rem;
+      line-height: 1.3;
+    }
+
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #f4fbfa;
+      color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: clamp(0.75rem, 3vw, 1.75rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(160px, 22vw, 280px);
+      max-width: 32%;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      background-image: var(--brand-logo);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: clamp(24px, 5vw, 42px);
+      max-width: min(700px, calc(100% - clamp(120px, 24vw, 270px)));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+      color: var(--navy);
+    }
+
+    .hero h2 span {
+      color: var(--teal);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      margin: 18px 0 0;
+      max-width: 670px;
+      line-height: 1.65;
+      font-size: 1.02rem;
+    }
+
+    /* ===== DECK STAGE ===== */
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+      padding: 8px 0 12px;
+    }
+
+    .card-shell {
+      perspective: 1400px;
+      width: var(--card-w);
+    }
+
+    .card {
+      width: 100%;
+      aspect-ratio: var(--card-ratio);
+      cursor: pointer;
+      position: relative;
+      filter: drop-shadow(0 16px 32px rgba(30, 45, 90, 0.18));
+    }
+
+    .card-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .card.flipped .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 18px;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .face img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+    }
+
+    .face.back {
+      transform: rotateY(180deg);
+    }
+
+    /* Discrete audio control on card back only — top-right so it never covers number/logo */
+    .audio-btn {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      bottom: auto;
+      z-index: 3;
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(30, 45, 90, 0.72);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 45, 90, 0.25);
+      transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 0;
+    }
+
+    .audio-btn:hover {
+      background: rgba(35, 141, 133, 0.92);
+      transform: scale(1.06);
+    }
+
+    .audio-btn:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+
+    .audio-btn.playing {
+      background: rgba(35, 141, 133, 0.95);
+    }
+
+    .audio-btn svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+      pointer-events: none;
+    }
+
+    .audio-btn.missing {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn,
+    .action-btn {
+      font-family: inherit;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--navy);
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 14px rgba(30, 45, 90, 0.06);
+    }
+
+    .nav-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      font-size: 1.25rem;
+      display: grid;
+      place-items: center;
+    }
+
+    .action-btn {
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.9rem;
+    }
+
+    .nav-btn:hover,
+    .action-btn:hover {
+      background: #f4fbfa;
+      transform: translateY(-1px);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .counter {
+      min-width: 72px;
+      text-align: center;
+      font-weight: 800;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .hint strong {
+      color: var(--navy);
+    }
+
+    .footer {
+      margin-top: 36px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .footer strong {
+      color: var(--navy);
+    }
+
+    /* ===== ACTIVITIES MENU (collapsible like your portals) ===== */
+    .activities {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .activities-label {
+      margin: 0 4px 4px;
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .activity {
+      background: var(--paper);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .activity > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      user-select: none;
+    }
+
+    .activity > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .activity-num {
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* Números con tu paleta */
+    .activity-num.n1 {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .activity-num.n2 {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .activity-num.n3 {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .activity-num.n4 {
+      background: var(--teal-dark);
+      color: #fff;
+    }
+
+    .activity-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .activity-meta h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .activity-meta h3 span {
+      color: var(--teal);
+    }
+
+    .activity-meta p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .activity-chevron {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      margin-top: 6px;
+      border-radius: 999px;
+      background: var(--wash);
+      color: var(--navy);
+      display: grid;
+      place-items: center;
+      font-size: 0.85rem;
+      font-weight: 900;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .activity[open] .activity-chevron {
+      transform: rotate(180deg);
+      background: rgba(91, 184, 176, 0.2);
+      color: var(--teal-dark);
+    }
+
+    .activity-body {
+      padding: 0 18px 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .activity-body-inner {
+      padding-top: 18px;
+    }
+
+    /* ===== PRACTICE (inside accordion) ===== */
+    .practice {
+      margin-top: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .practice-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .practice-head .eyebrow {
+      margin-bottom: 6px;
+    }
+
+    .practice-head h3 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      color: var(--navy);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .practice-head h3 span {
+      color: var(--teal);
+    }
+
+    .practice-copy {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      max-width: 520px;
+    }
+
+    .practice-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .stat-pill {
+      background: var(--wash);
+      color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .stat-pill em {
+      font-style: normal;
+      color: var(--teal-dark);
+    }
+
+    .memory-board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .mem-card {
+      aspect-ratio: 1 / 1;
+      border: none;
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+      perspective: 800px;
+      border-radius: 14px;
+    }
+
+    .mem-card:disabled {
+      cursor: default;
+    }
+
+    .mem-inner {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1), opacity 0.45s ease, transform 0.45s ease;
+      border-radius: 14px;
+    }
+
+    .mem-card.flipped .mem-inner,
+    .mem-card.matched .mem-inner {
+      transform: rotateY(180deg);
+    }
+
+    .mem-card.matched {
+      pointer-events: none;
+    }
+
+    .mem-card.matched .mem-inner {
+      opacity: 0;
+      transform: rotateY(180deg) scale(0.72);
+      transition: opacity 0.55s ease 0.35s, transform 0.55s ease 0.35s;
+    }
+
+    .mem-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 18px rgba(30, 45, 90, 0.10);
+    }
+
+    .mem-face.back {
+      position: relative;
+      background: var(--navy);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Logo grande en marca de agua (visible sobre navy) */
+    .mem-face.back .mem-logo {
+      width: 88%;
+      height: 88%;
+      object-fit: contain;
+      display: block;
+      opacity: 0.55;
+      /* el PNG es gris oscuro: lo pasamos a plateado/blanco */
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .mem-face.front {
+      background: #f4fbfa;
+      transform: rotateY(180deg);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+    }
+
+    .mem-face.front.photo {
+      background: #111;
+    }
+
+    .mem-face.front.photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .mem-face.front.word {
+      background: linear-gradient(160deg, #f4fbfa 0%, #e8f6f4 100%);
+      padding: 10px;
+    }
+
+    .mem-word {
+      font-weight: 900;
+      font-size: clamp(0.85rem, 2.4vw, 1.15rem);
+      color: var(--navy);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.15;
+    }
+
+    /* Toast on match — appears then fades */
+    .match-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 50;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 16px 40px rgba(30, 45, 90, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .match-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .match-toast .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    .match-toast strong {
+      color: var(--teal);
+      font-weight: 900;
+      text-transform: capitalize;
+    }
+
+    .win-banner {
+      display: none;
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--wash);
+      border: 1px solid rgba(91, 184, 176, 0.35);
+      color: var(--navy);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    .win-banner.show {
+      display: block;
+    }
+
+    /* ===== SPEED ROUND ===== */
+    .speed {
+      margin-top: 28px;
+    }
+
+    .speed-play {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .speed-photo-wrap {
+      width: min(380px, 100%);
+      aspect-ratio: 1136 / 912;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #111;
+      box-shadow: 0 12px 28px rgba(30, 45, 90, 0.14);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      position: relative;
+    }
+
+    .speed-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .speed-timer-bar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .speed-timer-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--gold));
+      transform-origin: left center;
+      transition: width 0.1s linear;
+    }
+
+    .speed-timer-fill.urgent {
+      background: linear-gradient(90deg, #e07a5f, #c44536);
+    }
+
+    .speed-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: min(420px, 100%);
+    }
+
+    .speed-opt {
+      font-family: inherit;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--navy);
+      font-weight: 800;
+      font-size: 1rem;
+      text-transform: capitalize;
+      border-radius: 14px;
+      padding: 14px 12px;
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease, border-color 0.12s ease;
+      box-shadow: 0 4px 12px rgba(30, 45, 90, 0.06);
+    }
+
+    .speed-opt:hover:not(:disabled) {
+      background: #f4fbfa;
+      border-color: rgba(91, 184, 176, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .speed-opt:disabled {
+      cursor: default;
+    }
+
+    .speed-opt.correct {
+      background: #e9f8ef;
+      border-color: #3daa6d;
+      color: #1b6b3a;
+    }
+
+    .speed-opt.wrong {
+      background: #fff0f0;
+      border-color: #d96b6b;
+      color: #8b2e2e;
+    }
+
+    .speed-opt.reveal {
+      background: #e9f8ef;
+      border-color: #3daa6d;
+      color: #1b6b3a;
+      box-shadow: 0 0 0 2px rgba(61, 170, 109, 0.25);
+    }
+
+    .speed-feedback {
+      min-height: 1.4em;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .speed-feedback.ok {
+      color: #1b6b3a;
+    }
+
+    .speed-feedback.bad {
+      color: #8b2e2e;
+    }
+
+    .speed-feedback strong {
+      text-transform: capitalize;
+      color: var(--navy);
+    }
+
+    .speed-results {
+      display: none;
+      text-align: center;
+      padding: 18px 12px 8px;
+    }
+
+    .speed-results.show {
+      display: block;
+    }
+
+    .speed-results h4 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      color: var(--navy);
+      font-weight: 900;
+    }
+
+    .speed-score-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 12px 0 16px;
+    }
+
+    /* ===== EMOJI CHALLENGE ===== */
+    .emoji-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .emoji-stage.is-hidden,
+    .speed-play.is-hidden,
+    .speed-idle.is-hidden {
+      display: none;
+    }
+
+    .action-btn-stop {
+      background: #fff0f0;
+      border-color: #e8b0b0;
+      color: #8b2e2e;
+    }
+
+    .action-btn-stop:hover {
+      background: #ffe4e4;
+    }
+
+    .speed-idle {
+      padding: 18px 12px;
+      text-align: center;
+    }
+
+    .emoji-prompt {
+      width: min(420px, 100%);
+      min-height: 140px;
+      display: grid;
+      place-items: center;
+      padding: 22px 16px;
+      border-radius: 18px;
+      background: linear-gradient(160deg, #f4fbfa 0%, #eaf7f5 100%);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      box-shadow: 0 10px 24px rgba(30, 45, 90, 0.08);
+      text-align: center;
+    }
+
+    .emoji-prompt .emojis {
+      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      user-select: none;
+    }
+
+    .emoji-prompt .hint-line {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .emoji-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: min(420px, 100%);
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        top: 8px;
+        border-radius: 14px;
+        flex-wrap: wrap;
+      }
+
+      .mode-pill {
+        margin-left: auto;
+      }
+
+      .hero-inner {
+        max-width: 100%;
+      }
+
+      .hero::after {
+        opacity: 0.12;
+        width: 140px;
+        right: 0.5rem;
+      }
+
+      .memory-board {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .practice {
+        padding: 0;
+      }
+
+      .activity > summary {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .activity-body {
+        padding: 0 14px 16px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .memory-board {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER sticky -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="Copia%20de%20Logo%20circular2.png" alt="Israel Ventura">
+        </div>
+        <div>
+          <h1>Why are adjectives important?</h1>
+          <p>Without adjectives, communication is very limited.</p>
+        </div>
+      </div>
+      <span class="mode-pill">Flashcard deck</span>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-inner">
+        <span class="eyebrow">High-frequency adjectives · A1–A2</span>
+        <h2>Why are <span>adjectives</span> important?</h2>
+        <p class="hero-copy">
+          The ability to describe people, places, objects, and experiences is one of the foundations of fluent communication. This series introduces high-frequency adjectives that you will immediately use in real conversations.
+        </p>
+      </div>
+    </section>
+
+    <!-- ACTIVITIES MENU -->
+    <div class="activities" id="activities">
+      <p class="activities-label">Activities</p>
+
+      <!-- 01 Flashcards -->
+      <details class="activity" id="act-deck" open>
+        <summary>
+          <span class="activity-num n1">01</span>
+          <div class="activity-meta">
+            <h3>Flashcard <span>deck</span></h3>
+            <p>Study 30 adjectives with photo, meaning, and audio on the back.</p>
+          </div>
+          <span class="activity-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="activity-body">
+          <div class="activity-body-inner">
+            <section class="stage" aria-label="Adjective flashcards">
+              <div class="card-shell">
+                <div class="card" id="card" role="button" tabindex="0" aria-label="Flip card">
+                  <div class="card-inner">
+                    <div class="face front">
+                      <img id="frontImg" src="" alt="Adjective card front">
+                    </div>
+                    <div class="face back">
+                      <img id="backImg" src="" alt="Adjective card back">
+                      <button
+                        type="button"
+                        class="audio-btn"
+                        id="btnAudio"
+                        title="Play pronunciation"
+                        aria-label="Play adjective audio"
+                      >
+                        <svg id="iconPlay" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
+                          <path d="M15.5 8.5a4.5 4.5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                          <path d="M17.8 6a7.5 7.5 0 010 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        <svg id="iconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
+                          <rect x="6" y="5" width="4" height="14" rx="1"/>
+                          <rect x="14" y="5" width="4" height="14" rx="1"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="controls">
+                <div class="nav-row">
+                  <button type="button" class="nav-btn" id="btnPrev" title="Previous" aria-label="Previous card">←</button>
+                  <div class="counter" id="counter">1 / 30</div>
+                  <button type="button" class="nav-btn" id="btnNext" title="Next" aria-label="Next card">→</button>
+                </div>
+                <div class="nav-row">
+                  <button type="button" class="action-btn" id="btnFlip">Flip card</button>
+                  <button type="button" class="action-btn" id="btnShuffle">Shuffle</button>
+                  <button type="button" class="action-btn" id="btnReset">Reset order</button>
+                </div>
+                <p class="hint">
+                  Click or <strong>Space</strong> to flip · <strong>← →</strong> keeps the same side (front or back)
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <!-- 02 Memory -->
+      <details class="activity" id="act-memory">
+        <summary>
+          <span class="activity-num n2">02</span>
+          <div class="activity-meta">
+            <h3>Memory <span>match</span></h3>
+            <p>Match each photo with its adjective. 8 pairs · cards disappear when you match.</p>
+          </div>
+          <span class="activity-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="activity-body">
+          <div class="activity-body-inner">
+            <section class="practice" id="practice" aria-label="Memory match practice">
+              <div class="practice-head">
+                <div>
+                  <span class="eyebrow">Game</span>
+                  <h3>Find the <span>pairs</span></h3>
+                </div>
+                <div class="practice-stats">
+                  <span class="stat-pill">Pairs <em id="memPairs">0 / 8</em></span>
+                  <span class="stat-pill">Moves <em id="memMoves">0</em></span>
+                  <button type="button" class="action-btn" id="btnNewMemory">New game</button>
+                </div>
+              </div>
+              <div class="memory-board" id="memoryBoard" role="grid" aria-label="Memory board"></div>
+              <div class="win-banner" id="winBanner" role="status">
+                Great job! You found all 8 pairs. Press <strong>New game</strong> to play again with new cards.
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <!-- 03 Speed -->
+      <details class="activity" id="act-speed">
+        <summary>
+          <span class="activity-num n3">03</span>
+          <div class="activity-meta">
+            <h3>Speed <span>round</span></h3>
+            <p>See the photo and choose the adjective before time runs out. 10 rounds · 15 seconds each.</p>
+          </div>
+          <span class="activity-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="activity-body">
+          <div class="activity-body-inner">
+            <section class="practice speed" id="speed" aria-label="Speed round">
+              <div class="practice-head">
+                <div>
+                  <span class="eyebrow">Timed</span>
+                  <h3>Tap <span>fast</span></h3>
+                </div>
+                <div class="practice-stats">
+                  <span class="stat-pill">Round <em id="speedRound">0 / 10</em></span>
+                  <span class="stat-pill">Score <em id="speedScore">0</em></span>
+                  <span class="stat-pill">Streak <em id="speedStreak">0</em></span>
+                  <span class="stat-pill">Time <em id="speedTime">15</em>s</span>
+                  <button type="button" class="action-btn" id="btnSpeedStart">Start</button>
+                  <button type="button" class="action-btn action-btn-stop" id="btnSpeedStop" hidden>Stop</button>
+                </div>
+              </div>
+
+              <div class="speed-idle" id="speedIdle">
+                <p class="practice-copy" style="margin:0;text-align:center;max-width:100%">
+                  Press <strong>Start</strong> when you’re ready. 10 rounds · 15 seconds each.
+                </p>
+              </div>
+
+              <div class="speed-play is-hidden" id="speedPlay">
+                <div class="speed-photo-wrap">
+                  <img id="speedPhoto" src="" alt="Speed round photo">
+                  <div class="speed-timer-bar" aria-hidden="true">
+                    <div class="speed-timer-fill" id="speedTimerFill"></div>
+                  </div>
+                </div>
+                <div class="speed-options" id="speedOptions" role="group" aria-label="Choose the adjective"></div>
+                <p class="speed-feedback" id="speedFeedback" role="status"></p>
+              </div>
+
+              <div class="speed-results" id="speedResults">
+                <h4>Round complete!</h4>
+                <div class="speed-score-row">
+                  <span class="stat-pill">Score <em id="speedFinalScore">0 / 10</em></span>
+                  <span class="stat-pill">Best streak <em id="speedBestStreak">0</em></span>
+                  <span class="stat-pill">Fast hits <em id="speedFastHits">0</em></span>
+                </div>
+                <button type="button" class="action-btn" id="btnSpeedAgain">Play again</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+
+      <!-- 04 Emoji -->
+      <details class="activity" id="act-emoji">
+        <summary>
+          <span class="activity-num n4">04</span>
+          <div class="activity-meta">
+            <h3>Emoji <span>challenge</span></h3>
+            <p>Read the emojis and pick the adjective they suggest. 10 rounds · no timer.</p>
+          </div>
+          <span class="activity-chevron" aria-hidden="true">▾</span>
+        </summary>
+        <div class="activity-body">
+          <div class="activity-body-inner">
+            <section class="practice" id="emoji" aria-label="Emoji challenge">
+              <div class="practice-head">
+                <div>
+                  <span class="eyebrow">Guess</span>
+                  <h3>What do you <span>feel?</span></h3>
+                </div>
+                <div class="practice-stats">
+                  <span class="stat-pill">Round <em id="emojiRound">0 / 10</em></span>
+                  <span class="stat-pill">Score <em id="emojiScore">0</em></span>
+                  <button type="button" class="action-btn" id="btnEmojiAgain">New set</button>
+                </div>
+              </div>
+
+              <div class="emoji-stage" id="emojiPlay">
+                <div class="emoji-prompt">
+                  <div class="emojis" id="emojiIcons" aria-hidden="true">😊☀️</div>
+                  <p class="hint-line" id="emojiHint">Which adjective fits?</p>
+                </div>
+                <div class="emoji-options" id="emojiOptions" role="group" aria-label="Choose the adjective"></div>
+                <p class="speed-feedback" id="emojiFeedback" role="status"></p>
+              </div>
+
+              <div class="speed-results" id="emojiResults">
+                <h4>Challenge complete!</h4>
+                <div class="speed-score-row">
+                  <span class="stat-pill">Score <em id="emojiFinalScore">0 / 10</em></span>
+                </div>
+                <button type="button" class="action-btn" id="btnEmojiReplay">Play again</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <div class="match-toast" id="matchToast" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Match! <strong id="matchWord">happy</strong></span>
+    </div>
+
+    <footer class="footer">
+      <strong>Israel Ventura</strong> · Adjectives Flashcards · Educational use
+    </footer>
+  </div>
+
+  <script>
+    // Paths point to your files as-is — images/audio are never modified
+    // Order matches card numbers 1–30 (front/back images)
+    const adjectives = [
+      'happy', 'serious', 'tired', 'excited', 'calm',
+      'sad', 'confident', 'nervous', 'friendly', 'angry',
+      'patient', 'kind', 'bored', 'busy', 'curious',
+      'generous', 'creative', 'strong', 'shy', 'proud',
+      'surprised', 'scared', 'confused', 'embarrased', 'lonely',
+      'helpful', 'polite', 'careful', 'lazy', 'grateful'
+    ];
+    // note: file is "embarrased.mp3" (spelling as in your Audio folder)
+
+    const TOTAL = adjectives.length;
+    const fronts = Array.from({ length: TOTAL }, (_, i) =>
+      `Front/Adjectives Corrected2/Adjectives Corrected2-${i + 1}.png`
+    );
+    const backs = Array.from({ length: TOTAL }, (_, i) =>
+      `Back/Back/Back-${i + 1}.png`
+    );
+    const audios = adjectives.map((word) => `Audio/${word}.mp3`);
+
+    let order = Array.from({ length: TOTAL }, (_, i) => i);
+    let index = 0;
+    // true = showing back; kept when navigating ← →
+    let showingBack = false;
+
+    const cardEl = document.getElementById('card');
+    const frontImg = document.getElementById('frontImg');
+    const backImg = document.getElementById('backImg');
+    const counter = document.getElementById('counter');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnAudio = document.getElementById('btnAudio');
+    const iconPlay = document.getElementById('iconPlay');
+    const iconPause = document.getElementById('iconPause');
+    const player = new Audio();
+    player.preload = 'none';
+
+    function setAudioUI(playing) {
+      btnAudio.classList.toggle('playing', playing);
+      iconPlay.hidden = playing;
+      iconPause.hidden = !playing;
+      btnAudio.setAttribute('aria-label', playing ? 'Stop audio' : 'Play adjective audio');
+      btnAudio.title = playing ? 'Stop' : 'Play pronunciation';
+    }
+
+    function stopAudio() {
+      player.pause();
+      player.currentTime = 0;
+      setAudioUI(false);
+    }
+
+    function playAudioForCurrent() {
+      const real = order[index];
+      const src = audios[real];
+      const absolute = new URL(src, window.location.href).href;
+      if (player.src !== absolute) {
+        player.src = src;
+      } else {
+        player.currentTime = 0;
+      }
+      player.play().then(() => {
+        btnAudio.classList.remove('missing');
+        setAudioUI(true);
+      }).catch(() => {
+        btnAudio.classList.add('missing');
+        setAudioUI(false);
+      });
+    }
+
+    function toggleAudio(e) {
+      if (e) {
+        e.stopPropagation();
+        e.preventDefault();
+      }
+      if (!showingBack) return;
+
+      if (!player.paused && !player.ended) {
+        stopAudio();
+        return;
+      }
+      playAudioForCurrent();
+    }
+
+    player.addEventListener('ended', () => setAudioUI(false));
+    player.addEventListener('error', () => {
+      btnAudio.classList.add('missing');
+      setAudioUI(false);
+    });
+
+    function applySide() {
+      cardEl.classList.toggle('flipped', showingBack);
+      cardEl.setAttribute(
+        'aria-label',
+        showingBack ? 'Showing back — click to flip to front' : 'Showing front — click to flip to back'
+      );
+      if (!showingBack) stopAudio();
+    }
+
+    function showCard(i) {
+      stopAudio();
+      const real = order[i];
+      frontImg.src = fronts[real];
+      backImg.src = backs[real];
+      frontImg.alt = `Adjective card ${real + 1} — front`;
+      backImg.alt = `Adjective card ${real + 1} — back`;
+      counter.textContent = `${i + 1} / ${TOTAL}`;
+      btnPrev.disabled = i === 0;
+      btnNext.disabled = i === TOTAL - 1;
+      btnAudio.classList.remove('missing');
+      // Keep current side (front or back) when changing cards
+      applySide();
+    }
+
+    function flip() {
+      showingBack = !showingBack;
+      applySide();
+    }
+
+    function next() {
+      if (index < TOTAL - 1) {
+        index += 1;
+        showCard(index);
+      }
+    }
+
+    function prev() {
+      if (index > 0) {
+        index -= 1;
+        showCard(index);
+      }
+    }
+
+    function shuffle() {
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      index = 0;
+      // Keep side: if studying backs, stay on backs after shuffle
+      showCard(0);
+    }
+
+    function resetOrder() {
+      order = Array.from({ length: TOTAL }, (_, i) => i);
+      index = 0;
+      showingBack = false;
+      showCard(0);
+    }
+
+    cardEl.addEventListener('click', flip);
+    cardEl.addEventListener('keydown', (e) => {
+      if (e.code === 'Enter' || e.code === 'Space') {
+        e.preventDefault();
+        flip();
+      }
+    });
+    btnAudio.addEventListener('click', toggleAudio);
+    document.getElementById('btnFlip').addEventListener('click', flip);
+    document.getElementById('btnShuffle').addEventListener('click', shuffle);
+    document.getElementById('btnReset').addEventListener('click', resetOrder);
+    btnPrev.addEventListener('click', prev);
+    btnNext.addEventListener('click', next);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        flip();
+      } else if (e.code === 'ArrowRight') {
+        next();
+      } else if (e.code === 'ArrowLeft') {
+        prev();
+      } else if ((e.key === 'a' || e.key === 'A') && showingBack) {
+        toggleAudio();
+      }
+    });
+
+    // Preload neighbors for smoother navigation
+    function preload(src) {
+      const img = new Image();
+      img.src = src;
+    }
+    fronts.forEach(preload);
+    backs.forEach(preload);
+
+    showCard(0);
+
+    /* ========== MEMORY MATCH (8 pairs) ========== */
+    const PAIR_COUNT = 8;
+    const boardEl = document.getElementById('memoryBoard');
+    const memPairsEl = document.getElementById('memPairs');
+    const memMovesEl = document.getElementById('memMoves');
+    const winBanner = document.getElementById('winBanner');
+    const matchToast = document.getElementById('matchToast');
+    const matchWord = document.getElementById('matchWord');
+    const memPlayer = new Audio();
+    memPlayer.preload = 'none';
+
+    let memTiles = [];
+    let memOpen = [];
+    let memLock = false;
+    let memPairs = 0;
+    let memMoves = 0;
+    let toastTimer = null;
+
+    function shuffleArray(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function pickEightIds() {
+      const ids = Array.from({ length: TOTAL }, (_, i) => i);
+      return shuffleArray(ids).slice(0, PAIR_COUNT);
+    }
+
+    function showMatchToast(word) {
+      matchWord.textContent = word;
+      matchToast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => matchToast.classList.remove('show'), 1400);
+    }
+
+    function playMatchAudio(id) {
+      memPlayer.src = audios[id];
+      memPlayer.play().catch(() => {});
+    }
+
+    function updateMemStats() {
+      memPairsEl.textContent = `${memPairs} / ${PAIR_COUNT}`;
+      memMovesEl.textContent = String(memMoves);
+    }
+
+    function buildMemoryGame() {
+      memOpen = [];
+      memLock = false;
+      memPairs = 0;
+      memMoves = 0;
+      winBanner.classList.remove('show');
+      matchToast.classList.remove('show');
+      updateMemStats();
+
+      const chosen = pickEightIds();
+      // Each pair: photo tile + word tile
+      const deck = [];
+      chosen.forEach((id) => {
+        deck.push({ id, kind: 'photo', key: `p-${id}` });
+        deck.push({ id, kind: 'word', key: `w-${id}` });
+      });
+      memTiles = shuffleArray(deck);
+
+      boardEl.innerHTML = '';
+      memTiles.forEach((tile, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'mem-card';
+        btn.dataset.index = String(idx);
+        btn.setAttribute('aria-label', 'Hidden memory card');
+        btn.innerHTML = `
+          <div class="mem-inner">
+            <div class="mem-face back" aria-hidden="true">
+              <img class="mem-logo" src="marca_de_aagua_circular-removebg-preview.png" alt="">
+            </div>
+            <div class="mem-face front ${tile.kind === 'photo' ? 'photo' : 'word'}">
+              ${
+                tile.kind === 'photo'
+                  ? `<img src="${fronts[tile.id]}" alt="${adjectives[tile.id]}">`
+                  : `<span class="mem-word">${adjectives[tile.id]}</span>`
+              }
+            </div>
+          </div>
+        `;
+        btn.addEventListener('click', () => onMemClick(idx));
+        boardEl.appendChild(btn);
+      });
+    }
+
+    function onMemClick(idx) {
+      if (memLock) return;
+      const btn = boardEl.children[idx];
+      if (!btn || btn.classList.contains('flipped') || btn.classList.contains('matched')) return;
+
+      btn.classList.add('flipped');
+      memOpen.push(idx);
+
+      if (memOpen.length < 2) return;
+
+      memMoves += 1;
+      updateMemStats();
+      memLock = true;
+
+      const [a, b] = memOpen;
+      const tA = memTiles[a];
+      const tB = memTiles[b];
+      const isMatch = tA.id === tB.id && tA.kind !== tB.kind;
+
+      if (isMatch) {
+        const word = adjectives[tA.id];
+        setTimeout(() => {
+          boardEl.children[a].classList.add('matched');
+          boardEl.children[b].classList.add('matched');
+          boardEl.children[a].disabled = true;
+          boardEl.children[b].disabled = true;
+          memPairs += 1;
+          updateMemStats();
+          showMatchToast(word);
+          playMatchAudio(tA.id);
+          memOpen = [];
+          memLock = false;
+          if (memPairs >= PAIR_COUNT) {
+            winBanner.classList.add('show');
+          }
+        }, 420);
+      } else {
+        setTimeout(() => {
+          boardEl.children[a].classList.remove('flipped');
+          boardEl.children[b].classList.remove('flipped');
+          memOpen = [];
+          memLock = false;
+        }, 850);
+      }
+    }
+
+    document.getElementById('btnNewMemory').addEventListener('click', buildMemoryGame);
+    buildMemoryGame();
+
+    /* ========== SPEED ROUND ========== */
+    const SPEED_ROUNDS = 10;
+    const SPEED_SECONDS = 15;
+    const FAST_BONUS_SEC = 5;
+
+    // Soft families for better distractors
+    const families = {
+      happy: ['excited', 'friendly', 'proud', 'grateful', 'confident'],
+      serious: ['calm', 'patient', 'careful', 'polite', 'shy'],
+      tired: ['bored', 'lazy', 'sad', 'lonely', 'calm'],
+      excited: ['happy', 'surprised', 'proud', 'curious', 'friendly'],
+      calm: ['patient', 'serious', 'tired', 'shy', 'polite'],
+      sad: ['lonely', 'tired', 'scared', 'bored', 'embarrased'],
+      confident: ['proud', 'strong', 'happy', 'friendly', 'creative'],
+      nervous: ['scared', 'shy', 'confused', 'embarrased', 'excited'],
+      friendly: ['kind', 'happy', 'helpful', 'polite', 'generous'],
+      angry: ['serious', 'scared', 'strong', 'busy', 'nervous'],
+      patient: ['calm', 'kind', 'polite', 'careful', 'serious'],
+      kind: ['friendly', 'helpful', 'generous', 'polite', 'patient'],
+      bored: ['tired', 'lazy', 'sad', 'lonely', 'curious'],
+      busy: ['tired', 'strong', 'careful', 'serious', 'angry'],
+      curious: ['surprised', 'excited', 'creative', 'confused', 'shy'],
+      generous: ['kind', 'helpful', 'friendly', 'grateful', 'polite'],
+      creative: ['curious', 'proud', 'confident', 'strong', 'excited'],
+      strong: ['confident', 'proud', 'angry', 'busy', 'careful'],
+      shy: ['nervous', 'calm', 'lonely', 'scared', 'polite'],
+      proud: ['happy', 'confident', 'strong', 'grateful', 'excited'],
+      surprised: ['excited', 'curious', 'scared', 'confused', 'happy'],
+      scared: ['nervous', 'surprised', 'confused', 'shy', 'sad'],
+      confused: ['curious', 'nervous', 'surprised', 'scared', 'embarrased'],
+      embarrased: ['shy', 'nervous', 'confused', 'sad', 'scared'],
+      lonely: ['sad', 'shy', 'bored', 'tired', 'grateful'],
+      helpful: ['kind', 'friendly', 'generous', 'polite', 'patient'],
+      polite: ['kind', 'friendly', 'patient', 'careful', 'shy'],
+      careful: ['patient', 'serious', 'polite', 'busy', 'strong'],
+      lazy: ['tired', 'bored', 'calm', 'sad', 'busy'],
+      grateful: ['happy', 'kind', 'proud', 'friendly', 'generous']
+    };
+
+    const speedPhoto = document.getElementById('speedPhoto');
+    const speedOptions = document.getElementById('speedOptions');
+    const speedFeedback = document.getElementById('speedFeedback');
+    const speedPlay = document.getElementById('speedPlay');
+    const speedIdle = document.getElementById('speedIdle');
+    const speedResults = document.getElementById('speedResults');
+    const speedTimerFill = document.getElementById('speedTimerFill');
+    const speedRoundEl = document.getElementById('speedRound');
+    const speedScoreEl = document.getElementById('speedScore');
+    const speedStreakEl = document.getElementById('speedStreak');
+    const speedTimeEl = document.getElementById('speedTime');
+    const btnSpeedStart = document.getElementById('btnSpeedStart');
+    const btnSpeedStop = document.getElementById('btnSpeedStop');
+    const speedPlayer = new Audio();
+    speedPlayer.preload = 'none';
+
+    let speedQueue = [];
+    let speedIndex = 0;
+    let speedScore = 0;
+    let speedStreak = 0;
+    let speedBestStreak = 0;
+    let speedFastHits = 0;
+    let speedAnswered = false;
+    let speedActive = false;
+    let speedAdvanceTimer = null;
+    let speedTimerId = null;
+    let speedEndsAt = 0;
+    let speedRoundStart = 0;
+
+    function wordToId(word) {
+      return adjectives.indexOf(word);
+    }
+
+    function getDistractors(correctId) {
+      const correct = adjectives[correctId];
+      const pool = new Set();
+      const fam = families[correct] || [];
+      fam.forEach((w) => {
+        const id = wordToId(w);
+        if (id >= 0 && id !== correctId) pool.add(id);
+      });
+      // fill with random others
+      const all = shuffleArray(Array.from({ length: TOTAL }, (_, i) => i).filter((i) => i !== correctId));
+      for (const id of all) {
+        if (pool.size >= 8) break;
+        pool.add(id);
+      }
+      return shuffleArray(Array.from(pool)).slice(0, 3);
+    }
+
+    function stopSpeedTimer() {
+      if (speedTimerId) {
+        clearInterval(speedTimerId);
+        speedTimerId = null;
+      }
+      if (speedAdvanceTimer) {
+        clearTimeout(speedAdvanceTimer);
+        speedAdvanceTimer = null;
+      }
+    }
+
+    function stopSpeedAudio() {
+      speedPlayer.pause();
+      speedPlayer.currentTime = 0;
+    }
+
+    function updateSpeedHud() {
+      const shown = speedActive
+        ? Math.min(speedIndex + 1, SPEED_ROUNDS)
+        : 0;
+      speedRoundEl.textContent = `${shown} / ${SPEED_ROUNDS}`;
+      speedScoreEl.textContent = String(speedScore);
+      speedStreakEl.textContent = String(speedStreak);
+    }
+
+    function playSpeedAudio(id) {
+      speedPlayer.src = audios[id];
+      speedPlayer.play().catch(() => {});
+    }
+
+    function setSpeedButtons(running) {
+      btnSpeedStart.hidden = running;
+      btnSpeedStop.hidden = !running;
+    }
+
+    function endSpeedGame(stoppedByUser) {
+      speedActive = false;
+      stopSpeedTimer();
+      stopSpeedAudio();
+      setSpeedButtons(false);
+      speedPlay.classList.add('is-hidden');
+      speedIdle.classList.add('is-hidden');
+      speedResults.classList.add('show');
+      document.getElementById('speedFinalScore').textContent = `${speedScore} / ${SPEED_ROUNDS}`;
+      document.getElementById('speedBestStreak').textContent = String(speedBestStreak);
+      document.getElementById('speedFastHits').textContent = String(speedFastHits);
+      if (stoppedByUser) {
+        speedResults.querySelector('h4').textContent = 'Stopped';
+      } else {
+        speedResults.querySelector('h4').textContent = 'Round complete!';
+      }
+    }
+
+    function stopSpeedGame() {
+      if (!speedActive) return;
+      endSpeedGame(true);
+    }
+
+    function resolveSpeedRound(selectedId) {
+      if (!speedActive || speedAnswered) return;
+      speedAnswered = true;
+      stopSpeedTimer();
+
+      const correctId = speedQueue[speedIndex];
+      const elapsed = (performance.now() - speedRoundStart) / 1000;
+      const buttons = speedOptions.querySelectorAll('.speed-opt');
+
+      buttons.forEach((btn) => {
+        btn.disabled = true;
+        const id = Number(btn.dataset.id);
+        if (id === correctId) btn.classList.add('reveal');
+        if (selectedId !== null && id === selectedId && selectedId !== correctId) {
+          btn.classList.add('wrong');
+        }
+        if (selectedId !== null && id === selectedId && selectedId === correctId) {
+          btn.classList.add('correct');
+        }
+      });
+
+      if (selectedId === correctId) {
+        speedScore += 1;
+        speedStreak += 1;
+        if (speedStreak > speedBestStreak) speedBestStreak = speedStreak;
+        if (elapsed <= FAST_BONUS_SEC) speedFastHits += 1;
+        speedFeedback.className = 'speed-feedback ok';
+        speedFeedback.innerHTML = elapsed <= FAST_BONUS_SEC
+          ? `✓ Fast! It’s <strong>${adjectives[correctId]}</strong>`
+          : `✓ Correct! It’s <strong>${adjectives[correctId]}</strong>`;
+      } else if (selectedId === null) {
+        speedStreak = 0;
+        speedFeedback.className = 'speed-feedback bad';
+        speedFeedback.innerHTML = `Time’s up! It’s <strong>${adjectives[correctId]}</strong>`;
+      } else {
+        speedStreak = 0;
+        speedFeedback.className = 'speed-feedback bad';
+        speedFeedback.innerHTML = `Not quite — it’s <strong>${adjectives[correctId]}</strong>`;
+      }
+
+      playSpeedAudio(correctId);
+      updateSpeedHud();
+
+      speedAdvanceTimer = setTimeout(() => {
+        if (!speedActive) return;
+        speedIndex += 1;
+        if (speedIndex >= SPEED_ROUNDS) {
+          endSpeedGame(false);
+        } else {
+          showSpeedRound();
+        }
+      }, 1600);
+    }
+
+    function startSpeedTimer() {
+      stopSpeedTimer();
+      speedEndsAt = performance.now() + SPEED_SECONDS * 1000;
+      speedRoundStart = performance.now();
+      speedTimeEl.textContent = String(SPEED_SECONDS);
+      speedTimerFill.style.width = '100%';
+      speedTimerFill.classList.remove('urgent');
+
+      speedTimerId = setInterval(() => {
+        const leftMs = Math.max(0, speedEndsAt - performance.now());
+        const left = leftMs / 1000;
+        const pct = (left / SPEED_SECONDS) * 100;
+        speedTimeEl.textContent = String(Math.ceil(left));
+        speedTimerFill.style.width = `${pct}%`;
+        if (left <= 5) speedTimerFill.classList.add('urgent');
+        if (leftMs <= 0) {
+          resolveSpeedRound(null);
+        }
+      }, 100);
+    }
+
+    function showSpeedRound() {
+      if (!speedActive) return;
+      speedAnswered = false;
+      stopSpeedAudio();
+      speedFeedback.className = 'speed-feedback';
+      speedFeedback.textContent = 'Tap the adjective…';
+      updateSpeedHud();
+
+      const correctId = speedQueue[speedIndex];
+      const distractors = getDistractors(correctId);
+      const options = shuffleArray([correctId, ...distractors]);
+
+      speedPhoto.src = fronts[correctId];
+      speedPhoto.alt = `Which adjective?`;
+
+      speedOptions.innerHTML = '';
+      options.forEach((id) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'speed-opt';
+        btn.dataset.id = String(id);
+        btn.textContent = adjectives[id];
+        btn.addEventListener('click', () => resolveSpeedRound(id));
+        speedOptions.appendChild(btn);
+      });
+
+      startSpeedTimer();
+    }
+
+    function startSpeedGame() {
+      stopSpeedTimer();
+      stopSpeedAudio();
+      speedActive = true;
+      speedQueue = shuffleArray(Array.from({ length: TOTAL }, (_, i) => i)).slice(0, SPEED_ROUNDS);
+      speedIndex = 0;
+      speedScore = 0;
+      speedStreak = 0;
+      speedBestStreak = 0;
+      speedFastHits = 0;
+      speedResults.classList.remove('show');
+      speedIdle.classList.add('is-hidden');
+      speedPlay.classList.remove('is-hidden');
+      setSpeedButtons(true);
+      showSpeedRound();
+    }
+
+    function resetSpeedIdle() {
+      speedActive = false;
+      stopSpeedTimer();
+      stopSpeedAudio();
+      setSpeedButtons(false);
+      speedPlay.classList.add('is-hidden');
+      speedResults.classList.remove('show');
+      speedIdle.classList.remove('is-hidden');
+      speedIndex = 0;
+      speedScore = 0;
+      speedStreak = 0;
+      speedTimeEl.textContent = String(SPEED_SECONDS);
+      updateSpeedHud();
+    }
+
+    document.getElementById('btnSpeedAgain').addEventListener('click', startSpeedGame);
+    btnSpeedStart.addEventListener('click', startSpeedGame);
+    btnSpeedStop.addEventListener('click', stopSpeedGame);
+    resetSpeedIdle();
+
+    /* ========== EMOJI CHALLENGE ========== */
+    const EMOJI_ROUNDS = 10;
+    // Emoji clues for each adjective (file key = adjectives[i])
+    const emojiMap = {
+      happy: '😊☀️',
+      serious: '😐📋',
+      tired: '😴💤',
+      excited: '🤩🎉',
+      calm: '😌🌊',
+      sad: '😢💧',
+      confident: '💪😎',
+      nervous: '😰💦',
+      friendly: '🤝😊',
+      angry: '😠💢',
+      patient: '⏳🙂',
+      kind: '💗🤗',
+      bored: '😑🕐',
+      busy: '🏃‍♂️📱',
+      curious: '🤔🔍',
+      generous: '🎁🤲',
+      creative: '🎨✨',
+      strong: '💪🏋️',
+      shy: '🙈😳',
+      proud: '🏆😊',
+      surprised: '😲‼️',
+      scared: '😨👻',
+      confused: '😕❓',
+      embarrased: '😳🙈',
+      lonely: '😔👤',
+      helpful: '🛠️🙂',
+      polite: '🙏🎩',
+      careful: '⚠️👀',
+      lazy: '🛋️😴',
+      grateful: '🙏💖'
+    };
+
+    const emojiIcons = document.getElementById('emojiIcons');
+    const emojiOptions = document.getElementById('emojiOptions');
+    const emojiFeedback = document.getElementById('emojiFeedback');
+    const emojiPlay = document.getElementById('emojiPlay');
+    const emojiResults = document.getElementById('emojiResults');
+    const emojiRoundEl = document.getElementById('emojiRound');
+    const emojiScoreEl = document.getElementById('emojiScore');
+    const emojiPlayer = new Audio();
+    emojiPlayer.preload = 'none';
+
+    let emojiQueue = [];
+    let emojiIndex = 0;
+    let emojiScore = 0;
+    let emojiAnswered = false;
+
+    function playEmojiAudio(id) {
+      emojiPlayer.src = audios[id];
+      emojiPlayer.play().catch(() => {});
+    }
+
+    function updateEmojiHud() {
+      emojiRoundEl.textContent = `${Math.min(emojiIndex + 1, EMOJI_ROUNDS)} / ${EMOJI_ROUNDS}`;
+      emojiScoreEl.textContent = String(emojiScore);
+    }
+
+    function endEmojiGame() {
+      emojiPlay.classList.add('is-hidden');
+      emojiResults.classList.add('show');
+      document.getElementById('emojiFinalScore').textContent = `${emojiScore} / ${EMOJI_ROUNDS}`;
+    }
+
+    function resolveEmoji(selectedId) {
+      if (emojiAnswered) return;
+      emojiAnswered = true;
+
+      const correctId = emojiQueue[emojiIndex];
+      const buttons = emojiOptions.querySelectorAll('.speed-opt');
+      buttons.forEach((btn) => {
+        btn.disabled = true;
+        const id = Number(btn.dataset.id);
+        if (id === correctId) btn.classList.add('reveal');
+        if (selectedId === id && selectedId !== correctId) btn.classList.add('wrong');
+        if (selectedId === id && selectedId === correctId) btn.classList.add('correct');
+      });
+
+      if (selectedId === correctId) {
+        emojiScore += 1;
+        emojiFeedback.className = 'speed-feedback ok';
+        emojiFeedback.innerHTML = `✓ Yes! It’s <strong>${adjectives[correctId]}</strong>`;
+      } else {
+        emojiFeedback.className = 'speed-feedback bad';
+        emojiFeedback.innerHTML = `Not quite — it’s <strong>${adjectives[correctId]}</strong>`;
+      }
+      playEmojiAudio(correctId);
+      updateEmojiHud();
+
+      setTimeout(() => {
+        emojiIndex += 1;
+        if (emojiIndex >= EMOJI_ROUNDS) {
+          endEmojiGame();
+        } else {
+          showEmojiRound();
+        }
+      }, 1500);
+    }
+
+    function showEmojiRound() {
+      emojiAnswered = false;
+      emojiFeedback.className = 'speed-feedback';
+      emojiFeedback.textContent = 'Which adjective fits?';
+      updateEmojiHud();
+
+      const correctId = emojiQueue[emojiIndex];
+      const word = adjectives[correctId];
+      emojiIcons.textContent = emojiMap[word] || '❓';
+
+      const distractors = getDistractors(correctId);
+      const options = shuffleArray([correctId, ...distractors]);
+
+      emojiOptions.innerHTML = '';
+      options.forEach((id) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'speed-opt';
+        btn.dataset.id = String(id);
+        btn.textContent = adjectives[id];
+        btn.addEventListener('click', () => resolveEmoji(id));
+        emojiOptions.appendChild(btn);
+      });
+    }
+
+    function startEmojiGame() {
+      emojiQueue = shuffleArray(Array.from({ length: TOTAL }, (_, i) => i)).slice(0, EMOJI_ROUNDS);
+      emojiIndex = 0;
+      emojiScore = 0;
+      emojiResults.classList.remove('show');
+      emojiPlay.classList.remove('is-hidden');
+      showEmojiRound();
+    }
+
+    document.getElementById('btnEmojiAgain').addEventListener('click', startEmojiGame);
+    document.getElementById('btnEmojiReplay').addEventListener('click', startEmojiGame);
+    // Emoji stays idle until opened — only init HUD
+    document.getElementById('emojiRound').textContent = `0 / ${EMOJI_ROUNDS}`;
+    document.getElementById('emojiScore').textContent = '0';
+    document.getElementById('emojiPlay').classList.add('is-hidden');
+
+    /* Accordion: only one activity open; stop speed when leaving it */
+    const activityPanels = Array.from(document.querySelectorAll('.activity'));
+    activityPanels.forEach((panel) => {
+      panel.addEventListener('toggle', () => {
+        if (panel.open) {
+          activityPanels.forEach((other) => {
+            if (other !== panel) other.open = false;
+          });
+          if (panel.id === 'act-emoji' && !emojiQueue.length) {
+            document.getElementById('emojiPlay').classList.remove('is-hidden');
+            startEmojiGame();
+          }
+        } else if (panel.id === 'act-speed' && typeof stopSpeedGame === 'function') {
+          if (speedActive) stopSpeedGame();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
