@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <title>English Activities | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #ffffff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --brand-logo: url("favicon.png");
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    /* Topbar */
+    .topbar {
+      position: sticky;
+      top: 16px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 12px 16px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      padding: 3px;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .brand p {
+      margin: 3px 0 0;
+      color: #d7ecea;
+      font-size: 0.84rem;
+    }
+
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #f4fbfa;
+      color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: clamp(0.75rem, 3vw, 1.75rem);
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(160px, 22vw, 280px);
+      max-width: 32%;
+      aspect-ratio: 1 / 1;
+      border-radius: 999px;
+      background-image: var(--brand-logo);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0.14;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: clamp(24px, 5vw, 42px);
+      max-width: min(700px, calc(100% - clamp(120px, 24vw, 270px)));
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      font-weight: 900;
+    }
+
+    .hero h2 span {
+      color: var(--teal);
+    }
+
+    .hero-copy {
+      color: var(--muted);
+      margin: 18px 0 0;
+      max-width: 640px;
+      line-height: 1.65;
+      font-size: 1.02rem;
+    }
+
+    /* Section label */
+    .section-label {
+      margin: 0 4px 14px;
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Activity menu cards */
+    .menu {
+      display: grid;
+      gap: 14px;
+    }
+
+    .menu-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px 18px 18px 16px;
+      background: var(--paper);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(91, 184, 176, 0.45);
+      box-shadow: 0 22px 48px rgba(30, 45, 90, 0.12);
+    }
+
+    .menu-card:focus-visible {
+      outline: 3px solid rgba(91, 184, 176, 0.55);
+      outline-offset: 3px;
+    }
+
+    .menu-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+      flex-shrink: 0;
+    }
+
+    .menu-num.n1 {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .menu-num.n2 {
+      background: var(--teal);
+      color: #fff;
+    }
+
+    .menu-num.n3 {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    .menu-body h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .menu-body h3 span {
+      color: var(--teal);
+    }
+
+    .menu-body p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .menu-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      background: var(--wash);
+      color: var(--teal-dark);
+      border: 1px solid rgba(91, 184, 176, 0.28);
+    }
+
+    .menu-go {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 8px 18px rgba(30, 45, 90, 0.18);
+      transition: background 0.15s ease;
+    }
+
+    .menu-card:hover .menu-go {
+      background: var(--teal-dark);
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer strong {
+      color: var(--navy);
+    }
+
+    @media (max-width: 720px) {
+      .topbar {
+        top: 8px;
+        border-radius: 14px;
+        flex-wrap: wrap;
+      }
+
+      .mode-pill {
+        margin-left: auto;
+      }
+
+      .hero-inner {
+        max-width: 100%;
+      }
+
+      .hero::after {
+        opacity: 0.1;
+        width: 140px;
+      }
+
+      .menu-card {
+        grid-template-columns: auto 1fr;
+        gap: 12px;
+      }
+
+      .menu-go {
+        grid-column: 2;
+        justify-self: start;
+        margin-top: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <img src="favicon.png" alt="">
+        </div>
+        <div>
+          <h1>English Activities</h1>
+          <p>Interactive practice for real communication</p>
+        </div>
+      </div>
+      <span class="mode-pill">Teacher Israel Ventura</span>
+    </header>
+
+    <section class="hero" aria-label="Welcome">
+      <div class="hero-inner">
+        <span class="eyebrow">Classroom-ready · Interactive</span>
+        <h2>Choose your <span>activity</span></h2>
+        <p class="hero-copy">
+          Open a module to practice vocabulary, grammar, listening, and speaking with clean, classroom-friendly tools designed for real lessons.
+        </p>
+      </div>
+    </section>
+
+    <p class="section-label">Activity menu</p>
+
+    <nav class="menu" aria-label="English activities">
+      <a class="menu-card" href="./around-the-house/">
+        <span class="menu-num n1">01</span>
+        <div class="menu-body">
+          <h3>Around the <span>House</span></h3>
+          <p>Vocabulary, games, and speaking tasks for homes, rooms, furniture, and daily routines.</p>
+          <div class="menu-tags">
+            <span class="tag">Vocabulary</span>
+            <span class="tag">Speaking</span>
+            <span class="tag">Classroom</span>
+          </div>
+        </div>
+        <span class="menu-go">Open →</span>
+      </a>
+
+      <a class="menu-card" href="./adjectives/">
+        <span class="menu-num n2">02</span>
+        <div class="menu-body">
+          <h3>Adjectives <span>Flashcards</span></h3>
+          <p>High-frequency adjectives with photo cards, audio, memory match, speed round, and emoji challenge.</p>
+          <div class="menu-tags">
+            <span class="tag">A1–A2</span>
+            <span class="tag">Flashcards</span>
+            <span class="tag">Games</span>
+          </div>
+        </div>
+        <span class="menu-go">Open →</span>
+      </a>
+
+      <a class="menu-card" href="./conditionals/">
+        <span class="menu-num n3">03</span>
+        <div class="menu-body">
+          <h3>Conditionals <span>Course</span></h3>
+          <p>Zero, first, and second conditionals through everyday choices, plans, dreams, and real situations.</p>
+          <div class="menu-tags">
+            <span class="tag">Grammar</span>
+            <span class="tag">Practice</span>
+            <span class="tag">Interactive</span>
+          </div>
+        </div>
+        <span class="menu-go">Open →</span>
+      </a>
+    </nav>
+
+    <footer class="footer">
+      <strong>Israel Ventura</strong> · English Activities Portal · Educational use
+    </footer>
+  </div>
+</body>
+</html>
