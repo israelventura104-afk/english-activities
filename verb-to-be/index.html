@@ -136,23 +136,12 @@
     .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; }
 
     .grammar-hero {
-      display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 16px; padding: 20px;
+      padding: 20px;
       background: var(--wash); border: 1px solid rgba(35, 141, 133, 0.18);
       border-radius: 16px; margin-bottom: 18px;
     }
     .grammar-hero h4 { font-size: 1.2rem; margin: 0 0 8px; color: var(--navy); }
     .grammar-hero p { margin: 0; line-height: 1.65; color: var(--muted); }
-    .reality-meter {
-      display: grid; align-content: center; gap: 8px; padding: 15px;
-      background: #fff; border: 1px solid var(--line); border-radius: 13px;
-    }
-    .meter-labels { display: flex; justify-content: space-between; font-size: 0.68rem; font-weight: 900; color: var(--muted); text-transform: uppercase; }
-    .meter-track { height: 12px; background: linear-gradient(90deg, var(--gold), var(--teal), var(--navy)); border-radius: 999px; position: relative; }
-    .meter-pin {
-      position: absolute; top: -5px; left: 28%; width: 22px; height: 22px;
-      border: 4px solid #fff; border-radius: 999px; background: var(--navy);
-      box-shadow: 0 2px 8px rgba(30, 45, 90, 0.25);
-    }
     .grammar-section { margin-top: 20px; }
     .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
     .section-index {
@@ -597,16 +586,9 @@ function grammarHTML() {
     </div>
 
     <div class="grammar-hero">
-      <div>
-        <span class="eyebrow">What Sofia needs today</span>
-        <h4>Use <em>be</em> to say who people are, how they feel, where they are, and what is true right now.</h4>
-        <p>This module is not a list of empty drills. Every example comes from Sofia's first morning with Maya and Carlos.</p>
-      </div>
-      <div class="reality-meter">
-        <div class="meter-labels"><span>Form</span><span>Meaning in the story</span></div>
-        <div class="meter-track"><span class="meter-pin"></span></div>
-        <strong>Ask: Who? How? Where? What is true now?</strong>
-      </div>
+      <span class="eyebrow">What Sofia needs today</span>
+      <h4>Use <em>be</em> to say who people are, how they feel, where they are, and what is true right now.</h4>
+      <p>This module is not a list of empty drills. Every example comes from Sofia's first morning with Maya and Carlos.</p>
     </div>
 
     <section class="grammar-section">
@@ -626,7 +608,6 @@ function grammarHTML() {
         <div class="map-arrow">&rarr;</div>
         <div class="clause-card"><strong>am / is / are + complement</strong><span>noun · adjective · place · from + city</span><div class="example-strip">… is from Leon. / … are in Building C.</div></div>
       </div>
-      <div class="note"><strong>In this module we do not use</strong> <em>there is / there are</em>. Talk about people and places with subject + be: <em>The cafe is near the gate.</em></div>
     </section>
 
     <section class="grammar-section">
@@ -709,7 +690,6 @@ function grammarHTML() {
           <li>Decide: affirmative, negative, yes/no or Wh-?</li>
           <li>Add a clear complement (person, feeling, place, major, city).</li>
           <li>For short answers, keep the same form of be.</li>
-          <li>Do not force <em>there is / there are</em> in this story.</li>
         </ol>
       </div>
     </section>`;
