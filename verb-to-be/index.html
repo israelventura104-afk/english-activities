@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="apple-touch-icon" href="../favicon.png">
-  <title>Verb to Be | English Activities</title>
+  <title>Verb to Be | First Day on Campus</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -95,17 +95,24 @@
       color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
       font-size: 0.75rem; font-weight: 900;
     }
-    .hero h2 { margin: 0; font-size: clamp(1.9rem, 4.5vw, 3.4rem); line-height: 1; letter-spacing: -0.02em; font-weight: 900; }
+    .hero h2 { margin: 0; font-size: clamp(1.85rem, 4.5vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 900; }
     .hero h2 span { color: var(--teal); }
     .hero-copy { color: var(--muted); margin: 16px 0 0; max-width: 640px; line-height: 1.65; font-size: 1.02rem; }
+    .cast {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+    }
+    .cast span {
+      padding: 6px 11px; border-radius: 999px; background: #fff;
+      border: 1px solid rgba(30, 45, 90, 0.1); font-size: 0.78rem; font-weight: 800; color: var(--navy);
+    }
 
     .lesson-card {
       background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
       border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
     }
     .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
-    .lesson-head h3 { margin: 0; font-size: 1.3rem; }
-    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.5; }
+    .lesson-head h3 { margin: 0; font-size: 1.28rem; }
+    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
 
     .tabs {
       display: flex; gap: 6px; overflow-x: auto; padding: 12px 14px;
@@ -124,27 +131,25 @@
     .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .box { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; line-height: 1.6; }
     .box.tint { background: var(--wash); }
-    .box.dark { background: var(--navy); color: #fff; }
-    .box.dark h4 { color: #fff; }
-    .formula { font-weight: 900; color: var(--navy); font-size: 1.05rem; }
+    .formula { font-weight: 900; color: var(--navy); font-size: 1.02rem; }
     .example { color: var(--teal-dark); font-weight: 800; }
     .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; }
 
     .grammar-hero {
-      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 16px; padding: 20px;
+      display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 16px; padding: 20px;
       background: var(--wash); border: 1px solid rgba(35, 141, 133, 0.18);
       border-radius: 16px; margin-bottom: 18px;
     }
-    .grammar-hero h4 { font-size: 1.25rem; margin: 0 0 8px; color: var(--navy); }
+    .grammar-hero h4 { font-size: 1.2rem; margin: 0 0 8px; color: var(--navy); }
     .grammar-hero p { margin: 0; line-height: 1.65; color: var(--muted); }
     .reality-meter {
       display: grid; align-content: center; gap: 8px; padding: 15px;
       background: #fff; border: 1px solid var(--line); border-radius: 13px;
     }
-    .meter-labels { display: flex; justify-content: space-between; font-size: 0.7rem; font-weight: 900; color: var(--muted); text-transform: uppercase; }
+    .meter-labels { display: flex; justify-content: space-between; font-size: 0.68rem; font-weight: 900; color: var(--muted); text-transform: uppercase; }
     .meter-track { height: 12px; background: linear-gradient(90deg, var(--gold), var(--teal), var(--navy)); border-radius: 999px; position: relative; }
     .meter-pin {
-      position: absolute; top: -5px; left: 18%; width: 22px; height: 22px;
+      position: absolute; top: -5px; left: 28%; width: 22px; height: 22px;
       border: 4px solid #fff; border-radius: 999px; background: var(--navy);
       box-shadow: 0 2px 8px rgba(30, 45, 90, 0.25);
     }
@@ -152,7 +157,7 @@
     .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
     .section-index {
       width: 28px; height: 28px; display: grid; place-items: center;
-      border-radius: 8px; background: var(--navy); color: #fff; font-size: 0.75rem;
+      border-radius: 8px; background: var(--navy); color: #fff; font-size: 0.75rem; flex: 0 0 auto;
     }
     .structure-map {
       display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center;
@@ -174,7 +179,7 @@
     .compare-table th, .compare-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
     .compare-table th { background: var(--navy); color: #fff; font-size: 0.78rem; }
     .compare-table tr:last-child td { border-bottom: 0; }
-    .compare-table td:first-child { font-weight: 850; color: var(--navy); width: 22%; }
+    .compare-table td:first-child { font-weight: 850; color: var(--navy); width: 20%; }
     .mistake-list { display: grid; gap: 9px; }
     .mistake-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .wrong-example, .right-example { padding: 12px; border-radius: 11px; border: 1px solid; }
@@ -195,6 +200,25 @@
     .pronunciation code { color: var(--teal-dark); font-weight: 900; }
     .reference-check { padding: 16px; border-radius: 13px; background: var(--warn); border: 1px solid #f0dfb5; }
     .reference-check ol { margin: 8px 0 0; padding-left: 20px; line-height: 1.65; }
+
+    .story-strip {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px;
+    }
+    .story-beat {
+      padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--soft); font-size: 0.82rem; line-height: 1.45;
+    }
+    .story-beat strong { display: block; color: var(--navy); margin-bottom: 4px; font-size: 0.78rem; }
+
+    .scene-card {
+      border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 14px; background: #fff;
+    }
+    .scene-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 12px 14px; background: var(--soft); border-bottom: 1px solid var(--line);
+    }
+    .scene-head strong { color: var(--navy); }
+    .scene-head span { color: var(--muted); font-size: 0.78rem; font-weight: 700; }
+    .scene-body { padding: 14px 16px; }
 
     .exercise { border: 1px solid var(--line); border-radius: 14px; margin-top: 14px; overflow: hidden; }
     .exercise-toggle {
@@ -221,22 +245,30 @@
     .option-btn.wrong { border-color: #d88383; background: var(--bad); }
 
     .gap-line {
-      display: grid; grid-template-columns: 1fr minmax(180px, 0.55fr); gap: 12px; align-items: center;
+      display: grid; grid-template-columns: 1fr minmax(160px, 0.5fr); gap: 12px; align-items: center;
       padding: 11px 0; border-bottom: 1px solid var(--line);
     }
     .gap-line:last-child { border-bottom: 0; }
-    .gap-line input, .match-row select, textarea {
+    .gap-line input, .match-row select, textarea, .line-choice select {
       width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 9px; background: #fff;
     }
-    .gap-line.correct input { border-color: #6fbd8c; background: var(--good); }
-    .gap-line.wrong input { border-color: #d88383; background: var(--bad); }
-    .match-row {
-      display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr); gap: 12px; align-items: center;
+    .gap-line.correct input, .match-row.correct select, .line-choice.correct select { border-color: #6fbd8c; background: var(--good); }
+    .gap-line.wrong input, .match-row.wrong select, .line-choice.wrong select { border-color: #d88383; background: var(--bad); }
+    .match-row, .line-choice {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(180px, 0.85fr); gap: 12px; align-items: center;
       padding: 11px 0; border-bottom: 1px solid var(--line);
     }
-    .match-row:last-child { border-bottom: 0; }
-    .match-row.correct select { border-color: #6fbd8c; background: var(--good); }
-    .match-row.wrong select { border-color: #d88383; background: var(--bad); }
+    .match-row:last-child, .line-choice:last-child { border-bottom: 0; }
+
+    .chat-bubble {
+      max-width: 92%; padding: 10px 12px; border-radius: 12px; margin: 8px 0; line-height: 1.5; font-size: 0.92rem;
+    }
+    .chat-bubble.sofia { background: var(--wash); border: 1px solid rgba(91, 184, 176, 0.35); }
+    .chat-bubble.maya { background: #fff; border: 1px solid var(--line); margin-left: auto; }
+    .chat-bubble .who { display: block; font-size: 0.72rem; font-weight: 900; color: var(--teal-dark); margin-bottom: 3px; text-transform: uppercase; }
+
+    .id-grid { display: grid; grid-template-columns: 120px 1fr; gap: 8px 12px; align-items: center; }
+    .id-grid label { font-weight: 800; color: var(--navy); font-size: 0.85rem; }
 
     .reading-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
     .skill-tag {
@@ -265,9 +297,16 @@
     .focus-card strong { display: block; color: var(--navy); margin-bottom: 3px; }
     .transcript { display: none; margin-top: 14px; }
     .transcript.show { display: block; }
+    .audio-bar {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 14px; background: var(--navy); color: #fff; border-radius: 12px; margin-bottom: 12px;
+    }
+    .audio-bar strong { font-size: 0.9rem; }
+    .audio-bar p { margin: 0; color: #d7ecea; font-size: 0.82rem; line-height: 1.45; flex: 1 1 200px; }
+    .audio-bar audio { width: min(100%, 320px); }
 
     .production-card { padding: 13px; border: 1px solid var(--line); border-radius: 11px; background: var(--soft); margin-top: 10px; }
-    .production-card textarea { min-height: 110px; margin-top: 8px; resize: vertical; line-height: 1.6; }
+    .production-card textarea { min-height: 120px; margin-top: 8px; resize: vertical; line-height: 1.6; }
     .model-answer {
       display: none; margin: 9px 0 0; padding: 9px 11px; border-left: 3px solid var(--gold);
       background: var(--warn); font-size: 0.84rem; line-height: 1.5;
@@ -285,15 +324,14 @@
     .feedback.show { display: block; }
     .feedback.good { background: var(--good); }
     .feedback.warn { background: var(--warn); }
-
     .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
 
     @media (max-width: 720px) {
-      .grammar-hero, .use-grid, .grid-2, .mistake-row, .gap-line, .match-row { grid-template-columns: 1fr; }
+      .grammar-hero, .use-grid, .grid-2, .mistake-row, .gap-line, .match-row, .line-choice, .story-strip, .listening-focus { grid-template-columns: 1fr; }
       .structure-map { grid-template-columns: 1fr; }
       .map-arrow { transform: rotate(90deg); }
-      .listening-focus { grid-template-columns: 1fr; }
       .rubric { grid-template-columns: repeat(2, 1fr); }
+      .id-grid { grid-template-columns: 1fr; }
       .hero-inner { max-width: 100%; }
       .hero::after { opacity: 0.1; width: 120px; }
       .shell { padding: 14px; }
@@ -311,164 +349,172 @@
       <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
       <div>
         <h1>Verb to Be</h1>
-        <p>Identity, feelings, places and facts</p>
+        <p>Sofia's first day on campus</p>
       </div>
     </div>
     <div class="topbar-actions">
       <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
         <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
       </a>
-      <span class="mode-pill">A1 - One topic</span>
+      <span class="mode-pill">A2 · Story module</span>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
-      <span class="eyebrow">English for everyday life</span>
-      <h2>The verb <span>to be</span></h2>
+      <span class="eyebrow">Story · Grammar in context</span>
+      <h2>First day, new faces, real <span>am / is / are</span></h2>
       <p class="hero-copy">
-        Learn how to say who you are, how you feel, where you are and what is true -
-        with the same practice path used in each Conditionals topic.
+        Follow <strong>Sofia</strong> through her first morning at university. She meets <strong>Maya</strong> and <strong>Carlos</strong>,
+        gets the map wrong once, and slowly feels less alone — using the verb <em>to be</em> for identity, feelings, places and questions.
       </p>
+      <div class="cast" aria-label="Characters">
+        <span>Sofia · Business · Building C</span>
+        <span>Maya · Building C · Veracruz</span>
+        <span>Carlos · Engineering · Building A</span>
+      </div>
     </div>
   </section>
 
   <article class="lesson-card">
     <header class="lesson-head">
-      <h3>Present simple of <em>be</em></h3>
-      <p>Use <strong>am / is / are</strong> for identity, description, feelings, location, age, nationality and occupation.</p>
+      <h3>One morning on campus</h3>
+      <p>Practice affirmative, negative, yes/no and Wh- questions with <strong>am / is / are</strong> — not as a worksheet, but as Sofia's day.</p>
     </header>
     <nav class="tabs" id="tabs" role="tablist" aria-label="Topic sections"></nav>
     <div id="panels"></div>
   </article>
 
-  <footer class="footer">Verb to Be  |  English Activities  |  Progress is stored in this browser</footer>
+  <footer class="footer">Verb to Be · English Activities · Progress is stored in this browser</footer>
 </div>
 
 <script>
 const sections = ['Grammar Reference', 'Structure', 'Reading', 'Listening', 'Speaking', 'Writing'];
 
-const topic = {
-  type: 'Verb to Be',
-  title: 'Who I am and how things are',
-  focus: 'Use am, is and are to talk about identity, description, feelings, location, age, nationality and occupation in the present.',
-  form: [
-    'I am / I\'m  |  You are / You\'re  |  He/She/It is / \'s',
-    'We/They are / \'re',
-    'Negative: I am not / I\'m not  |  is not / isn\'t  |  are not / aren\'t',
-    'Questions: Am I...?  |  Is he/she/it...?  |  Are you/we/they...?'
-  ],
-  examples: [
-    'I am a student. She is friendly. We are at school.',
-    'He isn\'t tired. They aren\'t at home.',
-    'Are you ready? Yes, I am. / No, I\'m not.',
-    'Where is the library? It is next to the park.'
-  ]
-};
+const listeningScript = [
+  ['Maya', 'Hi… are you okay? You look a bit lost.'],
+  ['Sofia', 'Hi. Yes—I mean, no. I am Sofia. Today is my first day, and this map is not easy.'],
+  ['Maya', 'I am Maya. I am a first-year too. Where are you trying to go?'],
+  ['Sofia', 'Where is the orientation hall? Is it near the library?'],
+  ['Maya', 'The orientation hall is next to the main gate. The library is not next to it. The library is behind the science building.'],
+  ['Sofia', 'Okay… so I am in the wrong place.'],
+  ['Maya', 'A little. But you are not alone. We are both new here. Are you in Building C?'],
+  ['Sofia', 'Yes, I am. How about you?'],
+  ['Maya', 'I am in Building C too. Perfect. Who is your advisor?'],
+  ['Sofia', 'Her name is Ms. Ortega. She is not here right now. She is in a meeting until ten.'],
+  ['Maya', 'Then we are free for a few minutes. Are you hungry?'],
+  ['Sofia', 'I am hungry, but I am also nervous. Is the cafe expensive?'],
+  ['Maya', 'It is not expensive. The student menu is cheap. Come on.'],
+  ['Carlos', 'Hey—sorry. Is this the line for the cafe?'],
+  ['Maya', 'Yes, it is. Are you new too?'],
+  ['Carlos', 'Yes, I am. I am Carlos. I am in Engineering.'],
+  ['Sofia', 'Nice to meet you. I am Sofia. I am not in Engineering. I am in Business.'],
+  ['Carlos', 'Cool. Where are you from, Sofia?'],
+  ['Sofia', 'I am from Leon. And you?'],
+  ['Carlos', 'I am from this city. Maya, are you from here?'],
+  ['Maya', 'No, I am not. I am from Veracruz. Carlos, is your class in Building C?'],
+  ['Carlos', "No, it isn't. My class is in Building A. But the cafe is for everyone, right?"],
+  ['Maya', 'Yes, it is. We are not in the same building, but we are free now.'],
+  ['Sofia', 'What is after orientation? Is it a campus tour?'],
+  ['Carlos', 'Yes, it is—at eleven. Where is the meeting point?'],
+  ['Maya', 'It is in front of the main gate. Don\'t worry, Sofia. You are with us now.'],
+  ['Sofia', 'Thanks. I am still a bit nervous… but I am happy. Are we late for the cafe?'],
+  ['Carlos', "No, we aren't. We are right on time."],
+  ['Maya', 'Good. First coffee, then the tour. Ready?'],
+  ['Sofia', "Yes, I am. Let's go."]
+];
 
-const reading = {
-  title: 'New faces in class',
-  text: `On Monday morning, Room 12 is quiet for only a few seconds. Then the door opens and a new student walks in with the teacher.
+const readingText = `Sofia stands near the campus map and pretends she understands it. The campus is huge, the signs are small, and she is more nervous than she wants to admit. Today is her first day at university, and her only clear plan is to find the orientation hall before ten.
 
-“Hello, everyone. This is Ana,” the teacher says. “She is from Colombia, and she is in our English class this semester.”
+A girl with a bright backpack stops beside her. "Are you okay?" she asks. That is how Sofia meets Maya. Maya is a first-year student too, and she is friendly in a practical way. When Sofia says the orientation hall is near the library, Maya laughs softly. "The library is not next to the orientation hall," she says. "The orientation hall is next to the main gate. The library is behind the science building." Sofia is in the wrong place, but she is not alone anymore.
 
-Ana smiles. “Hi. I am Ana. I am sixteen. I am a bit nervous, but I am happy to be here.”
+They discover they are both in Building C. Sofia's advisor is Ms. Ortega, but she is not available until ten because she is in a meeting. Maya suggests coffee. At the cafe line they meet Carlos. He is also new, but he is not in Building C and he is not in Business. He is in Engineering, and his classes are in Building A. Carlos is from this city; Maya is from Veracruz; Sofia is from Leon.
 
-Luis is near the window. He is usually quiet, but today he is helpful. “I am Luis. We are in Group B. Our desks are over there.”
+For a few minutes the three of them compare buildings, majors and meeting points. The campus tour is at eleven in front of the main gate. Sofia is still a bit nervous, but she is happier than she was twenty minutes earlier. The map is still confusing. The day is still long. But now the first day is not only about finding a building. It is about finding people.`;
 
-Later, Ana looks around the room. The walls are colorful. The chairs are in a circle. One poster is about countries; another poster is about feelings. A note on the board says: Today we are partners. We are not alone.
+const readingQs = [
+  ['What is the main idea of the reading?', ['Sofia\'s first morning becomes easier after she meets people who help her navigate campus', 'Sofia decides to leave university because the map is difficult', 'Carlos teaches a full Engineering class in the cafe'], 0],
+  ['Why does Maya laugh softly when Sofia mentions the library?', ['Sofia has mixed up two important places on campus', 'The library is closed forever', 'Maya does not like libraries'], 0],
+  ['What do Sofia and Maya have in common?', ['They are first-year students in Building C', 'They are both Engineering students from this city', 'They are both advisors for orientation'], 0],
+  ['Why is Ms. Ortega unavailable at that moment?', ['She is in a meeting until ten', 'She is at the cafe with Carlos', 'She is on the campus tour already'], 0],
+  ['How is Carlos different from Sofia and Maya?', ['He is in Engineering and Building A', 'He is not a new student', 'He is from Veracruz'], 0],
+  ['What can we infer about Sofia by the end?', ['She still feels some nerves, but connection makes the day more manageable', 'She no longer needs the campus tour', 'She is angry with Maya for correcting the map'], 0]
+];
 
-During the break, Ana is not nervous anymore. She is with two classmates near the café. “Is the coffee good?” she asks. “It is strong,” says Maya, “but the cake is excellent.”
+const listeningQs = [
+  ['Why does Maya first speak to Sofia?', ['Sofia looks lost near the map', 'Sofia is late for an Engineering exam', 'Sofia is selling coffee'], 0],
+  ['Where is the orientation hall?', ['Next to the main gate', 'Behind the science building', 'In Building A'], 0],
+  ['What is true about the library?', ['It is not next to the orientation hall; it is behind the science building', 'It is next to the main gate', 'It is in Building C only'], 0],
+  ['Who is from Veracruz?', ['Maya', 'Sofia', 'Carlos'], 0],
+  ['Why are Sofia and Carlos not in the same program?', ['Sofia is in Business; Carlos is in Engineering', 'Carlos is not a student', 'Sofia is in Building A only'], 0],
+  ['What can we infer from the ending?', ['The three students are starting to form a small group for the morning', 'They cancel the campus tour', 'Sofia decides to go home'], 0]
+];
 
-Ana laughs. “Then I am ready for cake.”`,
-  qs: [
-    ['What is the main purpose of the text?', ['To introduce a new student and show simple uses of the verb to be', 'To explain a cooking recipe for cake', 'To describe a sports competition'], 0],
-    ['Where is Ana from?', ['Colombia', 'Room 12', 'Group B'], 0],
-    ['How does Ana feel at first?', ['A bit nervous but happy', 'Angry and bored', 'Tired and sick'], 0],
-    ['Why is Luis important in the scene?', ['He helps Ana find her group', 'He is the teacher', 'He closes the door'], 0],
-    ['What does the board note suggest?', ['Students should work together', 'Students must leave early', 'The class is cancelled'], 0],
-    ['What can we infer about Ana by the break?', ['She is more comfortable with her classmates', 'She wants to change schools', 'She does not like English'], 0]
-  ]
-};
+const structureChoose = [
+  ['Sofia: "I ___ a first-year student."', ['am', 'is', 'are'], 0],
+  ['Maya: "The orientation hall ___ next to the main gate."', ['am', 'is', 'are'], 1],
+  ['Maya: "We ___ both new here."', ['am', 'is', 'are'], 2],
+  ['Sofia: "Ms. Ortega ___ not here right now."', ['am', 'is', 'are'], 1],
+  ['Carlos: "I ___ not in Building C."', ['am', 'is', 'are'], 0],
+  ['Sofia: "___ you from this city, Maya?"', ['Am', 'Is', 'Are'], 2]
+];
 
-const listen = {
-  script: `Maya: Ana, are you free after class?
-Ana: Yes, I am. Why?
-Maya: We are going to the library. Are you interested?
-Ana: I am interested, but I am also hungry.
-Luis: The café is open. The sandwiches are good.
-Ana: Is it expensive?
-Maya: It is not expensive. The student menu is cheap.
-Ana: Perfect. I am ready.
-Luis: Great. We are not late if we leave now.
-Ana: Where is the library from here?
-Maya: It is behind the science building.
-Ana: And where are you from, Luis?
-Luis: I am from this city. Maya is from Peru.
-Ana: Nice! We are an international team already.`,
-  qs: [
-    ['What do Maya and Luis invite Ana to do?', ['Go to the library after class', 'Cancel the English class', 'Travel to Peru'], 0],
-    ['Why does Ana hesitate for a moment?', ['She is hungry', 'She is not free', 'She dislikes libraries'], 0],
-    ['What do they say about the café?', ['It is not expensive', 'It is closed', 'It is far from school'], 0],
-    ['Where is the library?', ['Behind the science building', 'Next to Ana’s house', 'In another city'], 0],
-    ['Who is from this city?', ['Luis', 'Ana', 'Maya'], 0],
-    ['What is the tone of the conversation?', ['Friendly and practical', 'Formal and angry', 'Silent and official'], 0]
-  ]
-};
+const structureGaps = [
+  ['Sofia ___ (be) from Leon.', 'am / is / are → is', 'is'],
+  ['Maya and Sofia ___ (be) in Building C.', 'are', 'are'],
+  ['Carlos ___ (be) not in Business.', "is not / isn't", "is not / isn't"],
+  ['___ the cafe expensive?', 'Is', 'Is'],
+  ['Where ___ the meeting point?', 'is', 'is'],
+  ['No, we ___ (be) not late.', "are not / aren't", "are not / aren't"]
+];
 
-const speaking = {
-  prompt: 'Introduce yourself and one classmate (or an invented partner). Use at least eight sentences with am / is / are (and some negatives or questions).',
-  steps: [
-    'Say your name, age and nationality.',
-    'Describe how you feel today and where you are.',
-    'Talk about your partner: name, job/student status, one adjective.',
-    'Ask two yes/no questions and answer them with short answers.'
-  ],
-  model: 'Hello. I am Carla. I am 17 and I am from Mexico. Today I am happy because we are in English class. My partner is Diego. He is a student and he is very kind. He is not from my city. Are we ready for the activity? Yes, we are. Is the homework difficult? No, it isn\'t.'
-};
+const structureLines = [
+  {
+    prompt: 'Sofia texts Maya after they separate for two minutes. Choose the most natural message.',
+    options: [
+      'Where is you now? I is near the cafe.',
+      'Where are you now? I am near the cafe.',
+      'Where am you now? I are near the cafe.'
+    ],
+    answer: 1
+  },
+  {
+    prompt: 'Carlos asks about majors. Choose the best reply from Sofia.',
+    options: [
+      'I am not in Engineering. I am in Business.',
+      'I not am Engineering. I is Business.',
+      'I are not Engineering. I am Business student.'
+    ],
+    answer: 0
+  },
+  {
+    prompt: 'Maya corrects a classmate. Choose the accurate line.',
+    options: [
+      'The library is next to the orientation hall.',
+      'The library is not next to the orientation hall.',
+      'The library are behind the science building only if it rain.'
+    ],
+    answer: 1
+  },
+  {
+    prompt: 'Short answer: "Are you in Building C?" Sofia says…',
+    options: ['Yes, I am.', 'Yes, I is.', 'Yes, I are.'],
+    answer: 0
+  }
+];
 
-const writing = {
-  prompt: 'Write 90-120 words about a new person in your class, job or neighborhood. Use am / is / are in affirmative, negative and question forms at least once each.',
-  checklist: [
-    'Identity and description',
-    'Feelings or location',
-    'At least one negative form',
-    'At least one question form'
-  ],
-  model: 'This week there is a new student in my class. Her name is Nora. She is from Spain and she is 18. At first she is quiet, but she is not unfriendly. She is interested in music and photography. We are partners for a project about cities. Is the project easy? No, it isn\'t, but it is interesting. Nora is usually at the library after class. I am happy to work with her because we are a good team.'
-};
+const fixMessageWrong = `hi maya!! i is sofia from building c. the map are crazy. where is you? ms ortega aren't here and i am not know if the tour is at eleven. are carlos in the cafe line?`;
 
-const structureTasks = {
-  choose: [
-    ['I ___ a teacher.', ['am', 'is', 'are'], 0],
-    ['She ___ my sister.', ['am', 'is', 'are'], 1],
-    ['We ___ in the kitchen.', ['am', 'is', 'are'], 2],
-    ['It ___ cold today.', ['am', 'is', 'are'], 1],
-    ['They ___ not ready.', ['am', 'is', 'are'], 2],
-    ['___ you from Canada?', ['Am', 'Is', 'Are'], 2]
-  ],
-  gaps: [
-    ['I ___ (be) happy today.', "am"],
-    ['He ___ (be) not at home.', "is not / isn't"],
-    ['___ she a doctor?', 'Is'],
-    ['We ___ (be) students.', 'are'],
-    ['They ___ (be) not late.', "are not / aren't"],
-    ['Where ___ the keys?', 'are']
-  ],
-  match: [
-    ['I am', 'a student'],
-    ['She is', 'from Japan'],
-    ['They are', 'in the garden'],
-    ['It is', 'half past three'],
-    ['We are not', 'tired'],
-    ['Are you', 'ready?']
-  ]
-};
+const fixChecks = [
+  { label: 'Correct form with "I"', ok: (t) => /\bi am\b/i.test(t) && !/\bi is\b/i.test(t) },
+  { label: 'Correct form with "map/subject + is/are"', ok: (t) => /\b(map|it) is\b/i.test(t) || !/\bmap are\b/i.test(t) },
+  { label: 'Wh- question with are/is', ok: (t) => /\bwhere are you\b/i.test(t) || /\bwhere is\b/i.test(t) },
+  { label: 'Negative with isn\'t / is not / aren\'t', ok: (t) => /\b(is not|isn't|are not|aren't)\b/i.test(t) },
+  { label: 'Yes/No question form (Is/Are + subject)', ok: (t) => /\b(is|are) [a-z]/i.test(t) }
+];
 
-const answers = JSON.parse(localStorage.getItem('verbToBePortal') || '{}');
-function save() {
-  localStorage.setItem('verbToBePortal', JSON.stringify(answers));
-}
+const answers = JSON.parse(localStorage.getItem('verbToBePortal_v2') || '{}');
+function save() { localStorage.setItem('verbToBePortal_v2', JSON.stringify(answers)); }
 
 function esc(s) {
   return String(s)
@@ -490,9 +536,8 @@ function toggleEx(id) {
 }
 
 function choose(kind, qi, oi, btn) {
-  const key = kind;
-  answers[key] = answers[key] || {};
-  answers[key][qi] = oi;
+  answers[kind] = answers[kind] || {};
+  answers[kind][qi] = oi;
   save();
   const block = btn.closest('.q-block');
   block.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected', 'correct', 'wrong'));
@@ -518,7 +563,7 @@ function checkMC(kind, qs) {
   });
   const fb = document.getElementById('fb-' + kind);
   fb.className = 'feedback show ' + (score === qs.length ? 'good' : 'warn');
-  fb.textContent = `Score: ${score} / ${qs.length}` + (score === qs.length ? '  |  Excellent work!' : '  |  Check the green options and try again.');
+  fb.textContent = `Score: ${score} / ${qs.length}` + (score === qs.length ? ' · Excellent — you followed the story well.' : ' · Check the green answers and try again.');
 }
 
 function resetMC(kind) {
@@ -545,208 +590,274 @@ function quizHTML(kind, qs) {
 
 function grammarHTML() {
   return `
+    <div class="story-strip">
+      <div class="story-beat"><strong>1 · Arrival</strong>Sofia is nervous. The campus is huge. The map is confusing.</div>
+      <div class="story-beat"><strong>2 · New people</strong>Maya is friendly. Carlos is in Engineering. They are all new.</div>
+      <div class="story-beat"><strong>3 · Questions</strong>Where is the hall? Are you in Building C? Who is your advisor?</div>
+    </div>
+
     <div class="grammar-hero">
       <div>
-        <span class="eyebrow">One essential verb</span>
-        <h4>Be connects a subject to identity, description and location.</h4>
-        <p>${esc(topic.focus)}</p>
+        <span class="eyebrow">What Sofia needs today</span>
+        <h4>Use <em>be</em> to say who people are, how they feel, where they are, and what is true right now.</h4>
+        <p>This module is not a list of empty drills. Every example comes from Sofia's first morning with Maya and Carlos.</p>
       </div>
       <div class="reality-meter">
-        <div class="meter-labels"><span>Form</span><span>Meaning</span></div>
+        <div class="meter-labels"><span>Form</span><span>Meaning in the story</span></div>
         <div class="meter-track"><span class="meter-pin"></span></div>
-        <strong>Ask: Who / What / Where / How is the subject right now?</strong>
+        <strong>Ask: Who? How? Where? What is true now?</strong>
       </div>
     </div>
 
     <section class="grammar-section">
-      <h4><span class="section-index">1</span>When we use it</h4>
+      <h4><span class="section-index">1</span>Four jobs of <em>be</em> on campus</h4>
       <div class="use-grid">
-        <div class="use-card"><strong>Identity & job</strong><span>Who someone is or what they do.</span><div class="example-strip">I am a student. She is a nurse.</div></div>
-        <div class="use-card"><strong>Description</strong><span>Adjectives and qualities.</span><div class="example-strip">He is tall. The room is quiet.</div></div>
-        <div class="use-card"><strong>Feelings</strong><span>How people feel now.</span><div class="example-strip">I am happy. They are tired.</div></div>
-        <div class="use-card"><strong>Place & time</strong><span>Where something is; what time it is.</span><div class="example-strip">We are at school. It is 9 a.m.</div></div>
+        <div class="use-card"><strong>Identity</strong><span>Who someone is / what they study</span><div class="example-strip">I am Sofia. I am in Business. He is Carlos.</div></div>
+        <div class="use-card"><strong>Feelings</strong><span>How someone feels in the moment</span><div class="example-strip">I am nervous. I am happy. We are free now.</div></div>
+        <div class="use-card"><strong>Place</strong><span>Where a person or building is</span><div class="example-strip">We are near the map. The hall is next to the main gate.</div></div>
+        <div class="use-card"><strong>Facts right now</strong><span>What is / is not true this morning</span><div class="example-strip">Ms. Ortega is in a meeting. The cafe is not expensive.</div></div>
       </div>
     </section>
 
     <section class="grammar-section">
       <h4><span class="section-index">2</span>Build the sentence</h4>
       <div class="structure-map">
-        <div class="clause-card"><strong>Subject</strong><span>I / you / he / she / it / we / they</span><div class="example-strip">She ...</div></div>
+        <div class="clause-card"><strong>Subject</strong><span>I / you / he / she / it / we / they</span><div class="example-strip">Sofia… / The library… / We…</div></div>
         <div class="map-arrow">&rarr;</div>
-        <div class="clause-card"><strong>Be + complement</strong><span>am / is / are + noun, adjective or place</span><div class="example-strip">... is my friend. / ... is kind. / ... is here.</div></div>
+        <div class="clause-card"><strong>am / is / are + complement</strong><span>noun · adjective · place · from + city</span><div class="example-strip">… is from Leon. / … are in Building C.</div></div>
       </div>
-      <div class="note"><strong>Remember:</strong> After <em>be</em> we do not use another main verb in continuous form here. We say <em>She is a teacher</em>, not <em>She is be a teacher</em>.</div>
+      <div class="note"><strong>In this module we do not use</strong> <em>there is / there are</em>. Talk about people and places with subject + be: <em>The cafe is near the gate.</em></div>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">3</span>Full forms and contractions</h4>
+      <h4><span class="section-index">3</span>Affirmative, negative, questions</h4>
       <table class="compare-table">
-        <thead><tr><th>Subject</th><th>Affirmative</th><th>Negative</th><th>Question</th></tr></thead>
+        <thead><tr><th>Type</th><th>Pattern</th><th>From Sofia's day</th></tr></thead>
         <tbody>
-          <tr><td>I</td><td>I am / I\'m</td><td>I am not / I\'m not</td><td>Am I...?</td></tr>
-          <tr><td>He / She / It</td><td>is / \'s</td><td>is not / isn\'t</td><td>Is he/she/it...?</td></tr>
-          <tr><td>You / We / They</td><td>are / \'re</td><td>are not / aren\'t</td><td>Are you/we/they...?</td></tr>
+          <tr><td>Affirmative</td><td>Subject + am/is/are + …</td><td>I am a first-year student. We are both new.</td></tr>
+          <tr><td>Negative</td><td>Subject + am/is/are + not</td><td>I am not in Engineering. She is not here. We are not late.</td></tr>
+          <tr><td>Yes/No</td><td>Am/Is/Are + subject + …?</td><td>Are you in Building C? Is the cafe expensive?</td></tr>
+          <tr><td>Short answers</td><td>Yes/No + subject + be</td><td>Yes, I am. No, it isn't. No, we aren't.</td></tr>
+          <tr><td>Wh-</td><td>Wh- + am/is/are + subject…?</td><td>Where is the hall? Who is your advisor? What is after orientation?</td></tr>
         </tbody>
       </table>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">4</span>Short answers</h4>
+      <h4><span class="section-index">4</span>Forms to remember</h4>
       <div class="grid-2">
-        <div class="box tint"><strong>Yes</strong><p class="example">Yes, I am.  |  Yes, she is.  |  Yes, they are.</p></div>
-        <div class="box"><strong>No</strong><p class="example">No, I\'m not.  |  No, he isn\'t.  |  No, we aren\'t.</p></div>
+        <div class="box tint">
+          <p class="formula">I am / I'm</p>
+          <p class="formula">he/she/it is / 's</p>
+          <p class="formula">you/we/they are / 're</p>
+        </div>
+        <div class="box">
+          <p class="formula">I'm not</p>
+          <p class="formula">isn't / aren't</p>
+          <p class="example">Am I…? Is she…? Are you…?</p>
+        </div>
       </div>
-      <div class="pronunciation" style="margin-top:12px"><strong>Natural speech:</strong> Use <code>I'm</code>, <code>she's</code>, <code>we're</code>, <code>isn't</code>, <code>aren't</code> in conversation.</div>
+      <div class="pronunciation" style="margin-top:12px"><strong>Natural speech:</strong> <code>I'm</code>, <code>she's</code>, <code>we're</code>, <code>isn't</code>, <code>aren't</code> sound normal in campus conversation.</div>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">5</span>Common mistakes</h4>
+      <h4><span class="section-index">5</span>Common first-day mistakes</h4>
       <div class="mistake-list">
         <div class="mistake-row">
-          <div class="wrong-example"><strong>Not this</strong>She are my friend.</div>
-          <div class="right-example"><strong>Use this</strong>She is my friend.</div>
+          <div class="wrong-example"><strong>Not this</strong>She are in Building C.</div>
+          <div class="right-example"><strong>Use this</strong>She is in Building C.</div>
         </div>
         <div class="mistake-row">
           <div class="wrong-example"><strong>Not this</strong>I is student.</div>
           <div class="right-example"><strong>Use this</strong>I am a student.</div>
         </div>
         <div class="mistake-row">
-          <div class="wrong-example"><strong>Not this</strong>Is you ready?</div>
-          <div class="right-example"><strong>Use this</strong>Are you ready?</div>
+          <div class="wrong-example"><strong>Not this</strong>Where is you from?</div>
+          <div class="right-example"><strong>Use this</strong>Where are you from?</div>
+        </div>
+        <div class="mistake-row">
+          <div class="wrong-example"><strong>Not this</strong>Is you hungry?</div>
+          <div class="right-example"><strong>Use this</strong>Are you hungry?</div>
         </div>
       </div>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">6</span>Useful language</h4>
+      <h4><span class="section-index">6</span>Useful lines from the story</h4>
       <div class="language-bank">
-        <span class="language-chip">I am from...</span>
-        <span class="language-chip">She is a...</span>
-        <span class="language-chip">We are at...</span>
-        <span class="language-chip">It is near...</span>
-        <span class="language-chip">How old are you?</span>
-        <span class="language-chip">Where is...?</span>
-        <span class="language-chip">Who is he?</span>
-        <span class="language-chip">They aren\'t here</span>
+        <span class="language-chip">I am from…</span>
+        <span class="language-chip">She is not here</span>
+        <span class="language-chip">We are free now</span>
+        <span class="language-chip">Where is…?</span>
+        <span class="language-chip">Who is…?</span>
+        <span class="language-chip">What is after…?</span>
+        <span class="language-chip">Are you in Building C?</span>
+        <span class="language-chip">Yes, I am. / No, I'm not.</span>
       </div>
       <div class="mini-dialogue" style="margin-top:12px">
-        <p><strong>A:</strong> Are you new here?</p>
-        <p><strong>B:</strong> Yes, I am. I am Ana.</p>
-        <p><strong>A:</strong> Nice to meet you. We are in the same group.</p>
+        <p><strong>Maya:</strong> Are you okay?</p>
+        <p><strong>Sofia:</strong> I am a bit lost. Where is the orientation hall?</p>
+        <p><strong>Maya:</strong> It is next to the main gate. You are not alone.</p>
       </div>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">7</span>Final accuracy check</h4>
+      <h4><span class="section-index">7</span>Final check before you practice</h4>
       <div class="reference-check">
         <ol>
-          <li>Choose the correct form: am / is / are.</li>
-          <li>Match the subject and the verb.</li>
-          <li>Add a complement: noun, adjective or place.</li>
-          <li>For questions, put be before the subject.</li>
-          <li>Use short answers with the same form of be.</li>
+          <li>Match the subject to am / is / are.</li>
+          <li>Decide: affirmative, negative, yes/no or Wh-?</li>
+          <li>Add a clear complement (person, feeling, place, major, city).</li>
+          <li>For short answers, keep the same form of be.</li>
+          <li>Do not force <em>there is / there are</em> in this story.</li>
         </ol>
       </div>
     </section>`;
 }
 
 function structureHTML() {
-  const choose = structureTasks.choose;
-  const matchOptions = [...new Set(structureTasks.match.map(m => m[1]))];
   return `
-    <h4>Structure practice</h4>
-    <p class="intro">Train the forms of <strong>be</strong> with controlled practice, just like the Structure tab in Conditionals.</p>
-
-    <div class="structure-intro box tint" style="margin-bottom:14px">
-      <p class="formula" style="margin:0 0 8px">Subject + am/is/are + complement</p>
-      <p style="margin:0;color:var(--muted);line-height:1.55">Negative: subject + am/is/are + not  |  Question: am/is/are + subject + ...?</p>
-    </div>
+    <h4>Structure · help Sofia survive the morning</h4>
+    <p class="intro">These tasks look like campus messages, profiles and quick choices — still controlled practice, but inside the story.</p>
 
     <div class="exercise open" id="ex-choose">
       <button class="exercise-toggle" type="button" onclick="toggleEx('ex-choose')">
-        <span class="exercise-title"><strong>1  |  Choose the correct form</strong><small>am / is / are</small></span>
-        <span class="chevron">&#9662;</span>
+        <span class="exercise-title"><strong>1 · Lines from the map and cafe</strong><small>Choose am / is / are</small></span>
+        <span class="chevron">▾</span>
       </button>
-      <div class="exercise-content">
-        ${quizHTML('choose', choose.map(c => [c[0], c[1], c[2]]))}
-      </div>
+      <div class="exercise-content">${quizHTML('choose', structureChoose)}</div>
     </div>
 
     <div class="exercise" id="ex-gaps">
       <button class="exercise-toggle" type="button" onclick="toggleEx('ex-gaps')">
-        <span class="exercise-title"><strong>2  |  Complete the gaps</strong><small>Type the correct form of be</small></span>
-        <span class="chevron">&#9662;</span>
+        <span class="exercise-title"><strong>2 · Orientation notes</strong><small>Complete with the correct form of be</small></span>
+        <span class="chevron">▾</span>
       </button>
       <div class="exercise-content">
-        <div id="gap-list">
-          ${structureTasks.gaps.map((g, i) => `
-            <div class="gap-line" data-gap="${i}">
-              <div>${i + 1}. ${esc(g[0].replace('___', '______'))}</div>
-              <input type="text" autocomplete="off" placeholder="type here" data-gap-input="${i}" value="${esc((answers.gaps && answers.gaps[i]) || '')}">
-            </div>`).join('')}
+        <div class="scene-card" style="margin-top:0">
+          <div class="scene-head"><strong>Notebook · first morning</strong><span>aff · neg · yes/no · wh</span></div>
+          <div class="scene-body" id="gap-list">
+            ${structureGaps.map((g, i) => `
+              <div class="gap-line" data-gap="${i}">
+                <div>${i + 1}. ${esc(g[0])}</div>
+                <input type="text" autocomplete="off" placeholder="type form of be" data-gap-input="${i}" value="${esc((answers.gaps && answers.gaps[i]) || '')}">
+              </div>`).join('')}
+          </div>
         </div>
         <div class="actions">
           <button class="btn" type="button" onclick="checkGaps()">Check answers</button>
           <button class="btn ghost" type="button" onclick="resetGaps()">Reset</button>
         </div>
         <div class="feedback" id="fb-gaps"></div>
-        <div class="note"><strong>Accepted negatives:</strong> is not / isn't  |  are not / aren't</div>
+        <div class="note"><strong>Accepted:</strong> isn't = is not · aren't = are not</div>
       </div>
     </div>
 
-    <div class="exercise" id="ex-match">
-      <button class="exercise-toggle" type="button" onclick="toggleEx('ex-match')">
-        <span class="exercise-title"><strong>3  |  Match the halves</strong><small>Complete natural sentences</small></span>
-        <span class="chevron">&#9662;</span>
+    <div class="exercise" id="ex-lines">
+      <button class="exercise-toggle" type="button" onclick="toggleEx('ex-lines')">
+        <span class="exercise-title"><strong>3 · Choose the natural line</strong><small>Meaning + form (A2)</small></span>
+        <span class="chevron">▾</span>
       </button>
       <div class="exercise-content">
-        ${structureTasks.match.map((m, i) => `
-          <div class="match-row" data-match="${i}">
-            <div><strong>${esc(m[0])}</strong></div>
-            <select data-match-select="${i}">
-              <option value="">- choose -</option>
-              ${matchOptions.map(o => `<option value="${esc(o)}" ${(answers.match && answers.match[i] === o) ? 'selected' : ''}>${esc(o)}</option>`).join('')}
+        ${structureLines.map((item, i) => `
+          <div class="line-choice" data-line="${i}">
+            <div><strong>${i + 1}.</strong> ${esc(item.prompt)}</div>
+            <select data-line-select="${i}">
+              <option value="">— choose —</option>
+              ${item.options.map((o, oi) => `<option value="${oi}" ${String(answers.lines && answers.lines[i]) === String(oi) ? 'selected' : ''}>${esc(o)}</option>`).join('')}
             </select>
           </div>`).join('')}
         <div class="actions">
-          <button class="btn" type="button" onclick="checkMatch()">Check answers</button>
-          <button class="btn ghost" type="button" onclick="resetMatch()">Reset</button>
+          <button class="btn" type="button" onclick="checkLines()">Check answers</button>
+          <button class="btn ghost" type="button" onclick="resetLines()">Reset</button>
         </div>
-        <div class="feedback" id="fb-match"></div>
+        <div class="feedback" id="fb-lines"></div>
+      </div>
+    </div>
+
+    <div class="exercise" id="ex-fix">
+      <button class="exercise-toggle" type="button" onclick="toggleEx('ex-fix')">
+        <span class="exercise-title"><strong>4 · Fix Sofia's rushed message</strong><small>Edit the text so the verb to be is correct</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content">
+        <p class="intro" style="margin-bottom:10px">Original message (with mistakes):</p>
+        <div class="box" style="margin-bottom:12px"><code style="white-space:pre-wrap;font-family:inherit">${esc(fixMessageWrong)}</code></div>
+        <div class="production-card" style="margin-top:0">
+          <strong>Your corrected version</strong>
+          <textarea id="fixText" placeholder="Rewrite Sofia's message…">${esc(answers.fixText || '')}</textarea>
+          <div class="actions">
+            <button class="btn" type="button" onclick="checkFix()">Check my rewrite</button>
+            <button class="btn ghost" type="button" onclick="showFixModel()">Show model</button>
+          </div>
+          <div class="feedback" id="fb-fix"></div>
+          <div id="fixModel" class="model-answer" style="display:none"><strong>Model:</strong> Hi Maya! I am Sofia from Building C. The map is crazy. Where are you? Ms. Ortega isn't here and I am not sure if the tour is at eleven. Is Carlos in the cafe line?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exercise" id="ex-id">
+      <button class="exercise-toggle" type="button" onclick="toggleEx('ex-id')">
+        <span class="exercise-title"><strong>5 · Student profile cards</strong><small>Complete with is / are / from / in…</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content">
+        <div class="grid-2">
+          <div class="box tint">
+            <strong>Sofia</strong>
+            <div class="id-grid" style="margin-top:10px">
+              <label>Name</label><input data-prof="s1" value="${esc((answers.prof && answers.prof.s1) || '')}" placeholder="She is…">
+              <label>Major</label><input data-prof="s2" value="${esc((answers.prof && answers.prof.s2) || '')}" placeholder="She is in…">
+              <label>City</label><input data-prof="s3" value="${esc((answers.prof && answers.prof.s3) || '')}" placeholder="She is from…">
+              <label>Building</label><input data-prof="s4" value="${esc((answers.prof && answers.prof.s4) || '')}" placeholder="She is in Building…">
+            </div>
+          </div>
+          <div class="box">
+            <strong>Carlos</strong>
+            <div class="id-grid" style="margin-top:10px">
+              <label>Name</label><input data-prof="c1" value="${esc((answers.prof && answers.prof.c1) || '')}" placeholder="He is…">
+              <label>Major</label><input data-prof="c2" value="${esc((answers.prof && answers.prof.c2) || '')}" placeholder="He is in…">
+              <label>City</label><input data-prof="c3" value="${esc((answers.prof && answers.prof.c3) || '')}" placeholder="He is from…">
+              <label>Building</label><input data-prof="c4" value="${esc((answers.prof && answers.prof.c4) || '')}" placeholder="He is in Building…">
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" type="button" onclick="checkProfiles()">Save &amp; quick-check</button>
+          <button class="btn ghost" type="button" onclick="showProfileKeys()">Show key ideas</button>
+        </div>
+        <div class="feedback" id="fb-prof"></div>
+        <div id="profKeys" class="note" style="display:none"><strong>Key ideas:</strong> Sofia is in Business / from Leon / Building C. Carlos is in Engineering / from this city / Building A. Use full sentences with <em>is</em>.</div>
       </div>
     </div>`;
 }
 
-function normalizeGap(s) {
-  return String(s || '')
-    .trim()
-    .toLowerCase()
-    .replace(/[’‘]/g, "'")
-    .replace(/\s+/g, ' ');
+function normalize(s) {
+  return String(s || '').trim().toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, ' ');
 }
 
-function gapOk(user, accepted) {
-  const u = normalizeGap(user);
-  return accepted.split('/').map(a => normalizeGap(a)).some(a => a === u);
+function gapAccepted(user, accepted) {
+  const u = normalize(user);
+  return accepted.split('/').map(a => normalize(a)).some(a => a === u);
 }
 
 function checkGaps() {
   answers.gaps = {};
   let score = 0;
-  structureTasks.gaps.forEach((g, i) => {
+  structureGaps.forEach((g, i) => {
     const input = document.querySelector(`[data-gap-input="${i}"]`);
     const row = document.querySelector(`[data-gap="${i}"]`);
     const val = input.value;
     answers.gaps[i] = val;
-    const ok = gapOk(val, g[1]);
+    const ok = gapAccepted(val, g[2]);
     row.classList.toggle('correct', ok);
     row.classList.toggle('wrong', !ok);
     if (ok) score++;
   });
   save();
   const fb = document.getElementById('fb-gaps');
-  fb.className = 'feedback show ' + (score === structureTasks.gaps.length ? 'good' : 'warn');
-  fb.textContent = `Score: ${score} / ${structureTasks.gaps.length}`;
+  fb.className = 'feedback show ' + (score === structureGaps.length ? 'good' : 'warn');
+  fb.textContent = `Score: ${score} / ${structureGaps.length}`;
 }
 
 function resetGaps() {
@@ -759,135 +870,196 @@ function resetGaps() {
   fb.textContent = '';
 }
 
-function checkMatch() {
-  answers.match = {};
+function checkLines() {
+  answers.lines = {};
   let score = 0;
-  structureTasks.match.forEach((m, i) => {
-    const sel = document.querySelector(`[data-match-select="${i}"]`);
-    const row = document.querySelector(`[data-match="${i}"]`);
-    const val = sel.value;
-    answers.match[i] = val;
-    const ok = val === m[1];
+  structureLines.forEach((item, i) => {
+    const sel = document.querySelector(`[data-line-select="${i}"]`);
+    const row = document.querySelector(`[data-line="${i}"]`);
+    const val = sel.value === '' ? null : Number(sel.value);
+    answers.lines[i] = val;
+    const ok = val === item.answer;
     row.classList.toggle('correct', ok);
-    row.classList.toggle('wrong', !ok);
+    row.classList.toggle('wrong', val !== null && !ok);
     if (ok) score++;
   });
   save();
-  const fb = document.getElementById('fb-match');
-  fb.className = 'feedback show ' + (score === structureTasks.match.length ? 'good' : 'warn');
-  fb.textContent = `Score: ${score} / ${structureTasks.match.length}`;
+  const fb = document.getElementById('fb-lines');
+  fb.className = 'feedback show ' + (score === structureLines.length ? 'good' : 'warn');
+  fb.textContent = `Score: ${score} / ${structureLines.length}`;
 }
 
-function resetMatch() {
-  delete answers.match;
+function resetLines() {
+  delete answers.lines;
   save();
-  document.querySelectorAll('[data-match-select]').forEach(s => { s.value = ''; });
-  document.querySelectorAll('[data-match]').forEach(r => r.classList.remove('correct', 'wrong'));
-  const fb = document.getElementById('fb-match');
+  document.querySelectorAll('[data-line-select]').forEach(s => { s.value = ''; });
+  document.querySelectorAll('[data-line]').forEach(r => r.classList.remove('correct', 'wrong'));
+  const fb = document.getElementById('fb-lines');
   fb.className = 'feedback';
   fb.textContent = '';
 }
 
+function checkFix() {
+  const text = document.getElementById('fixText').value;
+  answers.fixText = text;
+  save();
+  const hits = fixChecks.filter(c => c.ok(text));
+  const fb = document.getElementById('fb-fix');
+  fb.className = 'feedback show ' + (hits.length >= 4 ? 'good' : 'warn');
+  fb.innerHTML = `<strong>Checklist ${hits.length}/${fixChecks.length}</strong><br>` +
+    fixChecks.map(c => `${c.ok(text) ? '✓' : '○'} ${esc(c.label)}`).join('<br>');
+}
+
+function showFixModel() {
+  const el = document.getElementById('fixModel');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+function checkProfiles() {
+  answers.prof = {};
+  document.querySelectorAll('[data-prof]').forEach(inp => {
+    answers.prof[inp.getAttribute('data-prof')] = inp.value;
+  });
+  save();
+  const blob = Object.values(answers.prof).join(' ').toLowerCase();
+  let n = 0;
+  if (/business/.test(blob)) n++;
+  if (/leon|león/.test(blob)) n++;
+  if (/building c|\bc\b/.test(blob)) n++;
+  if (/engineering/.test(blob)) n++;
+  if (/building a|\ba\b/.test(blob)) n++;
+  if (/\bis\b/.test(blob)) n++;
+  const fb = document.getElementById('fb-prof');
+  fb.className = 'feedback show ' + (n >= 4 ? 'good' : 'warn');
+  fb.textContent = n >= 4
+    ? 'Saved. Your profiles include key story facts — nice work.'
+    : 'Saved. Try to include major, city and building with full "is" sentences.';
+}
+
+function showProfileKeys() {
+  const el = document.getElementById('profKeys');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
 function readingHTML() {
-  window.__qs_reading = reading.qs;
+  window.__qs_reading = readingQs;
   return `
-    <h4>${esc(reading.title)}</h4>
+    <h4>The morning the map almost wins</h4>
     <div class="reading-meta">
-      <span class="skill-tag">Reading  |  A1</span>
-      <span class="skill-tag">Verb to be in context</span>
-      <span class="skill-tag">Main idea + detail</span>
+      <span class="skill-tag">Reading · A2</span>
+      <span class="skill-tag">Story continuity</span>
+      <span class="skill-tag">Main idea + inference</span>
     </div>
     <div class="strategy-prompt">
       <strong>Tip</strong>
-      <span>Underline every form of <em>be</em> (am, is, are, isn't, aren't). Notice what comes after: name, adjective, place or age.</span>
+      <span>Track how Sofia feels at the start and at the end. Underline every am / is / are that shows identity, place or feelings.</span>
     </div>
     <div class="reading-text box">
-      ${reading.text.trim().split(/\n\n+/).map(p => `<p>${esc(p.trim())}</p>`).join('')}
+      ${readingText.trim().split(/\n\n+/).map(p => `<p>${esc(p.trim())}</p>`).join('')}
     </div>
     <h4 style="margin-top:22px">Comprehension</h4>
-    ${quizHTML('reading', reading.qs)}`;
+    ${quizHTML('reading', readingQs)}`;
 }
 
 function listeningHTML() {
-  window.__qs_listening = listen.qs;
-  const lines = listen.script.split('\n').map(l => l.trim()).filter(Boolean);
+  window.__qs_listening = listeningQs;
+  // Audio path ready for later drop-in
+  const audioSrc = 'assets/first-day-on-campus.mp3';
   return `
-    <h4>First day conversation</h4>
-    <p class="intro">Read the dialogue carefully (script practice). Then answer the questions. Focus on forms of <strong>be</strong> for identity, place, price and origin.</p>
-    <div class="listening-focus">
-      <div class="focus-card"><strong>Identity</strong>Who is each person?</div>
-      <div class="focus-card"><strong>Place</strong>Where is the library / café?</div>
-      <div class="focus-card"><strong>Feelings & plans</strong>Are they free, hungry, ready?</div>
+    <h4>Listening · First day on campus</h4>
+    <p class="intro">Same morning, same three people. Use the script for now; when the audio file is ready, it will play from the player below.</p>
+
+    <div class="audio-bar">
+      <div>
+        <strong>Audio player</strong>
+        <p>File expected at <code style="color:#9ce0da">verb-to-be/assets/first-day-on-campus.mp3</code>. Until then, use Show script and answer from the dialogue.</p>
+      </div>
+      <audio id="storyAudio" controls preload="none">
+        <source src="${audioSrc}" type="audio/mpeg">
+      </audio>
     </div>
+
+    <div class="listening-focus">
+      <div class="focus-card"><strong>Map trouble</strong>Where is the orientation hall?</div>
+      <div class="focus-card"><strong>Identity</strong>Majors, buildings, cities</div>
+      <div class="focus-card"><strong>Plans</strong>Cafe now, tour at eleven</div>
+    </div>
+
     <div class="actions">
       <button class="btn secondary" type="button" onclick="document.getElementById('transcript').classList.toggle('show')">Show / hide script</button>
     </div>
     <div class="transcript box" id="transcript">
       <div class="dialogue">
-        ${lines.map(line => {
-          const parts = line.split(':');
-          if (parts.length < 2) return `<div class="dialogue-line">${esc(line)}</div>`;
-          const name = parts.shift();
-          return `<div class="dialogue-line"><span class="speaker-name">${esc(name)}:</span> ${esc(parts.join(':').trim())}</div>`;
-        }).join('')}
+        ${listeningScript.map(([who, line]) => `
+          <div class="dialogue-line"><span class="speaker-name">${esc(who)}:</span> ${esc(line)}</div>`).join('')}
       </div>
     </div>
-    <h4 style="margin-top:22px">Listening / script questions</h4>
-    ${quizHTML('listening', listen.qs)}`;
+
+    <h4 style="margin-top:22px">Questions</h4>
+    ${quizHTML('listening', listeningQs)}`;
 }
 
 function speakingHTML() {
   return `
-    <h4>Speaking task</h4>
-    <p class="intro">${esc(speaking.prompt)}</p>
+    <h4>Speaking · join Sofia's morning</h4>
+    <p class="intro">Work with a partner. One student is <strong>Sofia</strong>; the other is <strong>Maya</strong> or <strong>Carlos</strong>. Stay in the story.</p>
     <div class="use-grid">
-      ${speaking.steps.map((s, i) => `<div class="use-card"><strong>Step ${i + 1}</strong><span>${esc(s)}</span></div>`).join('')}
+      <div class="use-card"><strong>Step 1</strong><span>Greet and say who you are, where you are from, and what you study.</span></div>
+      <div class="use-card"><strong>Step 2</strong><span>Ask two yes/no questions and answer with short answers.</span></div>
+      <div class="use-card"><strong>Step 3</strong><span>Ask two Wh- questions (Where / Who / What / How).</span></div>
+      <div class="use-card"><strong>Step 4</strong><span>Use at least one negative (isn't / aren't / I'm not) about building, major or place.</span></div>
     </div>
     <div class="production-card">
-      <strong>Optional notes (for practice)</strong>
-      <textarea id="speakingNotes" placeholder="Write key sentences before you speak...">${esc(answers.speakingNotes || '')}</textarea>
+      <strong>Optional notes before you speak</strong>
+      <textarea id="speakingNotes" placeholder="Key lines with am / is / are…">${esc(answers.speakingNotes || '')}</textarea>
       <div class="actions">
-        <button class="btn" type="button" onclick="answers.speakingNotes=document.getElementById('speakingNotes').value;save();this.textContent='Saved';setTimeout(()=>this.textContent='Save notes',1200)">Save notes</button>
-        <button class="btn ghost" type="button" onclick="document.getElementById('speakModel').classList.toggle('show-models')">Show model answer</button>
+        <button class="btn" type="button" onclick="answers.speakingNotes=document.getElementById('speakingNotes').value;save();const b=event.target;b.textContent='Saved';setTimeout(()=>b.textContent='Save notes',1200)">Save notes</button>
+        <button class="btn ghost" type="button" onclick="document.getElementById('speakModel').classList.toggle('show-models')">Show model dialogue</button>
       </div>
       <div id="speakModel">
-        <div class="model-answer"><strong>Model:</strong> ${esc(speaking.model)}</div>
+        <div class="model-answer"><strong>Model:</strong> Hi, I am Sofia. I am from Leon and I am in Business. Are you in Building C? Yes, I am. Where is the cafe? It is near the main gate. I am not in Engineering. Who is your advisor?</div>
       </div>
     </div>
     <div class="rubric">
-      <div class="criterion"><strong>Accuracy</strong>Correct am / is / are</div>
-      <div class="criterion"><strong>Range</strong>+ − and questions</div>
-      <div class="criterion"><strong>Fluency</strong>Clear short answers</div>
-      <div class="criterion"><strong>Task</strong>All four steps covered</div>
+      <div class="criterion"><strong>Accuracy</strong>Correct am/is/are</div>
+      <div class="criterion"><strong>Range</strong>+ − yes/no + Wh-</div>
+      <div class="criterion"><strong>Story</strong>Stay on campus with the characters</div>
+      <div class="criterion"><strong>Interaction</strong>Real questions &amp; answers</div>
     </div>`;
 }
 
 function writingHTML() {
   return `
-    <h4>Writing task</h4>
-    <p class="intro">${esc(writing.prompt)}</p>
+    <h4>Writing · message after orientation</h4>
+    <p class="intro">Write 120–160 words to a friend about Sofia's first morning (you may write as Sofia or as a narrator). Use <strong>am / is / are</strong> in affirmative, negative, and at least one question form.</p>
     <div class="language-bank" style="margin-bottom:12px">
-      ${writing.checklist.map(c => `<span class="language-chip">${esc(c)}</span>`).join('')}
+      <span class="language-chip">Identity + major</span>
+      <span class="language-chip">Feelings</span>
+      <span class="language-chip">Place / building</span>
+      <span class="language-chip">One negative</span>
+      <span class="language-chip">One question</span>
+      <span class="language-chip">Maya &amp; Carlos</span>
     </div>
     <div class="production-card">
       <strong>Your text</strong>
-      <textarea id="writingText" placeholder="Start writing here...">${esc(answers.writingText || '')}</textarea>
+      <textarea id="writingText" placeholder="This morning I am at university…">${esc(answers.writingText || '')}</textarea>
       <div class="actions">
         <button class="btn" type="button" onclick="saveWriting()">Save writing</button>
         <button class="btn ghost" type="button" onclick="document.getElementById('writeModel').classList.toggle('show-models')">Show model text</button>
       </div>
       <div class="feedback" id="fb-writing"></div>
       <div id="writeModel">
-        <div class="model-answer"><strong>Model:</strong> ${esc(writing.model)}</div>
+        <div class="model-answer"><strong>Model:</strong> This morning I am at university for the first time. The campus is huge and I am nervous near the map. Then I meet Maya. She is friendly and she is in Building C too. I am not alone anymore. Later Carlos is in the cafe line. He is in Engineering, so he is not in my building. Where is the tour meeting point? It is in front of the main gate at eleven. I am still a bit nervous, but I am happy because we are a small group now.</div>
       </div>
     </div>
     <div class="reference-check" style="margin-top:16px">
       <strong>Self-check</strong>
       <ol>
-        <li>Circle every am / is / are in your text.</li>
-        <li>Do subject and verb agree?</li>
-        <li>Is there one negative and one question form?</li>
-        <li>Is the complement clear (noun, adjective or place)?</li>
+        <li>Circle every am / is / are.</li>
+        <li>Do subjects and verbs agree?</li>
+        <li>Is there at least one negative?</li>
+        <li>Is there at least one question form?</li>
+        <li>Are Sofia, Maya and/or Carlos in the text?</li>
       </ol>
     </div>`;
 }
@@ -895,25 +1067,26 @@ function writingHTML() {
 function saveWriting() {
   answers.writingText = document.getElementById('writingText').value;
   save();
-  const words = (answers.writingText || '').trim().split(/\s+/).filter(Boolean).length;
+  const text = answers.writingText || '';
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const hasNeg = /\b(not|n't)\b/i.test(text);
+  const hasQ = /\?/.test(text);
   const fb = document.getElementById('fb-writing');
-  fb.className = 'feedback show good';
-  fb.textContent = `Saved  |  about ${words} word${words === 1 ? '' : 's'}. Target: 90-120.`;
+  fb.className = 'feedback show ' + (words >= 100 && hasNeg && hasQ ? 'good' : 'warn');
+  fb.textContent = `Saved · ~${words} words` +
+    (hasNeg ? ' · negative found' : ' · add a negative') +
+    (hasQ ? ' · question found' : ' · add a question') +
+    ' · target 120–160.';
 }
 
 function render() {
+  window.__qs_choose = structureChoose;
+  window.__qs_reading = readingQs;
+  window.__qs_listening = listeningQs;
+
   const tabs = document.getElementById('tabs');
   const panels = document.getElementById('panels');
-  window.__qs_choose = structureTasks.choose.map(c => [c[0], c[1], c[2]]);
-
-  const htmls = [
-    grammarHTML(),
-    structureHTML(),
-    readingHTML(),
-    listeningHTML(),
-    speakingHTML(),
-    writingHTML()
-  ];
+  const htmls = [grammarHTML(), structureHTML(), readingHTML(), listeningHTML(), speakingHTML(), writingHTML()];
 
   tabs.innerHTML = sections.map((s, i) =>
     `<button class="tab ${i === 0 ? 'active' : ''}" type="button" role="tab" onclick="openTab(${i})">${esc(s)}</button>`
