@@ -543,6 +543,114 @@
       padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn);
       margin: 14px 0; line-height: 1.55;
     }
+
+    /* City map for Prepositions */
+    .city-map {
+      margin: 0 0 18px;
+      padding: 14px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, #e8f0f4 0%, #dfe8ef 100%);
+      border: 1px solid rgba(30, 45, 90, 0.12);
+      box-shadow: var(--shadow);
+    }
+    .city-map-title {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+    .city-map-title h5 {
+      margin: 0; color: var(--navy); font-size: 1rem; font-weight: 900;
+    }
+    .city-map-title span {
+      font-size: 0.75rem; font-weight: 800; color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .city-compass {
+      text-align: center; font-size: 0.72rem; font-weight: 900; color: var(--teal-dark);
+      margin-bottom: 8px; letter-spacing: 0.12em;
+    }
+    .city-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .city-street {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 34px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #9aa3b5;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+    }
+    .city-street .dot {
+      width: 8px; height: 8px; border-radius: 999px; background: var(--gold);
+    }
+    .city-plot {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      border: 2px solid rgba(30, 45, 90, 0.12);
+      min-height: 0;
+      aspect-ratio: 1.05 / 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .city-plot.highlight {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(91, 184, 176, 0.28);
+    }
+    .city-plot .thumb {
+      flex: 1;
+      min-height: 0;
+      background: var(--soft);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+    .city-plot .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .city-plot .name {
+      padding: 6px 6px 7px;
+      text-align: center;
+      font-size: clamp(0.68rem, 1.8vw, 0.82rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+    .city-plot.plaza {
+      background: linear-gradient(160deg, #e7f7f4, #f4fbfa);
+    }
+    .city-plot.parking {
+      border-style: dashed;
+    }
+    .city-legend {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
+    }
+    .city-legend span {
+      font-size: 0.72rem; font-weight: 800; color: var(--muted);
+      padding: 5px 9px; border-radius: 999px; background: #fff;
+      border: 1px solid var(--line);
+    }
+    @media (max-width: 560px) {
+      .city-plot .name { font-size: 0.62rem; padding: 5px 4px; }
+      .city-street { font-size: 0.64rem; min-height: 28px; }
+    }
     .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
     .btn {
       border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 850;
@@ -1260,25 +1368,106 @@ function showTab(i) {
   panel.querySelector("#sp-stop").addEventListener("click", stop);
 })();
 
-/* ========== 4 PREPOSITIONS ========== */
+/* ========== 4 PREPOSITIONS — city map ==========
+   Layout (north → south):
+   School | Park | Library
+   ——— Maple Street (bus stop) ———
+   Pharmacy | Fountain | Hospital
+   ——— Oak Avenue ———
+   Bank | Supermarket | Restaurant
+   Parking lot is BEHIND the supermarket (south of it).
+*/
 const prepQs = [
-  { q: "The pharmacy is ___ the hospital. (beside it)", opts: ["next to", "between", "behind"], a: 0 },
-  { q: "The park is ___ the school and the library.", opts: ["across from", "between", "on"], a: 1 },
-  { q: "The bank is ___ the restaurant. (other side)", opts: ["behind", "in", "across from"], a: 2 },
-  { q: "There is a fountain ___ the shopping mall.", opts: ["in front of", "at", "on"], a: 0 },
-  { q: "The parking lot is ___ the supermarket.", opts: ["opposite", "behind", "between"], a: 1 },
-  { q: "Wait ___ the bus stop.", opts: ["in", "on", "at"], a: 2 },
-  { q: "My school is ___ Main Street.", opts: ["on", "in", "between"], a: 0 },
-  { q: "The traffic light is ___ the intersection.", opts: ["near", "in", "between"], a: 0 }
+  { q: "Look at the map. The park is ___ the school and the library.", opts: ["next to", "between", "behind"], a: 1 },
+  { q: "The school is ___ the pharmacy.", opts: ["across from", "in", "between"], a: 0 },
+  { q: "The pharmacy is ___ the fountain.", opts: ["behind", "next to", "on"], a: 1 },
+  { q: "The fountain is ___ the pharmacy and the hospital.", opts: ["between", "at", "on"], a: 0 },
+  { q: "The fountain is ___ the supermarket.", opts: ["behind", "in front of", "in"], a: 1 },
+  { q: "The parking lot is ___ the supermarket.", opts: ["behind", "between", "on"], a: 0 },
+  { q: "The restaurant is ___ the supermarket.", opts: ["across from", "next to", "in"], a: 1 },
+  { q: "Wait ___ the bus stop on Maple Street.", opts: ["in", "on", "at"], a: 2 },
+  { q: "The school is ___ Maple Street.", opts: ["on", "in", "between"], a: 0 },
+  { q: "The hospital is ___ the library.", opts: ["across from", "between", "in"], a: 0 }
 ];
 
 (function buildPrep() {
   const panel = document.getElementById("panel-4");
-  const prepCards = bank.filter(x => x.cat === "prepositions");
+  const img = (file) => `assets/${file}`;
+
   panel.innerHTML = `
     <h4>Prepositions of Place</h4>
-    <p class="intro">Study the diagram cards (same reveal system), then answer the quiz.</p>
-    <div class="pic-grid" id="prep-study" style="margin-bottom:18px"></div>
+    <p class="intro">Study the city map. Then answer about the buildings — use what you see, not memory from another page.</p>
+
+    <div class="city-map" aria-label="City map">
+      <div class="city-map-title">
+        <h5>Downtown map</h5>
+        <span>Read the labels · then answer</span>
+      </div>
+      <div class="city-compass">N ↑</div>
+      <div class="city-grid">
+        <div class="city-plot" data-place="school">
+          <div class="thumb"><img src="${img("school.jpg")}" alt=""></div>
+          <div class="name">School</div>
+        </div>
+        <div class="city-plot" data-place="park">
+          <div class="thumb"><img src="${img("park.jpg")}" alt=""></div>
+          <div class="name">Park</div>
+        </div>
+        <div class="city-plot" data-place="library">
+          <div class="thumb"><img src="${img("library.jpg")}" alt=""></div>
+          <div class="name">Library</div>
+        </div>
+
+        <div class="city-street" title="Maple Street">
+          <span class="dot"></span> Maple Street · bus stop <span class="dot"></span>
+        </div>
+
+        <div class="city-plot" data-place="pharmacy">
+          <div class="thumb"><img src="${img("pharmacy.jpg")}" alt=""></div>
+          <div class="name">Pharmacy</div>
+        </div>
+        <div class="city-plot plaza" data-place="fountain">
+          <div class="thumb"><img src="${img("fountain.jpg")}" alt=""></div>
+          <div class="name">Fountain</div>
+        </div>
+        <div class="city-plot" data-place="hospital">
+          <div class="thumb"><img src="${img("hospital.jpg")}" alt=""></div>
+          <div class="name">Hospital</div>
+        </div>
+
+        <div class="city-street" title="Oak Avenue">
+          <span class="dot"></span> Oak Avenue <span class="dot"></span>
+        </div>
+
+        <div class="city-plot" data-place="bank">
+          <div class="thumb"><img src="${img("bank.jpg")}" alt=""></div>
+          <div class="name">Bank</div>
+        </div>
+        <div class="city-plot" data-place="supermarket">
+          <div class="thumb"><img src="${img("supermarket.jpg")}" alt=""></div>
+          <div class="name">Supermarket</div>
+        </div>
+        <div class="city-plot" data-place="restaurant">
+          <div class="thumb"><img src="${img("restaurant.jpg")}" alt=""></div>
+          <div class="name">Restaurant</div>
+        </div>
+
+        <div class="city-plot" style="visibility:hidden" aria-hidden="true"></div>
+        <div class="city-plot parking" data-place="parking lot">
+          <div class="thumb"><img src="${img("parking-lot.jpg")}" alt=""></div>
+          <div class="name">Parking lot</div>
+        </div>
+        <div class="city-plot" style="visibility:hidden" aria-hidden="true"></div>
+      </div>
+      <div class="city-legend">
+        <span>next to = beside</span>
+        <span>between = in the middle</span>
+        <span>across from = opposite side of the street</span>
+        <span>behind / in front of</span>
+        <span>on · in · at</span>
+      </div>
+    </div>
+
     <div id="prep-qs"></div>
     <div class="actions">
       <button type="button" class="btn" id="prep-check">Check answers</button>
@@ -1286,17 +1475,6 @@ const prepQs = [
     </div>
     <div class="feedback" id="prep-fb"></div>
   `;
-  const grid = panel.querySelector("#prep-study");
-  prepCards.forEach(item => {
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = "pic-card";
-    card.innerHTML = `
-      <div class="pic-media">${mediaHTML(item)}<span class="tap-hint">Tap to reveal</span></div>
-      <div class="pic-label"><span class="word">${item.t}</span><span class="cat">${item.hint}</span></div>`;
-    card.addEventListener("click", () => card.classList.toggle("revealed"));
-    grid.appendChild(card);
-  });
   mountMC(panel, "prep", prepQs);
 })();
 
