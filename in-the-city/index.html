@@ -818,18 +818,18 @@ const bank = [
   { t: "in", cat: "prepositions", type: "prep", prep: "in", hint: "inside" },
   { t: "at", cat: "prepositions", type: "prep", prep: "at", hint: "at a point" },
   // Expressions
-  { t: "Excuse me.", cat: "expressions", type: "expr", use: "Get attention politely" },
-  { t: "Can you help me?", cat: "expressions", type: "expr", use: "Ask for help" },
-  { t: "Where is the...?", cat: "expressions", type: "expr", use: "Ask for a place" },
-  { t: "How can I get to...?", cat: "expressions", type: "expr", use: "Ask for directions" },
-  { t: "Go straight.", cat: "expressions", type: "expr", use: "Give directions" },
-  { t: "Turn left.", cat: "expressions", type: "expr", use: "Give directions" },
-  { t: "Turn right.", cat: "expressions", type: "expr", use: "Give directions" },
-  { t: "Cross the street.", cat: "expressions", type: "expr", use: "Give directions" },
-  { t: "It's next to...", cat: "expressions", type: "expr", use: "Describe location" },
-  { t: "It's across from...", cat: "expressions", type: "expr", use: "Describe location" },
-  { t: "Thank you.", cat: "expressions", type: "expr", use: "Show gratitude" },
-  { t: "You're welcome.", cat: "expressions", type: "expr", use: "Reply to thanks" }
+  { t: "Excuse me.", cat: "expressions", img: "assets/expr-excuse-me.jpg", use: "Get attention politely" },
+  { t: "Can you help me?", cat: "expressions", img: "assets/expr-can-you-help.jpg", use: "Ask for help" },
+  { t: "Where is the...?", cat: "expressions", img: "assets/expr-where-is.jpg", use: "Ask for a place" },
+  { t: "How can I get to...?", cat: "expressions", img: "assets/expr-how-get-to.jpg", use: "Ask for directions" },
+  { t: "Go straight.", cat: "expressions", img: "assets/expr-go-straight.jpg", use: "Give directions" },
+  { t: "Turn left.", cat: "expressions", img: "assets/expr-turn-left.jpg", use: "Give directions" },
+  { t: "Turn right.", cat: "expressions", img: "assets/expr-turn-right.jpg", use: "Give directions" },
+  { t: "Cross the street.", cat: "expressions", img: "assets/expr-cross-street.jpg", use: "Give directions" },
+  { t: "It's next to...", cat: "expressions", img: "assets/expr-next-to.jpg", use: "Describe location" },
+  { t: "It's across from...", cat: "expressions", img: "assets/expr-across-from.jpg", use: "Describe location" },
+  { t: "Thank you.", cat: "expressions", img: "assets/expr-thank-you.jpg", use: "Show gratitude" },
+  { t: "You're welcome.", cat: "expressions", img: "assets/expr-welcome.jpg", use: "Reply to thanks" }
 ];
 
 const picturedOnly = () => bank.filter(x => x.img);
@@ -1476,7 +1476,7 @@ const matchExpr = [
   const exprCards = bank.filter(x => x.cat === "expressions");
   panel.innerHTML = `
     <h4>Directions & Expressions</h4>
-    <p class="intro">Study every useful expression with the same reveal cards, then practice.</p>
+    <p class="intro">Each picture shows a useful line for the street. Tap a card to reveal the expression, then practice the dialogue and quiz.</p>
     <div class="pic-grid" id="expr-study" style="margin-bottom:18px"></div>
     <div class="dialogue">
       <div class="dialogue-line"><span class="speaker-name">A:</span> Excuse me. Can you help me?</div>
