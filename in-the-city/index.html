@@ -516,6 +516,28 @@
     .q-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
     .q-block:last-child { border-bottom: 0; }
     .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; }
+    /* Prepositions: 3 answers on one horizontal line */
+    #prep-qs .q-opts-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+    #prep-qs .q-opts-row .option-btn {
+      margin-top: 0;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 10px 8px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 520px) {
+      #prep-qs .q-opts-row {
+        grid-template-columns: 1fr;
+      }
+    }
     .q-num {
       display: inline-flex; align-items: center; justify-content: center;
       width: 24px; height: 24px; border-radius: 8px; background: var(--navy); color: #fff;
@@ -1529,6 +1551,8 @@ function mountMC(panel, prefix, questions) {
     block.className = "q-block";
     block.dataset.answer = item.a;
     block.innerHTML = `<p class="q-prompt"><span class="q-num">${qi + 1}</span>${item.q}</p>`;
+    const row = document.createElement("div");
+    row.className = "q-opts-row";
     item.opts.forEach((opt, oi) => {
       const btn = document.createElement("button");
       btn.type = "button";
@@ -1541,8 +1565,9 @@ function mountMC(panel, prefix, questions) {
         btn.classList.add("selected");
         block.dataset.choice = oi;
       });
-      block.appendChild(btn);
+      row.appendChild(btn);
     });
+    block.appendChild(row);
     box.appendChild(block);
   });
   panel.querySelector("#" + prefix + "-check").addEventListener("click", () => {
