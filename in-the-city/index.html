@@ -102,25 +102,69 @@
       border: 1px solid rgba(30,45,90,0.1); font-size: 0.78rem; font-weight: 800; color: var(--navy);
     }
 
-    .lesson-card {
-      background: var(--paper); border: 1px solid rgba(30,45,90,0.08);
-      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    /* Vocabulary accordion (like Adjectives / Around the House) */
+    .activities { display: grid; gap: 14px; margin-top: 6px; }
+    .activities-label {
+      margin: 0 4px 2px;
+      color: var(--navy);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-    .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
-    .lesson-head h3 { margin: 0; font-size: 1.28rem; }
-    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
-
-    .tabs {
-      display: flex; gap: 6px; overflow-x: auto; padding: 12px 14px;
-      border-bottom: 1px solid var(--line); background: #fff;
+    .activity {
+      background: var(--paper);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
-    .tab {
-      border: 0; background: transparent; color: var(--muted); font-weight: 800;
-      font-size: 0.78rem; padding: 9px 11px; border-radius: 10px; white-space: nowrap;
+    .activity > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      user-select: none;
     }
-    .tab:hover, .tab.active { color: var(--navy); background: var(--wash); }
-    .panel { display: none; padding: 24px; }
-    .panel.active { display: block; }
+    .activity > summary::-webkit-details-marker { display: none; }
+    .activity-num {
+      flex: 0 0 auto;
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-weight: 900; font-size: 0.95rem;
+    }
+    .activity-num.n1 { background: var(--navy); color: #fff; }
+    .activity-num.n2 { background: var(--teal); color: #fff; }
+    .activity-num.n3 { background: var(--gold); color: var(--navy); }
+    .activity-num.n4 { background: var(--teal-dark); color: #fff; }
+    .activity-num.n5 { background: #2f5d8c; color: #fff; }
+    .activity-num.n6 { background: #8b6bb8; color: #fff; }
+    .activity-num.n7 { background: #c45c6a; color: #fff; }
+    .activity-meta { flex: 1; min-width: 0; }
+    .activity-meta h3 {
+      margin: 0; font-size: 1.15rem; font-weight: 900;
+      color: var(--navy); letter-spacing: -0.02em; line-height: 1.2;
+    }
+    .activity-meta h3 span { color: var(--teal); }
+    .activity-meta p {
+      margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; line-height: 1.45;
+    }
+    .activity-chevron {
+      flex: 0 0 auto; width: 28px; height: 28px; margin-top: 6px;
+      border-radius: 999px; background: var(--wash); color: var(--navy);
+      display: grid; place-items: center; font-size: 0.85rem; font-weight: 900;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .activity[open] .activity-chevron {
+      transform: rotate(180deg);
+      background: rgba(91, 184, 176, 0.2);
+      color: var(--teal-dark);
+    }
+    .activity-body { padding: 0 18px 22px; border-top: 1px solid var(--line); }
+    .activity-body-inner { padding-top: 18px; }
     .panel h4 { margin: 0 0 10px; color: var(--navy); font-size: 1.12rem; }
     .intro { color: var(--muted); line-height: 1.65; margin: 0 0 16px; }
 
@@ -737,14 +781,10 @@
     </div>
   </section>
 
-  <article class="lesson-card">
-    <header class="lesson-head">
-      <h3>City vocabulary for real moments</h3>
-      <p>Learn the words first, then practice directions, prepositions, games, and short speaking tasks.</p>
-    </header>
-    <nav class="tabs" id="tabs" role="tablist"></nav>
-    <div id="panels"></div>
-  </article>
+  <div class="activities" id="activities">
+    <p class="activities-label">Activities</p>
+    <!-- Accordion items injected by script -->
+  </div>
 
   <footer class="footer">In the City · English Activities · Israel Ventura · Educational use</footer>
 </div>
@@ -877,41 +917,48 @@ function mediaHTML(item) {
   return exprHTML();
 }
 
-/* ========== TABS ========== */
+/* ========== VOCAB ACCORDION (desplegable) ========== */
 const sections = [
-  "Picture Box",
-  "Memory Match",
-  "What's this?",
-  "Speed Round",
-  "Prepositions",
-  "Directions",
-  "Speaking"
+  { title: "Picture Box", accent: "deck", blurb: "Study places, verbs, adjectives, and expressions with big reveal cards." },
+  { title: "Memory Match", accent: "match", blurb: "Match each picture with its English word. Choose a set and play." },
+  { title: "What's this?", accent: "quiz", blurb: "Look at the picture and choose the correct word." },
+  { title: "Speed Round", accent: "speed", blurb: "Name as many pictures as you can in 60 seconds." },
+  { title: "Prepositions", accent: "map", blurb: "Read the city map and complete sentences with place prepositions." },
+  { title: "Directions", accent: "phrases", blurb: "Useful expressions for asking and giving directions on the street." },
+  { title: "Speaking", accent: "talk", blurb: "Partner tasks: ask for help, describe places, and give directions." }
 ];
 
-const tabsEl = document.getElementById("tabs");
-const panelsEl = document.getElementById("panels");
-sections.forEach((name, i) => {
-  const btn = document.createElement("button");
-  btn.type = "button";
-  btn.className = "tab" + (i === 0 ? " active" : "");
-  btn.textContent = name;
-  btn.addEventListener("click", () => showTab(i));
-  tabsEl.appendChild(btn);
-  const panel = document.createElement("section");
-  panel.className = "panel" + (i === 0 ? " active" : "");
-  panel.id = "panel-" + i;
-  panelsEl.appendChild(panel);
+const activitiesEl = document.getElementById("activities");
+sections.forEach((sec, i) => {
+  const num = String(i + 1).padStart(2, "0");
+  const det = document.createElement("details");
+  det.className = "activity";
+  det.id = "act-" + i;
+  if (i === 0) det.open = true;
+  const titleParts = sec.title.split(" ");
+  const last = titleParts.pop();
+  const head = titleParts.join(" ");
+  det.innerHTML = `
+    <summary>
+      <span class="activity-num n${i + 1}">${num}</span>
+      <div class="activity-meta">
+        <h3>${head ? head + " " : ""}<span>${last}</span></h3>
+        <p>${sec.blurb}</p>
+      </div>
+      <span class="activity-chevron" aria-hidden="true">▾</span>
+    </summary>
+    <div class="activity-body">
+      <div class="activity-body-inner">
+        <section class="panel active" id="panel-${i}"></section>
+      </div>
+    </div>`;
+  activitiesEl.appendChild(det);
 });
-function showTab(i) {
-  [...tabsEl.children].forEach((t, idx) => t.classList.toggle("active", idx === i));
-  [...panelsEl.children].forEach((p, idx) => p.classList.toggle("active", idx === i));
-}
 
 /* ========== 0 PICTURE BOX — DECK MODE A ========== */
 (function buildPictureBox() {
   const panel = document.getElementById("panel-0");
   panel.innerHTML = `
-    <h4>Picture Box</h4>
     <p class="intro">Look at the picture. Say the English word. Then tap to check. Use the filters to practice one group at a time.</p>
     <div class="hint-line">Teacher tip: students answer first, then reveal. Arrows move to the next card.</div>
     <div class="toolbar">
@@ -1065,9 +1112,10 @@ function showTab(i) {
     renderCard();
   });
 
-  // Keyboard only while Picture Box tab is active
+  // Keyboard only while Picture Box accordion is open
   document.addEventListener("keydown", (e) => {
-    if (!panel.classList.contains("active")) return;
+    const host = panel.closest("details");
+    if (host && !host.open) return;
     const tag = (e.target && e.target.tagName) || "";
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
     if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
@@ -1087,7 +1135,6 @@ function showTab(i) {
   const panel = document.getElementById("panel-1");
   const PAIR_COUNT = 6;
   panel.innerHTML = `
-    <h4>Memory Match</h4>
     <p class="intro">Match each <strong>picture</strong> with its <strong>English word</strong>. Choose a set, then play a new round anytime.</p>
     <div class="filter-row" id="mem-sets" style="margin-bottom:12px"></div>
     <div class="score-bar">
@@ -1254,7 +1301,6 @@ function showTab(i) {
 (function buildWhats() {
   const panel = document.getElementById("panel-2");
   panel.innerHTML = `
-    <h4>What's this?</h4>
     <p class="intro">Picture or diagram → choose the correct English word. Mixes all categories with images.</p>
     <div class="score-bar">
       <span>Score: <strong id="wt-score">0</strong></span>
@@ -1312,7 +1358,6 @@ function showTab(i) {
 (function buildSpeed() {
   const panel = document.getElementById("panel-3");
   panel.innerHTML = `
-    <h4>Speed Round</h4>
     <p class="intro">60 seconds · places, city elements, verbs, and adjectives with pictures.</p>
     <div class="score-bar">
       <span class="speed-timer" id="sp-time">60</span>
@@ -1401,7 +1446,6 @@ const prepQs = [
     `<div class="map-pin${soft ? " soft" : ""}"><span>${name}</span></div>`;
 
   panel.innerHTML = `
-    <h4>Prepositions of Place</h4>
     <p class="intro">Look at the city map — people, cars, and places. Read the labels, then choose the correct preposition.</p>
 
     <div class="city-map" aria-label="Illustrated downtown map">
@@ -1475,7 +1519,6 @@ const matchExpr = [
   const panel = document.getElementById("panel-5");
   const exprCards = bank.filter(x => x.cat === "expressions");
   panel.innerHTML = `
-    <h4>Directions & Expressions</h4>
     <p class="intro">Each picture shows a useful line for the street. Tap a card to reveal the expression, then practice the dialogue and quiz.</p>
     <div class="pic-grid" id="expr-study" style="margin-bottom:18px"></div>
     <div class="dialogue">
@@ -1519,7 +1562,6 @@ const matchExpr = [
 (function buildSpeak() {
   const panel = document.getElementById("panel-6");
   panel.innerHTML = `
-    <h4>Speaking · Partner tasks</h4>
     <p class="intro">Use the full Picture Box. Work in pairs. Tourist + Local.</p>
     <div class="note"><strong>Language bank:</strong> Excuse me · Can you help me? · Where is the…? · How can I get to…? · Go straight · Turn left/right · Cross the street · next to / across from / between / near</div>
     <div class="speak-card">
