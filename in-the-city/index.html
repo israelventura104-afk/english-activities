@@ -451,7 +451,41 @@
     .quiz-img-wrap img, .quiz-img-wrap .diagram, .quiz-img-wrap .expr-face {
       width: 100%; height: 100%; object-fit: cover; display: block;
     }
-    .quiz-opts { width: 100%; display: grid; gap: 8px; max-width: 420px; }
+    /* What's this? + Speed Round: 2×2 centered options */
+    .quiz-opts {
+      width: min(100%, 440px);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .quiz-opts .option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 12px;
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 0.95rem;
+      line-height: 1.25;
+      box-shadow: 0 6px 16px rgba(30, 45, 90, 0.06);
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+    }
+    .quiz-opts .option-btn:hover {
+      border-color: var(--teal);
+      transform: translateY(-1px);
+    }
+    .quiz-opts .option-btn.correct { border-color: #6fbd8c; background: var(--good); }
+    .quiz-opts .option-btn.wrong { border-color: #d88383; background: var(--bad); }
+    .quiz-opts .option-btn:disabled { cursor: default; transform: none; }
+
+    /* Other quizzes (prepositions / directions): stacked full-width */
     .option-btn {
       display: block; width: 100%; text-align: left; border: 1px solid var(--line);
       background: #fff; border-radius: 12px; padding: 12px 14px; color: var(--ink); font-weight: 750;
@@ -461,6 +495,10 @@
     .option-btn.correct { border-color: #6fbd8c; background: var(--good); }
     .option-btn.wrong { border-color: #d88383; background: var(--bad); }
     .option-btn:disabled { cursor: default; }
+
+    .quiz-stage { width: 100%; }
+    .quiz-stage .quiz-opts { margin-top: 4px; }
+    #sp-area .quiz-opts { margin-top: 4px; }
 
     .speed-timer { font-size: 1.6rem; font-weight: 900; color: var(--navy); }
     .speed-prompt {
@@ -539,9 +577,12 @@
       .brand p, .mode-pill { display: none; }
       .panel { padding: 18px; }
       .home-btn .home-btn-label { display: none; }
+      .quiz-opts { width: min(100%, 360px); gap: 8px; }
+      .quiz-opts .option-btn { min-height: 48px; font-size: 0.88rem; padding: 12px 10px; }
     }
     @media (max-width: 420px) {
       .memory-board { grid-template-columns: repeat(2, 1fr); }
+      .quiz-opts { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
