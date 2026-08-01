@@ -168,6 +168,95 @@
     .panel h4 { margin: 0 0 10px; color: var(--navy); font-size: 1.12rem; }
     .intro { color: var(--muted); line-height: 1.65; margin: 0 0 16px; }
 
+    /* Story before activities */
+    .story-card {
+      margin: 0 0 22px;
+      background: var(--paper);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .story-head {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 10px; padding: 16px 20px; background: var(--navy); color: #fff;
+    }
+    .story-head h3 { margin: 0; font-size: 1.15rem; font-weight: 900; }
+    .story-head p { margin: 4px 0 0; color: #d7ecea; font-size: 0.88rem; line-height: 1.4; }
+    .story-badge {
+      padding: 6px 11px; border-radius: 999px;
+      background: rgba(91, 184, 176, 0.28); border: 1px solid rgba(255,255,255,0.22);
+      font-size: 0.72rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .story-body { padding: 20px 20px 8px; }
+    .story-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(160px, 0.7fr);
+      gap: 18px;
+      align-items: start;
+    }
+    .story-text {
+      font-size: 1.02rem;
+      line-height: 1.78;
+      color: var(--ink);
+    }
+    .story-text p { margin: 0 0 14px; }
+    .story-text p:last-child { margin-bottom: 0; }
+    .story-text strong { color: var(--navy); }
+    .story-aside {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(30, 45, 90, 0.10);
+      background: var(--soft);
+    }
+    .story-aside img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .story-aside .caption {
+      padding: 10px 12px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .story-profile {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 16px 0 4px;
+    }
+    .story-profile span {
+      padding: 6px 11px; border-radius: 999px; background: var(--wash);
+      border: 1px solid rgba(91, 184, 176, 0.28);
+      font-size: 0.78rem; font-weight: 800; color: var(--navy);
+    }
+    .story-think {
+      margin: 0;
+      padding: 16px 20px 20px;
+      border-top: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff, #f7fbfb);
+    }
+    .story-think h4 {
+      margin: 0 0 10px;
+      color: var(--navy);
+      font-size: 0.92rem;
+      font-weight: 900;
+    }
+    .story-think ol {
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    .story-think li { margin: 0 0 6px; }
+    .story-think li:last-child { margin-bottom: 0; }
+    @media (max-width: 720px) {
+      .story-layout { grid-template-columns: 1fr; }
+      .story-aside { max-width: 280px; }
+    }
+
     .toolbar {
       display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
       justify-content: space-between; margin-bottom: 14px;
@@ -780,6 +869,63 @@
       </div>
     </div>
   </section>
+
+  <!-- Story first, then vocabulary activities -->
+  <article class="story-card" aria-label="City story">
+    <header class="story-head">
+      <div>
+        <h3>My city, my favorite places</h3>
+        <p>A short story before you start the activities</p>
+      </div>
+      <span class="story-badge">Reading · A1–A2</span>
+    </header>
+    <div class="story-body">
+      <div class="story-layout">
+        <div class="story-text">
+          <p>
+            My name is <strong>Diego</strong>. I am 16 years old, and I live in a <strong>busy</strong> city with my family.
+            Our apartment is <strong>on</strong> Maple Street, next to a small <strong>park</strong>. In the morning the street is
+            <strong>crowded</strong>, but at night it is usually <strong>quiet</strong> and <strong>safe</strong>.
+          </p>
+          <p>
+            What do I like most? The park and the <strong>cafe</strong> near the <strong>library</strong>.
+            After school I <strong>walk</strong> to the park with my friends. Sometimes we sit near the <strong>fountain</strong>
+            and talk. The library is <strong>across from</strong> the park, so when I need a book, I just
+            <strong>cross the street</strong>.
+          </p>
+          <p>
+            On Saturdays I help my mom. We <strong>take</strong> the bus, wait <strong>at</strong> the <strong>bus stop</strong>,
+            and go to the <strong>supermarket</strong>. There is a <strong>parking lot</strong> <strong>behind</strong> the supermarket
+            and a <strong>pharmacy</strong> <strong>next to</strong> it. If we get lost, my mom always says,
+            “<strong>Excuse me. How can I get to</strong> the supermarket?” People are friendly. They say,
+            “<strong>Go straight</strong>, then <strong>turn left</strong>,” and we always find the way.
+          </p>
+          <p>
+            My city is not perfect. Some streets are <strong>dangerous</strong> at night, and the center is too
+            <strong>crowded</strong> on weekends. But for me it is still <strong>beautiful</strong> and
+            <strong>convenient</strong>. It is my city — and I am happy here.
+          </p>
+          <div class="story-profile" aria-label="About Diego">
+            <span>Diego · 16</span>
+            <span>Maple Street</span>
+            <span>Park · Library · Supermarket</span>
+          </div>
+        </div>
+        <aside class="story-aside">
+          <img src="assets/park.jpg" alt="A city park">
+          <div class="caption">Diego’s favorite place: the park next to his street</div>
+        </aside>
+      </div>
+    </div>
+    <div class="story-think">
+      <h4>Think about it</h4>
+      <ol>
+        <li>Where does Diego live, and what is his street like in the morning and at night?</li>
+        <li>What places does he mention near the park and the supermarket?</li>
+        <li>Talk about <strong>your</strong> city: What do you like most? Is it busy or quiet? What is next to your house?</li>
+      </ol>
+    </div>
+  </article>
 
   <div class="activities" id="activities">
     <p class="activities-label">Activities</p>
