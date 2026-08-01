@@ -202,7 +202,7 @@
     }
     .deck-counter span { color: var(--teal-dark); }
     .deck-card-wrap {
-      width: min(418px, 100%);
+      width: min(397px, 100%);
       position: relative;
     }
     .deck-card {
@@ -329,30 +329,117 @@
     }
     .score-bar strong { color: var(--navy); }
 
-    .memory-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .memory-board {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
     .mem-card {
-      aspect-ratio: 1; border: 0; border-radius: 14px; padding: 0; background: transparent; perspective: 800px;
+      aspect-ratio: 1 / 1;
+      border: 0;
+      border-radius: 14px;
+      padding: 0;
+      background: transparent;
+      perspective: 800px;
+      cursor: pointer;
     }
+    .mem-card:disabled { cursor: default; }
     .mem-inner {
-      width: 100%; height: 100%; border-radius: 14px; position: relative;
-      transition: transform 0.35s ease; transform-style: preserve-3d;
-      box-shadow: 0 8px 18px rgba(30,45,90,0.1);
+      width: 100%;
+      height: 100%;
+      position: relative;
+      border-radius: 14px;
+      transform-style: preserve-3d;
+      transition: transform 0.45s cubic-bezier(0.4, 0.2, 0.2, 1), opacity 0.45s ease;
     }
-    .mem-card.flipped .mem-inner, .mem-card.matched .mem-inner { transform: rotateY(180deg); }
+    .mem-card.flipped .mem-inner,
+    .mem-card.matched .mem-inner { transform: rotateY(180deg); }
+    .mem-card.matched { pointer-events: none; }
+    .mem-card.matched .mem-inner {
+      opacity: 0;
+      transform: rotateY(180deg) scale(0.72);
+      transition: opacity 0.55s ease 0.35s, transform 0.55s ease 0.35s;
+    }
     .mem-face {
-      position: absolute; inset: 0; border-radius: 14px; backface-visibility: hidden;
-      display: grid; place-items: center; overflow: hidden;
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      box-shadow: 0 8px 18px rgba(30, 45, 90, 0.10);
     }
-    .mem-back {
-      background: linear-gradient(145deg, var(--navy), #2a3f7a);
+    .mem-face.back {
+      background: var(--navy);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10%;
     }
-    .mem-back::after {
-      content: ""; width: 42%; height: 42%; border-radius: 999px;
-      background: url("../favicon.png") center/contain no-repeat; opacity: 0.9;
+    .mem-face.back .mem-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 0.92;
+      pointer-events: none;
+      user-select: none;
     }
-    .mem-front { background: #fff; border: 2px solid var(--line); transform: rotateY(180deg); }
-    .mem-front img { width: 100%; height: 100%; object-fit: cover; }
-    .mem-card.matched .mem-front { border-color: #6fbd8c; }
+    .mem-face.front {
+      background: #f4fbfa;
+      transform: rotateY(180deg);
+      border: 1px solid rgba(30, 45, 90, 0.08);
+    }
+    .mem-face.front.photo {
+      background: #111;
+    }
+    .mem-face.front.photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .mem-face.front.word {
+      background: linear-gradient(160deg, #f4fbfa 0%, #e8f6f4 100%);
+      padding: 10px;
+    }
+    .mem-word {
+      font-weight: 900;
+      font-size: clamp(0.78rem, 2.2vw, 1.05rem);
+      color: var(--navy);
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.15;
+      text-transform: none;
+    }
+    .match-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%) translateY(20px);
+      z-index: 50;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 800;
+      font-size: 0.92rem;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .match-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .match-toast .dot {
+      width: 10px; height: 10px; border-radius: 999px; background: var(--teal);
+    }
 
     .quiz-stage { display: grid; gap: 16px; justify-items: center; }
     .quiz-img-wrap {
@@ -838,66 +925,171 @@ function showTab(i) {
   renderCard();
 })();
 
-/* ========== 1 MEMORY ========== */
+/* ========== 1 MEMORY (photo + word sets, like Adjectives) ========== */
 (function buildMemory() {
   const panel = document.getElementById("panel-1");
+  const PAIR_COUNT = 6;
   panel.innerHTML = `
     <h4>Memory Match</h4>
-    <p class="intro">Match 6 pairs from Places + City Elements. Card backs use your logo.</p>
+    <p class="intro">Match each <strong>picture</strong> with its <strong>English word</strong>. Choose a set, then play a new round anytime.</p>
+    <div class="filter-row" id="mem-sets" style="margin-bottom:12px"></div>
     <div class="score-bar">
       <span>Moves: <strong id="mem-moves">0</strong></span>
-      <span>Pairs: <strong id="mem-pairs">0</strong> / 6</span>
+      <span>Pairs: <strong id="mem-pairs">0</strong> / <strong id="mem-pair-total">${PAIR_COUNT}</strong></span>
     </div>
-    <div class="memory-board" id="mem-board"></div>
+    <div class="memory-board" id="mem-board" role="grid" aria-label="Memory board"></div>
     <div class="actions"><button type="button" class="btn" id="mem-restart">New game</button></div>
     <div class="feedback" id="mem-fb"></div>
   `;
-  let lock = false, first = null, moves = 0, pairs = 0;
+
+  let toast = document.getElementById("itc-match-toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "itc-match-toast";
+    toast.className = "match-toast";
+    toast.innerHTML = `<span class="dot"></span><span>Match! <strong id="itc-match-word"></strong></span>`;
+    document.body.appendChild(toast);
+  }
+  const toastWord = document.getElementById("itc-match-word");
+
+  const sets = [
+    { id: "places", label: "Places", cats: ["places"] },
+    { id: "city", label: "City Elements", cats: ["city"] },
+    { id: "verbs", label: "Road Verbs", cats: ["verbs"] },
+    { id: "adjectives", label: "Adjectives", cats: ["adjectives"] },
+    { id: "mix", label: "Mixed", cats: ["places", "city", "verbs", "adjectives"] }
+  ];
+  let setId = "places";
+  let tiles = [];
+  let open = [];
+  let lock = false;
+  let moves = 0;
+  let pairs = 0;
+  let pairTotal = PAIR_COUNT;
+  let toastTimer = null;
+
+  const setsRow = panel.querySelector("#mem-sets");
+  const board = panel.querySelector("#mem-board");
+  const fb = panel.querySelector("#mem-fb");
+
+  function poolForSet() {
+    const set = sets.find(s => s.id === setId) || sets[0];
+    return picturedOnly().filter(p => set.cats.includes(p.cat));
+  }
+
+  function updateStats() {
+    panel.querySelector("#mem-moves").textContent = String(moves);
+    panel.querySelector("#mem-pairs").textContent = String(pairs);
+    panel.querySelector("#mem-pair-total").textContent = String(pairTotal);
+  }
+
+  function renderSetButtons() {
+    setsRow.innerHTML = "";
+    sets.forEach(s => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "filter-btn" + (setId === s.id ? " active" : "");
+      b.textContent = s.label;
+      b.addEventListener("click", () => {
+        setId = s.id;
+        renderSetButtons();
+        start();
+      });
+      setsRow.appendChild(b);
+    });
+  }
+
+  function showToast(word) {
+    toastWord.textContent = word;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
+  }
 
   function start() {
-    lock = false; first = null; moves = 0; pairs = 0;
-    panel.querySelector("#mem-moves").textContent = "0";
-    panel.querySelector("#mem-pairs").textContent = "0";
-    panel.querySelector("#mem-fb").className = "feedback";
-    const pool = picturedOnly().filter(p => p.cat === "places" || p.cat === "city");
-    const picks = shuffle(pool).slice(0, 6);
-    const deck = shuffle([...picks, ...picks].map((p, i) => ({ ...p, uid: p.t + "-" + i })));
-    const board = panel.querySelector("#mem-board");
+    open = [];
+    lock = false;
+    moves = 0;
+    pairs = 0;
+    fb.className = "feedback";
+    toast.classList.remove("show");
+
+    const pool = poolForSet();
+    pairTotal = Math.min(PAIR_COUNT, pool.length);
+    const picks = shuffle(pool).slice(0, pairTotal);
+    const deck = [];
+    picks.forEach(item => {
+      deck.push({ id: item.t, kind: "photo", img: item.img, word: item.t });
+      deck.push({ id: item.t, kind: "word", img: item.img, word: item.t });
+    });
+    tiles = shuffle(deck);
     board.innerHTML = "";
-    deck.forEach(card => {
+    updateStats();
+
+    tiles.forEach((tile, idx) => {
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "mem-card";
-      btn.dataset.term = card.t;
-      btn.innerHTML = `<div class="mem-inner"><div class="mem-face mem-back"></div><div class="mem-face mem-front"><img src="${card.img}" alt="${card.t}"></div></div>`;
-      btn.addEventListener("click", () => {
-        if (lock || btn.classList.contains("flipped") || btn.classList.contains("matched")) return;
-        btn.classList.add("flipped");
-        if (!first) { first = btn; return; }
-        moves++;
-        panel.querySelector("#mem-moves").textContent = moves;
-        if (first.dataset.term === btn.dataset.term) {
-          first.classList.add("matched");
-          btn.classList.add("matched");
-          first = null;
-          pairs++;
-          panel.querySelector("#mem-pairs").textContent = pairs;
-          if (pairs === 6) {
-            const fb = panel.querySelector("#mem-fb");
-            fb.className = "feedback show good";
-            fb.textContent = `All pairs found in ${moves} moves.`;
-          }
-        } else {
-          lock = true;
-          const a = first, b = btn;
-          first = null;
-          setTimeout(() => { a.classList.remove("flipped"); b.classList.remove("flipped"); lock = false; }, 700);
-        }
-      });
+      btn.setAttribute("aria-label", "Hidden memory card");
+      const front = tile.kind === "photo"
+        ? `<div class="mem-face front photo"><img src="${tile.img}" alt=""></div>`
+        : `<div class="mem-face front word"><span class="mem-word">${tile.word}</span></div>`;
+      btn.innerHTML = `
+        <div class="mem-inner">
+          <div class="mem-face back" aria-hidden="true">
+            <img class="mem-logo" src="../favicon.png" alt="">
+          </div>
+          ${front}
+        </div>`;
+      btn.addEventListener("click", () => onClick(idx));
       board.appendChild(btn);
     });
   }
+
+  function onClick(idx) {
+    if (lock) return;
+    const btn = board.children[idx];
+    if (!btn || btn.classList.contains("flipped") || btn.classList.contains("matched")) return;
+    btn.classList.add("flipped");
+    open.push(idx);
+    if (open.length < 2) return;
+
+    moves++;
+    updateStats();
+    lock = true;
+    const [a, b] = open;
+    const tA = tiles[a];
+    const tB = tiles[b];
+    const isMatch = tA.id === tB.id && tA.kind !== tB.kind;
+
+    if (isMatch) {
+      setTimeout(() => {
+        board.children[a].classList.add("matched");
+        board.children[b].classList.add("matched");
+        board.children[a].disabled = true;
+        board.children[b].disabled = true;
+        pairs++;
+        updateStats();
+        showToast(tA.word);
+        open = [];
+        lock = false;
+        if (pairs >= pairTotal) {
+          fb.className = "feedback show good";
+          fb.textContent = `Great! All ${pairTotal} pairs in ${moves} moves.`;
+        }
+      }, 420);
+    } else {
+      setTimeout(() => {
+        board.children[a].classList.remove("flipped");
+        board.children[b].classList.remove("flipped");
+        open = [];
+        lock = false;
+      }, 850);
+    }
+  }
+
   panel.querySelector("#mem-restart").addEventListener("click", start);
+  renderSetButtons();
   start();
 })();
 
