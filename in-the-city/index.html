@@ -375,14 +375,16 @@
     .mem-face.back {
       background: var(--navy);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 10%;
+      padding: 6%;
     }
+    /* Same logo treatment as Adjectives Memory */
     .mem-face.back .mem-logo {
-      width: 100%;
-      height: 100%;
+      width: 88%;
+      height: 88%;
       object-fit: contain;
       display: block;
-      opacity: 0.92;
+      opacity: 0.55;
+      filter: brightness(0) invert(1);
       pointer-events: none;
       user-select: none;
     }
@@ -1037,7 +1039,7 @@ function showTab(i) {
       btn.innerHTML = `
         <div class="mem-inner">
           <div class="mem-face back" aria-hidden="true">
-            <img class="mem-logo" src="../favicon.png" alt="">
+            <img class="mem-logo" src="assets/logo-memory.png" alt="">
           </div>
           ${front}
         </div>`;
