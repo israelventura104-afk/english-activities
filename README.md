@@ -9,3 +9,5 @@ Open the portal: [index.html](./index.html)
 1. [Around the House](./around-the-house/)
 2. [Adjectives Flashcards](./adjectives/)
 3. [Conditionals](./conditionals/)
+4. [Verb to Be](./verb-to-be/)
+5. [In the City](./in-the-city/) — places, directions, prepositions
