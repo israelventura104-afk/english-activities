@@ -544,14 +544,13 @@
       margin: 14px 0; line-height: 1.55;
     }
 
-    /* City map for Prepositions */
+    /* ===== Real city MAP (streets + blocks, not photo collage) ===== */
     .city-map {
       margin: 0 0 18px;
-      padding: 14px;
-      border-radius: 18px;
-      background:
-        linear-gradient(180deg, #e8f0f4 0%, #dfe8ef 100%);
-      border: 1px solid rgba(30, 45, 90, 0.12);
+      padding: 16px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid rgba(30, 45, 90, 0.10);
       box-shadow: var(--shadow);
     }
     .city-map-title {
@@ -559,97 +558,213 @@
       margin-bottom: 12px;
     }
     .city-map-title h5 {
-      margin: 0; color: var(--navy); font-size: 1rem; font-weight: 900;
+      margin: 0; color: var(--navy); font-size: 1.02rem; font-weight: 900;
     }
     .city-map-title span {
-      font-size: 0.75rem; font-weight: 800; color: var(--muted);
+      font-size: 0.74rem; font-weight: 800; color: var(--muted);
       text-transform: uppercase; letter-spacing: 0.06em;
     }
-    .city-compass {
-      text-align: center; font-size: 0.72rem; font-weight: 900; color: var(--teal-dark);
-      margin-bottom: 8px; letter-spacing: 0.12em;
+    .map-board {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 3px solid #1e2d5a;
+      background:
+        radial-gradient(circle at 12% 18%, rgba(91,184,176,0.10), transparent 28%),
+        linear-gradient(180deg, #c8d9c4 0%, #b7cbb2 100%);
+      padding: 12px;
     }
-    .city-grid {
+    .map-compass {
+      position: absolute;
+      top: 10px; right: 10px;
+      z-index: 5;
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.92);
+      border: 2px solid var(--navy);
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
+      place-items: center;
+      font-size: 0.62rem;
+      font-weight: 900;
+      color: var(--navy);
+      box-shadow: 0 6px 14px rgba(30,45,90,0.15);
+      line-height: 1.05;
+      text-align: center;
     }
-    .city-street {
+    .map-compass b { display: block; color: #c0392b; font-size: 0.78rem; }
+    .map-canvas {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr) 26px minmax(0, 1fr);
+      grid-template-rows: minmax(72px, 1fr) 36px minmax(72px, 1fr) 36px minmax(72px, 1fr) minmax(56px, 0.8fr);
+      gap: 0;
+      min-height: 420px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(30,45,90,0.08);
+    }
+    /* Vertical roads */
+    .map-vroad {
+      background:
+        linear-gradient(90deg, transparent 0 42%, rgba(255,255,255,0.55) 42% 46%, transparent 46% 54%, rgba(255,255,255,0.55) 54% 58%, transparent 58%),
+        repeating-linear-gradient(180deg, #6b7280 0 10px, #6b7280 10px 18px, #5f6674 18px 22px);
+      position: relative;
+    }
+    /* Horizontal roads */
+    .map-hroad {
       grid-column: 1 / -1;
+      background:
+        linear-gradient(180deg, transparent 0 40%, rgba(255,255,255,0.55) 40% 45%, transparent 45% 55%, rgba(255,255,255,0.55) 55% 60%, transparent 60%),
+        #6b7280;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 34px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #9aa3b5;
       color: #fff;
-      font-size: 0.72rem;
+      font-size: clamp(0.62rem, 1.8vw, 0.78rem);
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.18);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
     }
-    .city-street .dot {
-      width: 8px; height: 8px; border-radius: 999px; background: var(--gold);
+    .map-hroad .lane {
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(90deg, transparent 0 18px, rgba(255,255,255,0.35) 18px 28px);
+      opacity: 0.35;
+      pointer-events: none;
     }
-    .city-plot {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fff;
-      border: 2px solid rgba(30, 45, 90, 0.12);
-      min-height: 0;
-      aspect-ratio: 1.05 / 1;
+    .map-hroad .label {
+      position: relative; z-index: 2;
+      background: rgba(30,45,90,0.72);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .map-crosswalk {
+      position: absolute;
+      z-index: 2;
+      background: repeating-linear-gradient(90deg, #fff 0 5px, transparent 5px 9px);
+      opacity: 0.85;
+    }
+    .map-hroad .map-crosswalk {
+      width: 28px; height: 70%;
+      top: 15%;
+    }
+    .map-hroad .map-crosswalk.l { left: 18%; }
+    .map-hroad .map-crosswalk.m { left: 48%; }
+    .map-hroad .map-crosswalk.r { right: 18%; left: auto; }
+    .map-light {
+      position: absolute;
+      z-index: 3;
+      width: 14px; height: 28px;
+      border-radius: 4px;
+      background: #1a1f2e;
+      border: 1px solid #0f1320;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      padding: 2px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
-    .city-plot.highlight {
-      border-color: var(--teal);
-      box-shadow: 0 0 0 3px rgba(91, 184, 176, 0.28);
+    .map-light i {
+      width: 7px; height: 7px; border-radius: 999px; display: block;
     }
-    .city-plot .thumb {
-      flex: 1;
-      min-height: 0;
-      background: var(--soft);
+    .map-light i.r { background: #e74c3c; }
+    .map-light i.y { background: #f1c40f; }
+    .map-light i.g { background: #2ecc71; }
+    .map-hroad .map-light { right: 10%; top: 50%; transform: translateY(-50%); }
+    .map-bus {
+      position: absolute;
+      z-index: 3;
+      left: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #1e2d5a;
+      color: #9ce0da;
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.25);
+      white-space: nowrap;
+    }
+    .map-bus::before {
+      content: "🚏 ";
+    }
+    /* City blocks / buildings */
+    .map-block {
+      position: relative;
+      background: #eef2f6;
+      border: 1px solid rgba(30,45,90,0.14);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 8px 6px;
+      text-align: center;
+      min-width: 0;
+    }
+    .map-block .ico {
+      width: 36px; height: 36px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      overflow: hidden;
+      font-size: 1.15rem;
+      background: #fff;
+      border: 1px solid rgba(30,45,90,0.10);
+      box-shadow: 0 4px 10px rgba(30,45,90,0.08);
     }
-    .city-plot .thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .city-plot .name {
-      padding: 6px 6px 7px;
-      text-align: center;
-      font-size: clamp(0.68rem, 1.8vw, 0.82rem);
+    .map-block .lbl {
+      font-size: clamp(0.62rem, 1.7vw, 0.78rem);
       font-weight: 900;
       color: var(--navy);
       line-height: 1.15;
-      background: #fff;
-      border-top: 1px solid var(--line);
+      max-width: 100%;
     }
-    .city-plot.plaza {
-      background: linear-gradient(160deg, #e7f7f4, #f4fbfa);
+    .map-block.school .ico { background: #fff4dd; }
+    .map-block.park {
+      background: linear-gradient(160deg, #d8efd2, #c5e4bc);
     }
-    .city-plot.parking {
+    .map-block.park .ico { background: #eaf8e4; }
+    .map-block.library .ico { background: #e8f0ff; }
+    .map-block.pharmacy .ico { background: #e9f8ef; }
+    .map-block.fountain {
+      background: linear-gradient(160deg, #d9f3f0, #e8f7f5);
+    }
+    .map-block.fountain .ico { background: #f0fcfb; }
+    .map-block.hospital .ico { background: #ffe8e8; }
+    .map-block.bank .ico { background: #eef1ff; }
+    .map-block.supermarket .ico { background: #fff0e0; }
+    .map-block.restaurant .ico { background: #ffe9f2; }
+    .map-block.parking {
+      background:
+        repeating-linear-gradient(90deg, #d5dbe6 0 10px, #c9d0dc 10px 12px),
+        #d5dbe6;
       border-style: dashed;
     }
-    .city-legend {
+    .map-block.parking .ico { background: #fff; }
+    .map-block.empty {
+      background: transparent;
+      border: 0;
+    }
+    .map-key {
       display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px;
     }
-    .city-legend span {
+    .map-key span {
       font-size: 0.72rem; font-weight: 800; color: var(--muted);
-      padding: 5px 9px; border-radius: 999px; background: #fff;
+      padding: 5px 9px; border-radius: 999px; background: var(--soft);
       border: 1px solid var(--line);
     }
     @media (max-width: 560px) {
-      .city-plot .name { font-size: 0.62rem; padding: 5px 4px; }
-      .city-street { font-size: 0.64rem; min-height: 28px; }
+      .map-canvas {
+        min-height: 360px;
+        grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr) 18px minmax(0, 1fr);
+        grid-template-rows: minmax(60px, 1fr) 30px minmax(60px, 1fr) 30px minmax(60px, 1fr) minmax(48px, 0.8fr);
+      }
+      .map-block .ico { width: 28px; height: 28px; font-size: 0.95rem; border-radius: 8px; }
+      .map-bus { font-size: 0.52rem; left: 4%; }
+      .map-hroad .map-light { display: none; }
     }
     .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; }
     .btn {
@@ -1368,14 +1483,14 @@ function showTab(i) {
   panel.querySelector("#sp-stop").addEventListener("click", stop);
 })();
 
-/* ========== 4 PREPOSITIONS — city map ==========
-   Layout (north → south):
+/* ========== 4 PREPOSITIONS — real city map ==========
+   N
    School | Park | Library
-   ——— Maple Street (bus stop) ———
+   ===== Maple Street (bus stop) =====
    Pharmacy | Fountain | Hospital
-   ——— Oak Avenue ———
+   ===== Oak Avenue =====
    Bank | Supermarket | Restaurant
-   Parking lot is BEHIND the supermarket (south of it).
+          Parking (behind supermarket)
 */
 const prepQs = [
   { q: "Look at the map. The park is ___ the school and the library.", opts: ["next to", "between", "behind"], a: 1 },
@@ -1392,78 +1507,75 @@ const prepQs = [
 
 (function buildPrep() {
   const panel = document.getElementById("panel-4");
-  const img = (file) => `assets/${file}`;
+
+  const block = (cls, ico, name) =>
+    `<div class="map-block ${cls}"><span class="ico" aria-hidden="true">${ico}</span><span class="lbl">${name}</span></div>`;
+  const vroad = () => `<div class="map-vroad" aria-hidden="true"></div>`;
 
   panel.innerHTML = `
     <h4>Prepositions of Place</h4>
-    <p class="intro">Study the city map. Then answer about the buildings — use what you see, not memory from another page.</p>
+    <p class="intro">Look at the downtown map. Use the streets and buildings to choose the correct preposition.</p>
 
-    <div class="city-map" aria-label="City map">
+    <div class="city-map" aria-label="Downtown city map">
       <div class="city-map-title">
         <h5>Downtown map</h5>
-        <span>Read the labels · then answer</span>
+        <span>Streets · blocks · places</span>
       </div>
-      <div class="city-compass">N ↑</div>
-      <div class="city-grid">
-        <div class="city-plot" data-place="school">
-          <div class="thumb"><img src="${img("school.jpg")}" alt=""></div>
-          <div class="name">School</div>
-        </div>
-        <div class="city-plot" data-place="park">
-          <div class="thumb"><img src="${img("park.jpg")}" alt=""></div>
-          <div class="name">Park</div>
-        </div>
-        <div class="city-plot" data-place="library">
-          <div class="thumb"><img src="${img("library.jpg")}" alt=""></div>
-          <div class="name">Library</div>
-        </div>
 
-        <div class="city-street" title="Maple Street">
-          <span class="dot"></span> Maple Street · bus stop <span class="dot"></span>
-        </div>
+      <div class="map-board">
+        <div class="map-compass" aria-hidden="true"><b>N</b>↑</div>
 
-        <div class="city-plot" data-place="pharmacy">
-          <div class="thumb"><img src="${img("pharmacy.jpg")}" alt=""></div>
-          <div class="name">Pharmacy</div>
-        </div>
-        <div class="city-plot plaza" data-place="fountain">
-          <div class="thumb"><img src="${img("fountain.jpg")}" alt=""></div>
-          <div class="name">Fountain</div>
-        </div>
-        <div class="city-plot" data-place="hospital">
-          <div class="thumb"><img src="${img("hospital.jpg")}" alt=""></div>
-          <div class="name">Hospital</div>
-        </div>
+        <div class="map-canvas" role="img" aria-label="Map: School Park Library on Maple Street; Pharmacy Fountain Hospital; Bank Supermarket Restaurant on Oak Avenue; parking behind supermarket">
+          ${block("school", "🏫", "School")}
+          ${vroad()}
+          ${block("park", "🌳", "Park")}
+          ${vroad()}
+          ${block("library", "📚", "Library")}
 
-        <div class="city-street" title="Oak Avenue">
-          <span class="dot"></span> Oak Avenue <span class="dot"></span>
-        </div>
+          <div class="map-hroad">
+            <span class="lane"></span>
+            <span class="map-bus">Bus stop</span>
+            <span class="map-crosswalk l"></span>
+            <span class="map-crosswalk m"></span>
+            <span class="map-crosswalk r"></span>
+            <span class="map-light" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+            <span class="label">Maple Street</span>
+          </div>
 
-        <div class="city-plot" data-place="bank">
-          <div class="thumb"><img src="${img("bank.jpg")}" alt=""></div>
-          <div class="name">Bank</div>
-        </div>
-        <div class="city-plot" data-place="supermarket">
-          <div class="thumb"><img src="${img("supermarket.jpg")}" alt=""></div>
-          <div class="name">Supermarket</div>
-        </div>
-        <div class="city-plot" data-place="restaurant">
-          <div class="thumb"><img src="${img("restaurant.jpg")}" alt=""></div>
-          <div class="name">Restaurant</div>
-        </div>
+          ${block("pharmacy", "💊", "Pharmacy")}
+          ${vroad()}
+          ${block("fountain", "⛲", "Fountain")}
+          ${vroad()}
+          ${block("hospital", "🏥", "Hospital")}
 
-        <div class="city-plot" style="visibility:hidden" aria-hidden="true"></div>
-        <div class="city-plot parking" data-place="parking lot">
-          <div class="thumb"><img src="${img("parking-lot.jpg")}" alt=""></div>
-          <div class="name">Parking lot</div>
+          <div class="map-hroad">
+            <span class="lane"></span>
+            <span class="map-crosswalk l"></span>
+            <span class="map-crosswalk m"></span>
+            <span class="map-crosswalk r"></span>
+            <span class="map-light" aria-hidden="true"><i class="r"></i><i class="y"></i><i class="g"></i></span>
+            <span class="label">Oak Avenue</span>
+          </div>
+
+          ${block("bank", "🏦", "Bank")}
+          ${vroad()}
+          ${block("supermarket", "🛒", "Supermarket")}
+          ${vroad()}
+          ${block("restaurant", "🍽️", "Restaurant")}
+
+          <div class="map-block empty" aria-hidden="true"></div>
+          ${vroad()}
+          ${block("parking", "🅿️", "Parking lot")}
+          ${vroad()}
+          <div class="map-block empty" aria-hidden="true"></div>
         </div>
-        <div class="city-plot" style="visibility:hidden" aria-hidden="true"></div>
       </div>
-      <div class="city-legend">
+
+      <div class="map-key">
         <span>next to = beside</span>
-        <span>between = in the middle</span>
-        <span>across from = opposite side of the street</span>
-        <span>behind / in front of</span>
+        <span>between = in the middle of two places</span>
+        <span>across from = other side of the street</span>
+        <span>in front of / behind</span>
         <span>on · in · at</span>
       </div>
     </div>
