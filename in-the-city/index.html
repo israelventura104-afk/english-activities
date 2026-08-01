@@ -202,7 +202,7 @@
     }
     .deck-counter span { color: var(--teal-dark); }
     .deck-card-wrap {
-      width: min(440px, 100%);
+      width: min(418px, 100%);
       position: relative;
     }
     .deck-card {
@@ -463,39 +463,40 @@
       <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
       <div>
         <h1>In the City</h1>
-        <p>English Activities · Israel Ventura</p>
+        <p>Places · Directions · Prepositions</p>
       </div>
     </div>
     <div class="topbar-actions">
       <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
         <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
       </a>
-      <span class="mode-pill">A1–A2 · Full vocabulary</span>
+      <span class="mode-pill">A1–A2 · Vocabulary</span>
     </div>
   </header>
 
   <section class="hero">
     <div class="hero-inner">
-      <span class="eyebrow">Your classroom platform</span>
-      <h2>One big card. Full <span>deck</span>.</h2>
+      <span class="eyebrow">Vocabulary · Getting around town</span>
+      <h2>Find your way <span>around town</span></h2>
       <p class="hero-copy">
-        Study the whole bank or open a category deck. Word and category stay blurred until you tap —
-        then reveal, hide, and move on. Built for the projector and real classroom pace.
+        Practice places, city elements, road verbs, and adjectives — then use prepositions and useful expressions
+        to ask for help, give directions, and say where things are.
       </p>
-      <div class="cast">
-        <span>Flashcard deck</span>
-        <span>6 category mazos</span>
-        <span>Full blur reveal</span>
-        <span>Games</span>
-        <span>Speaking</span>
+      <div class="cast" aria-label="Lesson focus">
+        <span>Places</span>
+        <span>City elements</span>
+        <span>Road verbs</span>
+        <span>Adjectives</span>
+        <span>Prepositions</span>
+        <span>Expressions</span>
       </div>
     </div>
   </section>
 
   <article class="lesson-card">
     <header class="lesson-head">
-      <h3>In the City · Vocabulary Lab</h3>
-      <p>Study with the big flashcard deck first, then play Memory, What’s this?, Speed Round, Prepositions, Directions, and Speaking.</p>
+      <h3>City vocabulary for real moments</h3>
+      <p>Learn the words first, then practice directions, prepositions, games, and short speaking tasks.</p>
     </header>
     <nav class="tabs" id="tabs" role="tablist"></nav>
     <div id="panels"></div>
@@ -666,9 +667,9 @@ function showTab(i) {
 (function buildPictureBox() {
   const panel = document.getElementById("panel-0");
   panel.innerHTML = `
-    <h4>Picture Box · Flashcard Deck</h4>
-    <p class="intro">One big card at a time. Start with <strong>All</strong>, or open a category deck. Students say what they see — then tap to check. Word and category stay hidden until you reveal.</p>
-    <div class="hint-line">Tap the card: show / hide everything under the picture. Use arrows or ← → on the keyboard to move through the deck.</div>
+    <h4>Picture Box</h4>
+    <p class="intro">Look at the picture. Say the English word. Then tap to check. Use the filters to practice one group at a time.</p>
+    <div class="hint-line">Teacher tip: students answer first, then reveal. Arrows move to the next card.</div>
     <div class="toolbar">
       <div class="filter-row" id="pb-filters"></div>
       <span class="progress-pill">Studied <strong id="pb-progress">0</strong> / ${bank.length}</span>
