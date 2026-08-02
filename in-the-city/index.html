@@ -143,6 +143,7 @@
     .activity-num.n5 { background: #2f5d8c; color: #fff; }
     .activity-num.n6 { background: #8b6bb8; color: #fff; }
     .activity-num.n7 { background: #c45c6a; color: #fff; }
+    .activity-num.n8 { background: #3d8b6e; color: #fff; }
     .activity-meta { flex: 1; min-width: 0; }
     .activity-meta h3 {
       margin: 0; font-size: 1.15rem; font-weight: 900;
@@ -884,6 +885,213 @@
     }
     .speak-card p { margin: 0; line-height: 1.55; }
 
+    /* ===== City Spinner (speaking wheel) ===== */
+    .spinner-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 780px) {
+      .spinner-layout { grid-template-columns: 1fr; }
+    }
+    .spinner-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .spinner-pointer {
+      width: 0; height: 0;
+      border-left: 12px solid transparent;
+      border-right: 12px solid transparent;
+      border-top: 18px solid var(--navy);
+      filter: drop-shadow(0 2px 3px rgba(30,45,90,0.25));
+      z-index: 2;
+      margin-bottom: -6px;
+    }
+    .spinner-wheel-wrap {
+      position: relative;
+      width: min(300px, 78vw);
+      aspect-ratio: 1;
+    }
+    .spinner-wheel {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 7px solid var(--navy);
+      box-shadow:
+        0 18px 40px rgba(30, 45, 90, 0.18),
+        inset 0 0 0 3px rgba(255,255,255,0.35);
+      position: relative;
+      overflow: hidden;
+      transition: transform 4.2s cubic-bezier(0.12, 0.75, 0.12, 1);
+      will-change: transform;
+    }
+    .spinner-wheel.no-anim { transition: none; }
+    .spinner-seg-label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 46%;
+      transform-origin: 0 0;
+      font-size: 0.58rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+      pointer-events: none;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+    .spinner-hub {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #fff;
+      border: 4px solid var(--navy);
+      box-shadow: 0 6px 16px rgba(30,45,90,0.2);
+      display: grid;
+      place-items: center;
+      font-size: 0.62rem;
+      font-weight: 900;
+      color: var(--navy);
+      text-align: center;
+      line-height: 1.1;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .spinner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+    }
+    .spinner-result {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(30,45,90,0.08);
+      overflow: hidden;
+      min-height: 280px;
+    }
+    .spinner-result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, var(--navy), #2f4a8c);
+      color: #fff;
+    }
+    .spinner-result-head .sector-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      font-size: 0.95rem;
+    }
+    .spinner-result-head .sector-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.7);
+      flex: 0 0 auto;
+    }
+    .spinner-timer {
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+      font-size: 1.15rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .spinner-timer.warn { background: rgba(212,168,67,0.35); }
+    .spinner-timer.done { background: rgba(196,92,106,0.45); }
+    .spinner-result-body { padding: 16px 18px 18px; }
+    .spinner-result-body .idle-msg {
+      color: var(--muted);
+      font-weight: 700;
+      line-height: 1.55;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .spinner-result-body .challenge-label {
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal-dark);
+      margin: 0 0 8px;
+    }
+    .spinner-result-body .challenge-text {
+      margin: 0 0 14px;
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.45;
+    }
+    .spinner-result-body .challenge-tip {
+      margin: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--wash);
+      border: 1px solid rgba(91,184,176,0.28);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+    .spinner-result-body .pair-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+    }
+    .spinner-result-body .pair-roles span {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .spinner-legend {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px 10px;
+      margin-top: 14px;
+      width: 100%;
+    }
+    .spinner-legend button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 7px 9px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--navy);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .spinner-legend button:hover,
+    .spinner-legend button.active {
+      border-color: rgba(91,184,176,0.55);
+      box-shadow: 0 4px 12px rgba(30,45,90,0.08);
+    }
+    .spinner-legend .dot {
+      width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto;
+    }
+
     .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
 
     @media (max-width: 720px) {
@@ -1235,7 +1443,8 @@ const sections = [
   { title: "Speed Round", accent: "speed", blurb: "Name as many pictures as you can in 60 seconds." },
   { title: "Prepositions", accent: "map", blurb: "Read the city map and complete sentences with place prepositions." },
   { title: "Directions", accent: "phrases", blurb: "Useful expressions for asking and giving directions on the street." },
-  { title: "Speaking", accent: "talk", blurb: "Partner tasks: ask for help, describe places, and give directions." }
+  { title: "Speaking", accent: "talk", blurb: "Partner tasks: ask for help, describe places, and give directions." },
+  { title: "City Spinner", accent: "spin", blurb: "Spin the wheel and speak! 10 speaking challenges for pairs or groups." }
 ];
 
 const activitiesEl = document.getElementById("activities");
@@ -1933,6 +2142,353 @@ const matchExpr = [
       <strong>A:</strong> Thank you. · <strong>B:</strong> You're welcome.</p>
     </div>
   `;
+})();
+
+/* ========== 7 CITY SPINNER — SPEAKING WHEEL ========== */
+(function buildCitySpinner() {
+  const panel = document.getElementById("panel-7");
+  const SECTORS = [
+    {
+      label: "Places",
+      short: "Places",
+      color: "#1e2d5a",
+      seconds: 60,
+      roles: ["Speaker", "Listener"],
+      tip: "Use 3 place words from the unit (school, park, library…).",
+      prompts: [
+        "Tell a mini-story with 3 places in your city.",
+        "Name 5 places near your home and say one sentence for each.",
+        "Where do you go on Saturday? Use bank, park, supermarket, or restaurant.",
+        "Describe the way from school to your favorite place — name the places you pass."
+      ]
+    },
+    {
+      label: "Describe your city",
+      short: "Your city",
+      color: "#238d85",
+      seconds: 60,
+      roles: ["Speaker", "Listener"],
+      tip: "Use adjectives: busy, quiet, safe, crowded, beautiful…",
+      prompts: [
+        "Talk about your city for 40–60 seconds. Is it busy or quiet?",
+        "What do you like most about your city? What don’t you like?",
+        "Describe your street in the morning and at night.",
+        "Would a tourist like your city? Why or why not?"
+      ]
+    },
+    {
+      label: "Prepositions",
+      short: "Prepositions",
+      color: "#d4a843",
+      seconds: 60,
+      roles: ["Speaker", "Listener"],
+      tip: "Use next to, across from, between, near, behind, in front of…",
+      prompts: [
+        "Describe your house and what is next to it, across from it, and near it.",
+        "Imagine Maple Street from Diego’s story. Where is the park? The library? The supermarket?",
+        "Look around the classroom (or memory). Say 4 sentences with prepositions.",
+        "Explain where the pharmacy is in relation to the supermarket and the parking lot."
+      ]
+    },
+    {
+      label: "Ask for help",
+      short: "Ask help",
+      color: "#2f5d8c",
+      seconds: 45,
+      roles: ["Tourist", "Local"],
+      tip: "Excuse me · Can you help me? · Where is…? · How can I get to…?",
+      prompts: [
+        "You are lost. Ask how to get to the library.",
+        "You need a pharmacy. Ask a stranger for help politely.",
+        "You are at the bus stop. Ask where the shopping mall is.",
+        "Start a short dialogue: get attention + ask for a place + say thank you."
+      ]
+    },
+    {
+      label: "Give directions",
+      short: "Directions",
+      color: "#8b6bb8",
+      seconds: 60,
+      roles: ["Local", "Tourist"],
+      tip: "Go straight · Turn left/right · Cross the street · It’s next to / across from…",
+      prompts: [
+        "Give directions from the school to the restaurant in 3–4 steps.",
+        "A tourist wants the park. Explain the way using go straight and turn left or right.",
+        "How do you get from the bus station to the hospital? Speak only — no maps!",
+        "Help someone find the supermarket. Use one preposition of place at the end."
+      ]
+    },
+    {
+      label: "Road verbs",
+      short: "Verbs",
+      color: "#c45c6a",
+      seconds: 45,
+      roles: ["Speaker", "Listener"],
+      tip: "go, walk, turn, cross, stop, drive, wait, take…",
+      prompts: [
+        "Make 4 sentences with different road verbs about your day in the city.",
+        "What do you do at a traffic light? Use stop, wait, cross, go.",
+        "Tell a short story: I take the bus… I walk… I turn…",
+        "Partner challenge: your partner says a verb; you use it in a sentence about the city."
+      ]
+    },
+    {
+      label: "Adjectives",
+      short: "Adjectives",
+      color: "#3d8b6e",
+      seconds: 45,
+      roles: ["Speaker", "Listener"],
+      tip: "busy / quiet · safe / dangerous · crowded / empty · convenient · beautiful",
+      prompts: [
+        "Compare two places in your city with adjectives (e.g. center vs your street).",
+        "Describe the supermarket on Saturday and on Monday morning.",
+        "Is your city safe at night? Explain with 3 adjectives.",
+        "Talk about a place that is beautiful but crowded — would you go there?"
+      ]
+    },
+    {
+      label: "Diego’s story",
+      short: "Diego",
+      color: "#b07a3a",
+      seconds: 60,
+      roles: ["Speaker", "Listener"],
+      tip: "Answer from the story, then give your opinion.",
+      prompts: [
+        "Where does Diego live, and what is his street like morning and night?",
+        "What places does Diego mention near the park and the supermarket?",
+        "Retell Diego’s Saturday with your mom in 4–5 sentences.",
+        "Compare Diego’s city with yours. What is similar? What is different?"
+      ]
+    },
+    {
+      label: "60-second challenge",
+      short: "60 seconds",
+      color: "#1a6b8a",
+      seconds: 60,
+      roles: ["Speaker", "Timer keeper"],
+      tip: "Speak without long pauses. Mistakes are OK — keep going!",
+      prompts: [
+        "My favorite places in my city — talk for 60 seconds.",
+        "A perfect Saturday in the city — 60 seconds, no stopping.",
+        "How I go from home to school every day — 60 seconds.",
+        "If a friend visits my city — what we do and where we go (60 seconds)."
+      ]
+    },
+    {
+      label: "Free talk",
+      short: "Free talk",
+      color: "#5c4d8a",
+      seconds: 90,
+      roles: ["Partner A", "Partner B"],
+      tip: "Your partner chooses the topic, or invent a dialogue together.",
+      prompts: [
+        "Invent a dialogue at the bus stop (A is lost, B helps).",
+        "Partner chooses any place from Picture Box — describe how to get there.",
+        "Plan a city tour for a visitor: 4 stops and why.",
+        "Role-play: you work at the information desk; answer 3 tourist questions."
+      ]
+    }
+  ];
+
+  const N = SECTORS.length;
+  const SLICE = 360 / N;
+  const conic = SECTORS.map((s, i) => {
+    const a0 = (i * SLICE).toFixed(2);
+    const a1 = ((i + 1) * SLICE).toFixed(2);
+    return `${s.color} ${a0}deg ${a1}deg`;
+  }).join(", ");
+
+  panel.innerHTML = `
+    <p class="intro"><strong>City Spinner · Speak!</strong> Spin the wheel, land on a sector, and complete the speaking challenge. Work in pairs or small groups.</p>
+    <div class="hint-line">Teacher tip: student speaks first; partner only listens, then gives one friendly tip (clear / good vocab / try a preposition).</div>
+    <div class="spinner-layout">
+      <div class="spinner-stage">
+        <div class="spinner-pointer" aria-hidden="true"></div>
+        <div class="spinner-wheel-wrap">
+          <div class="spinner-wheel" id="spin-wheel" style="background: conic-gradient(${conic});" role="img" aria-label="Speaking challenge wheel with 10 sectors"></div>
+          <div class="spinner-hub">SPIN</div>
+        </div>
+        <div class="spinner-actions">
+          <button type="button" class="btn" id="spin-go">🎡 Spin the wheel</button>
+          <button type="button" class="btn ghost" id="spin-new" disabled>New prompt</button>
+          <button type="button" class="btn secondary" id="spin-timer" disabled>Start timer</button>
+        </div>
+        <div class="spinner-legend" id="spin-legend"></div>
+      </div>
+      <div class="spinner-result" id="spin-result">
+        <div class="spinner-result-head">
+          <div class="sector-chip">
+            <span class="sector-dot" id="spin-dot" style="background:#94a3b8"></span>
+            <span id="spin-sector-name">Ready to spin</span>
+          </div>
+          <div class="spinner-timer" id="spin-clock">—</div>
+        </div>
+        <div class="spinner-result-body" id="spin-body">
+          <p class="idle-msg">Tap <strong>Spin the wheel</strong>. The pointer at the top shows your speaking challenge.</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  const wheel = panel.querySelector("#spin-wheel");
+  const legend = panel.querySelector("#spin-legend");
+  const goBtn = panel.querySelector("#spin-go");
+  const newBtn = panel.querySelector("#spin-new");
+  const timerBtn = panel.querySelector("#spin-timer");
+  const sectorName = panel.querySelector("#spin-sector-name");
+  const dot = panel.querySelector("#spin-dot");
+  const body = panel.querySelector("#spin-body");
+  const clock = panel.querySelector("#spin-clock");
+
+  // Labels on wheel (mid-slice, outward)
+  SECTORS.forEach((s, i) => {
+    const mid = i * SLICE + SLICE / 2;
+    const el = document.createElement("div");
+    el.className = "spinner-seg-label";
+    el.textContent = s.short;
+    // place near outer ring: rotate to mid, then shift along radius
+    el.style.transform = `rotate(${mid}deg) translate(0, -8px) translateY(-112px) rotate(90deg)`;
+    // For slices in lower half, text might be upside-down — keep short labels and accept small-wheel tradeoff
+    if (mid > 90 && mid < 270) {
+      el.style.transform = `rotate(${mid}deg) translate(0, -8px) translateY(-112px) rotate(-90deg)`;
+    }
+    wheel.appendChild(el);
+
+    const lb = document.createElement("button");
+    lb.type = "button";
+    lb.innerHTML = `<span class="dot" style="background:${s.color}"></span><span>${i + 1}. ${s.label}</span>`;
+    lb.addEventListener("click", () => {
+      if (spinning) return;
+      landOn(i, { animate: false });
+    });
+    legend.appendChild(lb);
+  });
+
+  let rotation = 0;
+  let spinning = false;
+  let currentIndex = null;
+  let promptIndex = 0;
+  let timerId = null;
+  let timeLeft = 0;
+
+  function stopTimer() {
+    if (timerId) clearInterval(timerId);
+    timerId = null;
+  }
+
+  function formatTime(s) {
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return m + ":" + String(r).padStart(2, "0");
+  }
+
+  function updateClock() {
+    if (currentIndex === null) {
+      clock.textContent = "—";
+      clock.className = "spinner-timer";
+      return;
+    }
+    clock.textContent = formatTime(timeLeft);
+    clock.className = "spinner-timer" + (timeLeft === 0 ? " done" : timeLeft <= 10 ? " warn" : "");
+  }
+
+  function showChallenge(idx) {
+    const sector = SECTORS[idx];
+    const prompts = sector.prompts;
+    promptIndex = promptIndex % prompts.length;
+    const prompt = prompts[promptIndex];
+    sectorName.textContent = sector.label;
+    dot.style.background = sector.color;
+    timeLeft = sector.seconds;
+    updateClock();
+    body.innerHTML = `
+      <div class="pair-roles">${sector.roles.map(r => `<span>${r}</span>`).join("")}<span>${sector.seconds}s</span></div>
+      <p class="challenge-label">Your challenge</p>
+      <p class="challenge-text">${prompt}</p>
+      <p class="challenge-tip"><strong>Language tip:</strong> ${sector.tip}</p>
+    `;
+    [...legend.querySelectorAll("button")].forEach((b, i) => b.classList.toggle("active", i === idx));
+    newBtn.disabled = false;
+    timerBtn.disabled = false;
+    timerBtn.textContent = "Start timer";
+  }
+
+  function landOn(idx, { animate }) {
+    stopTimer();
+    currentIndex = idx;
+    promptIndex = Math.floor(Math.random() * SECTORS[idx].prompts.length);
+
+    // Align center of segment idx under the top pointer
+    const targetMod = (360 - (idx * SLICE + SLICE / 2) + 360) % 360;
+    if (animate) {
+      const spins = 4 + Math.floor(Math.random() * 3);
+      const currentMod = ((rotation % 360) + 360) % 360;
+      let delta = (targetMod - currentMod + 360) % 360;
+      // add tiny jitter within the slice so it doesn't always hit dead center
+      const jitter = (Math.random() - 0.5) * (SLICE * 0.55);
+      delta += jitter;
+      rotation += spins * 360 + delta;
+      spinning = true;
+      goBtn.disabled = true;
+      newBtn.disabled = true;
+      timerBtn.disabled = true;
+      wheel.classList.remove("no-anim");
+      wheel.style.transform = `rotate(${rotation}deg)`;
+      const onEnd = () => {
+        wheel.removeEventListener("transitionend", onEnd);
+        spinning = false;
+        goBtn.disabled = false;
+        // recompute actual index from final angle (jitter-safe)
+        const finalMod = ((rotation % 360) + 360) % 360;
+        const underPointer = (360 - finalMod) % 360;
+        currentIndex = Math.min(N - 1, Math.floor(underPointer / SLICE));
+        showChallenge(currentIndex);
+      };
+      wheel.addEventListener("transitionend", onEnd);
+    } else {
+      rotation = targetMod;
+      wheel.classList.add("no-anim");
+      wheel.style.transform = `rotate(${rotation}deg)`;
+      // force reflow so next spin animates
+      void wheel.offsetWidth;
+      wheel.classList.remove("no-anim");
+      showChallenge(idx);
+    }
+  }
+
+  goBtn.addEventListener("click", () => {
+    if (spinning) return;
+    const idx = Math.floor(Math.random() * N);
+    landOn(idx, { animate: true });
+  });
+
+  newBtn.addEventListener("click", () => {
+    if (currentIndex === null || spinning) return;
+    stopTimer();
+    promptIndex = (promptIndex + 1) % SECTORS[currentIndex].prompts.length;
+    showChallenge(currentIndex);
+  });
+
+  timerBtn.addEventListener("click", () => {
+    if (currentIndex === null || spinning) return;
+    if (timerId) {
+      stopTimer();
+      timerBtn.textContent = "Start timer";
+      return;
+    }
+    if (timeLeft <= 0) timeLeft = SECTORS[currentIndex].seconds;
+    updateClock();
+    timerBtn.textContent = "Stop timer";
+    timerId = setInterval(() => {
+      timeLeft -= 1;
+      if (timeLeft <= 0) {
+        timeLeft = 0;
+        stopTimer();
+        timerBtn.textContent = "Start timer";
+      }
+      updateClock();
+    }, 1000);
+  });
 })();
 
 /* ========== HELPERS ========== */
