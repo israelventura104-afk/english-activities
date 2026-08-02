@@ -441,6 +441,50 @@
     .deck-keys {
       font-size: 0.78rem; color: var(--muted); font-weight: 700; text-align: center;
     }
+
+    /* Audio pronunciation controls */
+    .audio-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border: 1px solid rgba(91, 184, 176, 0.45);
+      background: linear-gradient(180deg, #fff, #f0faf9);
+      color: var(--teal-dark);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(35, 141, 133, 0.12);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .audio-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .audio-btn:hover { transform: translateY(-1px); border-color: var(--teal-dark); }
+    .audio-btn:focus-visible { outline: 3px solid rgba(91, 184, 176, 0.45); outline-offset: 2px; }
+    .audio-btn.playing {
+      background: var(--teal-dark);
+      color: #fff;
+      border-color: var(--teal-dark);
+    }
+    .audio-btn.missing {
+      opacity: 0.45;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .audio-btn.missing:hover { transform: none; }
+    .pic-card { position: relative; }
+    .pic-card .audio-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 2;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      min-width: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 4px 12px rgba(30, 45, 90, 0.16);
+    }
+    .pic-card .audio-btn svg { width: 16px; height: 16px; }
+    .pic-card .audio-btn .audio-label { display: none; }
     .deck-card .diagram-stage {
       width: min(100%, 240px); height: min(100%, 200px);
     }
@@ -1101,6 +1145,88 @@ function mediaHTML(item) {
   return exprHTML();
 }
 
+/* ========== AUDIO (word/phrase pronunciation) ========== */
+function audioSlug(t) {
+  return String(t)
+    .toLowerCase()
+    .replace(/[.?…]+$/g, "")
+    .replace(/'/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function audioSrc(itemOrText) {
+  const t = typeof itemOrText === "string" ? itemOrText : itemOrText.t;
+  return "assets/audio/" + audioSlug(t) + ".mp3";
+}
+
+const cityPlayer = new Audio();
+let cityAudioBtn = null;
+
+function setAudioBtnUI(btn, playing) {
+  if (!btn) return;
+  btn.classList.toggle("playing", !!playing);
+  const label = btn.querySelector(".audio-label");
+  if (label) label.textContent = playing ? "Stop" : "Listen";
+  btn.setAttribute("aria-label", playing ? "Stop audio" : "Play pronunciation");
+  btn.title = playing ? "Stop" : "Play pronunciation";
+}
+
+function stopCityAudio() {
+  cityPlayer.pause();
+  cityPlayer.removeAttribute("src");
+  cityPlayer.load();
+  if (cityAudioBtn) setAudioBtnUI(cityAudioBtn, false);
+  cityAudioBtn = null;
+}
+
+function playCityAudio(src, btn) {
+  if (!src) return;
+  if (cityAudioBtn === btn && !cityPlayer.paused) {
+    stopCityAudio();
+    return;
+  }
+  stopCityAudio();
+  cityAudioBtn = btn || null;
+  cityPlayer.src = src;
+  const playPromise = cityPlayer.play();
+  if (playPromise && typeof playPromise.then === "function") {
+    playPromise
+      .then(() => setAudioBtnUI(cityAudioBtn, true))
+      .catch(() => {
+        if (cityAudioBtn) cityAudioBtn.classList.add("missing");
+        setAudioBtnUI(cityAudioBtn, false);
+        cityAudioBtn = null;
+      });
+  } else {
+    setAudioBtnUI(cityAudioBtn, true);
+  }
+}
+
+cityPlayer.addEventListener("ended", () => {
+  if (cityAudioBtn) setAudioBtnUI(cityAudioBtn, false);
+  cityAudioBtn = null;
+});
+cityPlayer.addEventListener("error", () => {
+  if (cityAudioBtn) {
+    cityAudioBtn.classList.add("missing");
+    setAudioBtnUI(cityAudioBtn, false);
+  }
+  cityAudioBtn = null;
+});
+
+function audioBtnHTML(extraClass = "") {
+  const cls = ("audio-btn " + (extraClass || "")).trim();
+  return `<button type="button" class="${cls}" title="Play pronunciation" aria-label="Play pronunciation">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
+      <path d="M15.5 8.5a4.5 4.5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M17.8 6a7.5 7.5 0 010 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    <span class="audio-label">Listen</span>
+  </button>`;
+}
+
 /* ========== VOCAB ACCORDION (desplegable) ========== */
 const sections = [
   { title: "Picture Box", accent: "deck", blurb: "Study places, verbs, adjectives, and expressions with big reveal cards." },
@@ -1170,9 +1296,17 @@ sections.forEach((sec, i) => {
       </div>
       <div class="deck-nav">
         <button type="button" class="btn ghost" id="pb-prev">← Prev</button>
+        <button type="button" class="audio-btn" id="pb-audio" title="Play pronunciation" aria-label="Play pronunciation">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
+            <path d="M15.5 8.5a4.5 4.5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M17.8 6a7.5 7.5 0 010 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="audio-label">Listen</span>
+        </button>
         <button type="button" class="btn" id="pb-next">Next →</button>
       </div>
-      <p class="deck-keys">Keyboard: ← prev · → next · Space reveal</p>
+      <p class="deck-keys">Keyboard: ← prev · → next · Space reveal · L listen</p>
     </div>
   `;
 
@@ -1200,6 +1334,7 @@ sections.forEach((sec, i) => {
   const totalEl = panel.querySelector("#pb-total");
   const prevBtn = panel.querySelector("#pb-prev");
   const nextBtn = panel.querySelector("#pb-next");
+  const audioBtn = panel.querySelector("#pb-audio");
 
   function deckList() {
     return filter === "all" ? bank : bank.filter(x => x.cat === filter);
@@ -1207,6 +1342,14 @@ sections.forEach((sec, i) => {
 
   function updateProgress() {
     prog.textContent = studied.size;
+  }
+
+  function playCurrentAudio() {
+    const list = deckList();
+    const item = list[index];
+    if (!item) return;
+    audioBtn.classList.remove("missing");
+    playCityAudio(audioSrc(item), audioBtn);
   }
 
   function renderFilters() {
@@ -1220,6 +1363,7 @@ sections.forEach((sec, i) => {
         filter = f.id;
         index = 0;
         revealed = false;
+        stopCityAudio();
         renderFilters();
         renderCard();
       });
@@ -1238,6 +1382,7 @@ sections.forEach((sec, i) => {
       cardEl.classList.remove("revealed", "studied");
       prevBtn.disabled = true;
       nextBtn.disabled = true;
+      audioBtn.disabled = true;
       return;
     }
     if (index >= list.length) index = list.length - 1;
@@ -1259,6 +1404,9 @@ sections.forEach((sec, i) => {
 
     prevBtn.disabled = index <= 0;
     nextBtn.disabled = index >= list.length - 1;
+    audioBtn.disabled = false;
+    audioBtn.classList.remove("missing");
+    setAudioBtnUI(audioBtn, cityAudioBtn === audioBtn && !cityPlayer.paused);
     updateProgress();
   }
 
@@ -1268,6 +1416,7 @@ sections.forEach((sec, i) => {
     if (next < 0 || next >= list.length) return;
     index = next;
     revealed = false;
+    stopCityAudio();
     renderCard();
   }
 
@@ -1287,12 +1436,18 @@ sections.forEach((sec, i) => {
   cardEl.addEventListener("click", () => setRevealed(!revealed));
   prevBtn.addEventListener("click", () => go(-1));
   nextBtn.addEventListener("click", () => go(1));
+  audioBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    playCurrentAudio();
+  });
   panel.querySelector("#pb-hide").addEventListener("click", () => setRevealed(false));
   panel.querySelector("#pb-reveal").addEventListener("click", () => setRevealed(true));
   panel.querySelector("#pb-reset-study").addEventListener("click", () => {
     studied = new Set();
     saveStudied();
     revealed = false;
+    stopCityAudio();
     renderCard();
   });
 
@@ -1307,6 +1462,9 @@ sections.forEach((sec, i) => {
     else if (e.key === " " || e.key === "Enter") {
       e.preventDefault();
       setRevealed(!revealed);
+    } else if (e.key === "l" || e.key === "L") {
+      e.preventDefault();
+      playCurrentAudio();
     }
   });
 
@@ -1733,8 +1891,16 @@ const matchExpr = [
     card.type = "button";
     card.className = "pic-card";
     card.innerHTML = `
+      ${audioBtnHTML()}
       <div class="pic-media">${mediaHTML(item)}<span class="tap-hint">Tap to reveal</span></div>
       <div class="pic-label"><span class="word">${item.t}</span><span class="cat">${item.use}</span></div>`;
+    const aBtn = card.querySelector(".audio-btn");
+    aBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      aBtn.classList.remove("missing");
+      playCityAudio(audioSrc(item), aBtn);
+    });
     card.addEventListener("click", () => card.classList.toggle("revealed"));
     grid.appendChild(card);
   });
