@@ -947,14 +947,14 @@ function listeningHTML() {
   const audioSrc = 'assets/first-day-on-campus.mp3';
   return `
     <h4>Listening · First day on campus</h4>
-    <p class="intro">Same morning, same three people. Use the script for now; when the audio file is ready, it will play from the player below.</p>
+    <p class="intro">Same morning, same three people. Play the audio first, then answer. Use the script only if you need support.</p>
 
     <div class="audio-bar">
       <div>
         <strong>Audio player</strong>
-        <p>File expected at <code style="color:#9ce0da">verb-to-be/assets/first-day-on-campus.mp3</code>. Until then, use Show script and answer from the dialogue.</p>
+        <p>First day on campus — Sofia, Maya &amp; Carlos.</p>
       </div>
-      <audio id="storyAudio" controls preload="none">
+      <audio id="storyAudio" controls preload="metadata">
         <source src="${audioSrc}" type="audio/mpeg">
       </audio>
     </div>
