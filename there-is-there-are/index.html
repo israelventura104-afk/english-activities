@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>There Is / There Are | Around the House</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0B1F3A;--teal:#168C8C;--gold:#C8A96A;--slate:#667085;--line:#D6DEE7;--mint:#DDF3F1;--gray:#F4F6F8;--white:#fff;--good:#e8f7ef;--bad:#fff0f0;--warn:#fff8e8;--shadow:0 18px 45px rgba(11,31,58,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Plus Jakarta Sans",sans-serif;color:var(--navy);background:linear-gradient(180deg,#f8fbfc,#edf4f5);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}.shell{max-width:1080px;margin:auto;padding:24px}
+    .topbar{position:sticky;top:14px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;margin-bottom:18px;background:var(--navy);color:#fff;border-radius:18px;box-shadow:0 16px 34px rgba(11,31,58,.22)}.brand{display:flex;align-items:center;gap:12px}.brand img{width:50px;height:50px;border-radius:50%;background:#fff;padding:3px;object-fit:contain}.brand h1{font-size:1.1rem;margin:0}.brand p{font-size:.8rem;color:#d6e7e7;margin:3px 0 0}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.home,.pill{border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800}.home{color:#fff;text-decoration:none;background:rgba(22,140,140,.35)}.pill{border:1px solid rgba(255,255,255,.2)}
+    .hero{position:relative;overflow:hidden;background:#fff;border:1px solid rgba(11,31,58,.08);border-radius:20px;box-shadow:var(--shadow);padding:clamp(26px,5vw,48px);margin-bottom:22px}.hero:after{content:"";position:absolute;right:24px;top:50%;transform:translateY(-50%);width:230px;height:230px;background:url('../favicon.png') center/contain no-repeat;opacity:.07}.eyebrow{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);font-weight:800}.hero h2{font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:12px 0;color:var(--navy);max-width:700px}.hero h2 span{color:var(--teal)}.hero p{color:var(--slate);line-height:1.7;max-width:680px;margin:0}.path{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.path span{padding:6px 10px;border-radius:999px;background:var(--mint);font-size:.72rem;font-weight:800;color:var(--teal)}
+    .lesson{background:#fff;border:1px solid rgba(11,31,58,.08);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.lesson-head{background:var(--navy);color:#fff;padding:22px 24px}.lesson-head h3{margin:0}.lesson-head p{color:#d7e7e8;line-height:1.55;margin:6px 0 0}.tabs{display:flex;overflow-x:auto;gap:5px;padding:12px 14px;border-bottom:1px solid var(--line);scrollbar-width:thin}.tab{border:0;background:transparent;color:var(--slate);font-size:.76rem;font-weight:800;padding:10px 12px;border-radius:10px;white-space:nowrap}.tab.active,.tab:hover{background:var(--mint);color:var(--navy)}.panel{display:none;padding:26px}.panel.active{display:block}.panel h4{font-size:1.15rem;margin:0 0 10px}.panel h5{font-size:.95rem;margin:18px 0 8px;color:var(--navy)}.intro{color:var(--slate);line-height:1.65;margin:0 0 18px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.card.tint{background:var(--gray)}.card.mint{background:var(--mint)}.card.bad{background:var(--bad)}.label{font-size:.7rem;letter-spacing:.08em;color:var(--teal);font-weight:800;text-transform:uppercase}.big-rule{font-size:1.25rem;font-weight:800;margin:10px 0}.teal{color:var(--teal)}.example{padding:10px 12px;border-left:3px solid var(--gold);background:var(--gray);margin-top:10px;font-weight:700}.note{background:var(--warn);border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;line-height:1.55;margin-top:14px}.tip{background:var(--mint);border-left:4px solid var(--teal);padding:12px 14px;border-radius:8px;line-height:1.55;margin:12px 0}.step{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.step b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;font-size:.7rem}
+    .house{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px;background:var(--navy);border-radius:16px}.room{min-height:165px;border:2px dashed rgba(255,255,255,.45);border-radius:12px;background:#f8fbfc;padding:12px;transition:.2s}.room.dragover{border-color:var(--gold);background:#fff8e8}.room h5{margin:0 0 8px;color:var(--teal);font-size:.86rem}.placed{display:flex;flex-wrap:wrap;gap:6px}.token-bank{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.token{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;font-size:.8rem;font-weight:700;touch-action:none;user-select:none}.token[draggable=true]{cursor:grab}.token.selected{background:var(--mint);border-color:var(--teal);box-shadow:0 0 0 2px rgba(22,140,140,.28)}.token.good{background:var(--good);border-color:#72b98c}.token.bad{background:var(--bad);border-color:#d98989}.score{font-weight:800;color:var(--teal)}.house-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;justify-content:space-between}
+    .bridge{margin-top:18px;padding-top:8px;border-top:1px dashed var(--line)}.bridge-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.bridge-item:last-child{border:0}.bridge-item p{margin:0;font-weight:700;line-height:1.45}.bridge-item .why{grid-column:1/-1;font-size:.82rem;color:var(--slate);margin-top:2px;display:none}.bridge-item.done .why{display:block}.bridge-item.done p{color:#2f6b45}
+    .exercise{border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}.exercise button.toggle{width:100%;border:0;background:var(--gray);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:var(--navy);font-weight:800}.exercise .toggle-arrow{display:inline-block;transition:transform .2s ease}.exercise.collapsed .toggle-arrow{transform:rotate(-90deg)}.exercise.collapsed .exbody{display:none}.exbody{padding:16px}.q{padding:12px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.opt,.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800}.opt{background:#fff;border:1px solid var(--line)}.opt.selected{background:var(--mint);border-color:var(--teal)}.opt.correct{background:var(--good);border-color:#72b98c}.opt.wrong{background:var(--bad);border-color:#d98989}.btn{background:var(--navy);color:#fff}.btn.secondary{background:var(--teal)}.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn:disabled{opacity:.55;cursor:not-allowed}.feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}.feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}.why-box{display:none;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--gray);font-size:.84rem;line-height:1.5;color:var(--slate)}.why-box.show{display:block}.why-box strong{color:var(--navy)}
+    .reading{line-height:1.85;background:var(--gray);padding:18px;border-radius:14px}.reading strong{color:var(--teal)}.form-hit{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--teal);font-weight:800;color:var(--teal);background:transparent;transition:.15s}.form-hit.found{background:var(--mint);border-bottom-color:var(--gold)}.form-hit.miss{background:var(--bad)}.notice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-weight:800;color:var(--teal)}.audio{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--navy);color:#fff;padding:16px;border-radius:14px}.audio p{margin:0;color:#d7e7e8;font-size:.85rem;flex:1}.transcript{display:none;margin-top:12px;line-height:1.7}.transcript.show{display:block}
+    .scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scene .room-card{background:var(--gray);border:1px solid var(--line);border-radius:12px;padding:12px}.scene .room-card h6{margin:0 0 6px;color:var(--teal);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}.scene ul{margin:0;padding-left:18px;color:var(--slate);font-size:.9rem;line-height:1.55}.gap-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:700}.gap-line select,.gap-line input[type=text]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:110px;font-weight:700}.gap-line.ok{background:var(--good);border-radius:8px;padding-left:8px}.gap-line.no{background:var(--bad);border-radius:8px;padding-left:8px}
+    .error-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;background:#fff}.error-card .wrong-line{font-weight:800;color:#a33;text-decoration:line-through;text-decoration-thickness:2px}.error-card .fix-line{margin-top:8px;font-weight:700}.error-card .explain{margin-top:8px;font-size:.84rem;color:var(--slate);display:none}.error-card.solved .explain{display:block}.error-card.solved{background:var(--good);border-color:#72b98c}
+    .wheel-wrap{display:grid;grid-template-columns:310px 1fr;gap:24px;align-items:center}.wheel{width:290px;height:290px;border-radius:50%;background:conic-gradient(var(--teal) 0 16.66%,var(--gold) 0 33.33%,#2f5d8c 0 50%,#8abfba 0 66.66%,#d9c48f 0 83.33%,var(--navy) 0);border:10px solid #fff;box-shadow:0 8px 26px rgba(11,31,58,.18);position:relative;transition:transform 2.2s cubic-bezier(.2,.8,.2,1);cursor:pointer}.wheel:after{content:"SPIN";position:absolute;inset:95px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:800}.pointer{text-align:center;color:var(--gold);font-size:2rem;line-height:.5}.speak-prompt{font-size:1.15rem;line-height:1.5;padding:16px;background:var(--mint);border-radius:14px;min-height:72px;font-weight:700}.speak-help{margin-top:12px;display:none}.speak-help.show{display:block}.frame-list{margin:8px 0 0;padding-left:18px;line-height:1.7;color:var(--slate)}.model-box{margin-top:10px;padding:12px;border-radius:10px;background:var(--gray);line-height:1.65;font-size:.92rem}.peer{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.peer label{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:700}.support{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.support span{background:#fff;border:1px solid var(--line);padding:7px 9px;border-radius:9px;font-size:.78rem;font-weight:700}
+    textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;line-height:1.65}textarea{min-height:150px;resize:vertical}.stems{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.stems button{border:1px dashed var(--teal);background:var(--mint);color:var(--navy);border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:800}.checklist{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.criterion{padding:10px;background:var(--gray);border:1px solid var(--line);border-radius:10px;font-size:.76rem}.criterion strong{display:block;margin-bottom:4px}
+    .cando{display:grid;gap:10px}.cando label{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--gray);cursor:pointer}.cando input{width:18px;height:18px}.cando .lvl{font-size:.72rem;font-weight:800;color:var(--teal)}.progress-mini{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0 4px}.progress-mini span{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+    .footer{text-align:center;color:var(--slate);font-size:.78rem;padding:24px}
+    @media(max-width:760px){.shell{padding:12px}.brand p,.pill{display:none}.panel{padding:18px}.grid2,.grid3,.wheel-wrap,.scene,.bridge-item{grid-template-columns:1fr}.wheel-wrap{justify-items:center}.house{grid-template-columns:1fr}.hero:after{opacity:.04}.checklist{grid-template-columns:repeat(2,1fr)}.cando label{grid-template-columns:auto 1fr}}
+  </style>
+</head>
+<body><div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../favicon.png" alt="English by Israel Ventura">
+      <div>
+        <h1>There Is / There Are</h1>
+        <p>Around the House · Grammar module</p>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="home" href="../">⌂ Home</a>
+      <span class="pill">A1 · 45–50 min</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">General English · Grammar in context</span>
+    <h2>What's <span>in the house?</span></h2>
+    <p>From noticing to free production: learn <strong>there is / there are</strong>, fix typical mistakes, then describe rooms with confidence.</p>
+    <div class="path">
+      <span>1 Notice</span><span>2 Build</span><span>3 Fix</span><span>4 Read</span>
+      <span>5 Listen</span><span>6 Speak</span><span>7 Write</span><span>8 Can-do</span>
+    </div>
+  </section>
+
+  <article class="lesson">
+    <header class="lesson-head">
+      <h3>A scaffolded home tour</h3>
+      <p>Controlled practice first, then guided tasks, then freer speaking and writing. Feedback explains <em>why</em>, not only right/wrong.</p>
+    </header>
+    <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
+    <div id="panels"></div>
+  </article>
+
+  <footer class="footer">English by Israel Ventura · General English · Educational use</footer>
+</div>
+
+<script>
+/* ========== STATE ========== */
+const sections = ['1 Grammar', '2 Build', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('thereHouseA1v2') || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem('thereHouseA1v2', JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+
+/* ========== DATA ========== */
+const houseItems = [
+  ['sofa', 'living'], ['rug', 'living'], ['TV', 'living'],
+  ['fridge', 'kitchen'], ['microwave', 'kitchen'], ['sink', 'kitchen'],
+  ['bed', 'bedroom'], ['pillow', 'bedroom'], ['wardrobe', 'bedroom'],
+  ['shower', 'bathroom'], ['toilet', 'bathroom'], ['towel', 'bathroom']
+];
+const bridgeQsFixed = [
+  { stem: 'There ___ a sofa in the living room.', opts: ['is', 'are'], ans: 0, why: 'One thing (a sofa) → singular → <strong>There is</strong>.' },
+  { stem: 'There ___ three objects in the living room.', opts: ['is', 'are'], ans: 1, why: 'Three objects → plural → <strong>There are</strong>.' },
+  { stem: 'There ___ a fridge in the kitchen.', opts: ['is', 'are'], ans: 0, why: 'One fridge → <strong>There is</strong>.' },
+  { stem: 'There ___ three things in the bedroom (bed, pillow, wardrobe).', opts: ['is', 'are'], ans: 1, why: 'Three things → <strong>There are</strong>.' },
+  { stem: 'There ___ a TV in the bathroom. (not true in our house)', opts: ["isn't", "aren't"], ans: 0, why: 'One TV idea → <strong>There isn\'t</strong> a TV…' },
+  { stem: '___ there a shower in the bathroom?', opts: ['Is', 'Are'], ans: 0, why: 'One shower → <strong>Is there</strong>…?' }
+];
+
+const quizBank = {};
+
+const structureQuiz = [
+  { q: '___ a sofa in the living room.', opts: ['There is', 'There are'], ans: 0, why: 'A sofa = one → <strong>There is</strong>.' },
+  { q: '___ two pillows on the bed.', opts: ['There is', 'There are'], ans: 1, why: 'Two pillows = plural → <strong>There are</strong>.' },
+  { q: '___ any chairs in the bathroom.', opts: ["There isn't", "There aren't"], ans: 1, why: 'Chairs = plural + any → <strong>There aren\'t</strong>.' },
+  { q: '___ a garage?', opts: ['Is there', 'Are there'], ans: 0, why: 'A garage = one → <strong>Is there</strong>…?' }
+];
+
+const errorClinic = [
+  {
+    wrong: 'There is two chairs in the kitchen.',
+    opts: ['There is two chairs in the kitchen.', 'There are two chairs in the kitchen.', 'There are a two chairs in the kitchen.'],
+    ans: 1,
+    why: 'Two chairs = plural → use <strong>There are</strong>, not There is.'
+  },
+  {
+    wrong: 'There are a bed in the bedroom.',
+    opts: ['There are a bed in the bedroom.', 'There is a bed in the bedroom.', 'There is beds in the bedroom.'],
+    ans: 1,
+    why: 'A bed = one → <strong>There is</strong>.'
+  },
+  {
+    wrong: 'It is a sofa in the living room.',
+    opts: ['It is a sofa in the living room.', 'There is a sofa in the living room.', 'There are a sofa in the living room.'],
+    ans: 1,
+    why: 'To say something <em>exists in a place</em>, English uses <strong>There is</strong>, not “It is”. (Spanish <em>Hay</em> → There is/are.)'
+  },
+  {
+    wrong: "There isn't any chairs.",
+    opts: ["There isn't any chairs.", "There aren't any chairs.", "There aren't a chairs."],
+    ans: 1,
+    why: 'Chairs = plural → <strong>There aren\'t any</strong>…'
+  },
+  {
+    wrong: 'Are there a bathroom upstairs?',
+    opts: ['Are there a bathroom upstairs?', 'Is there a bathroom upstairs?', 'Is there bathrooms upstairs?'],
+    ans: 1,
+    why: 'A bathroom = one → <strong>Is there</strong>…?'
+  },
+  {
+    wrong: 'Is there many windows?',
+    opts: ['Is there many windows?', 'Are there many windows?', 'Is there a many windows?'],
+    ans: 1,
+    why: 'Many windows = plural → <strong>Are there</strong>…?'
+  }
+];
+
+const sceneFacts = {
+  living: ['1 sofa', '2 lamps', 'no TV'],
+  kitchen: ['1 fridge', '1 table', '3 chairs'],
+  bedroom: ['1 bed', '2 pillows', '1 wardrobe'],
+  bathroom: ['1 shower', 'no bathtub', '2 towels']
+};
+
+const guidedGaps = [
+  { before: 'There', choices: ['is', 'are'], ans: 'is', after: 'a sofa in the living room.', why: 'One sofa → is' },
+  { before: 'There', choices: ['is', 'are'], ans: 'are', after: 'two lamps in the living room.', why: 'Two lamps → are' },
+  { before: 'There', choices: ["isn't", "aren't"], ans: "isn't", after: 'a TV in the living room.', why: 'One TV idea → isn\'t' },
+  { before: 'There', choices: ['is', 'are'], ans: 'are', after: 'three chairs in the kitchen.', why: 'Three chairs → are' },
+  { before: '', choices: ['Is there', 'Are there'], ans: 'Is there', after: 'a bathtub in the bathroom?', why: 'One bathtub → Is there' },
+  { before: 'No,', choices: ['there is.', "there isn't.", "there aren't."], ans: "there isn't.", after: '', why: 'Short answer matches singular question.' }
+];
+
+const readingQs = [
+  { q: 'How many bedrooms are there?', opts: ['One', 'Two', 'Three'], ans: 1, why: 'The text: “there are <strong>two bedrooms</strong>”.' },
+  { q: 'Is there a TV in the kitchen?', opts: ['Yes, there is.', 'No, there isn’t.'], ans: 1, why: 'The TV is in the <strong>living room</strong>, not the kitchen.' },
+  { q: 'What is in the yard?', opts: ['A garage', 'Three plants', 'A bathtub'], ans: 1, why: '“there are <strong>three plants</strong> in the yard”.' }
+];
+
+const listeningText = "Welcome to apartment twelve. There is a living room on the left. There are two chairs and a small sofa. In the kitchen, there is a refrigerator, but there isn't a microwave. There are three pictures in the hallway. Upstairs, there are two bedrooms. Is there a bathtub? No, there isn't. There is a shower in the bathroom.";
+
+const listeningQs = [
+  { q: 'How many chairs are there?', opts: ['One', 'Two', 'Three'], ans: 1, why: '“There are <strong>two chairs</strong> and a small sofa.”' },
+  { q: "What isn’t in the kitchen?", opts: ['A refrigerator', 'A microwave', 'A stove'], ans: 1, why: '“there isn’t a <strong>microwave</strong>.”' },
+  { q: 'Is there a bathtub?', opts: ['Yes, there is.', 'No, there isn’t.'], ans: 1, why: '“Is there a bathtub? <strong>No, there isn’t.</strong>”' }
+];
+
+const speakPack = [
+  {
+    prompt: 'Describe your living room. Use one “There is” and one “There are”.',
+    frames: ['There is a … in my living room.', 'There are … …', 'There isn’t a …'],
+    model: 'There is a big sofa in my living room. There are two windows. There isn’t a desk.'
+  },
+  {
+    prompt: 'Ask your partner two questions about the kitchen.',
+    frames: ['Is there a … in your kitchen?', 'Are there any …?', 'Yes, there is. / No, there aren’t.'],
+    model: 'Is there a microwave in your kitchen? Are there any plants? — Yes, there is. No, there aren’t.'
+  },
+  {
+    prompt: 'Describe a bedroom with exactly five objects.',
+    frames: ['There is a …', 'There is a …', 'There are two …', 'There are …'],
+    model: 'There is a bed. There is a wardrobe. There are two pillows. There is a lamp. There is a mirror.'
+  },
+  {
+    prompt: 'Say two things that are NOT in your bathroom.',
+    frames: ["There isn’t a …", "There aren’t any …"],
+    model: "There isn’t a bathtub. There aren’t any plants in my bathroom."
+  },
+  {
+    prompt: 'Compare your home and your partner’s home.',
+    frames: ['In my home, there is…', 'In your home, there are…', 'There isn’t a … in my home, but there is one in yours.'],
+    model: 'In my home, there is a small kitchen. In your home, there are three bedrooms. There isn’t a garden in my home, but there is one in yours.'
+  },
+  {
+    prompt: 'Invent a strange room. What is there? What isn’t there?',
+    frames: ['There is a … in the room!', 'There are … …', "There isn’t a …"],
+    model: 'There is a piano in the bathroom! There are ten lamps. There isn’t a shower.'
+  }
+];
+
+const candoItems = [
+  'I can say what is in a room with There is / There are.',
+  'I can make negative sentences (There isn’t / There aren’t).',
+  'I can ask Is there…? / Are there…? and give short answers.',
+  'I can avoid the mistake “It is a sofa in the room” when I mean Hay.',
+  'I can write a short home description with singular and plural forms.'
+];
+
+const writeStems = [
+  'There is a ',
+  'There are ',
+  "There isn't a ",
+  "There aren't any ",
+  'Is there a ',
+  'Are there any '
+];
+
+/* ========== PANELS HTML ========== */
+const grammar = `
+<section class="panel">
+  <h4>1 · Grammar · see the difference</h4>
+  <p class="intro">We use <strong>there is / there are</strong> to say that something <em>exists</em> or is present in a place — not to describe the object itself.</p>
+  <div class="grid2">
+    <div class="card mint">
+      <span class="label">One · Singular</span>
+      <div class="big-rule"><span class="teal">There is</span> + one thing</div>
+      <div class="example">There is a sofa in the living room.</div>
+      <div class="example">There's a mirror in the bathroom.</div>
+    </div>
+    <div class="card tint">
+      <span class="label">More than one · Plural</span>
+      <div class="big-rule"><span class="teal">There are</span> + two or more</div>
+      <div class="example">There are two lamps in the bedroom.</div>
+      <div class="example">There are four chairs in the dining room.</div>
+    </div>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <span class="label">Negative</span>
+      <div class="big-rule">There <span class="teal">isn't</span> / <span class="teal">aren't</span></div>
+      <p>There isn't a TV. · There aren't any plants.</p>
+    </div>
+    <div class="card">
+      <span class="label">Questions + short answers</span>
+      <div class="big-rule"><span class="teal">Is there…?</span> / <span class="teal">Are there…?</span></div>
+      <p>Yes, there is. · No, there aren't.<br>Yes, there are. · No, there isn't.</p>
+    </div>
+  </div>
+  <div class="note" style="margin-top:14px"><strong>Everyday English:</strong> <em>There's</em> = spoken form of <em>There is</em>. We usually say <em>There are</em> (not “There're”).</div>
+
+  <h5>Watch out · Spanish speakers</h5>
+  <div class="grid2">
+    <div class="card bad">
+      <span class="label">Common mix-up</span>
+      <p style="margin:8px 0 0;font-weight:800;color:#a33">✗ It is a sofa in the living room.</p>
+      <p style="margin:8px 0 0;color:var(--slate);font-size:.9rem"><em>It is</em> describes <strong>what something is</strong> (It's a sofa = Es un sofá).</p>
+    </div>
+    <div class="card mint">
+      <span class="label">Use this for “Hay…”</span>
+      <p style="margin:8px 0 0;font-weight:800;color:#2f6b45">✓ There is a sofa in the living room.</p>
+      <p style="margin:8px 0 0;color:var(--slate);font-size:.9rem"><em>There is / are</em> = something <strong>exists in a place</strong> (Hay un sofá…).</p>
+    </div>
+  </div>
+
+  <h5>Quick decision tree</h5>
+  <div class="card tint">
+    <p style="margin:0;line-height:1.7"><strong>1.</strong> Am I saying something exists in a place? → use <strong>There is / are</strong><br>
+    <strong>2.</strong> One thing? → <strong>is</strong> · Two or more? → <strong>are</strong><br>
+    <strong>3.</strong> Negative? → isn't / aren't · Question? → Is there / Are there</p>
+  </div>
+  <div class="tip"><strong>Teacher tip:</strong> Stay on this tab 3–4 minutes. Elicit examples from the class before opening <em>Build</em>.</div>
+</section>`;
+
+const structure = `
+<section class="panel">
+  <h4>2 · Build · from objects to sentences</h4>
+  <p class="intro">First place vocabulary. Then turn each idea into <strong>There is / There are</strong>. That bridge is the real grammar practice.</p>
+
+  <div class="step"><b>A</b> Vocabulary · rooms</div>
+  <p class="intro" style="margin-bottom:10px">Drag each word into its usual room. On a phone: tap a word, then tap a room.</p>
+  <div class="house" id="house">${['living','kitchen','bedroom','bathroom'].map(r =>
+    `<div class="room" data-room="${r}"><h5>${r === 'living' ? 'Living room' : r[0].toUpperCase() + r.slice(1)}</h5><div class="placed"></div></div>`
+  ).join('')}</div>
+  <div class="token-bank" id="bank">${houseItems.map(([x]) =>
+    `<button type="button" class="token" draggable="true" data-item="${x}">${x}</button>`
+  ).join('')}</div>
+  <div class="house-actions">
+    <div class="score" id="dragScore">Place all 12 objects.</div>
+    <button type="button" class="btn ghost" onclick="resetHouse()">Reset house</button>
+  </div>
+
+  <div class="bridge">
+    <div class="step"><b>B</b> Controlled practice · complete the sentences</div>
+    <p class="intro" style="margin-bottom:8px">Use the house you built. Choose the correct form. Feedback explains the rule.</p>
+    <div id="bridgeBox"></div>
+    <div class="feedback" id="bridgeFb"></div>
+  </div>
+
+  <div class="exercise" id="structureExercise">
+    <button type="button" class="toggle" onclick="toggleExercise(this)" aria-expanded="true">
+      Step C · Choose the correct structure <span class="toggle-arrow">↓</span>
+    </button>
+    <div class="exbody" id="structureQuiz"></div>
+  </div>
+</section>`;
+
+const practice = `
+<section class="panel">
+  <h4>3 · Practice · fix errors & describe a scene</h4>
+  <p class="intro">Two jobs: (1) repair typical learner mistakes, (2) produce accurate sentences from a fixed house scene.</p>
+
+  <div class="step"><b>A</b> Error clinic</div>
+  <p class="intro" style="margin-bottom:8px">Each line is wrong. Choose the best correction.</p>
+  <div id="errorBox"></div>
+  <div class="feedback" id="errorFb"></div>
+
+  <div class="step" style="margin-top:22px"><b>B</b> Guided production · Apartment 4B</div>
+  <p class="intro" style="margin-bottom:8px">Look only at this scene. Complete the gaps. Do not invent objects.</p>
+  <div class="scene" id="sceneBoard">
+    ${Object.entries(sceneFacts).map(([room, items]) =>
+      `<div class="room-card"><h6>${room === 'living' ? 'Living room' : room[0].toUpperCase() + room.slice(1)}</h6><ul>${items.map(i => `<li>${i}</li>`).join('')}</ul></div>`
+    ).join('')}
+  </div>
+  <div id="guidedBox" style="margin-top:12px"></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+    <button type="button" class="btn" onclick="checkGuided()">Check guided sentences</button>
+    <button type="button" class="btn ghost" onclick="showGuidedAnswers()">Show answers</button>
+  </div>
+  <div class="feedback" id="guidedFb"></div>
+
+  <div class="step" style="margin-top:22px"><b>C</b> Semi-free · three more sentences</div>
+  <p class="intro" style="margin-bottom:8px">Still about Apartment 4B only. Write 3 new sentences (mix is / are / isn't).</p>
+  <textarea id="semiFree" placeholder="There is a table in the kitchen.…">${state.semiFree || ''}</textarea>
+  <button type="button" class="btn secondary" style="margin-top:10px" onclick="checkSemiFree()">Save & quick check</button>
+  <div class="feedback" id="semiFb"></div>
+</section>`;
+
+const reading = `
+<section class="panel">
+  <h4>4 · Reading · Maya's new home</h4>
+  <p class="intro"><strong>First read:</strong> main idea. <strong>Second read:</strong> tap every <em>there is / there are</em> form you find (including negatives).</p>
+
+  <div class="notice-bar">
+    <span>Forms found: <span id="noticeCount">0</span> / 8</span>
+    <button type="button" class="btn ghost" onclick="resetNotice()">Reset highlights</button>
+  </div>
+
+  <div class="reading" id="readingText">
+    <p>My new house is small, but it is comfortable. <span class="form-hit" data-form="1">There is</span> a bright living room with a sofa, a rug, and a TV. Next to it, <span class="form-hit" data-form="2">there is</span> a kitchen. <span class="form-hit" data-form="3">There isn't</span> a microwave in the kitchen, but <span class="form-hit" data-form="4">there is</span> a new stove.</p>
+    <p>Upstairs, <span class="form-hit" data-form="5">there are</span> two bedrooms and one bathroom. In my bedroom, <span class="form-hit" data-form="6">there are</span> two lamps and a big mirror. Outside, <span class="form-hit" data-form="7">there are</span> three plants in the yard. <span class="form-hit" data-form="8">There isn't</span> a garage, but that's okay.</p>
+  </div>
+
+  <div class="card tint" style="margin-top:14px" id="noticeTable">
+    <span class="label">Noticing table · fill after you click</span>
+    <div class="grid3" style="margin-top:10px;font-size:.86rem">
+      <div><strong>Singular +</strong><br>There is / There's</div>
+      <div><strong>Plural +</strong><br>There are</div>
+      <div><strong>Negative</strong><br>There isn't / aren't</div>
+    </div>
+    <p style="margin:10px 0 0;color:var(--slate);font-size:.88rem" id="noticeHint">Tap the green-underlined forms in the text. Aim for all 8.</p>
+  </div>
+
+  <div id="readingQuiz" style="margin-top:14px"></div>
+</section>`;
+
+const listening = `
+<section class="panel">
+  <h4>5 · Listening · Apartment 12</h4>
+  <p class="intro"><strong>Listen 1:</strong> which rooms? <strong>Listen 2:</strong> quantities and missing objects. Then answer — explanations quote the audio.</p>
+
+  <div class="tip"><strong>Before you play:</strong> predict — will you hear a bathtub? a microwave? two bedrooms?</div>
+
+  <div class="audio">
+    <button type="button" class="btn secondary" onclick="playListening()">▶ Play listening</button>
+    <button type="button" class="btn ghost" onclick="stopListening()">■ Stop</button>
+    <p id="listenStatus">Browser voice · ~35 seconds · use earphones if possible</p>
+  </div>
+  <div class="card transcript" id="transcript">${listeningText}</div>
+  <button type="button" class="btn ghost" style="margin-top:10px" onclick="document.getElementById('transcript').classList.toggle('show')">Show / hide transcript</button>
+
+  <h5>Short-answer drill (after listening)</h5>
+  <div class="card tint" style="font-size:.92rem;line-height:1.7">
+    <strong>Model:</strong> Is there a shower? → <em>Yes, there is.</em><br>
+    Are there three pictures? → <em>Yes, there are.</em><br>
+    Is there a microwave? → <em>No, there isn't.</em>
+  </div>
+
+  <div id="listeningQuiz" style="margin-top:14px"></div>
+</section>`;
+
+const speaking = `
+<section class="panel">
+  <h4>6 · Speaking · spin, frame, talk</h4>
+  <p class="intro">Don't jump into free talk cold. Spin → read the frames → check the model → speak 20–30 seconds → partner ticks the checklist.</p>
+
+  <div class="wheel-wrap">
+    <div>
+      <div class="pointer" aria-hidden="true">▼</div>
+      <div class="wheel" id="wheel" role="button" tabindex="0" aria-label="Spin the speaking wheel"
+        onclick="spin()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();spin();}"></div>
+    </div>
+    <div>
+      <div class="speak-prompt" id="speakPrompt">Click the wheel to get a speaking challenge.</div>
+      <div class="speak-help" id="speakHelp">
+        <div class="card mint">
+          <span class="label">Sentence frames · use these first</span>
+          <ul class="frame-list" id="speakFrames"></ul>
+        </div>
+        <div class="model-box"><strong>Model (A1):</strong> <span id="speakModel"></span></div>
+        <div class="peer">
+          <span style="font-size:.78rem;font-weight:800;width:100%">Partner checklist</span>
+          <label><input type="checkbox"> Used There is</label>
+          <label><input type="checkbox"> Used There are</label>
+          <label><input type="checkbox"> Clear room / objects</label>
+          <label><input type="checkbox"> Asked a follow-up</label>
+        </div>
+      </div>
+      <div class="support">
+        <span>There is…</span><span>There are…</span><span>There isn't…</span>
+        <span>There aren't…</span><span>Is there…?</span><span>Are there…?</span>
+      </div>
+      <button type="button" class="btn secondary" style="margin-top:14px" onclick="spin()">Spin the wheel</button>
+    </div>
+  </div>
+  <div class="tip"><strong>Classroom flow:</strong> Student A speaks → B ticks checklist → swap. 2 spins each is enough.</div>
+</section>`;
+
+const writingHTML = `
+<section class="panel">
+  <h4>7 · Writing · home listing</h4>
+  <p class="intro">Write a short rental-website description (70–100 words). Use the stems if you need a start. Check the model only after your first draft.</p>
+
+  <div class="card mint">
+    <strong>Must include:</strong> ≥2 rooms · 3 × There is / There's · 2 × There are · 1 negative · 1 question for the reader
+  </div>
+
+  <div class="stems" id="stemBar">
+    ${writeStems.map(s => `<button type="button" onclick="insertStem(${JSON.stringify(s)})">${s.trim()}…</button>`).join('')}
+  </div>
+
+  <textarea id="writingBox" placeholder="Welcome to this comfortable home. There is…">${state.writing || ''}</textarea>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+    <button type="button" class="btn" onclick="checkWriting()">Save & check</button>
+    <button type="button" class="btn ghost" onclick="showModel()">Show model</button>
+  </div>
+  <div class="feedback" id="writeFeedback"></div>
+  <div class="note" id="modelAnswer" style="display:none">
+    <strong>Model:</strong> Welcome to this comfortable home. There is a bright living room, and there is a small kitchen next to it. There is one bathroom downstairs. There are two bedrooms upstairs, and there are three large windows. There isn't a garage, but there is a beautiful yard. Are there any shops near the house? Yes, there are two shops on the same street.
+  </div>
+  <div class="checklist">
+    <div class="criterion"><strong>Meaning</strong>Clear home description</div>
+    <div class="criterion"><strong>Singular</strong>There is / isn't / There's</div>
+    <div class="criterion"><strong>Plural</strong>There are / aren't</div>
+    <div class="criterion"><strong>Accuracy</strong>Nouns match quantities</div>
+  </div>
+</section>`;
+
+const exitHTML = `
+<section class="panel">
+  <h4>8 · Can-do · exit ticket</h4>
+  <p class="intro">Be honest. This is for you (and your teacher), not a grade. Then write 3 true sentences about <strong>your</strong> home.</p>
+
+  <div class="cando" id="candoBox">
+    ${candoItems.map((t, i) => `
+      <label>
+        <input type="checkbox" data-cando="${i}" ${state.cando && state.cando[i] ? 'checked' : ''} onchange="saveCando()">
+        <span>${t}</span>
+        <span class="lvl">A1</span>
+      </label>`).join('')}
+  </div>
+  <div class="progress-mini"><span id="candoBar"></span></div>
+  <p style="margin:0;font-size:.85rem;color:var(--slate)" id="candoLabel">0 / 5 can-do statements</p>
+
+  <h5>Micro production · my home (3 sentences)</h5>
+  <textarea id="exitWrite" placeholder="1. There is…&#10;2. There are…&#10;3. There isn't…">${state.exitWrite || ''}</textarea>
+  <button type="button" class="btn" style="margin-top:10px" onclick="checkExit()">Save exit ticket</button>
+  <div class="feedback" id="exitFb"></div>
+  <div class="tip"><strong>Done?</strong> If 4–5 boxes are ticked and your 3 sentences are accurate, you are ready for freer classroom drills.</div>
+</section>`;
+
+const all = [grammar, structure, practice, reading, listening, speaking, writingHTML, exitHTML];
+
+/* ========== RENDER ========== */
+function render() {
+  document.getElementById('tabs').innerHTML = sections.map((s, i) =>
+    `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" onclick="openTab(${i})">${s}</button>`
+  ).join('');
+  document.getElementById('panels').innerHTML = all.join('');
+  openTab(state.tab || 0);
+
+  setupHouse();
+  renderBridge();
+  renderQuiz('structureQuiz', structureQuiz, 'structure');
+  renderErrors();
+  renderGuided();
+  setupNotice();
+  renderQuiz('readingQuiz', readingQs, 'reading');
+  renderQuiz('listeningQuiz', listeningQs, 'listening');
+  updateCandoBar();
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((x, n) => x.classList.toggle('active', n === i));
+  document.querySelectorAll('.panel').forEach((x, n) => x.classList.toggle('active', n === i));
+  const lesson = document.querySelector('.lesson');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function toggleExercise(btn) {
+  const ex = btn.closest('.exercise');
+  if (!ex) return;
+  ex.classList.toggle('collapsed');
+  btn.setAttribute('aria-expanded', String(!ex.classList.contains('collapsed')));
+}
+
+/* ========== QUIZZES WITH WHY ========== */
+function renderQuiz(id, qs, key) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  quizBank[key] = qs;
+  el.innerHTML = qs.map((item, i) => `
+    <div class="q" data-quiz-block="${key}-${i}">
+      <strong>${i + 1}. ${item.q}</strong>
+      <div class="opts">
+        ${item.opts.map((o, j) =>
+          `<button type="button" class="opt" data-quiz="${key}" data-q="${i}" data-a="${j}"
+            onclick="answer(this)">${o}</button>`
+        ).join('')}
+      </div>
+      <div class="why-box" id="why-${key}-${i}"></div>
+    </div>
+  `).join('') + `<div class="feedback" id="fb-${key}"></div>`;
+}
+
+function answer(btn) {
+  const k = btn.dataset.quiz;
+  const q = Number(btn.dataset.q);
+  const item = quizBank[k] && quizBank[k][q];
+  if (!item) return;
+  const correct = item.ans;
+  const why = item.why;
+
+  document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+    x.classList.remove('selected', 'correct', 'wrong');
+  });
+  const ok = Number(btn.dataset.a) === correct;
+  btn.classList.add(ok ? 'correct' : 'wrong');
+
+  if (!ok) {
+    document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+      if (Number(x.dataset.a) === correct) x.classList.add('correct');
+    });
+  }
+
+  const whyEl = document.getElementById(`why-${k}-${q}`);
+  if (whyEl) {
+    whyEl.classList.add('show');
+    whyEl.innerHTML = (ok ? '✓ ' : '→ ') + why;
+  }
+
+  state[k] = state[k] || {};
+  state[k][q] = ok;
+  save();
+
+  const total = quizBank[k].length;
+  const done = Object.keys(state[k]).length;
+  const score = Object.values(state[k]).filter(Boolean).length;
+  const fb = document.getElementById(`fb-${k}`);
+  if (!fb) return;
+  fb.className = 'feedback show ' + (done >= total && score === total ? 'good' : 'warn');
+  fb.textContent = `Progress: ${score} correct · ${done} answered` +
+    (done >= total && score < total ? ' · Review the explanations in grey boxes.' : '');
+}
+
+/* ========== HOUSE ========== */
+let selected = null;
+
+function setupHouse() {
+  selected = null;
+  document.querySelectorAll('.token').forEach(t => {
+    t.addEventListener('dragstart', () => { selected = t; });
+    t.onclick = () => {
+      if (t.classList.contains('good')) return;
+      document.querySelectorAll('.token').forEach(x => x.classList.remove('selected'));
+      selected = t;
+      t.classList.add('selected');
+    };
+  });
+  document.querySelectorAll('.room').forEach(r => {
+    r.ondragover = e => { e.preventDefault(); r.classList.add('dragover'); };
+    r.ondragleave = () => r.classList.remove('dragover');
+    r.ondrop = e => { e.preventDefault(); place(r); };
+    r.onclick = () => { if (selected) place(r); };
+  });
+}
+
+function updateDragScore() {
+  const scoreEl = document.getElementById('dragScore');
+  if (!scoreEl) return;
+  const n = document.querySelectorAll('.token.good').length;
+  scoreEl.textContent = n === 12
+    ? 'Excellent — house complete. Continue to Step B (sentences).'
+    : `${n} / 12 objects placed · then complete Step B sentences`;
+}
+
+function place(room) {
+  room.classList.remove('dragover');
+  if (!selected) return;
+  const token = selected;
+  const answer = houseItems.find(x => x[0] === token.dataset.item)[1];
+  const ok = answer === room.dataset.room;
+  token.classList.remove('selected');
+  token.classList.add(ok ? 'good' : 'bad');
+  if (ok) {
+    room.querySelector('.placed').appendChild(token);
+    token.draggable = false;
+    token.onclick = null;
+  } else {
+    setTimeout(() => token.classList.remove('bad'), 700);
+  }
+  selected = null;
+  updateDragScore();
+}
+
+function resetHouse() {
+  const bank = document.getElementById('bank');
+  if (!bank) return;
+  document.querySelectorAll('.token').forEach(t => {
+    t.classList.remove('good', 'bad', 'selected');
+    t.draggable = true;
+    bank.appendChild(t);
+  });
+  selected = null;
+  setupHouse();
+  const scoreEl = document.getElementById('dragScore');
+  if (scoreEl) scoreEl.textContent = 'Place all 12 objects.';
+}
+
+/* ========== BRIDGE ========== */
+function renderBridge() {
+  const box = document.getElementById('bridgeBox');
+  if (!box) return;
+  box.innerHTML = bridgeQsFixed.map((item, i) => `
+    <div class="bridge-item" id="bridge-${i}">
+      <p>${i + 1}. ${item.stem.replace('___', `<strong class="teal">[ ? ]</strong>`)}</p>
+      <div class="opts">
+        ${item.opts.map((o, j) =>
+          `<button type="button" class="opt" onclick="answerBridge(${i},${j})">${o}</button>`
+        ).join('')}
+      </div>
+      <div class="why" id="bridge-why-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function answerBridge(i, j) {
+  const item = bridgeQsFixed[i];
+  const row = document.getElementById(`bridge-${i}`);
+  const why = document.getElementById(`bridge-why-${i}`);
+  const ok = j === item.ans;
+  row.querySelectorAll('.opt').forEach((b, idx) => {
+    b.classList.remove('correct', 'wrong');
+    if (idx === item.ans) b.classList.add('correct');
+    if (idx === j && !ok) b.classList.add('wrong');
+  });
+  row.classList.add('done');
+  why.innerHTML = (ok ? '✓ ' : '→ ') + item.why;
+  state.bridge = state.bridge || {};
+  state.bridge[i] = ok;
+  save();
+  const vals = Object.values(state.bridge);
+  const fb = document.getElementById('bridgeFb');
+  if (fb && vals.length === bridgeQsFixed.length) {
+    const score = vals.filter(Boolean).length;
+    fb.className = 'feedback show ' + (score === bridgeQsFixed.length ? 'good' : 'warn');
+    fb.textContent = `Bridge complete: ${score}/${bridgeQsFixed.length}. Next: Step C quiz, then Practice tab.`;
+  }
+}
+
+/* ========== ERROR CLINIC ========== */
+function renderErrors() {
+  const box = document.getElementById('errorBox');
+  if (!box) return;
+  box.innerHTML = errorClinic.map((item, i) => `
+    <div class="error-card" id="err-${i}">
+      <div class="wrong-line">${i + 1}. ${item.wrong}</div>
+      <div class="opts" style="margin-top:8px">
+        ${item.opts.map((o, j) =>
+          `<button type="button" class="opt" onclick="answerError(${i},${j})">${o}</button>`
+        ).join('')}
+      </div>
+      <div class="fix-line" id="err-fix-${i}"></div>
+      <div class="explain" id="err-why-${i}"></div>
+    </div>
+  `).join('');
+}
+
+function answerError(i, j) {
+  const item = errorClinic[i];
+  const card = document.getElementById(`err-${i}`);
+  const ok = j === item.ans;
+  card.querySelectorAll('.opt').forEach((b, idx) => {
+    b.classList.remove('correct', 'wrong');
+    if (idx === item.ans) b.classList.add('correct');
+    if (idx === j && !ok) b.classList.add('wrong');
+  });
+  card.classList.add('solved');
+  document.getElementById(`err-fix-${i}`).textContent = '✓ ' + item.opts[item.ans];
+  document.getElementById(`err-why-${i}`).innerHTML = item.why;
+  state.errors = state.errors || {};
+  state.errors[i] = ok;
+  save();
+  const vals = Object.values(state.errors);
+  const fb = document.getElementById('errorFb');
+  if (fb && vals.length === errorClinic.length) {
+    const score = vals.filter(Boolean).length;
+    fb.className = 'feedback show ' + (score === errorClinic.length ? 'good' : 'warn');
+    fb.textContent = `Error clinic: ${score}/${errorClinic.length} first-try correct. Review red choices with the explanations.`;
+  }
+}
+
+/* ========== GUIDED SCENE ========== */
+function renderGuided() {
+  const box = document.getElementById('guidedBox');
+  if (!box) return;
+  box.innerHTML = guidedGaps.map((g, i) => `
+    <div class="gap-line" id="gap-${i}">
+      <span>${i + 1}. ${g.before}</span>
+      <select id="gap-sel-${i}" aria-label="Choose form ${i + 1}">
+        <option value="">—</option>
+        ${g.choices.map(c => `<option value="${c}">${c}</option>`).join('')}
+      </select>
+      <span>${g.after}</span>
+    </div>
+  `).join('');
+}
+
+function checkGuided() {
+  let score = 0;
+  guidedGaps.forEach((g, i) => {
+    const sel = document.getElementById(`gap-sel-${i}`);
+    const row = document.getElementById(`gap-${i}`);
+    const val = (sel.value || '').trim();
+    const ok = val === g.ans;
+    row.classList.remove('ok', 'no');
+    row.classList.add(ok ? 'ok' : 'no');
+    if (ok) score++;
+    else if (val) {
+      // keep selection but mark wrong
+    }
+  });
+  const fb = document.getElementById('guidedFb');
+  fb.className = 'feedback show ' + (score === guidedGaps.length ? 'good' : 'warn');
+  fb.innerHTML = `${score} / ${guidedGaps.length} correct.` +
+    (score < guidedGaps.length ? ' Green = good. Red = check the scene numbers (1 sofa → is, 2 lamps → are).' : ' Nice — ready for semi-free writing below.');
+  state.guidedScore = score;
+  save();
+}
+
+function showGuidedAnswers() {
+  guidedGaps.forEach((g, i) => {
+    const sel = document.getElementById(`gap-sel-${i}`);
+    sel.value = g.ans;
+    document.getElementById(`gap-${i}`).classList.remove('no');
+    document.getElementById(`gap-${i}`).classList.add('ok');
+  });
+  const fb = document.getElementById('guidedFb');
+  fb.className = 'feedback show warn';
+  fb.innerHTML = guidedGaps.map((g, i) => `${i + 1}. <strong>${g.ans}</strong> — ${g.why}`).join('<br>');
+}
+
+function checkSemiFree() {
+  const ta = document.getElementById('semiFree');
+  const fb = document.getElementById('semiFb');
+  const t = ta.value.trim();
+  state.semiFree = t;
+  save();
+  const is = countThereIs(t);
+  const are = countThereAre(t);
+  const neg = /\bthere\s+(?:isn['’]?t|is\s+not|aren['’]?t|are\s+not)\b/i.test(t);
+  const sentences = t.split(/[.!?]+/).map(s => s.trim()).filter(Boolean).length;
+  const sceneWords = /sofa|lamp|tv|fridge|table|chair|bed|pillow|wardrobe|shower|bathtub|towel|living|kitchen|bedroom|bathroom/i.test(t);
+  const pass = sentences >= 3 && (is + are) >= 3 && sceneWords;
+  fb.className = 'feedback show ' + (pass ? 'good' : 'warn');
+  fb.innerHTML = [
+    `Saved · ~${sentences} sentences`,
+    `${(is + are) >= 3 ? '✓' : '○'} at least 3 × there is/are (is:${is}, are:${are})`,
+    `${neg ? '✓' : '○'} includes a negative (optional but strong)`,
+    `${sceneWords ? '✓' : '○'} uses Apartment 4B vocabulary`,
+    pass ? 'Good guided → freer link. Next: Reading or Speaking.' : 'Write 3 full sentences about 4B only.'
+  ].join('<br>');
+}
+
+/* ========== READING NOTICE ========== */
+function setupNotice() {
+  const found = new Set(state.notice || []);
+  document.querySelectorAll('.form-hit').forEach(el => {
+    if (found.has(el.dataset.form)) el.classList.add('found');
+    el.onclick = () => {
+      el.classList.add('found');
+      found.add(el.dataset.form);
+      state.notice = [...found];
+      save();
+      updateNoticeCount(found.size);
+    };
+  });
+  updateNoticeCount(found.size);
+}
+
+function updateNoticeCount(n) {
+  const el = document.getElementById('noticeCount');
+  if (el) el.textContent = n;
+  const hint = document.getElementById('noticeHint');
+  if (!hint) return;
+  if (n >= 8) {
+    hint.innerHTML = '✓ All 8 forms found: <strong>There is</strong> (×3), <strong>there are</strong> (×3), <strong>There isn\'t</strong> (×2). Great noticing!';
+  } else {
+    hint.textContent = `Tap the underlined forms in the text. Aim for all 8. (${n}/8)`;
+  }
+}
+
+function resetNotice() {
+  state.notice = [];
+  save();
+  document.querySelectorAll('.form-hit').forEach(el => el.classList.remove('found'));
+  updateNoticeCount(0);
+}
+
+/* ========== LISTENING ========== */
+let utterance;
+function playListening() {
+  stopListening();
+  const status = document.getElementById('listenStatus');
+  if (!('speechSynthesis' in window)) {
+    if (status) status.textContent = 'Speech not available. Open the transcript.';
+    document.getElementById('transcript')?.classList.add('show');
+    return;
+  }
+  try {
+    utterance = new SpeechSynthesisUtterance(listeningText);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.86;
+    if (status) status.textContent = 'Playing…';
+    utterance.onend = () => { if (status) status.textContent = 'Browser voice · ~35 seconds'; };
+    utterance.onerror = () => {
+      if (status) status.textContent = 'Could not play. Use the transcript.';
+      document.getElementById('transcript')?.classList.add('show');
+    };
+    speechSynthesis.speak(utterance);
+  } catch {
+    if (status) status.textContent = 'Could not play. Use the transcript.';
+    document.getElementById('transcript')?.classList.add('show');
+  }
+}
+function stopListening() {
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  const status = document.getElementById('listenStatus');
+  if (status) status.textContent = 'Browser voice · ~35 seconds · use earphones if possible';
+}
+
+/* ========== SPEAKING ========== */
+let rotation = 0;
+let spinTimer = null;
+
+function spin() {
+  const n = speakPack.length;
+  const segment = 360 / n;
+  const i = Math.floor(Math.random() * n);
+  const targetMod = (360 - (i * segment + segment / 2) + 360) % 360;
+  const currentMod = ((rotation % 360) + 360) % 360;
+  let delta = (targetMod - currentMod + 360) % 360;
+  if (delta < 20) delta += 360;
+  delta += 360 * 3;
+  rotation += delta;
+
+  const wheelEl = document.getElementById('wheel');
+  const promptEl = document.getElementById('speakPrompt');
+  const help = document.getElementById('speakHelp');
+  if (wheelEl) wheelEl.style.transform = `rotate(${rotation}deg)`;
+  if (promptEl) promptEl.textContent = 'Spinning…';
+  if (help) help.classList.remove('show');
+
+  if (spinTimer) clearTimeout(spinTimer);
+  spinTimer = setTimeout(() => {
+    const pack = speakPack[i];
+    if (promptEl) promptEl.textContent = pack.prompt;
+    const frames = document.getElementById('speakFrames');
+    const model = document.getElementById('speakModel');
+    if (frames) frames.innerHTML = pack.frames.map(f => `<li>${f}</li>`).join('');
+    if (model) model.textContent = pack.model;
+    if (help) help.classList.add('show');
+    // reset peer checks
+    help?.querySelectorAll('input[type=checkbox]').forEach(c => { c.checked = false; });
+  }, 2200);
+}
+
+/* ========== WRITING ========== */
+function insertStem(stem) {
+  const ta = document.getElementById('writingBox');
+  if (!ta) return;
+  const start = ta.selectionStart ?? ta.value.length;
+  const end = ta.selectionEnd ?? ta.value.length;
+  const needsSpace = start > 0 && !/\s$/.test(ta.value.slice(0, start));
+  const insert = (needsSpace ? ' ' : '') + stem;
+  ta.value = ta.value.slice(0, start) + insert + ta.value.slice(end);
+  ta.focus();
+  const pos = start + insert.length;
+  ta.setSelectionRange(pos, pos);
+}
+
+function countThereIs(text) {
+  const re = /\bthere(?:['’]s| is)\b/gi;
+  let count = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    const rest = text.slice(m.index + m[0].length);
+    if (/^n['’]?t\b/i.test(rest) || /^\s+not\b/i.test(rest)) continue;
+    count++;
+  }
+  return count;
+}
+function countThereAre(text) {
+  const re = /\bthere are\b/gi;
+  let count = 0, m;
+  while ((m = re.exec(text)) !== null) {
+    const rest = text.slice(m.index + m[0].length);
+    if (/^n['’]?t\b/i.test(rest) || /^\s+not\b/i.test(rest)) continue;
+    count++;
+  }
+  return count;
+}
+
+function checkWriting() {
+  const ta = document.getElementById('writingBox');
+  const fb = document.getElementById('writeFeedback');
+  if (!ta || !fb) return;
+  const t = ta.value.trim();
+  state.writing = t;
+  save();
+  const words = t ? t.split(/\s+/).filter(Boolean).length : 0;
+  const is = countThereIs(t);
+  const are = countThereAre(t);
+  const neg = /\bthere\s+(?:isn['’]?t|is\s+not|aren['’]?t|are\s+not)\b/i.test(t);
+  const question = /\?/.test(t);
+  const roomWords = ['living', 'kitchen', 'bedroom', 'bathroom', 'dining', 'yard', 'garage', 'hallway', 'room'];
+  const rooms = roomWords.filter(r => new RegExp(`\\b${r}`, 'i').test(t)).length;
+  // crude agreement flag: "there is" + number >1 nearby
+  const agreementWarn = /\bthere is\b[^.]{0,40}\b(two|three|four|five|\d{2,})\b/i.test(t)
+    || /\bthere are\b[^.]{0,30}\ba\b/i.test(t);
+  const wordsOk = words >= 70;
+  const roomsOk = rooms >= 2;
+  const pass = wordsOk && is >= 3 && are >= 2 && neg && question && roomsOk && !agreementWarn;
+  fb.className = 'feedback show ' + (pass ? 'good' : 'warn');
+  fb.innerHTML = [
+    `Saved · ${words} words ${wordsOk ? '✓' : '(target 70–100)'}`,
+    `${roomsOk ? '✓' : '○'} at least 2 rooms`,
+    `${is >= 3 ? '✓' : '○'} 3 × There is / There's (${is})`,
+    `${are >= 2 ? '✓' : '○'} 2 × There are (${are})`,
+    `${neg ? '✓' : '○'} negative`,
+    `${question ? '✓' : '○'} question`,
+    agreementWarn ? '⚠ Possible agreement issue (There is + plural number, or There are + “a”). Check carefully.' : '✓ No obvious is/are clash detected'
+  ].join('<br>');
+}
+
+function showModel() {
+  const model = document.getElementById('modelAnswer');
+  if (!model) return;
+  model.style.display = model.style.display === 'none' ? 'block' : 'none';
+}
+
+/* ========== EXIT ========== */
+function saveCando() {
+  state.cando = [...document.querySelectorAll('[data-cando]')].map(c => c.checked);
+  save();
+  updateCandoBar();
+}
+function updateCandoBar() {
+  const boxes = document.querySelectorAll('[data-cando]');
+  if (!boxes.length) return;
+  const n = [...boxes].filter(c => c.checked).length;
+  const bar = document.getElementById('candoBar');
+  const label = document.getElementById('candoLabel');
+  if (bar) bar.style.width = `${(n / boxes.length) * 100}%`;
+  if (label) label.textContent = `${n} / ${boxes.length} can-do statements`;
+}
+function checkExit() {
+  const ta = document.getElementById('exitWrite');
+  const fb = document.getElementById('exitFb');
+  const t = ta.value.trim();
+  state.exitWrite = t;
+  saveCando();
+  save();
+  const is = countThereIs(t);
+  const are = countThereAre(t);
+  const neg = /\bthere\s+(?:isn['’]?t|is\s+not|aren['’]?t|are\s+not)\b/i.test(t);
+  const candoN = (state.cando || []).filter(Boolean).length;
+  const ok = (is + are) >= 2 && t.length > 20;
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.innerHTML = [
+    `Exit saved · can-do ticked: ${candoN}/5`,
+    `${is} × There is/There's · ${are} × There are · ${neg ? 'has negative' : 'no negative yet'}`,
+    ok ? 'Nice closing production. You can move on to freer tasks.' : 'Write at least 2–3 sentences with There is / There are about your real home.'
+  ].join('<br>');
+}
+
+/* ========== BOOT ========== */
+render();
+</script>
+</body>
+</html>
