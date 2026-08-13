@@ -19,8 +19,8 @@
     .bridge{margin-top:18px;padding-top:8px;border-top:1px dashed var(--line)}.bridge-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.bridge-item:last-child{border:0}.bridge-item p{margin:0;font-weight:700;line-height:1.45}.bridge-item .why{grid-column:1/-1;font-size:.82rem;color:var(--slate);margin-top:2px;display:none}.bridge-item.done .why{display:block}.bridge-item.done p{color:#2f6b45}
     .exercise{border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}.exercise button.toggle{width:100%;border:0;background:var(--gray);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:var(--navy);font-weight:800}.exercise .toggle-arrow{display:inline-block;transition:transform .2s ease}.exercise.collapsed .toggle-arrow{transform:rotate(-90deg)}.exercise.collapsed .exbody{display:none}.exbody{padding:16px}.q{padding:12px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.opt,.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800}.opt{background:#fff;border:1px solid var(--line)}.opt.selected{background:var(--mint);border-color:var(--teal)}.opt.correct{background:var(--good);border-color:#72b98c}.opt.wrong{background:var(--bad);border-color:#d98989}.btn{background:var(--navy);color:#fff}.btn.secondary{background:var(--teal)}.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn:disabled{opacity:.55;cursor:not-allowed}.feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}.feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}.why-box{display:none;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--gray);font-size:.84rem;line-height:1.5;color:var(--slate)}.why-box.show{display:block}.why-box strong{color:var(--navy)}
     .reading{line-height:1.85;background:var(--gray);padding:18px;border-radius:14px}.reading strong{color:var(--teal)}.form-hit{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--teal);font-weight:800;color:var(--teal);background:transparent;transition:.15s}.form-hit.found{background:var(--mint);border-bottom-color:var(--gold)}.form-hit.miss{background:var(--bad)}.notice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-weight:800;color:var(--teal)}.audio{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--navy);color:#fff;padding:16px;border-radius:14px}.audio p{margin:0;color:#d7e7e8;font-size:.85rem;flex:1}.transcript{display:none;margin-top:12px;line-height:1.7}.transcript.show{display:block}
-    .scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scene .room-card{background:var(--gray);border:1px solid var(--line);border-radius:12px;padding:12px}.scene .room-card h6{margin:0 0 6px;color:var(--teal);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}.scene ul{margin:0;padding-left:18px;color:var(--slate);font-size:.9rem;line-height:1.55}.gap-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:700}.gap-line select,.gap-line input[type=text]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:110px;font-weight:700}.gap-line.ok{background:var(--good);border-radius:8px;padding-left:8px}.gap-line.no{background:var(--bad);border-radius:8px;padding-left:8px}
-    .error-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;background:#fff}.error-card .wrong-line{font-weight:800;color:#a33;text-decoration:line-through;text-decoration-thickness:2px}.error-card .fix-line{margin-top:8px;font-weight:700}.error-card .explain{margin-top:8px;font-size:.84rem;color:var(--slate);display:none}.error-card.solved .explain{display:block}.error-card.solved{background:var(--good);border-color:#72b98c}
+    .scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scene .room-card{background:var(--gray);border:1px solid var(--line);border-radius:12px;padding:8px;overflow:hidden}.scene .room-card h6{margin:0 0 8px;color:var(--teal);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}.scene .room-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block;background:#eef2f5}.write-q{padding:12px 0;border-bottom:1px solid var(--line)}.write-q:last-of-type{border:0}.write-q input[type=text]{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-weight:600}.write-q.ok input{border-color:#72b98c;background:var(--good)}.write-q.no input{border-color:#d98989;background:var(--bad)}.gap-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:700}.gap-line select,.gap-line input[type=text]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:110px;font-weight:700}.gap-line.ok{background:var(--good);border-radius:8px;padding-left:8px}.gap-line.no{background:var(--bad);border-radius:8px;padding-left:8px}
+    .error-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;background:#fff}.error-card .wrong-line{font-weight:800;color:#a33;text-decoration:line-through;text-decoration-thickness:2px}.error-card .fix-line{margin-top:8px;font-weight:700}.error-card .explain{margin-top:8px;font-size:.84rem;color:var(--slate);display:none}.error-card.solved .explain{display:block}.error-card.solved.ok{background:#f3f7fb;border-color:#9bb0c4}.error-card.solved.miss{background:var(--warn);border-color:#d4b56a}
     .wheel-wrap{display:grid;grid-template-columns:310px 1fr;gap:24px;align-items:center}.wheel{width:290px;height:290px;border-radius:50%;background:conic-gradient(var(--teal) 0 16.66%,var(--gold) 0 33.33%,#2f5d8c 0 50%,#8abfba 0 66.66%,#d9c48f 0 83.33%,var(--navy) 0);border:10px solid #fff;box-shadow:0 8px 26px rgba(11,31,58,.18);position:relative;transition:transform 2.2s cubic-bezier(.2,.8,.2,1);cursor:pointer}.wheel:after{content:"SPIN";position:absolute;inset:95px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:800}.pointer{text-align:center;color:var(--gold);font-size:2rem;line-height:.5}.speak-prompt{font-size:1.15rem;line-height:1.5;padding:16px;background:var(--mint);border-radius:14px;min-height:72px;font-weight:700}.speak-help{margin-top:12px;display:none}.speak-help.show{display:block}.frame-list{margin:8px 0 0;padding-left:18px;line-height:1.7;color:var(--slate)}.model-box{margin-top:10px;padding:12px;border-radius:10px;background:var(--gray);line-height:1.65;font-size:.92rem}.peer{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.peer label{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:700}.support{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.support span{background:#fff;border:1px solid var(--line);padding:7px 9px;border-radius:9px;font-size:.78rem;font-weight:700}
     textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;line-height:1.65}textarea{min-height:150px;resize:vertical}.stems{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.stems button{border:1px dashed var(--teal);background:var(--mint);color:var(--navy);border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:800}.checklist{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.criterion{padding:10px;background:var(--gray);border:1px solid var(--line);border-radius:10px;font-size:.76rem}.criterion strong{display:block;margin-bottom:4px}
     .cando{display:grid;gap:10px}.cando label{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--gray);cursor:pointer}.cando input{width:18px;height:18px}.cando .lvl{font-size:.72rem;font-weight:800;color:var(--teal)}.progress-mini{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0 4px}.progress-mini span{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
@@ -70,11 +70,11 @@
 const sections = ['1 Grammar', '2 Build', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem('thereHouseA1v2') || '{}'); }
+  try { return JSON.parse(localStorage.getItem('thereHouseA1v3') || '{}'); }
   catch { return {}; }
 }
 function save() {
-  try { localStorage.setItem('thereHouseA1v2', JSON.stringify(state)); }
+  try { localStorage.setItem('thereHouseA1v3', JSON.stringify(state)); }
   catch { /* ignore */ }
 }
 const state = loadState();
@@ -171,17 +171,23 @@ const guidedGaps = [
 ];
 
 const readingQs = [
-  { q: 'How many bedrooms are there?', opts: ['One', 'Two', 'Three'], ans: 1, why: 'The text: “there are <strong>two bedrooms</strong>”.' },
-  { q: 'Is there a TV in the kitchen?', opts: ['Yes, there is.', 'No, there isn’t.'], ans: 1, why: 'The TV is in the <strong>living room</strong>, not the kitchen.' },
-  { q: 'What is in the yard?', opts: ['A garage', 'Three plants', 'A bathtub'], ans: 1, why: '“there are <strong>three plants</strong> in the yard”.' }
+  { q: 'Is there a TV in the living room?', accept: [/there isn'?t a tv/, /there is no tv/, /no,? there isn'?t/] },
+  { q: 'How many bedrooms are there?', accept: [/there are two/, /two bedrooms/, /\btwo\b/, /\b2\b/] },
+  { q: 'Are there any chairs in the kitchen?', accept: [/there aren'?t/, /there are no chairs/, /no chairs/, /no,? there aren'?t/] },
+  { q: "What is there on Leo's desk?", accept: [/four books/, /4 books/, /there are four/] },
+  { q: 'Is there a bathtub in the bathroom?', accept: [/there isn'?t a bathtub/, /there is no bathtub/, /no,? there isn'?t/] },
+  { q: 'Where are the plants?', accept: [/balcony/] }
 ];
 
-const listeningText = "Welcome to apartment twelve. There is a living room on the left. There are two chairs and a small sofa. In the kitchen, there is a refrigerator, but there isn't a microwave. There are three pictures in the hallway. Upstairs, there are two bedrooms. Is there a bathtub? No, there isn't. There is a shower in the bathroom.";
+const listeningText = "Welcome to apartment seven, on the second floor. When you open the door, there is a small hallway. There are four coats on the wall and a blue rug on the floor. On the left, there is a living room. There is a large sofa and a wooden table, but there isn't a TV. There are two lamps next to the sofa and three books on the table. The kitchen is next to the living room. There is a white fridge and a small stove. There isn't a microwave, and there isn't a dishwasher. There are four chairs around a round table. If you go upstairs, there are two bedrooms and one bathroom. In the big bedroom, there is a bed and a wardrobe. There are two pillows on the bed. In the small bedroom, there is a desk, but there isn't a bed — it is an office. In the bathroom, there is a shower and a sink. There isn't a bathtub. There are two towels and a mirror. Outside the kitchen window, there is a small balcony. There are six plants on the balcony, but there aren't any chairs. There isn't a garage under the building, so people park in the street.";
 
 const listeningQs = [
-  { q: 'How many chairs are there?', opts: ['One', 'Two', 'Three'], ans: 1, why: '“There are <strong>two chairs</strong> and a small sofa.”' },
-  { q: "What isn’t in the kitchen?", opts: ['A refrigerator', 'A microwave', 'A stove'], ans: 1, why: '“there isn’t a <strong>microwave</strong>.”' },
-  { q: 'Is there a bathtub?', opts: ['Yes, there is.', 'No, there isn’t.'], ans: 1, why: '“Is there a bathtub? <strong>No, there isn’t.</strong>”' }
+  { q: 'How many coats are there in the hallway?', accept: [/four coats/, /there are four/, /\bfour\b/, /\b4\b/] },
+  { q: 'Is there a TV in the living room?', accept: [/there isn'?t a tv/, /there is no tv/, /no,? there isn'?t/] },
+  { q: "What isn't there in the kitchen? Write two things.", all: [/microwave/, /dishwasher/] },
+  { q: 'How many bedrooms are there?', accept: [/two bedrooms/, /there are two/, /\btwo\b/, /\b2\b/] },
+  { q: 'What is there in the small bedroom?', accept: [/desk/, /office/] },
+  { q: 'Are there any chairs on the balcony?', accept: [/there aren'?t/, /there are no chairs/, /no chairs/, /no,? there aren'?t/] }
 ];
 
 const speakPack = [
@@ -287,7 +293,6 @@ const grammar = `
     <strong>2.</strong> One thing? → <strong>is</strong> · Two or more? → <strong>are</strong><br>
     <strong>3.</strong> Negative? → isn't / aren't · Question? → Is there / Are there</p>
   </div>
-  <div class="tip"><strong>Teacher tip:</strong> Stay on this tab 3–4 minutes. Elicit examples from the class before opening <em>Build</em>.</div>
 </section>`;
 
 const structure = `
@@ -334,11 +339,12 @@ const practice = `
   <div class="feedback" id="errorFb"></div>
 
   <div class="step" style="margin-top:22px"><b>B</b> Guided production · Apartment 4B</div>
-  <p class="intro" style="margin-bottom:8px">Look only at this scene. Complete the gaps. Do not invent objects.</p>
+  <p class="intro" style="margin-bottom:8px">Look at the apartment. Complete the gaps. Do not invent objects.</p>
   <div class="scene" id="sceneBoard">
-    ${Object.entries(sceneFacts).map(([room, items]) =>
-      `<div class="room-card"><h6>${room === 'living' ? 'Living room' : room[0].toUpperCase() + room.slice(1)}</h6><ul>${items.map(i => `<li>${i}</li>`).join('')}</ul></div>`
-    ).join('')}
+    <div class="room-card"><h6>Living room</h6><img src="assets/apt-living.jpg" alt="Living room in Apartment 4B"></div>
+    <div class="room-card"><h6>Kitchen</h6><img src="assets/apt-kitchen.jpg" alt="Kitchen in Apartment 4B"></div>
+    <div class="room-card"><h6>Bedroom</h6><img src="assets/apt-bedroom.jpg" alt="Bedroom in Apartment 4B"></div>
+    <div class="room-card"><h6>Bathroom</h6><img src="assets/apt-bathroom.jpg" alt="Bathroom in Apartment 4B"></div>
   </div>
   <div id="guidedBox" style="margin-top:12px"></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
@@ -356,55 +362,36 @@ const practice = `
 
 const reading = `
 <section class="panel">
-  <h4>4 · Reading · Maya's new home</h4>
-  <p class="intro"><strong>First read:</strong> main idea. <strong>Second read:</strong> tap every <em>there is / there are</em> form you find (including negatives).</p>
-
-  <div class="notice-bar">
-    <span>Forms found: <span id="noticeCount">0</span> / 8</span>
-    <button type="button" class="btn ghost" onclick="resetNotice()">Reset highlights</button>
-  </div>
+  <h4>4 · Reading · Leo's new house</h4>
+  <p class="intro">Read the text carefully. Then write complete answers. Do not copy a list of options — there aren't any.</p>
 
   <div class="reading" id="readingText">
-    <p>My new house is small, but it is comfortable. <span class="form-hit" data-form="1">There is</span> a bright living room with a sofa, a rug, and a TV. Next to it, <span class="form-hit" data-form="2">there is</span> a kitchen. <span class="form-hit" data-form="3">There isn't</span> a microwave in the kitchen, but <span class="form-hit" data-form="4">there is</span> a new stove.</p>
-    <p>Upstairs, <span class="form-hit" data-form="5">there are</span> two bedrooms and one bathroom. In my bedroom, <span class="form-hit" data-form="6">there are</span> two lamps and a big mirror. Outside, <span class="form-hit" data-form="7">there are</span> three plants in the yard. <span class="form-hit" data-form="8">There isn't</span> a garage, but that's okay.</p>
+    <p>Last month Leo moved to a small house near the park. Downstairs, there is a living room and a kitchen. There is a grey sofa and a small table in the living room, but there isn't a TV. There are two windows, so the room is bright. The kitchen is next to the living room. There is a fridge and a stove, but there isn't a microwave. There aren't any chairs in the kitchen — Leo eats in the living room.</p>
+    <p>There is a short hallway with three pictures on the wall. Upstairs, there are two bedrooms and a bathroom. In Leo's bedroom, there is a bed, a wardrobe, and a desk. There are four books on the desk. In the bathroom, there is a shower, but there isn't a bathtub. There are two towels on the door.</p>
+    <p>Outside, there is a small balcony. There are five plants on the balcony, but there isn't a garden. There isn't a garage either. Leo walks to the shops — there is a supermarket on the same street.</p>
   </div>
 
-  <div class="card tint" style="margin-top:14px" id="noticeTable">
-    <span class="label">Noticing table · fill after you click</span>
-    <div class="grid3" style="margin-top:10px;font-size:.86rem">
-      <div><strong>Singular +</strong><br>There is / There's</div>
-      <div><strong>Plural +</strong><br>There are</div>
-      <div><strong>Negative</strong><br>There isn't / aren't</div>
-    </div>
-    <p style="margin:10px 0 0;color:var(--slate);font-size:.88rem" id="noticeHint">Tap the green-underlined forms in the text. Aim for all 8.</p>
-  </div>
-
-  <div id="readingQuiz" style="margin-top:14px"></div>
+  <h5>Write your answers</h5>
+  <p class="intro" style="margin-bottom:8px">Use <strong>There is / There are / There isn't / There aren't</strong> when you can.</p>
+  <div id="readingQuiz"></div>
 </section>`;
 
 const listening = `
 <section class="panel">
-  <h4>5 · Listening · Apartment 12</h4>
-  <p class="intro"><strong>Listen 1:</strong> which rooms? <strong>Listen 2:</strong> quantities and missing objects. Then answer — explanations quote the audio.</p>
-
-  <div class="tip"><strong>Before you play:</strong> predict — will you hear a bathtub? a microwave? two bedrooms?</div>
+  <h4>5 · Listening · Apartment 7</h4>
+  <p class="intro"><strong>Listen once</strong> for the rooms. <strong>Listen again</strong> for numbers and things that are missing. Then write complete answers.</p>
 
   <div class="audio">
     <button type="button" class="btn secondary" onclick="playListening()">▶ Play listening</button>
     <button type="button" class="btn ghost" onclick="stopListening()">■ Stop</button>
-    <p id="listenStatus">Browser voice · ~35 seconds · use earphones if possible</p>
+    <p id="listenStatus">Browser voice · about 70 seconds · use earphones if possible</p>
   </div>
   <div class="card transcript" id="transcript">${listeningText}</div>
   <button type="button" class="btn ghost" style="margin-top:10px" onclick="document.getElementById('transcript').classList.toggle('show')">Show / hide transcript</button>
 
-  <h5>Short-answer drill (after listening)</h5>
-  <div class="card tint" style="font-size:.92rem;line-height:1.7">
-    <strong>Model:</strong> Is there a shower? → <em>Yes, there is.</em><br>
-    Are there three pictures? → <em>Yes, there are.</em><br>
-    Is there a microwave? → <em>No, there isn't.</em>
-  </div>
-
-  <div id="listeningQuiz" style="margin-top:14px"></div>
+  <h5>Write your answers</h5>
+  <p class="intro" style="margin-bottom:8px">No options. Write full sentences with <strong>There is / There are / There isn't / There aren't</strong>.</p>
+  <div id="listeningQuiz"></div>
 </section>`;
 
 const speaking = `
@@ -512,9 +499,8 @@ function render() {
   renderQuiz('structureQuiz', structureQuiz, 'structure');
   renderErrors();
   renderGuided();
-  setupNotice();
-  renderQuiz('readingQuiz', readingQs, 'reading');
-  renderQuiz('listeningQuiz', listeningQs, 'listening');
+  renderWriteQs('readingQuiz', readingQs, 'reading');
+  renderWriteQs('listeningQuiz', listeningQs, 'listening');
   updateCandoBar();
 }
 
@@ -726,7 +712,7 @@ function answerError(i, j) {
     if (idx === item.ans) b.classList.add('correct');
     if (idx === j && !ok) b.classList.add('wrong');
   });
-  card.classList.add('solved');
+  card.classList.add('solved', ok ? 'ok' : 'miss');
   document.getElementById(`err-fix-${i}`).textContent = '✓ ' + item.opts[item.ans];
   document.getElementById(`err-why-${i}`).innerHTML = item.why;
   state.errors = state.errors || {};
@@ -774,7 +760,7 @@ function checkGuided() {
   const fb = document.getElementById('guidedFb');
   fb.className = 'feedback show ' + (score === guidedGaps.length ? 'good' : 'warn');
   fb.innerHTML = `${score} / ${guidedGaps.length} correct.` +
-    (score < guidedGaps.length ? ' Green = good. Red = check the scene numbers (1 sofa → is, 2 lamps → are).' : ' Nice — ready for semi-free writing below.');
+    (score < guidedGaps.length ? ' Green = good. Red = look at the photos again (1 sofa → is, 2 lamps → are).' : ' Nice — ready for semi-free writing below.');
   state.guidedScore = score;
   save();
 }
@@ -813,39 +799,72 @@ function checkSemiFree() {
   ].join('<br>');
 }
 
-/* ========== READING NOTICE ========== */
-function setupNotice() {
-  const found = new Set(state.notice || []);
-  document.querySelectorAll('.form-hit').forEach(el => {
-    if (found.has(el.dataset.form)) el.classList.add('found');
-    el.onclick = () => {
-      el.classList.add('found');
-      found.add(el.dataset.form);
-      state.notice = [...found];
-      save();
-      updateNoticeCount(found.size);
-    };
+/* ========== WRITE-IN QUESTIONS ========== */
+function normAnswer(s) {
+  return String(s || '')
+    .toLowerCase()
+    .replace(/[’]/g, "'")
+    .replace(/there is not/g, "there isn't")
+    .replace(/there are not/g, "there aren't")
+    .replace(/[^a-z0-9'\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function matchesWrite(val, item) {
+  const t = normAnswer(val);
+  if (!t) return false;
+  if (item.all) return item.all.every(rx => rx.test(t));
+  return (item.accept || []).some(rx => rx.test(t));
+}
+
+function renderWriteQs(id, qs, key) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  quizBank[key] = qs;
+  el.innerHTML = qs.map((item, i) => {
+    const saved = state[key] && state[key][i] && state[key][i].text ? state[key][i].text : '';
+    return `
+    <div class="write-q" id="wq-${key}-${i}">
+      <strong>${i + 1}. ${item.q}</strong>
+      <input type="text" id="wi-${key}-${i}" placeholder="Write a full sentence" autocomplete="off" value="${saved.replace(/"/g, '&quot;')}">
+      <div class="why-box" id="why-${key}-${i}"></div>
+    </div>`;
+  }).join('') + `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <button type="button" class="btn" onclick="checkWriteQs('${key}')">Check answers</button>
+    </div>
+    <div class="feedback" id="fb-${key}"></div>`;
+}
+
+function checkWriteQs(key) {
+  const qs = quizBank[key];
+  if (!qs) return;
+  let score = 0;
+  state[key] = {};
+  qs.forEach((item, i) => {
+    const input = document.getElementById(`wi-${key}-${i}`);
+    const row = document.getElementById(`wq-${key}-${i}`);
+    const why = document.getElementById(`why-${key}-${i}`);
+    const val = (input && input.value || '').trim();
+    const ok = matchesWrite(val, item);
+    if (row) {
+      row.classList.remove('ok', 'no');
+      row.classList.add(ok ? 'ok' : 'no');
+    }
+    if (why) {
+      why.classList.add('show');
+      why.textContent = ok ? '✓ Good.' : '→ Look again and write a complete sentence.';
+    }
+    if (ok) score++;
+    state[key][i] = { text: val, ok };
   });
-  updateNoticeCount(found.size);
-}
-
-function updateNoticeCount(n) {
-  const el = document.getElementById('noticeCount');
-  if (el) el.textContent = n;
-  const hint = document.getElementById('noticeHint');
-  if (!hint) return;
-  if (n >= 8) {
-    hint.innerHTML = '✓ All 8 forms found: <strong>There is</strong> (×3), <strong>there are</strong> (×3), <strong>There isn\'t</strong> (×2). Great noticing!';
-  } else {
-    hint.textContent = `Tap the underlined forms in the text. Aim for all 8. (${n}/8)`;
-  }
-}
-
-function resetNotice() {
-  state.notice = [];
   save();
-  document.querySelectorAll('.form-hit').forEach(el => el.classList.remove('found'));
-  updateNoticeCount(0);
+  const fb = document.getElementById(`fb-${key}`);
+  if (fb) {
+    fb.className = 'feedback show ' + (score === qs.length ? 'good' : 'warn');
+    fb.textContent = `${score} / ${qs.length} correct.`;
+  }
 }
 
 /* ========== LISTENING ========== */
@@ -863,7 +882,7 @@ function playListening() {
     utterance.lang = 'en-US';
     utterance.rate = 0.86;
     if (status) status.textContent = 'Playing…';
-    utterance.onend = () => { if (status) status.textContent = 'Browser voice · ~35 seconds'; };
+    utterance.onend = () => { if (status) status.textContent = 'Browser voice · about 70 seconds'; };
     utterance.onerror = () => {
       if (status) status.textContent = 'Could not play. Use the transcript.';
       document.getElementById('transcript')?.classList.add('show');
@@ -877,7 +896,7 @@ function playListening() {
 function stopListening() {
   if ('speechSynthesis' in window) speechSynthesis.cancel();
   const status = document.getElementById('listenStatus');
-  if (status) status.textContent = 'Browser voice · ~35 seconds · use earphones if possible';
+  if (status) status.textContent = 'Browser voice · about 70 seconds · use earphones if possible';
 }
 
 /* ========== SPEAKING ========== */
