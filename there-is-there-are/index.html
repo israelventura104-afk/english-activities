@@ -18,7 +18,7 @@
     .house{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px;background:var(--navy);border-radius:16px}.room{min-height:210px;border:2px dashed rgba(255,255,255,.45);border-radius:12px;background:#f8fbfc;padding:12px;transition:.2s}.room.dragover{border-color:var(--gold);background:#fff8e8}.room h5{margin:0 0 8px;color:var(--teal);font-size:.86rem}.placed{display:flex;flex-wrap:wrap;gap:8px}.token-bank{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center}.token{display:flex;flex-direction:column;align-items:center;gap:6px;width:108px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px;font-size:.75rem;font-weight:800;touch-action:none;user-select:none}.token img{width:88px;height:88px;object-fit:cover;border-radius:8px;pointer-events:none;background:#eef2f5}.token[draggable=true]{cursor:grab}.token.selected{background:var(--mint);border-color:var(--teal);box-shadow:0 0 0 2px rgba(22,140,140,.28)}.token.good{background:var(--good);border-color:#72b98c}.token.bad{background:var(--bad);border-color:#d98989}.placed .token{width:96px}.placed .token img{width:76px;height:76px}.score{font-weight:800;color:var(--teal)}.house-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;justify-content:space-between}
     .bridge{margin-top:18px;padding-top:8px;border-top:1px dashed var(--line)}.bridge-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.bridge-item:last-child{border:0}.bridge-item p{margin:0;font-weight:700;line-height:1.45}.bridge-item .why{grid-column:1/-1;font-size:.82rem;color:var(--slate);margin-top:2px;display:none}.bridge-item.done .why{display:block}.bridge-item.done p{color:#2f6b45}
     .exercise{border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}.exercise button.toggle{width:100%;border:0;background:var(--gray);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:var(--navy);font-weight:800}.exercise .toggle-arrow{display:inline-block;transition:transform .2s ease}.exercise.collapsed .toggle-arrow{transform:rotate(-90deg)}.exercise.collapsed .exbody{display:none}.exbody{padding:16px}.q{padding:12px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.opt,.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800}.opt{background:#fff;border:1px solid var(--line)}.opt.selected{background:var(--mint);border-color:var(--teal)}.opt.correct{background:var(--good);border-color:#72b98c}.opt.wrong{background:var(--bad);border-color:#d98989}.btn{background:var(--navy);color:#fff}.btn.secondary{background:var(--teal)}.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn:disabled{opacity:.55;cursor:not-allowed}.feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}.feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}.why-box{display:none;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--gray);font-size:.84rem;line-height:1.5;color:var(--slate)}.why-box.show{display:block}.why-box strong{color:var(--navy)}
-    .reading{line-height:1.85;background:var(--gray);padding:18px;border-radius:14px}.reading strong{color:var(--teal)}.form-hit{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--teal);font-weight:800;color:var(--teal);background:transparent;transition:.15s}.form-hit.found{background:var(--mint);border-bottom-color:var(--gold)}.form-hit.miss{background:var(--bad)}.notice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-weight:800;color:var(--teal)}.audio{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--navy);color:#fff;padding:16px;border-radius:14px}.audio p{margin:0;color:#d7e7e8;font-size:.85rem;flex:1}.transcript{display:none;margin-top:12px;line-height:1.7}.transcript.show{display:block}
+    .reading{line-height:1.85;background:var(--gray);padding:18px;border-radius:14px}.reading strong{color:var(--teal)}.form-hit{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--teal);font-weight:800;color:var(--teal);background:transparent;transition:.15s}.form-hit.found{background:var(--mint);border-bottom-color:var(--gold)}.form-hit.miss{background:var(--bad)}.notice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-weight:800;color:var(--teal)}.audio{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--navy);color:#fff;padding:16px;border-radius:14px}.audio p{margin:0;color:#d7e7e8;font-size:.85rem}.audio audio{flex:1;min-width:220px;height:40px}.transcript{display:none;margin-top:12px;line-height:1.7}.transcript.show{display:block}
     .scene{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.scene .room-card{background:var(--gray);border:1px solid var(--line);border-radius:12px;padding:8px;overflow:hidden}.scene .room-card h6{margin:0 0 8px;color:var(--teal);font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}.scene .room-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;display:block;background:#eef2f5}.write-q{padding:12px 0;border-bottom:1px solid var(--line)}.write-q:last-of-type{border:0}.write-q input[type=text]{width:100%;margin-top:8px;border:1px solid var(--line);border-radius:10px;padding:11px 12px;font-weight:600}.write-q.ok input{border-color:#72b98c;background:var(--good)}.write-q.no input{border-color:#d98989;background:var(--bad)}.gap-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-weight:700}.gap-line select,.gap-line input[type=text]{border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:110px;font-weight:700}.gap-line.ok{background:var(--good);border-radius:8px;padding-left:8px}.gap-line.no{background:var(--bad);border-radius:8px;padding-left:8px}
     .error-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px;background:#fff}.error-card .wrong-line{font-weight:800;color:#a33;text-decoration:line-through;text-decoration-thickness:2px}.error-card .fix-line{margin-top:8px;font-weight:700}.error-card .explain{margin-top:8px;font-size:.84rem;color:var(--slate);display:none}.error-card.solved .explain{display:block}.error-card.solved.ok{background:#f3f7fb;border-color:#9bb0c4}.error-card.solved.miss{background:var(--warn);border-color:#d4b56a}
     .wheel-wrap{display:grid;grid-template-columns:310px 1fr;gap:24px;align-items:center}.wheel{width:290px;height:290px;border-radius:50%;background:conic-gradient(var(--teal) 0 16.66%,var(--gold) 0 33.33%,#2f5d8c 0 50%,#8abfba 0 66.66%,#d9c48f 0 83.33%,var(--navy) 0);border:10px solid #fff;box-shadow:0 8px 26px rgba(11,31,58,.18);position:relative;transition:transform 2.2s cubic-bezier(.2,.8,.2,1);cursor:pointer}.wheel:after{content:"SPIN";position:absolute;inset:95px;border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:800}.pointer{text-align:center;color:var(--gold);font-size:2rem;line-height:.5}.speak-prompt{font-size:1.15rem;line-height:1.5;padding:16px;background:var(--mint);border-radius:14px;min-height:72px;font-weight:700}.speak-help{margin-top:12px;display:none}.speak-help.show{display:block}.frame-list{margin:8px 0 0;padding-left:18px;line-height:1.7;color:var(--slate)}.model-box{margin-top:10px;padding:12px;border-radius:10px;background:var(--gray);line-height:1.65;font-size:.92rem}.peer{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.peer label{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:700}.support{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.support span{background:#fff;border:1px solid var(--line);padding:7px 9px;border-radius:9px;font-size:.78rem;font-weight:700}
@@ -382,9 +382,13 @@ const listening = `
   <p class="intro"><strong>Listen once</strong> for the rooms. <strong>Listen again</strong> for numbers and things that are missing. Then write complete answers.</p>
 
   <div class="audio">
-    <button type="button" class="btn secondary" onclick="playListening()">▶ Play listening</button>
-    <button type="button" class="btn ghost" onclick="stopListening()">■ Stop</button>
-    <p id="listenStatus">Browser voice · about 70 seconds · use earphones if possible</p>
+    <div>
+      <strong style="display:block">Apartment 7</strong>
+      <p>Recorded listening · earphones if you can</p>
+    </div>
+    <audio id="listenAudio" controls preload="metadata" controlsList="nodownload">
+      <source src="assets/there-is-audio.mp3" type="audio/mpeg">
+    </audio>
   </div>
   <div class="card transcript" id="transcript">${listeningText}</div>
   <button type="button" class="btn ghost" style="margin-top:10px" onclick="document.getElementById('transcript').classList.toggle('show')">Show / hide transcript</button>
@@ -865,38 +869,6 @@ function checkWriteQs(key) {
     fb.className = 'feedback show ' + (score === qs.length ? 'good' : 'warn');
     fb.textContent = `${score} / ${qs.length} correct.`;
   }
-}
-
-/* ========== LISTENING ========== */
-let utterance;
-function playListening() {
-  stopListening();
-  const status = document.getElementById('listenStatus');
-  if (!('speechSynthesis' in window)) {
-    if (status) status.textContent = 'Speech not available. Open the transcript.';
-    document.getElementById('transcript')?.classList.add('show');
-    return;
-  }
-  try {
-    utterance = new SpeechSynthesisUtterance(listeningText);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.86;
-    if (status) status.textContent = 'Playing…';
-    utterance.onend = () => { if (status) status.textContent = 'Browser voice · about 70 seconds'; };
-    utterance.onerror = () => {
-      if (status) status.textContent = 'Could not play. Use the transcript.';
-      document.getElementById('transcript')?.classList.add('show');
-    };
-    speechSynthesis.speak(utterance);
-  } catch {
-    if (status) status.textContent = 'Could not play. Use the transcript.';
-    document.getElementById('transcript')?.classList.add('show');
-  }
-}
-function stopListening() {
-  if ('speechSynthesis' in window) speechSynthesis.cancel();
-  const status = document.getElementById('listenStatus');
-  if (status) status.textContent = 'Browser voice · about 70 seconds · use earphones if possible';
 }
 
 /* ========== SPEAKING ========== */
