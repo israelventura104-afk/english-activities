@@ -15,7 +15,7 @@
     .topbar{position:sticky;top:14px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;margin-bottom:18px;background:var(--navy);color:#fff;border-radius:18px;box-shadow:0 16px 34px rgba(11,31,58,.22)}.brand{display:flex;align-items:center;gap:12px}.brand img{width:50px;height:50px;border-radius:50%;background:#fff;padding:3px;object-fit:contain}.brand h1{font-size:1.1rem;margin:0}.brand p{font-size:.8rem;color:#d6e7e7;margin:3px 0 0}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.home,.pill{border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800}.home{color:#fff;text-decoration:none;background:rgba(22,140,140,.35)}.pill{border:1px solid rgba(255,255,255,.2)}
     .hero{position:relative;overflow:hidden;background:#fff;border:1px solid rgba(11,31,58,.08);border-radius:20px;box-shadow:var(--shadow);padding:clamp(26px,5vw,48px);margin-bottom:22px}.hero:after{content:"";position:absolute;right:24px;top:50%;transform:translateY(-50%);width:230px;height:230px;background:url('../favicon.png') center/contain no-repeat;opacity:.07}.eyebrow{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);font-weight:800}.hero h2{font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;margin:12px 0;color:var(--navy);max-width:700px}.hero h2 span{color:var(--teal)}.hero p{color:var(--slate);line-height:1.7;max-width:680px;margin:0}.path{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}.path span{padding:6px 10px;border-radius:999px;background:var(--mint);font-size:.72rem;font-weight:800;color:var(--teal)}
     .lesson{background:#fff;border:1px solid rgba(11,31,58,.08);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.lesson-head{background:var(--navy);color:#fff;padding:22px 24px}.lesson-head h3{margin:0}.lesson-head p{color:#d7e7e8;line-height:1.55;margin:6px 0 0}.tabs{display:flex;overflow-x:auto;gap:5px;padding:12px 14px;border-bottom:1px solid var(--line);scrollbar-width:thin}.tab{border:0;background:transparent;color:var(--slate);font-size:.76rem;font-weight:800;padding:10px 12px;border-radius:10px;white-space:nowrap}.tab.active,.tab:hover{background:var(--mint);color:var(--navy)}.panel{display:none;padding:26px}.panel.active{display:block}.panel h4{font-size:1.15rem;margin:0 0 10px}.panel h5{font-size:.95rem;margin:18px 0 8px;color:var(--navy)}.intro{color:var(--slate);line-height:1.65;margin:0 0 18px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.card.tint{background:var(--gray)}.card.mint{background:var(--mint)}.card.bad{background:var(--bad)}.label{font-size:.7rem;letter-spacing:.08em;color:var(--teal);font-weight:800;text-transform:uppercase}.big-rule{font-size:1.25rem;font-weight:800;margin:10px 0}.teal{color:var(--teal)}.example{padding:10px 12px;border-left:3px solid var(--gold);background:var(--gray);margin-top:10px;font-weight:700}.note{background:var(--warn);border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;line-height:1.55;margin-top:14px}.tip{background:var(--mint);border-left:4px solid var(--teal);padding:12px 14px;border-radius:8px;line-height:1.55;margin:12px 0}.step{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:6px}.step b{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;font-size:.7rem}
-    .house{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px;background:var(--navy);border-radius:16px}.room{min-height:165px;border:2px dashed rgba(255,255,255,.45);border-radius:12px;background:#f8fbfc;padding:12px;transition:.2s}.room.dragover{border-color:var(--gold);background:#fff8e8}.room h5{margin:0 0 8px;color:var(--teal);font-size:.86rem}.placed{display:flex;flex-wrap:wrap;gap:6px}.token-bank{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.token{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;font-size:.8rem;font-weight:700;touch-action:none;user-select:none}.token[draggable=true]{cursor:grab}.token.selected{background:var(--mint);border-color:var(--teal);box-shadow:0 0 0 2px rgba(22,140,140,.28)}.token.good{background:var(--good);border-color:#72b98c}.token.bad{background:var(--bad);border-color:#d98989}.score{font-weight:800;color:var(--teal)}.house-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;justify-content:space-between}
+    .house{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:12px;background:var(--navy);border-radius:16px}.room{min-height:210px;border:2px dashed rgba(255,255,255,.45);border-radius:12px;background:#f8fbfc;padding:12px;transition:.2s}.room.dragover{border-color:var(--gold);background:#fff8e8}.room h5{margin:0 0 8px;color:var(--teal);font-size:.86rem}.placed{display:flex;flex-wrap:wrap;gap:8px}.token-bank{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center}.token{display:flex;flex-direction:column;align-items:center;gap:6px;width:108px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px;font-size:.75rem;font-weight:800;touch-action:none;user-select:none}.token img{width:88px;height:88px;object-fit:cover;border-radius:8px;pointer-events:none;background:#eef2f5}.token[draggable=true]{cursor:grab}.token.selected{background:var(--mint);border-color:var(--teal);box-shadow:0 0 0 2px rgba(22,140,140,.28)}.token.good{background:var(--good);border-color:#72b98c}.token.bad{background:var(--bad);border-color:#d98989}.placed .token{width:96px}.placed .token img{width:76px;height:76px}.score{font-weight:800;color:var(--teal)}.house-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center;justify-content:space-between}
     .bridge{margin-top:18px;padding-top:8px;border-top:1px dashed var(--line)}.bridge-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.bridge-item:last-child{border:0}.bridge-item p{margin:0;font-weight:700;line-height:1.45}.bridge-item .why{grid-column:1/-1;font-size:.82rem;color:var(--slate);margin-top:2px;display:none}.bridge-item.done .why{display:block}.bridge-item.done p{color:#2f6b45}
     .exercise{border:1px solid var(--line);border-radius:14px;margin-top:14px;overflow:hidden}.exercise button.toggle{width:100%;border:0;background:var(--gray);display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:var(--navy);font-weight:800}.exercise .toggle-arrow{display:inline-block;transition:transform .2s ease}.exercise.collapsed .toggle-arrow{transform:rotate(-90deg)}.exercise.collapsed .exbody{display:none}.exbody{padding:16px}.q{padding:12px 0;border-bottom:1px solid var(--line)}.q:last-child{border:0}.opts{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.opt,.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800}.opt{background:#fff;border:1px solid var(--line)}.opt.selected{background:var(--mint);border-color:var(--teal)}.opt.correct{background:var(--good);border-color:#72b98c}.opt.wrong{background:var(--bad);border-color:#d98989}.btn{background:var(--navy);color:#fff}.btn.secondary{background:var(--teal)}.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn:disabled{opacity:.55;cursor:not-allowed}.feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}.feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}.why-box{display:none;margin-top:8px;padding:10px 12px;border-radius:10px;background:var(--gray);font-size:.84rem;line-height:1.5;color:var(--slate)}.why-box.show{display:block}.why-box strong{color:var(--navy)}
     .reading{line-height:1.85;background:var(--gray);padding:18px;border-radius:14px}.reading strong{color:var(--teal)}.form-hit{cursor:pointer;border-radius:6px;padding:1px 4px;border-bottom:2px dotted var(--teal);font-weight:800;color:var(--teal);background:transparent;transition:.15s}.form-hit.found{background:var(--mint);border-bottom-color:var(--gold)}.form-hit.miss{background:var(--bad)}.notice-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;font-weight:800;color:var(--teal)}.audio{display:flex;gap:12px;align-items:center;flex-wrap:wrap;background:var(--navy);color:#fff;padding:16px;border-radius:14px}.audio p{margin:0;color:#d7e7e8;font-size:.85rem;flex:1}.transcript{display:none;margin-top:12px;line-height:1.7}.transcript.show{display:block}
@@ -25,7 +25,7 @@
     textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;line-height:1.65}textarea{min-height:150px;resize:vertical}.stems{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.stems button{border:1px dashed var(--teal);background:var(--mint);color:var(--navy);border-radius:999px;padding:7px 11px;font-size:.78rem;font-weight:800}.checklist{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.criterion{padding:10px;background:var(--gray);border:1px solid var(--line);border-radius:10px;font-size:.76rem}.criterion strong{display:block;margin-bottom:4px}
     .cando{display:grid;gap:10px}.cando label{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--gray);cursor:pointer}.cando input{width:18px;height:18px}.cando .lvl{font-size:.72rem;font-weight:800;color:var(--teal)}.progress-mini{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0 4px}.progress-mini span{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
     .footer{text-align:center;color:var(--slate);font-size:.78rem;padding:24px}
-    @media(max-width:760px){.shell{padding:12px}.brand p,.pill{display:none}.panel{padding:18px}.grid2,.grid3,.wheel-wrap,.scene,.bridge-item{grid-template-columns:1fr}.wheel-wrap{justify-items:center}.house{grid-template-columns:1fr}.hero:after{opacity:.04}.checklist{grid-template-columns:repeat(2,1fr)}.cando label{grid-template-columns:auto 1fr}}
+    @media(max-width:760px){.shell{padding:12px}.brand p,.pill{display:none}.panel{padding:18px}.grid2,.grid3,.wheel-wrap,.scene,.bridge-item{grid-template-columns:1fr}.wheel-wrap{justify-items:center}.house{grid-template-columns:1fr}.hero:after{opacity:.04}.checklist{grid-template-columns:repeat(2,1fr)}.cando label{grid-template-columns:auto 1fr}.token{width:92px}.token img{width:72px;height:72px}}
   </style>
 </head>
 <body><div class="shell">
@@ -86,6 +86,17 @@ const houseItems = [
   ['bed', 'bedroom'], ['pillow', 'bedroom'], ['wardrobe', 'bedroom'],
   ['shower', 'bathroom'], ['toilet', 'bathroom'], ['towel', 'bathroom']
 ];
+function itemSlug(name) {
+  return String(name).toLowerCase().replace(/\s+/g, '-');
+}
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
 const bridgeQsFixed = [
   { stem: 'There ___ a sofa in the living room.', opts: ['is', 'are'], ans: 0, why: 'One thing (a sofa) → singular → <strong>There is</strong>.' },
   { stem: 'There ___ three objects in the living room.', opts: ['is', 'are'], ans: 1, why: 'Three objects → plural → <strong>There are</strong>.' },
@@ -282,18 +293,18 @@ const grammar = `
 const structure = `
 <section class="panel">
   <h4>2 · Build · from objects to sentences</h4>
-  <p class="intro">First place vocabulary. Then turn each idea into <strong>There is / There are</strong>. That bridge is the real grammar practice.</p>
+  <p class="intro">First place real furniture. Then turn each idea into <strong>There is / There are</strong>. That bridge is the real grammar practice.</p>
 
   <div class="step"><b>A</b> Vocabulary · rooms</div>
-  <p class="intro" style="margin-bottom:10px">Drag each word into its usual room. On a phone: tap a word, then tap a room.</p>
+  <p class="intro" style="margin-bottom:10px">Drag each piece of furniture into its usual room. On a phone: tap a photo, then tap a room.</p>
   <div class="house" id="house">${['living','kitchen','bedroom','bathroom'].map(r =>
     `<div class="room" data-room="${r}"><h5>${r === 'living' ? 'Living room' : r[0].toUpperCase() + r.slice(1)}</h5><div class="placed"></div></div>`
   ).join('')}</div>
-  <div class="token-bank" id="bank">${houseItems.map(([x]) =>
-    `<button type="button" class="token" draggable="true" data-item="${x}">${x}</button>`
+  <div class="token-bank" id="bank">${shuffle(houseItems).map(([x]) =>
+    `<button type="button" class="token" draggable="true" data-item="${x}"><img src="assets/${itemSlug(x)}.jpg" alt="${x}"><span>${x}</span></button>`
   ).join('')}</div>
   <div class="house-actions">
-    <div class="score" id="dragScore">Place all 12 objects.</div>
+    <div class="score" id="dragScore">Place all 12 pieces of furniture.</div>
     <button type="button" class="btn ghost" onclick="resetHouse()">Reset house</button>
   </div>
 
@@ -610,7 +621,7 @@ function updateDragScore() {
   const n = document.querySelectorAll('.token.good').length;
   scoreEl.textContent = n === 12
     ? 'Excellent — house complete. Continue to Step B (sentences).'
-    : `${n} / 12 objects placed · then complete Step B sentences`;
+    : `${n} / 12 pieces of furniture placed · then complete Step B sentences`;
 }
 
 function place(room) {
@@ -635,15 +646,16 @@ function place(room) {
 function resetHouse() {
   const bank = document.getElementById('bank');
   if (!bank) return;
-  document.querySelectorAll('.token').forEach(t => {
+  shuffle([...document.querySelectorAll('.token')]).forEach(t => {
     t.classList.remove('good', 'bad', 'selected');
     t.draggable = true;
+    t.onclick = null;
     bank.appendChild(t);
   });
   selected = null;
   setupHouse();
   const scoreEl = document.getElementById('dragScore');
-  if (scoreEl) scoreEl.textContent = 'Place all 12 objects.';
+  if (scoreEl) scoreEl.textContent = 'Place all 12 pieces of furniture.';
 }
 
 /* ========== BRIDGE ========== */
