@@ -144,6 +144,7 @@
     .activity-num.n6 { background: #8b6bb8; color: #fff; }
     .activity-num.n7 { background: #c45c6a; color: #fff; }
     .activity-num.n8 { background: #3d8b6e; color: #fff; }
+    .activity-num.n9 { background: #c47a3d; color: #fff; }
     .activity-meta { flex: 1; min-width: 0; }
     .activity-meta h3 {
       margin: 0; font-size: 1.15rem; font-weight: 900;
@@ -1136,7 +1137,7 @@
       <span class="eyebrow">Vocabulary · Getting around town</span>
       <h2>Find your way <span>around town</span></h2>
       <p class="hero-copy">
-        Practice places, city elements, road verbs, and adjectives — then use prepositions and useful expressions
+        Practice two vocabulary sets: places, city elements, road verbs, and adjectives — then use prepositions and useful expressions
         to ask for help, give directions, and say where things are.
       </p>
       <div class="cast" aria-label="Lesson focus">
@@ -1146,6 +1147,7 @@
         <span>Adjectives</span>
         <span>Prepositions</span>
         <span>Expressions</span>
+        <span>Vocabulary II</span>
       </div>
     </div>
   </section>
@@ -1305,10 +1307,54 @@ const bank = [
   { t: "It's next to...", cat: "expressions", img: "assets/expr-next-to.jpg", use: "Describe location" },
   { t: "It's across from...", cat: "expressions", img: "assets/expr-across-from.jpg", use: "Describe location" },
   { t: "Thank you.", cat: "expressions", img: "assets/expr-thank-you.jpg", use: "Show gratitude" },
-  { t: "You're welcome.", cat: "expressions", img: "assets/expr-welcome.jpg", use: "Reply to thanks" }
+  { t: "You're welcome.", cat: "expressions", img: "assets/expr-welcome.jpg", use: "Reply to thanks" },
+
+  // ===== Vocabulary II =====
+  { t: "bakery", cat: "places", img: "assets/bakery.jpg", set: 2 },
+  { t: "local market", cat: "places", img: "assets/local-market.jpg", set: 2 },
+  { t: "flea market", cat: "places", img: "assets/flea-market.jpg", set: 2 },
+  { t: "city hall", cat: "places", img: "assets/city-hall.jpg", set: 2 },
+  { t: "church", cat: "places", img: "assets/church.jpg", set: 2 },
+  { t: "gas station", cat: "places", img: "assets/gas-station.jpg", set: 2 },
+  { t: "police station", cat: "places", img: "assets/police-station.jpg", set: 2 },
+  { t: "mechanic shop", cat: "places", img: "assets/mechanic-shop.jpg", set: 2 },
+  { t: "downtown", cat: "places", img: "assets/downtown.jpg", set: 2 },
+  { t: "block", cat: "city", img: "assets/block.jpg", set: 2 },
+  { t: "roundabout", cat: "city", img: "assets/roundabout.jpg", set: 2 },
+  { t: "speed bump", cat: "city", img: "assets/speed-bump.jpg", set: 2 },
+  { t: "traffic sign", cat: "city", img: "assets/traffic-sign.jpg", set: 2 },
+  { t: "streetlight", cat: "city", img: "assets/streetlight.jpg", set: 2 },
+  { t: "stand", cat: "city", img: "assets/stand.jpg", set: 2 },
+  { t: "follow", cat: "verbs", img: "assets/follow.jpg", set: 2 },
+  { t: "pass", cat: "verbs", img: "assets/pass.jpg", set: 2 },
+  { t: "reach", cat: "verbs", img: "assets/reach.jpg", set: 2 },
+  { t: "enter", cat: "verbs", img: "assets/enter.jpg", set: 2 },
+  { t: "leave", cat: "verbs", img: "assets/leave.jpg", set: 2 },
+  { t: "arrive", cat: "verbs", img: "assets/arrive.jpg", set: 2 },
+  { t: "exit", cat: "verbs", img: "assets/exit.jpg", set: 2 },
+  { t: "accompany", cat: "verbs", img: "assets/accompany.jpg", set: 2 },
+  { t: "see", cat: "verbs", img: "assets/see.jpg", set: 2 },
+  { t: "noisy", cat: "adjectives", img: "assets/noisy.jpg", set: 2 },
+  { t: "traditional", cat: "adjectives", img: "assets/traditional.jpg", set: 2 },
+  { t: "historical", cat: "adjectives", img: "assets/historical.jpg", set: 2 },
+  { t: "local", cat: "adjectives", img: "assets/local.jpg", set: 2 },
+  { t: "popular", cat: "adjectives", img: "assets/popular.jpg", set: 2 },
+  { t: "up", cat: "prepositions", img: "assets/up.jpg", set: 2, hint: "higher / upstairs" },
+  { t: "down", cat: "prepositions", img: "assets/down.jpg", set: 2, hint: "lower / downstairs" },
+  { t: "opposite", cat: "prepositions", img: "assets/opposite.jpg", set: 2, hint: "facing" },
+  { t: "inside", cat: "prepositions", img: "assets/inside.jpg", set: 2, hint: "in a place" },
+  { t: "outside", cat: "prepositions", img: "assets/outside.jpg", set: 2, hint: "not in" },
+  { t: "by", cat: "prepositions", img: "assets/by.jpg", set: 2, hint: "next to / beside" },
+  { t: "through", cat: "prepositions", img: "assets/through.jpg", set: 2, hint: "from one side to the other" }
 ];
 
-const picturedOnly = () => bank.filter(x => x.img);
+function itemSet(x) { return x.set || 1; }
+function bankOf(setId) { return bank.filter(x => itemSet(x) === setId); }
+function picturedOf(setId) {
+  const src = setId ? bankOf(setId) : bank;
+  return src.filter(x => x.img);
+}
+const picturedOnly = () => picturedOf();
 const studyKey = "itc-studied-v2";
 let studied = new Set(JSON.parse(localStorage.getItem(studyKey) || "[]"));
 
@@ -1437,7 +1483,8 @@ function audioBtnHTML(extraClass = "") {
 
 /* ========== VOCAB ACCORDION (desplegable) ========== */
 const sections = [
-  { title: "Picture Box", accent: "deck", blurb: "Study places, verbs, adjectives, and expressions with big reveal cards." },
+  { title: "Picture Box", accent: "deck", blurb: "Vocabulary I — study places, verbs, adjectives, and expressions with big reveal cards." },
+  { title: "Vocabulary II", accent: "deck2", blurb: "New set: bakery, downtown, roundabout, follow, noisy, through, and more." },
   { title: "Memory Match", accent: "match", blurb: "Match each picture with its English word. Choose a set and play." },
   { title: "What's this?", accent: "quiz", blurb: "Look at the picture and choose the correct word." },
   { title: "Speed Round", accent: "speed", blurb: "Name as many pictures as you can in 60 seconds." },
@@ -1474,38 +1521,43 @@ sections.forEach((sec, i) => {
   activitiesEl.appendChild(det);
 });
 
-/* ========== 0 PICTURE BOX — DECK MODE A ========== */
-(function buildPictureBox() {
-  const panel = document.getElementById("panel-0");
+/* ========== PICTURE BOX / VOCABULARY II — DECK MODE A ========== */
+function buildVocabDeck(panel, opts) {
+  const setId = opts.setId;
+  const pfx = opts.idPrefix;
+  const pack = bankOf(setId);
+  const filterIds = opts.filters;
+  const intro = opts.intro;
+
   panel.innerHTML = `
-    <p class="intro">Look at the picture. Say the English word. Then tap to check. Use the filters to practice one group at a time.</p>
+    <p class="intro">${intro}</p>
     <div class="hint-line">Teacher tip: students answer first, then reveal. Arrows move to the next card.</div>
     <div class="toolbar">
-      <div class="filter-row" id="pb-filters"></div>
-      <span class="progress-pill">Studied <strong id="pb-progress">0</strong> / ${bank.length}</span>
+      <div class="filter-row" id="${pfx}-filters"></div>
+      <span class="progress-pill">Studied <strong id="${pfx}-progress">0</strong> / ${pack.length}</span>
     </div>
     <div class="actions" style="margin-top:0;margin-bottom:14px">
-      <button type="button" class="btn ghost" id="pb-hide">Hide word</button>
-      <button type="button" class="btn ghost" id="pb-reveal">Reveal word</button>
-      <button type="button" class="btn ghost" id="pb-reset-study">Reset studied</button>
+      <button type="button" class="btn ghost" id="${pfx}-hide">Hide word</button>
+      <button type="button" class="btn ghost" id="${pfx}-reveal">Reveal word</button>
+      <button type="button" class="btn ghost" id="${pfx}-reset-study">Reset studied</button>
     </div>
     <div class="deck-stage">
       <div class="deck-meta">
-        <div class="deck-counter"><span id="pb-pos">1</span> / <span id="pb-total">0</span></div>
+        <div class="deck-counter"><span id="${pfx}-pos">1</span> / <span id="${pfx}-total">0</span></div>
       </div>
       <div class="deck-card-wrap">
-        <button type="button" class="deck-card" id="pb-card" aria-label="Tap to reveal or hide the word">
-          <div class="pic-media" id="pb-media"></div>
+        <button type="button" class="deck-card" id="${pfx}-card" aria-label="Tap to reveal or hide the word">
+          <div class="pic-media" id="${pfx}-media"></div>
           <div class="pic-label">
-            <span class="word" id="pb-word">—</span>
-            <span class="cat" id="pb-cat">—</span>
+            <span class="word" id="${pfx}-word">—</span>
+            <span class="cat" id="${pfx}-cat">—</span>
           </div>
-          <span class="tap-hint" id="pb-hint">Tap to reveal</span>
+          <span class="tap-hint" id="${pfx}-hint">Tap to reveal</span>
         </button>
       </div>
       <div class="deck-nav">
-        <button type="button" class="btn ghost" id="pb-prev">← Prev</button>
-        <button type="button" class="audio-btn" id="pb-audio" title="Play pronunciation" aria-label="Play pronunciation">
+        <button type="button" class="btn ghost" id="${pfx}-prev">← Prev</button>
+        <button type="button" class="audio-btn" id="${pfx}-audio" title="Play pronunciation" aria-label="Play pronunciation">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
             <path d="M15.5 8.5a4.5 4.5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
@@ -1513,7 +1565,7 @@ sections.forEach((sec, i) => {
           </svg>
           <span class="audio-label">Listen</span>
         </button>
-        <button type="button" class="btn" id="pb-next">Next →</button>
+        <button type="button" class="btn" id="${pfx}-next">Next →</button>
       </div>
       <p class="deck-keys">Keyboard: ← prev · → next · Space reveal · L listen</p>
     </div>
@@ -1522,35 +1574,30 @@ sections.forEach((sec, i) => {
   let filter = "all";
   let index = 0;
   let revealed = false;
-  const filters = [
-    { id: "all", label: "All (" + bank.length + ")" },
-    { id: "places", label: "Places" },
-    { id: "city", label: "City Elements" },
-    { id: "verbs", label: "Road Verbs" },
-    { id: "adjectives", label: "Adjectives" },
-    { id: "prepositions", label: "Prepositions" },
-    { id: "expressions", label: "Expressions" }
-  ];
+  const filters = filterIds.map(id => {
+    if (id === "all") return { id: "all", label: "All (" + pack.length + ")" };
+    return { id, label: CAT[id] };
+  });
 
-  const fRow = panel.querySelector("#pb-filters");
-  const prog = panel.querySelector("#pb-progress");
-  const cardEl = panel.querySelector("#pb-card");
-  const mediaEl = panel.querySelector("#pb-media");
-  const wordEl = panel.querySelector("#pb-word");
-  const catEl = panel.querySelector("#pb-cat");
-  const hintEl = panel.querySelector("#pb-hint");
-  const posEl = panel.querySelector("#pb-pos");
-  const totalEl = panel.querySelector("#pb-total");
-  const prevBtn = panel.querySelector("#pb-prev");
-  const nextBtn = panel.querySelector("#pb-next");
-  const audioBtn = panel.querySelector("#pb-audio");
+  const fRow = panel.querySelector("#" + pfx + "-filters");
+  const prog = panel.querySelector("#" + pfx + "-progress");
+  const cardEl = panel.querySelector("#" + pfx + "-card");
+  const mediaEl = panel.querySelector("#" + pfx + "-media");
+  const wordEl = panel.querySelector("#" + pfx + "-word");
+  const catEl = panel.querySelector("#" + pfx + "-cat");
+  const hintEl = panel.querySelector("#" + pfx + "-hint");
+  const posEl = panel.querySelector("#" + pfx + "-pos");
+  const totalEl = panel.querySelector("#" + pfx + "-total");
+  const prevBtn = panel.querySelector("#" + pfx + "-prev");
+  const nextBtn = panel.querySelector("#" + pfx + "-next");
+  const audioBtn = panel.querySelector("#" + pfx + "-audio");
 
   function deckList() {
-    return filter === "all" ? bank : bank.filter(x => x.cat === filter);
+    return filter === "all" ? pack : pack.filter(x => x.cat === filter);
   }
 
   function updateProgress() {
-    prog.textContent = studied.size;
+    prog.textContent = pack.filter(x => studied.has(x.cat + "::" + x.t)).length;
   }
 
   function playCurrentAudio() {
@@ -1650,22 +1697,23 @@ sections.forEach((sec, i) => {
     e.stopPropagation();
     playCurrentAudio();
   });
-  panel.querySelector("#pb-hide").addEventListener("click", () => setRevealed(false));
-  panel.querySelector("#pb-reveal").addEventListener("click", () => setRevealed(true));
-  panel.querySelector("#pb-reset-study").addEventListener("click", () => {
-    studied = new Set();
+  panel.querySelector("#" + pfx + "-hide").addEventListener("click", () => setRevealed(false));
+  panel.querySelector("#" + pfx + "-reveal").addEventListener("click", () => setRevealed(true));
+  panel.querySelector("#" + pfx + "-reset-study").addEventListener("click", () => {
+    pack.forEach(x => studied.delete(x.cat + "::" + x.t));
     saveStudied();
     revealed = false;
     stopCityAudio();
     renderCard();
   });
 
-  // Keyboard only while Picture Box accordion is open
   document.addEventListener("keydown", (e) => {
     const host = panel.closest("details");
-    if (host && !host.open) return;
+    if (!host || !host.open) return;
     const tag = (e.target && e.target.tagName) || "";
     if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    const openDecks = [...document.querySelectorAll("details.activity[open]")].filter(d => d.querySelector(".deck-stage"));
+    if (openDecks.length > 1 && !host.contains(document.activeElement)) return;
     if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
     else if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
     else if (e.key === " " || e.key === "Enter") {
@@ -1679,14 +1727,29 @@ sections.forEach((sec, i) => {
 
   renderFilters();
   renderCard();
-})();
+}
 
-/* ========== 1 MEMORY (photo + word sets, like Adjectives) ========== */
+buildVocabDeck(document.getElementById("panel-0"), {
+  setId: 1,
+  idPrefix: "pb",
+  intro: "Vocabulary I. Look at the picture. Say the English word. Then tap to check. Use the filters to practice one group at a time.",
+  filters: ["all", "places", "city", "verbs", "adjectives", "prepositions", "expressions"]
+});
+
+buildVocabDeck(document.getElementById("panel-1"), {
+  setId: 2,
+  idPrefix: "pb2",
+  intro: "Vocabulary II. New places, city elements, verbs, adjectives, and prepositions. Look at the picture. Say the English word. Then tap to check.",
+  filters: ["all", "places", "city", "verbs", "adjectives", "prepositions"]
+});
+
+/* ========== 2 MEMORY (photo + word sets, like Adjectives) ========== */
 (function buildMemory() {
-  const panel = document.getElementById("panel-1");
+  const panel = document.getElementById("panel-2");
   const PAIR_COUNT = 6;
   panel.innerHTML = `
-    <p class="intro">Match each <strong>picture</strong> with its <strong>English word</strong>. Choose a set, then play a new round anytime.</p>
+    <p class="intro">Match each <strong>picture</strong> with its <strong>English word</strong>. Choose Vocabulary I or II, then a set, and play.</p>
+    <div class="filter-row" id="mem-pack" style="margin-bottom:8px"></div>
     <div class="filter-row" id="mem-sets" style="margin-bottom:12px"></div>
     <div class="score-bar">
       <span>Moves: <strong id="mem-moves">0</strong></span>
@@ -1707,13 +1770,28 @@ sections.forEach((sec, i) => {
   }
   const toastWord = document.getElementById("itc-match-word");
 
-  const sets = [
-    { id: "places", label: "Places", cats: ["places"] },
-    { id: "city", label: "City Elements", cats: ["city"] },
-    { id: "verbs", label: "Road Verbs", cats: ["verbs"] },
-    { id: "adjectives", label: "Adjectives", cats: ["adjectives"] },
-    { id: "mix", label: "Mixed", cats: ["places", "city", "verbs", "adjectives"] }
+  const packs = [
+    { id: 1, label: "Vocabulary I" },
+    { id: 2, label: "Vocabulary II" }
   ];
+  const setsByPack = {
+    1: [
+      { id: "places", label: "Places", cats: ["places"] },
+      { id: "city", label: "City Elements", cats: ["city"] },
+      { id: "verbs", label: "Road Verbs", cats: ["verbs"] },
+      { id: "adjectives", label: "Adjectives", cats: ["adjectives"] },
+      { id: "mix", label: "Mixed", cats: ["places", "city", "verbs", "adjectives"] }
+    ],
+    2: [
+      { id: "places", label: "Places", cats: ["places"] },
+      { id: "city", label: "City Elements", cats: ["city"] },
+      { id: "verbs", label: "Road Verbs", cats: ["verbs"] },
+      { id: "adjectives", label: "Adjectives", cats: ["adjectives"] },
+      { id: "prepositions", label: "Prepositions", cats: ["prepositions"] },
+      { id: "mix", label: "Mixed", cats: ["places", "city", "verbs", "adjectives", "prepositions"] }
+    ]
+  };
+  let packId = 1;
   let setId = "places";
   let tiles = [];
   let open = [];
@@ -1723,13 +1801,19 @@ sections.forEach((sec, i) => {
   let pairTotal = PAIR_COUNT;
   let toastTimer = null;
 
+  const packRow = panel.querySelector("#mem-pack");
   const setsRow = panel.querySelector("#mem-sets");
   const board = panel.querySelector("#mem-board");
   const fb = panel.querySelector("#mem-fb");
 
+  function currentSets() {
+    return setsByPack[packId] || setsByPack[1];
+  }
+
   function poolForSet() {
+    const sets = currentSets();
     const set = sets.find(s => s.id === setId) || sets[0];
-    return picturedOnly().filter(p => set.cats.includes(p.cat));
+    return picturedOf(packId).filter(p => set.cats.includes(p.cat));
   }
 
   function updateStats() {
@@ -1738,9 +1822,27 @@ sections.forEach((sec, i) => {
     panel.querySelector("#mem-pair-total").textContent = String(pairTotal);
   }
 
+  function renderPackButtons() {
+    packRow.innerHTML = "";
+    packs.forEach(p => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "filter-btn" + (packId === p.id ? " active" : "");
+      b.textContent = p.label;
+      b.addEventListener("click", () => {
+        packId = p.id;
+        if (!currentSets().some(s => s.id === setId)) setId = currentSets()[0].id;
+        renderPackButtons();
+        renderSetButtons();
+        start();
+      });
+      packRow.appendChild(b);
+    });
+  }
+
   function renderSetButtons() {
     setsRow.innerHTML = "";
-    sets.forEach(s => {
+    currentSets().forEach(s => {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "filter-btn" + (setId === s.id ? " active" : "");
@@ -1844,15 +1946,17 @@ sections.forEach((sec, i) => {
   }
 
   panel.querySelector("#mem-restart").addEventListener("click", start);
+  renderPackButtons();
   renderSetButtons();
   start();
 })();
 
-/* ========== 2 WHAT'S THIS ========== */
+/* ========== 3 WHAT'S THIS ========== */
 (function buildWhats() {
-  const panel = document.getElementById("panel-2");
+  const panel = document.getElementById("panel-3");
   panel.innerHTML = `
-    <p class="intro">Picture or diagram → choose the correct English word. Mixes all categories with images.</p>
+    <p class="intro">Picture → choose the correct English word. Pick Vocabulary I, II, or both.</p>
+    <div class="filter-row" id="wt-pack" style="margin-bottom:12px"></div>
     <div class="score-bar">
       <span>Score: <strong id="wt-score">0</strong></span>
       <span>Q <strong id="wt-num">1</strong> / <strong id="wt-total">12</strong></span>
@@ -1861,9 +1965,27 @@ sections.forEach((sec, i) => {
     <div class="actions"><button type="button" class="btn ghost" id="wt-restart">Restart</button></div>
     <div class="feedback" id="wt-fb"></div>
   `;
-  let queue = [], i = 0, score = 0;
+  let queue = [], i = 0, score = 0, packId = 1;
+  const packRow = panel.querySelector("#wt-pack");
+  const packBtns = [
+    { id: 1, label: "Vocabulary I" },
+    { id: 2, label: "Vocabulary II" },
+    { id: 0, label: "Both" }
+  ];
+  function wtPool() { return packId ? picturedOf(packId) : picturedOf(); }
+  function renderPack() {
+    packRow.innerHTML = "";
+    packBtns.forEach(p => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "filter-btn" + (packId === p.id ? " active" : "");
+      b.textContent = p.label;
+      b.addEventListener("click", () => { packId = p.id; renderPack(); start(); });
+      packRow.appendChild(b);
+    });
+  }
   function start() {
-    queue = shuffle(picturedOnly()).slice(0, 12);
+    queue = shuffle(wtPool()).slice(0, 12);
     i = 0; score = 0;
     panel.querySelector("#wt-score").textContent = "0";
     panel.querySelector("#wt-total").textContent = queue.length;
@@ -1880,7 +2002,7 @@ sections.forEach((sec, i) => {
     }
     panel.querySelector("#wt-num").textContent = i + 1;
     const item = queue[i];
-    const wrongs = shuffle(picturedOnly().filter(p => p.t !== item.t)).slice(0, 3).map(p => p.t);
+    const wrongs = shuffle(wtPool().filter(p => p.t !== item.t)).slice(0, 3).map(p => p.t);
     const opts = shuffle([item.t, ...wrongs]);
     const stage = panel.querySelector("#wt-stage");
     stage.innerHTML = `<div class="quiz-img-wrap"><img src="${item.img}" alt=""></div><div class="quiz-opts" id="wt-opts"></div>`;
@@ -1902,14 +2024,16 @@ sections.forEach((sec, i) => {
     });
   }
   panel.querySelector("#wt-restart").addEventListener("click", start);
+  renderPack();
   start();
 })();
 
-/* ========== 3 SPEED ========== */
+/* ========== 4 SPEED ========== */
 (function buildSpeed() {
-  const panel = document.getElementById("panel-3");
+  const panel = document.getElementById("panel-4");
   panel.innerHTML = `
-    <p class="intro">60 seconds · places, city elements, verbs, and adjectives with pictures.</p>
+    <p class="intro">60 seconds · pick Vocabulary I, II, or both, then name as many pictures as you can.</p>
+    <div class="filter-row" id="sp-pack" style="margin-bottom:12px"></div>
     <div class="score-bar">
       <span class="speed-timer" id="sp-time">60</span>
       <span>Score: <strong id="sp-score">0</strong></span>
@@ -1921,11 +2045,28 @@ sections.forEach((sec, i) => {
     </div>
     <div class="feedback" id="sp-fb"></div>
   `;
-  let timer = null, left = 60, score = 0, running = false, current = null;
-  const pool = picturedOnly();
+  let timer = null, left = 60, score = 0, running = false, current = null, packId = 1;
+  function pool() { return packId ? picturedOf(packId) : picturedOf(); }
+  const packRow = panel.querySelector("#sp-pack");
+  [
+    { id: 1, label: "Vocabulary I" },
+    { id: 2, label: "Vocabulary II" },
+    { id: 0, label: "Both" }
+  ].forEach(p => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "filter-btn" + (packId === p.id ? " active" : "");
+    b.textContent = p.label;
+    b.addEventListener("click", () => {
+      packId = p.id;
+      [...packRow.children].forEach((el, i) => el.classList.toggle("active", [1, 2, 0][i] === packId));
+    });
+    packRow.appendChild(b);
+  });
   function nextItem() {
-    current = pool[Math.floor(Math.random() * pool.length)];
-    const wrongs = shuffle(pool.filter(p => p.t !== current.t)).slice(0, 3).map(p => p.t);
+    const src = pool();
+    current = src[Math.floor(Math.random() * src.length)];
+    const wrongs = shuffle(src.filter(p => p.t !== current.t)).slice(0, 3).map(p => p.t);
     const opts = shuffle([current.t, ...wrongs]);
     const area = panel.querySelector("#sp-area");
     area.innerHTML = `<div class="speed-prompt"><div class="media"><img src="${current.img}" alt=""></div><strong>What is it?</strong></div><div class="quiz-opts" id="sp-opts"></div>`;
@@ -1992,7 +2133,7 @@ const prepQs = [
 ];
 
 (function buildPrep() {
-  const panel = document.getElementById("panel-4");
+  const panel = document.getElementById("panel-5");
   const pin = (name, soft) =>
     `<div class="map-pin${soft ? " soft" : ""}"><span>${name}</span></div>`;
 
@@ -2067,7 +2208,7 @@ const matchExpr = [
 ];
 
 (function buildDir() {
-  const panel = document.getElementById("panel-5");
+  const panel = document.getElementById("panel-6");
   const exprCards = bank.filter(x => x.cat === "expressions");
   panel.innerHTML = `
     <p class="intro">Each picture shows a useful line for the street. Tap a card to reveal the expression, then practice the dialogue and quiz.</p>
@@ -2117,11 +2258,11 @@ const matchExpr = [
   mountMatch(panel);
 })();
 
-/* ========== 6 SPEAKING ========== */
+/* ========== 8 SPEAKING ========== */
 (function buildSpeak() {
-  const panel = document.getElementById("panel-6");
+  const panel = document.getElementById("panel-7");
   panel.innerHTML = `
-    <p class="intro">Use the full Picture Box. Work in pairs. Tourist + Local.</p>
+    <p class="intro">Use Picture Box or Vocabulary II. Work in pairs. Tourist + Local.</p>
     <div class="note"><strong>Language bank:</strong> Excuse me · Can you help me? · Where is the…? · How can I get to…? · Go straight · Turn left/right · Cross the street · next to / across from / between / near</div>
     <div class="speak-card">
       <div class="prompt">Task 1 · Picture Box challenge</div>
@@ -2136,7 +2277,11 @@ const matchExpr = [
       <p>From the <strong>school</strong> to the <strong>restaurant</strong>: use go straight, turn left/right, cross the street, and one preposition.</p>
     </div>
     <div class="speak-card">
-      <div class="prompt">Task 4 · Role-play</div>
+      <div class="prompt">Task 4 · Vocabulary II</div>
+      <p>Open <strong>Vocabulary II</strong>. Student A describes a new place (bakery, city hall, gas station…). Student B guesses the English word. Then swap.</p>
+    </div>
+    <div class="speak-card">
+      <div class="prompt">Task 5 · Role-play</div>
       <p><strong>A:</strong> Excuse me. How can I get to the library?<br>
       <strong>B:</strong> Go straight… It's across from…<br>
       <strong>A:</strong> Thank you. · <strong>B:</strong> You're welcome.</p>
@@ -2146,7 +2291,7 @@ const matchExpr = [
 
 /* ========== 7 CITY SPINNER — SPEAKING WHEEL ========== */
 (function buildCitySpinner() {
-  const panel = document.getElementById("panel-7");
+  const panel = document.getElementById("panel-8");
   const SECTORS = [
     {
       label: "Places",
