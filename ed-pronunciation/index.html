@@ -459,7 +459,7 @@ const rounds = {
     { w: 'downloaded', s: 'id' }, { w: 'posted', s: 'id' }, { w: 'accepted', s: 'id' }, { w: 'contacted', s: 'id' },
     { w: 'published', s: 't' }, { w: 'launched', s: 't' }, { w: 'discussed', s: 't' }, { w: 'promised', s: 't' },
     { w: 'introduced', s: 't' }, { w: 'practised', s: 't' }, { w: 'reached', s: 't' }, { w: 'announced', s: 't' },
-    { w: 'organised', s: 'd' }, { w: 'managed', s: 'd' }, { w: 'applied', s: 'd' }, { w: 'delayed', s: 'd' },
+    { w: 'realized', s: 'd' }, { w: 'organized', s: 'd' }, { w: 'surprised', s: 'd' }, { w: 'delayed', s: 'd' },
     { w: 'complained', s: 'd' }, { w: 'registered', s: 'd' }, { w: 'achieved', s: 'd' }, { w: 'reserved', s: 'd' }
   ]
 };
@@ -482,7 +482,11 @@ Object.assign(lex, {
   laughed: 't', passed: 't', focused: 't', relaxed: 't', mixed: 't', increased: 't',
   reduced: 't', produced: 't', searched: 't', switched: 't', picked: 't', packed: 't',
   travelled: 'd', traveled: 'd', cleaned: 'd', used: 'd', trained: 'd', learned: 'd',
-  remembered: 'd', considered: 'd', imagined: 'd', recognized: 'd', recognised: 'd'
+  remembered: 'd', considered: 'd', imagined: 'd', recognized: 'd', recognised: 'd',
+  surprised: 'd', advertised: 'd', analyzed: 'd', analysed: 'd', criticized: 'd',
+  criticised: 'd', specialized: 'd', specialised: 'd', organized: 'd',
+  apologized: 'd', closed: 'd', praised: 'd', raised: 'd', amazed: 'd',
+  refused: 'd', advised: 'd', caused: 'd'
 });
 
 function shuffle(arr) {
@@ -510,7 +514,8 @@ const soundQuiz = [
   { q: 'Which word has a different -ed sound?', opts: ['called', 'played', 'waited', 'lived'], ans: 2, why: '<strong>wait</strong> ends in /t/ → <em>waited</em> is /ˈweɪtɪd/. The others are /d/.' },
   { q: 'Look at the last <em>sound</em>, not the last letter. How is <em>laughed</em> pronounced?', opts: ['/læft/  — /t/', '/læfd/ — /d/', '/læfɪd/ — extra syllable'], ans: 0, why: '<em>laugh</em> ends in /f/ (voiceless), even though it is spelled <em>-gh</em>. So -ed = <strong>/t/</strong>.' },
   { q: 'How many syllables are in <em>decided</em>?', opts: ['2  (de-cided)', '3  (de-cid-ed)', '4  (de-ci-ded-ed)'], ans: 1, why: '<em>decide</em> has 2 syllables; the last sound is /d/, so we add /ɪd/ → <strong>de-cid-ed</strong> (3).' },
-  { q: 'A typical Spanish-speaker mistake is…', opts: ['dropping -ed completely in writing', 'adding an extra syllable to words like <em>walked</em> and <em>played</em>', 'using /t/ after every vowel'], ans: 1, why: 'Spanish often reads every letter. <em>walked</em> is one syllable /wɔːkt/, not /wɔːkɪd/.' }
+  { q: 'A typical Spanish-speaker mistake is…', opts: ['dropping -ed completely in writing', 'adding an extra syllable to words like <em>walked</em> and <em>played</em>', 'using /t/ after every vowel'], ans: 1, why: 'Spanish often reads every letter. <em>walked</em> is one syllable /wɔːkt/, not /wɔːkɪd/.' },
+  { q: 'How do you pronounce <em>realized</em> / <em>realised</em>?', opts: ['/ˈrɪəlaɪzt/  — /t/, because of the z', '/ˈrɪəlaɪzd/  — /d/, because /z/ is voiced', '/ˈrɪəlaɪzɪd/  — extra syllable'], ans: 1, why: 'English <strong>z = /z/</strong> (voiced). Voiced last sound → <strong>-ed = /d/</strong>. Not /t/, and not /ɪd/.' }
 ];
 
 const extraQuiz = [
@@ -530,7 +535,8 @@ const oddQuiz = [
   { q: 'Which word does <em>not</em> end with /d/?', opts: ['called', 'enjoyed', 'hoped', 'lived'], ans: 2, why: '<em>hope</em> ends in /p/ (voiceless) → <strong>hoped /t/</strong>.' },
   { q: 'posted, updated, downloaded, published — the odd one is…', opts: ['posted', 'updated', 'downloaded', 'published'], ans: 3, why: 'The first three end in /t/ or /d/ as base verbs → /ɪd/. <em>publish</em> ends in /ʃ/ → <strong>published /t/</strong>.' },
   { q: 'Which past form is pronounced with /ɪd/?', opts: ['applied', 'accepted', 'delayed', 'managed'], ans: 1, why: '<em>accept</em> ends in /t/ → ac-cep-<strong>ted</strong>. The others are /d/.' },
-  { q: 'How is <em>used</em> (past of the verb <em>use</em>) usually said?', opts: ['/juːst/  like “used to”', '/juːzd/  with /d/', '/juːzɪd/  extra syllable'], ans: 1, why: 'As a past verb (“I used my phone”) it is <strong>/juːzd/</strong>. The adjective/habit form <em>used to</em> is /juːst/ — different word job.' }
+  { q: 'How is <em>used</em> (past of the verb <em>use</em>) usually said?', opts: ['/juːst/  like “used to”', '/juːzd/  with /d/', '/juːzɪd/  extra syllable'], ans: 1, why: 'As a past verb (“I used my phone”) it is <strong>/juːzd/</strong>. The adjective/habit form <em>used to</em> is /juːst/ — different word job.' },
+  { q: 'promised vs realized — which is true?', opts: ['Both end with /t/ because s and z look similar', 'promised /t/  ·  realized /d/', 'Both need an extra syllable /ɪd/'], ans: 1, why: '<em>promise</em> ends in voiceless /s/ → <strong>promised /t/</strong>. <em>realize</em> ends in voiced /z/ → <strong>realized /d/</strong>.' }
 ];
 
 const readingQs = [
@@ -625,7 +631,7 @@ function grammarHTML() {
         <div class="ipa">/d/</div>
         <p>Last sound is a vowel or a voiced consonant (not /d/). No extra beat.</p>
         <div class="chip-row">
-          ${['played','called','arrived','opened','enjoyed','changed'].map(w =>
+          ${['played','called','arrived','realized','organized','surprised'].map(w =>
             `<span class="chip">${w}<button class="play" type="button" onclick="playWord('${w}',event)">▶</button></span>`
           ).join('')}
         </div>
@@ -642,15 +648,26 @@ function grammarHTML() {
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">2</span>Last letter can lie</h4>
-      <table class="compare-table">
+      <h4><span class="section-index">2</span>Last letter can lie — especially <em>z</em></h4>
+      <div class="note" style="margin-top:0">
+        <strong>Z is not /t/.</strong> English <em>z</em> is the voiced sound <strong>/z/</strong> (your throat vibrates).
+        So <em>realize → realized</em> is <strong>/ˈrɪəlaɪzd/</strong> with /d/, never /t/ and never an extra syllable.
+        Spanish <em>z</em> often feels like /s/; do not transfer that here.
+      </div>
+      <div class="mistake-row" style="margin-top:12px">
+        <div class="wrong-example"><strong>Not this</strong>realized /ˈrɪəlaɪzt/<br>organized /ˈɔːrɡənaɪzt/</div>
+        <div class="right-example"><strong>This</strong>realized /ˈrɪəlaɪz<strong>d</strong>/<br>organized /ˈɔːrɡənaɪz<strong>d</strong>/</div>
+      </div>
+      <table class="compare-table" style="margin-top:14px">
         <thead><tr><th>Word</th><th>Last sound of the base</th><th>-ed</th><th>Why</th></tr></thead>
         <tbody>
-          <tr><td>laughed</td><td>/f/  (not “gh”)</td><td>/t/</td><td>Spelling is voiceless /f/.</td></tr>
-          <tr><td>watched</td><td>/tʃ/</td><td>/t/</td><td>Ends in “ch”, sound is /tʃ/.</td></tr>
+          <tr><td>realized / realised</td><td>/z/  (letter z)</td><td>/d/</td><td>Z is voiced. Not /t/.</td></tr>
+          <tr><td>organized / organised</td><td>/z/</td><td>/d/</td><td>Same family: -ize / -ise = /aɪz/.</td></tr>
+          <tr><td>surprised</td><td>/z/</td><td>/d/</td><td>surprise ends in /z/.</td></tr>
+          <tr><td>promised</td><td>/s/  (letter s)</td><td>/t/</td><td>Voiceless /s/ is the other team.</td></tr>
           <tr><td>used (verb)</td><td>/z/</td><td>/d/</td><td>“I used my phone” = /juːzd/.</td></tr>
+          <tr><td>laughed</td><td>/f/  (not “gh”)</td><td>/t/</td><td>Spelling is voiceless /f/.</td></tr>
           <tr><td>posted</td><td>/t/</td><td>/ɪd/</td><td>Looks short; still needs the extra syllable.</td></tr>
-          <tr><td>downloaded</td><td>/d/</td><td>/ɪd/</td><td>Long word, extra beat at the end.</td></tr>
         </tbody>
       </table>
     </section>
@@ -782,7 +799,7 @@ function speakingHTML() {
       ${[
         ['wanted','/ɪd/'],['needed','/ɪd/'],['decided','/ɪd/'],['waited','/ɪd/'],
         ['walked','/t/'],['asked','/t/'],['booked','/t/'],['finished','/t/'],
-        ['called','/d/'],['arrived','/d/'],['explained','/d/'],['changed','/d/']
+        ['called','/d/'],['arrived','/d/'],['realized','/d/'],['organized','/d/']
       ].map(([w,ipa]) => `
         <div class="drill">
           <div><b>${w}</b><small>${ipa}</small></div>
@@ -790,7 +807,7 @@ function speakingHTML() {
         </div>`).join('')}
     </div>
     <div class="actions">
-      <button type="button" class="btn secondary" onclick="speak('wanted. needed. decided. waited. walked. asked. booked. finished. called. arrived. explained. changed.', 0.72)">Play all twelve</button>
+      <button type="button" class="btn secondary" onclick="speak('wanted. needed. decided. waited. walked. asked. booked. finished. called. arrived. realized. organized.', 0.72)">Play all twelve</button>
     </div>
 
     <h5>Spin · 40–50 seconds</h5>
@@ -878,7 +895,7 @@ const storyVerbs = ['prepared','booked','packed','checked','waited','changed','c
 function storyHTML() {
   const seen = {};
   return storyBeats.map(p => {
-    const html = p.replace(/\b([A-Za-z]+ed|practised|apologised|realised|cancelled)\b/g, (m) => {
+    const html = p.replace(/\b([A-Za-z]+ed|practised|apologised|apologized|realised|realized|cancelled|canceled)\b/g, (m) => {
       const key = m.toLowerCase();
       if (!lex[key]) return m;
       const n = (seen[key] = (seen[key] || 0) + 1);
