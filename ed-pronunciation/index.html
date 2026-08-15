@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>-ed Pronunciation | B1 | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --brand-logo: url("../favicon.png");
+      --t: #1e2d5a;
+      --d: #238d85;
+      --id: #c46b3a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.05; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.84rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-1px); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #f4fbfa; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: clamp(0.75rem, 3vw, 1.75rem); top: 50%;
+      transform: translateY(-50%); width: clamp(140px, 20vw, 240px); max-width: 30%;
+      aspect-ratio: 1 / 1; border-radius: 999px; background-image: var(--brand-logo);
+      background-repeat: no-repeat; background-position: center; background-size: contain;
+      opacity: 0.14; pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px);
+      max-width: min(740px, calc(100% - clamp(100px, 22vw, 230px)));
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
+      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 900;
+    }
+    .hero h2 { margin: 0; font-size: clamp(1.85rem, 4.5vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 900; }
+    .hero h2 span { color: var(--teal); }
+    .hero-copy { color: var(--muted); margin: 16px 0 0; max-width: 660px; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: #fff;
+      border: 1px solid rgba(30, 45, 90, 0.1); font-size: 0.72rem; font-weight: 800; color: var(--navy);
+    }
+
+    .lesson-card {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
+    .lesson-head h3 { margin: 0; font-size: 1.28rem; }
+    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
+
+    .tabs {
+      display: flex; gap: 6px; overflow-x: auto; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); background: #fff; scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted); font-weight: 800;
+      font-size: 0.78rem; padding: 9px 11px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab:hover, .tab.active { color: var(--navy); background: var(--wash); }
+    .panel { display: none; padding: 24px; }
+    .panel.active { display: block; }
+    .panel h4 { margin: 0 0 12px; color: var(--navy); font-size: 1.12rem; }
+    .panel h5 { margin: 18px 0 8px; color: var(--navy); font-size: 1rem; }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; line-height: 1.6; }
+    .box.tint { background: var(--wash); }
+    .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+    .tip { padding: 12px 14px; border-left: 4px solid var(--teal); background: var(--wash); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+
+    .grammar-hero {
+      padding: 20px; background: var(--wash); border: 1px solid rgba(35, 141, 133, 0.18);
+      border-radius: 16px; margin-bottom: 18px;
+    }
+    .grammar-hero h4 { font-size: 1.2rem; margin: 0 0 8px; color: var(--navy); }
+    .grammar-hero p { margin: 0; line-height: 1.65; color: var(--muted); }
+    .section-index {
+      width: 28px; height: 28px; display: grid; place-items: center;
+      border-radius: 8px; background: var(--navy); color: #fff; font-size: 0.75rem; flex: 0 0 auto;
+    }
+    .grammar-section { margin-top: 20px; }
+    .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
+
+    .sound-card { position: relative; overflow: hidden; }
+    .sound-card .ipa {
+      display: inline-block; font-weight: 900; font-size: 1.45rem; letter-spacing: 0.02em; margin: 4px 0 8px;
+    }
+    .sound-card.id .ipa { color: var(--id); }
+    .sound-card.t .ipa { color: var(--t); }
+    .sound-card.d .ipa { color: var(--d); }
+    .sound-card .label {
+      display: block; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 800; color: var(--muted); margin-bottom: 2px;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--soft); font-weight: 800; font-size: 0.8rem; color: var(--navy);
+    }
+    .chip button.play {
+      width: 22px; height: 22px; border: 0; border-radius: 999px;
+      background: var(--navy); color: #fff; font-size: 0.65rem; padding: 0; line-height: 1;
+    }
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; }
+    .compare-table th, .compare-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    .compare-table th { background: var(--navy); color: #fff; font-size: 0.78rem; }
+    .compare-table tr:last-child td { border-bottom: 0; }
+    .compare-table td:first-child { font-weight: 850; color: var(--navy); width: 22%; }
+    .mistake-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .wrong-example, .right-example { padding: 12px; border-radius: 11px; border: 1px solid; }
+    .wrong-example { background: var(--bad); border-color: #efd0d0; }
+    .right-example { background: var(--good); border-color: #cce7d5; }
+    .wrong-example strong, .right-example strong { display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+    .wrong-example strong { color: #a94e4e; }
+    .right-example strong { color: #287849; }
+    .step-row { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start; margin-top: 10px; }
+    .step-num {
+      width: 28px; height: 28px; border-radius: 999px; background: var(--gold); color: var(--navy);
+      display: grid; place-items: center; font-weight: 900; font-size: 0.78rem;
+    }
+
+    .bins { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+    .bin {
+      min-height: 168px; border: 2px dashed #cbd6e2; border-radius: 14px; padding: 12px; background: var(--soft);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .bin.over { border-color: var(--teal); background: var(--wash); }
+    .bin h5 { margin: 0 0 8px; font-size: 0.92rem; }
+    .bin.id { border-color: rgba(196, 107, 58, 0.35); }
+    .bin.t { border-color: rgba(30, 45, 90, 0.25); }
+    .bin.d { border-color: rgba(35, 141, 133, 0.35); }
+    .bin-drop { display: flex; flex-wrap: wrap; gap: 6px; min-height: 72px; }
+    .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+    .word {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid var(--line); background: #fff; border-radius: 999px;
+      padding: 7px 10px 7px 8px; font-weight: 800; font-size: 0.84rem; color: var(--navy);
+      user-select: none; touch-action: none;
+    }
+    .word.selected { background: var(--wash); border-color: var(--teal); box-shadow: 0 0 0 2px rgba(91, 184, 176, 0.25); }
+    .word.good { background: var(--good); border-color: #6fbd8c; }
+    .word.bad { background: var(--bad); border-color: #d88383; }
+    .word .mini-play {
+      width: 22px; height: 22px; border: 0; border-radius: 999px; background: var(--navy); color: #fff; font-size: 0.62rem;
+    }
+    .score { font-weight: 800; color: var(--teal-dark); }
+
+    .exercise { border: 1px solid var(--line); border-radius: 14px; margin-top: 14px; overflow: hidden; }
+    .exercise-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      border: 0; padding: 14px 16px; background: var(--soft); text-align: left; color: var(--ink);
+    }
+    .exercise-toggle:hover { background: var(--wash); }
+    .exercise-title small { display: block; color: var(--muted); font-weight: 600; margin-top: 3px; }
+    .exercise-content { display: none; padding: 16px; }
+    .exercise.open .exercise-content { display: block; }
+    .chevron { color: var(--teal-dark); font-weight: 900; transition: transform 0.2s; }
+    .exercise.open .chevron { transform: rotate(180deg); }
+
+    .q-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q-block:last-child { border-bottom: 0; }
+    .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; }
+    .option-btn {
+      display: block; width: 100%; text-align: left; border: 1px solid var(--line);
+      background: #fff; border-radius: 10px; padding: 10px 12px; margin-top: 7px; color: var(--ink);
+    }
+    .option-btn:hover { border-color: var(--teal); }
+    .option-btn.selected { border-color: var(--teal); background: var(--wash); }
+    .option-btn.correct { border-color: #6fbd8c; background: var(--good); }
+    .option-btn.wrong { border-color: #d88383; background: var(--bad); }
+    .why-box { display: none; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 0.84rem; line-height: 1.5; color: var(--muted); }
+    .why-box.show { display: block; }
+    .why-box strong { color: var(--navy); }
+
+    .reading-text { font-size: 1.02rem; line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .reading-text p { margin: 0 0 15px; }
+    .reading-text p:last-child { margin-bottom: 0; }
+    .ed-hit {
+      cursor: pointer; border-radius: 6px; padding: 1px 4px;
+      border-bottom: 2px dotted var(--teal); font-weight: 800; color: var(--teal-dark); background: transparent;
+    }
+    .ed-hit.found-id { background: #fde8d8; color: var(--id); border-bottom-color: var(--id); }
+    .ed-hit.found-t { background: #e4e9f4; color: var(--t); border-bottom-color: var(--t); }
+    .ed-hit.found-d { background: #d8f1ee; color: var(--d); border-bottom-color: var(--d); }
+    .ed-hit.miss { background: var(--bad); }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .legend span { font-size: 0.74rem; font-weight: 800; padding: 5px 9px; border-radius: 999px; }
+    .legend .l-id { background: #fde8d8; color: var(--id); }
+    .legend .l-t { background: #e4e9f4; color: var(--t); }
+    .legend .l-d { background: #d8f1ee; color: var(--d); }
+
+    .audio-bar {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 14px; background: var(--navy); color: #fff; border-radius: 12px; margin-bottom: 12px;
+    }
+    .audio-bar p { margin: 0; color: #d7ecea; font-size: 0.82rem; line-height: 1.45; flex: 1 1 200px; }
+    .play-big {
+      width: 46px; height: 46px; border: 0; border-radius: 999px; background: var(--teal);
+      color: var(--navy); font-weight: 900; font-size: 1rem; flex: 0 0 auto;
+    }
+    .dialogue { display: grid; gap: 8px; }
+    .dialogue-line { padding: 10px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); line-height: 1.55; }
+    .dialogue-line:nth-child(even) { background: var(--wash); }
+    .speaker-name { color: var(--teal-dark); font-weight: 900; }
+    .transcript { display: none; margin-top: 14px; }
+    .transcript.show { display: block; }
+    .listening-focus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+    .focus-card { padding: 10px; border-radius: 10px; background: var(--soft); border: 1px solid var(--line); font-size: 0.78rem; }
+    .focus-card strong { display: block; color: var(--navy); margin-bottom: 3px; }
+
+    .drill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+    .drill {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: #fff;
+    }
+    .drill b { color: var(--navy); }
+    .drill small { display: block; color: var(--muted); font-weight: 700; }
+    .wheel-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: center; }
+    .wheel {
+      width: 260px; height: 260px; border-radius: 50%;
+      background: conic-gradient(var(--teal) 0 16.66%, var(--gold) 0 33.33%, #2f5d8c 0 50%, #8abfba 0 66.66%, #d9c48f 0 83.33%, var(--navy) 0);
+      border: 10px solid #fff; box-shadow: 0 8px 26px rgba(30, 45, 90, 0.18);
+      position: relative; transition: transform 2.2s cubic-bezier(.2, .8, .2, 1); cursor: pointer; margin: 0 auto;
+    }
+    .wheel::after {
+      content: "SPIN"; position: absolute; inset: 86px; border-radius: 50%;
+      display: grid; place-items: center; background: #fff; color: var(--navy); font-weight: 900;
+    }
+    .pointer { text-align: center; color: var(--gold); font-size: 1.6rem; line-height: 0.6; }
+    .speak-prompt { font-size: 1.08rem; line-height: 1.5; padding: 16px; background: var(--wash); border-radius: 14px; min-height: 72px; font-weight: 750; }
+    .peer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .peer label {
+      display: flex; gap: 6px; align-items: center; background: #fff; border: 1px solid var(--line);
+      border-radius: 999px; padding: 6px 10px; font-size: 0.78rem; font-weight: 700;
+    }
+
+    textarea, input[type=text] { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65; }
+    textarea { min-height: 150px; resize: vertical; }
+    textarea:focus, input:focus, select:focus { outline: 3px solid rgba(91, 184, 176, 0.2); border-color: var(--teal); }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--teal); background: var(--wash); color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    .highlight-box { margin-top: 12px; padding: 12px 14px; border-radius: 12px; background: var(--soft); line-height: 1.75; display: none; }
+    .highlight-box.show { display: block; }
+    .mark-id { background: #fde8d8; border-radius: 4px; padding: 0 3px; font-weight: 800; }
+    .mark-t { background: #e4e9f4; border-radius: 4px; padding: 0 3px; font-weight: 800; }
+    .mark-d { background: #d8f1ee; border-radius: 4px; padding: 0 3px; font-weight: 800; }
+    .mark-unk { background: #fff3c4; border-radius: 4px; padding: 0 3px; font-weight: 800; }
+
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+    .cando .lvl { font-size: 0.72rem; font-weight: 800; color: var(--teal-dark); }
+    .progress-mini { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 10px 0 4px; }
+    .progress-mini span { display: block; height: 100%; background: var(--teal); width: 0; transition: width 0.3s; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; align-items: center; }
+    .btn { border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 850; background: var(--navy); color: #fff; }
+    .btn.secondary { background: var(--teal-dark); }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .btn.warm { background: var(--id); }
+    .feedback { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px; line-height: 1.5; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+    .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
+
+    .round-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+    .round-bar button[aria-pressed="true"] { background: var(--navy); color: #fff; }
+
+    @media (max-width: 760px) {
+      .grid-2, .grid-3, .bins, .mistake-row, .wheel-wrap, .listening-focus { grid-template-columns: 1fr; }
+      .hero-inner { max-width: 100%; }
+      .hero::after { opacity: 0.1; width: 120px; }
+      .shell { padding: 14px; }
+      .topbar { top: 8px; border-radius: 14px; }
+      .brand p, .mode-pill { display: none; }
+      .panel { padding: 18px; }
+      .home-btn .home-btn-label { display: none; }
+      .cando label { grid-template-columns: auto 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+      <div>
+        <h1>-ed Pronunciation</h1>
+        <p>Three endings · one past-tense story</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
+        <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
+      </a>
+      <span class="mode-pill">B1 · 50–60 min</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Pronunciation · Regular past &amp; past participle</span>
+      <h2>Walked, played, <span>wanted</span></h2>
+      <p class="hero-copy">
+        The letters <strong>-ed</strong> hide three sounds: <em>/t/</em>, <em>/d/</em> and the extra syllable <em>/ɪd/</em>.
+        Hear them, sort them, then use them in Maya's delayed-flight story — without adding a beat that is not there.
+      </p>
+      <div class="path" aria-label="Lesson path">
+        <span>1 Sounds</span><span>2 Sort</span><span>3 Practice</span><span>4 Read</span>
+        <span>5 Listen</span><span>6 Speak</span><span>7 Write</span><span>8 Can-do</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-card">
+    <header class="lesson-head">
+      <h3>The morning that almost ruined the interview</h3>
+      <p>Notice the last sound of the verb, not the last letter. Feedback explains <em>why</em> — especially the extra-syllable trap.</p>
+    </header>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Lesson sections"></nav>
+    <div id="panels"></div>
+  </article>
+
+  <footer class="footer">English by Israel Ventura · -ed pronunciation · Progress is stored in this browser</footer>
+</div>
+
+<script>
+const sections = ['1 Sounds', '2 Sort', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('edPronB1v1') || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem('edPronB1v1', JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+const quizBank = {};
+
+/* ========== AUDIO ========== */
+let voicesReady = [];
+function loadVoices() {
+  voicesReady = speechSynthesis.getVoices();
+}
+if (window.speechSynthesis) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function pickVoice() {
+  const voices = voicesReady.length ? voicesReady : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  return voices.find(v => /en-GB/i.test(v.lang) && /Google|Female|Libby|Serena|Susan/i.test(v.name))
+    || voices.find(v => /en-US/i.test(v.lang) && /Google|Female|Samantha|Jenny|Aria/i.test(v.name))
+    || voices.find(v => /^en/i.test(v.lang))
+    || null;
+}
+
+function speak(text, rate) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  u.rate = rate || 0.88;
+  const v = pickVoice();
+  if (v) { u.voice = v; u.lang = v.lang; }
+  speechSynthesis.speak(u);
+}
+
+/* ========== WORD BANKS ========== */
+const rounds = {
+  1: [
+    { w: 'wanted', s: 'id' }, { w: 'needed', s: 'id' }, { w: 'decided', s: 'id' }, { w: 'started', s: 'id' },
+    { w: 'waited', s: 'id' }, { w: 'invited', s: 'id' }, { w: 'recommended', s: 'id' }, { w: 'completed', s: 'id' },
+    { w: 'walked', s: 't' }, { w: 'watched', s: 't' }, { w: 'finished', s: 't' }, { w: 'booked', s: 't' },
+    { w: 'asked', s: 't' }, { w: 'missed', s: 't' }, { w: 'checked', s: 't' }, { w: 'hoped', s: 't' },
+    { w: 'played', s: 'd' }, { w: 'called', s: 'd' }, { w: 'arrived', s: 'd' }, { w: 'opened', s: 'd' },
+    { w: 'enjoyed', s: 'd' }, { w: 'changed', s: 'd' }, { w: 'explained', s: 'd' }, { w: 'lived', s: 'd' }
+  ],
+  2: [
+    { w: 'expected', s: 'id' }, { w: 'suggested', s: 'id' }, { w: 'attended', s: 'id' }, { w: 'reported', s: 'id' },
+    { w: 'downloaded', s: 'id' }, { w: 'posted', s: 'id' }, { w: 'accepted', s: 'id' }, { w: 'contacted', s: 'id' },
+    { w: 'published', s: 't' }, { w: 'launched', s: 't' }, { w: 'discussed', s: 't' }, { w: 'promised', s: 't' },
+    { w: 'introduced', s: 't' }, { w: 'practised', s: 't' }, { w: 'reached', s: 't' }, { w: 'announced', s: 't' },
+    { w: 'organised', s: 'd' }, { w: 'managed', s: 'd' }, { w: 'applied', s: 'd' }, { w: 'delayed', s: 'd' },
+    { w: 'complained', s: 'd' }, { w: 'registered', s: 'd' }, { w: 'achieved', s: 'd' }, { w: 'reserved', s: 'd' }
+  ]
+};
+
+const lex = {};
+Object.values(rounds).flat().forEach(x => { lex[x.w] = x.s; });
+Object.assign(lex, {
+  prepared: 'd', packed: 't', cancelled: 'd', noticed: 't', formed: 'd', received: 'd',
+  sounded: 'id', agreed: 'd', rushed: 't', closed: 'd', jumped: 't', reviewed: 'd',
+  tried: 'd', apologised: 'd', apologized: 'd', emailed: 'd', offered: 'd', realised: 'd',
+  realized: 'd', failed: 'd', stayed: 'd', studied: 'd', worked: 't', helped: 't',
+  stopped: 't', looked: 't', liked: 't', dropped: 't', saved: 'd', shared: 'd',
+  answered: 'd', happened: 'd', planned: 'd', turned: 'd', returned: 'd', discovered: 'd',
+  believed: 'd', allowed: 'd', followed: 'd', showed: 'd', borrowed: 'd', worried: 'd',
+  moved: 'd', loved: 'd', caused: 'd', described: 'd', preferred: 'd', received: 'd',
+  delivered: 'd', prepared: 'd', compared: 'd', appeared: 'd', improved: 'd', developed: 'd',
+  confirmed: 'd', mentioned: 'd', subscribed: 'd', charged: 'd', connected: 'd', installed: 'd',
+  updated: 'id', texted: 'id', landed: 'id', avoided: 'id', requested: 'id', succeeded: 'id',
+  included: 'id', ended: 'id', visited: 'id', cooked: 't', washed: 't', talked: 't',
+  laughed: 't', passed: 't', focused: 't', relaxed: 't', mixed: 't', increased: 't',
+  reduced: 't', produced: 't', searched: 't', switched: 't', picked: 't', packed: 't',
+  travelled: 'd', traveled: 'd', cleaned: 'd', used: 'd', trained: 'd', learned: 'd',
+  remembered: 'd', considered: 'd', imagined: 'd', recognized: 'd', recognised: 'd'
+});
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function soundLabel(s) {
+  return s === 'id' ? '/ɪd/' : s === 't' ? '/t/' : '/d/';
+}
+
+function playWord(word, ev) {
+  if (ev) ev.stopPropagation();
+  speak(word, 0.78);
+}
+
+/* ========== QUIZZES ========== */
+const soundQuiz = [
+  { q: 'Which ending do you hear after a verb that already ends in /t/ or /d/?', opts: ['/t/', '/d/', '/ɪd/ — an extra syllable'], ans: 2, why: 'If the last sound is already /t/ or /d/, English adds a vowel: <strong>want-ed, need-ed, decid-ed</strong>.' },
+  { q: 'walked, watched, finished, booked — what do they share?', opts: ['An extra syllable /ɪd/', 'A final /t/ (no extra beat)', 'A final /d/'], ans: 1, why: 'The base verbs end in a <strong>voiceless</strong> sound (/k/, /tʃ/, /ʃ/, /k/), so -ed is just /t/.' },
+  { q: 'Which word has a different -ed sound?', opts: ['called', 'played', 'waited', 'lived'], ans: 2, why: '<strong>wait</strong> ends in /t/ → <em>waited</em> is /ˈweɪtɪd/. The others are /d/.' },
+  { q: 'Look at the last <em>sound</em>, not the last letter. How is <em>laughed</em> pronounced?', opts: ['/læft/  — /t/', '/læfd/ — /d/', '/læfɪd/ — extra syllable'], ans: 0, why: '<em>laugh</em> ends in /f/ (voiceless), even though it is spelled <em>-gh</em>. So -ed = <strong>/t/</strong>.' },
+  { q: 'How many syllables are in <em>decided</em>?', opts: ['2  (de-cided)', '3  (de-cid-ed)', '4  (de-ci-ded-ed)'], ans: 1, why: '<em>decide</em> has 2 syllables; the last sound is /d/, so we add /ɪd/ → <strong>de-cid-ed</strong> (3).' },
+  { q: 'A typical Spanish-speaker mistake is…', opts: ['dropping -ed completely in writing', 'adding an extra syllable to words like <em>walked</em> and <em>played</em>', 'using /t/ after every vowel'], ans: 1, why: 'Spanish often reads every letter. <em>walked</em> is one syllable /wɔːkt/, not /wɔːkɪd/.' }
+];
+
+const extraQuiz = [
+  { q: 'walked', opts: ['Same number of syllables as walk', 'One extra syllable'], ans: 0, why: '<em>walk</em> /wɔːk/ → <em>walked</em> /wɔːkt/. Last sound /k/ is voiceless → /t/, no extra beat.' },
+  { q: 'wanted', opts: ['Same number of syllables as want', 'One extra syllable'], ans: 1, why: '<em>want</em> ends in /t/ → <strong>wan-ted</strong> /ˈwɒntɪd/.' },
+  { q: 'played', opts: ['Same number of syllables as play', 'One extra syllable'], ans: 0, why: 'Vowel + -ed → /d/. <em>play</em> and <em>played</em> both have one syllable.' },
+  { q: 'needed', opts: ['Same number of syllables as need', 'One extra syllable'], ans: 1, why: '<em>need</em> ends in /d/ → <strong>need-ed</strong>.' },
+  { q: 'finished', opts: ['Same number of syllables as finish', 'One extra syllable'], ans: 0, why: '<em>finish</em> already has 2 syllables and ends in /ʃ/ → <em>finished</em> still has 2: /ˈfɪnɪʃt/.' },
+  { q: 'arrived', opts: ['Same number of syllables as arrive', 'One extra syllable'], ans: 0, why: '<em>arrive</em> ends in /v/ (voiced) → /d/. Two syllables both times: a-rrive / a-rrived.' },
+  { q: 'started', opts: ['Same number of syllables as start', 'One extra syllable'], ans: 1, why: '<em>start</em> ends in /t/ → <strong>star-ted</strong>.' },
+  { q: 'organised', opts: ['Same number of syllables as organise', 'One extra syllable'], ans: 0, why: '<em>organise</em> ends in /z/ → /d/. Do not add a beat: /ˈɔːɡənaɪzd/.' }
+];
+
+const oddQuiz = [
+  { q: 'Which word does <em>not</em> end with /t/?', opts: ['walked', 'watched', 'opened', 'asked'], ans: 2, why: '<em>open</em> ends in /n/ (voiced) → <strong>opened /d/</strong>.' },
+  { q: 'Which word needs the extra syllable /ɪd/?', opts: ['booked', 'missed', 'decided', 'changed'], ans: 2, why: '<em>decide</em> ends in /d/ → de-cid-<strong>ed</strong>.' },
+  { q: 'Which word does <em>not</em> end with /d/?', opts: ['called', 'enjoyed', 'hoped', 'lived'], ans: 2, why: '<em>hope</em> ends in /p/ (voiceless) → <strong>hoped /t/</strong>.' },
+  { q: 'posted, updated, downloaded, published — the odd one is…', opts: ['posted', 'updated', 'downloaded', 'published'], ans: 3, why: 'The first three end in /t/ or /d/ as base verbs → /ɪd/. <em>publish</em> ends in /ʃ/ → <strong>published /t/</strong>.' },
+  { q: 'Which past form is pronounced with /ɪd/?', opts: ['applied', 'accepted', 'delayed', 'managed'], ans: 1, why: '<em>accept</em> ends in /t/ → ac-cep-<strong>ted</strong>. The others are /d/.' },
+  { q: 'How is <em>used</em> (past of the verb <em>use</em>) usually said?', opts: ['/juːst/  like “used to”', '/juːzd/  with /d/', '/juːzɪd/  extra syllable'], ans: 1, why: 'As a past verb (“I used my phone”) it is <strong>/juːzd/</strong>. The adjective/habit form <em>used to</em> is /juːst/ — different word job.' }
+];
+
+const readingQs = [
+  { q: 'What almost stopped Maya from getting the job?', opts: ['She had not prepared any answers.', 'A cancelled flight made her late.', 'The assistant refused to wait.'], ans: 1, why: 'The airline cancelled the flight; the rest of the morning is her plan B.' },
+  { q: 'Why did Maya miss the first announcement?', opts: ['She was charging her phone.', 'She was still packing.', 'She had already boarded a train.'], ans: 0, why: 'The story says she missed the first message because she was charging her phone.' },
+  { q: 'What can we infer about Maya when she “jumped on anyway”?', opts: ['She enjoys taking risks for no reason.', 'She is determined not to lose the interview slot.', 'She prefers trains to planes.'], ans: 1, why: 'The doors were closing, but she still boarded — the interview deadline is driving her.' },
+  { q: 'Which -ed verb in the last paragraph is an extra-syllable /ɪd/ word?', opts: ['offered', 'emailed', 'completed', 'realised'], ans: 2, why: '<em>complete</em> ends in /t/ → com-ple-<strong>ted</strong> /kəmˈpliːtɪd/.' },
+  { q: 'What is the writer’s final point?', opts: ['Cheap flights are never a good idea.', 'A disaster can still produce a useful result.', 'Interviews should always start later.'], ans: 1, why: 'The worst morning also became “the most useful” — she got the job.' },
+  { q: 'In “She asked three different people”, how is <em>asked</em> pronounced?', opts: ['/ˈɑːskɪd/  extra syllable', '/ɑːskt/  one cluster, /t/', '/ɑːskd/  with /d/'], ans: 1, why: '<em>ask</em> ends in /k/ → <strong>asked /ɑːskt/</strong>. Do not add /ɪd/.' }
+];
+
+const listeningQs = [
+  { q: 'What is Leo mainly doing in the conversation?', opts: ['Blaming Maya for booking a cheap flight.', 'Helping her notice which -ed sounds she is still adding.', 'Offering her a lift to a second interview.'], ans: 1, why: 'He keeps correcting the extra syllable on <em>walked, missed, booked</em> and praising /ɪd/ words she already gets.' },
+  { q: 'Which word does Maya still want to say with an extra beat?', opts: ['decided', 'waited', 'walked', 'needed'], ans: 2, why: 'She laughs that <em>walked</em> “looks like two parts” — the classic spelling trap.' },
+  { q: 'Why does Leo mention “hand on your throat”?', opts: ['To check if the last sound of the base verb is voiced.', 'To stop Maya from speaking too fast.', 'To practise silent letters in <em>flight</em>.'], ans: 0, why: 'Voiced last sound → /d/; voiceless → /t/; /t/ or /d/ already → /ɪd/.' },
+  { q: 'What did the assistant actually do?', opts: ['Cancelled the interview.', 'Agreed to wait until eleven.', 'Asked Maya to call later.'], ans: 1, why: 'Maya says the assistant <em>agreed</em> to wait — /d/, not /ɪd/.' },
+  { q: 'How should <em>explained</em> be said?', opts: ['/ɪkˈspleɪnɪd/', '/ɪkˈspleɪnd/', '/ɪkˈspleɪnt/'], ans: 1, why: '<em>explain</em> ends in /n/ (voiced) → <strong>explained /ɪkˈspleɪnd/</strong>.' },
+  { q: 'What is their plan for the rest of the afternoon?', opts: ['Maya will record herself telling the story once more.', 'They will book another flight immediately.', 'Leo will write the email to the company.'], ans: 0, why: 'Leo asks her to retell the morning and tap the desk only on /ɪd/ words.' }
+];
+
+const candoItems = [
+  'I can explain the three -ed sounds and the last-sound rule.',
+  'I can sort common B1 regular verbs into /t/, /d/ and /ɪd/.',
+  'I can hear the extra syllable in wanted / needed / decided.',
+  'I do not add an extra beat to walked, played, finished or asked.',
+  'I can tell a short past story and keep the -ed endings clear.'
+];
+
+const speakPack = [
+  { prompt: 'Tell a partner about a journey that went wrong. Use at least four regular past verbs.', frames: ['I booked…', 'The train was delayed, so I waited…', 'I decided to…', 'Finally I arrived…'] },
+  { prompt: 'Describe a time you organised an event. Mix /t/, /d/ and /ɪd/.', frames: ['I organised…', 'I invited…', 'We discussed…', 'Everyone enjoyed…'] },
+  { prompt: 'Talk about a job or school application.', frames: ['I applied…', 'They contacted me…', 'I prepared…', 'I completed…'] },
+  { prompt: 'Retell Maya’s morning in 45 seconds, in your own words.', frames: ['She booked…', 'The flight was cancelled…', 'She called and explained…', 'She arrived and completed…'] },
+  { prompt: 'Complaints: a delayed delivery or a bad restaurant. Keep /t/ words short.', frames: ['I booked a table…', 'We waited…', 'I asked…', 'I complained…'] },
+  { prompt: 'A useful failure: something that went wrong but taught you something.', frames: ['I missed…', 'I realised…', 'I changed…', 'I improved…'] }
+];
+
+const writeStems = [
+  'Last Monday I booked',
+  'I waited for',
+  'Then I decided to',
+  'Nobody explained',
+  'I finally arrived',
+  'I realised that'
+];
+
+const listeningScript = [
+  ['Leo', 'So you actually completed the interview? You look wrecked.'],
+  ['Maya', 'I completed it. I also walked across half the city and missed the first announcement.'],
+  ['Leo', 'Careful — walked and missed. No extra syllable. /wɔːkt/, /mɪst/.'],
+  ['Maya', 'I know, I know. They look like two parts when I read them. Wanted is the one with the extra beat.'],
+  ['Leo', 'Exactly. You wanted the job, you needed a plan B, you decided to take the train. Those three get /ɪd/.'],
+  ['Maya', 'And I called the assistant and explained everything. She agreed to wait until eleven.'],
+  ['Leo', 'Called, explained, agreed — all /d/. Put your hand on your throat: you should feel the last sound of the verb.'],
+  ['Maya', 'I booked a cheap flight, though. That one is /t/, right?'],
+  ['Leo', 'Booked, checked, asked, reached — short and sharp. Do not give them a second beat.'],
+  ['Maya', 'Fine. This afternoon I will practise the story again. If I add an extra syllable, tap the table.']
+];
+
+/* ========== PANELS ========== */
+function grammarHTML() {
+  return `
+    <h4>1 · The three faces of -ed</h4>
+    <div class="grammar-hero">
+      <h4>Listen to the last sound of the verb — not the last letter.</h4>
+      <p>Regular past forms and past participles add <strong>-ed</strong> in writing. In speech they split into three endings. Spanish speakers often give every word an extra syllable. Only one group deserves it.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="box sound-card id">
+        <span class="label">Extra syllable</span>
+        <div class="ipa">/ɪd/</div>
+        <p>Last sound of the verb is already <strong>/t/</strong> or <strong>/d/</strong>. Add a beat.</p>
+        <div class="chip-row">
+          ${['wanted','needed','decided','started','waited','invited'].map(w =>
+            `<span class="chip">${w}<button class="play" type="button" onclick="playWord('${w}',event)">▶</button></span>`
+          ).join('')}
+        </div>
+      </div>
+      <div class="box sound-card t">
+        <span class="label">Voiceless + short</span>
+        <div class="ipa">/t/</div>
+        <p>Last sound is voiceless: /p k f s ʃ tʃ θ/. No extra beat.</p>
+        <div class="chip-row">
+          ${['walked','watched','finished','booked','asked','missed'].map(w =>
+            `<span class="chip">${w}<button class="play" type="button" onclick="playWord('${w}',event)">▶</button></span>`
+          ).join('')}
+        </div>
+      </div>
+      <div class="box sound-card d">
+        <span class="label">Voiced + short</span>
+        <div class="ipa">/d/</div>
+        <p>Last sound is a vowel or a voiced consonant (not /d/). No extra beat.</p>
+        <div class="chip-row">
+          ${['played','called','arrived','opened','enjoyed','changed'].map(w =>
+            `<span class="chip">${w}<button class="play" type="button" onclick="playWord('${w}',event)">▶</button></span>`
+          ).join('')}
+        </div>
+      </div>
+    </div>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">1</span>A 10-second test</h4>
+      <div class="box tint">
+        <div class="step-row"><span class="step-num">1</span><div>Say the <strong>base verb</strong> (walk, want, play).</div></div>
+        <div class="step-row"><span class="step-num">2</span><div>Feel the last sound. Hand on your throat: vibration = voiced.</div></div>
+        <div class="step-row"><span class="step-num">3</span><div>/t/ or /d/ already? → <strong>/ɪd/</strong>. Voiceless? → <strong>/t/</strong>. Voiced or vowel? → <strong>/d/</strong>.</div></div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">2</span>Last letter can lie</h4>
+      <table class="compare-table">
+        <thead><tr><th>Word</th><th>Last sound of the base</th><th>-ed</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>laughed</td><td>/f/  (not “gh”)</td><td>/t/</td><td>Spelling is voiceless /f/.</td></tr>
+          <tr><td>watched</td><td>/tʃ/</td><td>/t/</td><td>Ends in “ch”, sound is /tʃ/.</td></tr>
+          <tr><td>used (verb)</td><td>/z/</td><td>/d/</td><td>“I used my phone” = /juːzd/.</td></tr>
+          <tr><td>posted</td><td>/t/</td><td>/ɪd/</td><td>Looks short; still needs the extra syllable.</td></tr>
+          <tr><td>downloaded</td><td>/d/</td><td>/ɪd/</td><td>Long word, extra beat at the end.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">3</span>The extra-syllable trap</h4>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Typical error</strong>walk-<em>ed</em> /wɔːkɪd/<br>play-<em>ed</em> /pleɪɪd/<br>ask-<em>ed</em> /ɑːskɪd/</div>
+        <div class="right-example"><strong>Clear English</strong>walked /wɔːkt/<br>played /pleɪd/<br>asked /ɑːskt/</div>
+      </div>
+      <div class="note"><strong>Spanish habit:</strong> we like to pronounce every letter. In English, <em>-ed</em> is an extra syllable <em>only</em> after /t/ and /d/. Everywhere else it is a quick /t/ or /d/ stuck to the verb.</div>
+    </section>
+
+    <div class="tip"><strong>Classroom cue:</strong> clap once for /t/ and /d/ words, clap twice for /ɪd/. If students clap twice on <em>walked</em>, stop and redo the last-sound test.</div>
+    <div class="actions">
+      <button type="button" class="btn secondary" onclick="speak('wanted, needed, decided. walked, watched, finished. played, called, arrived.', 0.8)">Play the three groups</button>
+    </div>
+  `;
+}
+
+function sortHTML() {
+  return `
+    <h4>2 · Sort the verbs</h4>
+    <p class="intro">Tap ▶ to hear the word. Then click the word and click the correct bin — or drag it. Round 1 is core B1; Round 2 uses longer classroom and work verbs.</p>
+    <div class="round-bar">
+      <button type="button" class="btn ghost" id="round1Btn" aria-pressed="true" onclick="loadRound(1)">Round 1 · core</button>
+      <button type="button" class="btn ghost" id="round2Btn" aria-pressed="false" onclick="loadRound(2)">Round 2 · challenge</button>
+      <span class="score" id="sortScore">0 / 24 sorted</span>
+    </div>
+    <div class="bins">
+      <div class="bin id" data-bin="id" onclick="dropIn(this)"><h5>/ɪd/ · extra beat</h5><div class="bin-drop" id="bin-id"></div></div>
+      <div class="bin t" data-bin="t" onclick="dropIn(this)"><h5>/t/ · voiceless</h5><div class="bin-drop" id="bin-t"></div></div>
+      <div class="bin d" data-bin="d" onclick="dropIn(this)"><h5>/d/ · voiced</h5><div class="bin-drop" id="bin-d"></div></div>
+    </div>
+    <div class="word-bank" id="wordBank"></div>
+    <div class="actions">
+      <button type="button" class="btn ghost" onclick="loadRound(currentRound)">Reset this round</button>
+      <button type="button" class="btn secondary" onclick="speakAllBank()">Play remaining words</button>
+    </div>
+    <div class="feedback" id="sortFb"></div>
+    <div class="tip">Stuck? Say the base verb first: <em>want → wanted</em>, <em>walk → walked</em>, <em>play → played</em>.</div>
+  `;
+}
+
+function practiceHTML() {
+  return `
+    <h4>3 · Practice · why, not only right/wrong</h4>
+    <p class="intro">Three short workouts. Open one, answer, read the grey box, then move on. Do not rush Round 2 of Sort if this still feels shaky.</p>
+
+    <div class="exercise open" id="ex1">
+      <button type="button" class="exercise-toggle" onclick="toggleEx(this)">
+        <span class="exercise-title"><strong>A · The rule in words</strong><small>6 questions · choose the sound or the reason</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content" id="soundQuiz"></div>
+    </div>
+
+    <div class="exercise" id="ex2">
+      <button type="button" class="exercise-toggle" onclick="toggleEx(this)">
+        <span class="exercise-title"><strong>B · Extra syllable clinic</strong><small>The Spanish-speaker trap · same beat or one more?</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content" id="extraQuiz"></div>
+    </div>
+
+    <div class="exercise" id="ex3">
+      <button type="button" class="exercise-toggle" onclick="toggleEx(this)">
+        <span class="exercise-title"><strong>C · Odd one out</strong><small>B1 verbs · last sound, not last letter</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content" id="oddQuiz"></div>
+    </div>
+  `;
+}
+
+function readingHTML() {
+  return `
+    <h4>4 · Reading · The morning that almost ruined the interview</h4>
+    <p class="intro">First, read for the story. Then tap every regular <strong>-ed</strong> verb. The word lights up in the colour of its sound. Irregular past forms (<em>had, bought, was</em>) are not tappable.</p>
+    <div class="legend">
+      <span class="l-id">/ɪd/ extra syllable</span>
+      <span class="l-t">/t/ voiceless</span>
+      <span class="l-d">/d/ voiced</span>
+      <span class="score" id="readScore">0 / 28 found</span>
+    </div>
+    <div class="reading-text" id="readingStory"></div>
+    <div class="actions">
+      <button type="button" class="btn ghost" onclick="resetReading()">Clear highlights</button>
+      <button type="button" class="btn secondary" onclick="revealReading()">Show all sounds</button>
+    </div>
+    <div class="feedback" id="readFb"></div>
+    <h5>Comprehension + one pronunciation check</h5>
+    <div id="readingQuiz"></div>
+  `;
+}
+
+function listeningHTML() {
+  return `
+    <h4>5 · Listening · Leo cleans up the extra beats</h4>
+    <p class="intro">Use the browser voice (headphones help). Listen once for the story, once for the three endings. Then answer.</p>
+    <div class="audio-bar">
+      <button type="button" class="play-big" onclick="playDialogue()" aria-label="Play dialogue">▶</button>
+      <div>
+        <strong>Maya &amp; Leo after the interview</strong>
+        <p>B1 dialogue · target words: walked, missed, wanted, needed, decided, called, explained, agreed, booked</p>
+      </div>
+      <button type="button" class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.3);background:transparent" onclick="stopTalk()">Stop</button>
+    </div>
+    <div class="listening-focus">
+      <div class="focus-card"><strong>/ɪd/</strong>wanted · needed · decided · completed</div>
+      <div class="focus-card"><strong>/t/</strong>walked · missed · booked · checked · asked</div>
+      <div class="focus-card"><strong>/d/</strong>called · explained · agreed · arrived</div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn ghost" onclick="toggleTranscript()">Show / hide transcript</button>
+    </div>
+    <div class="transcript" id="transcript"></div>
+    <h5>Listen again, then choose</h5>
+    <div id="listeningQuiz"></div>
+  `;
+}
+
+function speakingHTML() {
+  return `
+    <h4>6 · Speaking · hear, copy, then tell</h4>
+    <p class="intro">Do not jump into free talk cold. Drill the twelve key words, then spin for a 40–50 second story. Partner ticks the checklist.</p>
+    <h5>Listen and repeat</h5>
+    <div class="drill-grid">
+      ${[
+        ['wanted','/ɪd/'],['needed','/ɪd/'],['decided','/ɪd/'],['waited','/ɪd/'],
+        ['walked','/t/'],['asked','/t/'],['booked','/t/'],['finished','/t/'],
+        ['called','/d/'],['arrived','/d/'],['explained','/d/'],['changed','/d/']
+      ].map(([w,ipa]) => `
+        <div class="drill">
+          <div><b>${w}</b><small>${ipa}</small></div>
+          <button type="button" class="btn" style="padding:6px 10px" onclick="playWord('${w}')">▶</button>
+        </div>`).join('')}
+    </div>
+    <div class="actions">
+      <button type="button" class="btn secondary" onclick="speak('wanted. needed. decided. waited. walked. asked. booked. finished. called. arrived. explained. changed.', 0.72)">Play all twelve</button>
+    </div>
+
+    <h5>Spin · 40–50 seconds</h5>
+    <div class="wheel-wrap">
+      <div>
+        <div class="pointer" aria-hidden="true">▼</div>
+        <div class="wheel" id="wheel" role="button" tabindex="0" aria-label="Spin the speaking wheel"
+          onclick="spin()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();spin();}"></div>
+      </div>
+      <div>
+        <div class="speak-prompt" id="speakPrompt">Click the wheel to get a speaking challenge.</div>
+        <div id="speakHelp" style="display:none;margin-top:12px">
+          <div class="box tint">
+            <strong>Sentence frames</strong>
+            <ul id="speakFrames" style="margin:8px 0 0;padding-left:18px;line-height:1.7"></ul>
+          </div>
+          <div class="peer">
+            <span style="font-size:.78rem;font-weight:800;width:100%">Partner checklist</span>
+            <label><input type="checkbox"> Used a /t/ word (short)</label>
+            <label><input type="checkbox"> Used a /d/ word (short)</label>
+            <label><input type="checkbox"> Used an /ɪd/ word (extra beat)</label>
+            <label><input type="checkbox"> No extra syllable on walked / asked / booked</label>
+          </div>
+        </div>
+        <button type="button" class="btn secondary" style="margin-top:14px" onclick="spin()">Spin the wheel</button>
+      </div>
+    </div>
+    <div class="tip"><strong>Classroom flow:</strong> A speaks → B ticks → swap. Two spins each is enough. Teacher only interrupts for extra syllables on /t/ and /d/ words.</div>
+  `;
+}
+
+function writingHTML() {
+  return `
+    <h4>7 · Writing · a day that went wrong</h4>
+    <p class="intro">Write 100–140 words about a real or invented problem (travel, an application, a cancelled plan). Then run the sound highlighter. It guesses from a B1 verb list — check anything marked amber.</p>
+    <div class="box tint"><strong>Must include:</strong> at least 8 regular -ed verbs · at least one of each sound · one sentence about what you realised afterwards</div>
+    <div class="stems">
+      ${writeStems.map(s => `<button type="button" onclick="insertStem(${JSON.stringify(s)})">${s}…</button>`).join('')}
+    </div>
+    <textarea id="writingBox" placeholder="Last Monday I booked an early train, but nobody announced the platform change…">${state.writing || ''}</textarea>
+    <div class="actions">
+      <button type="button" class="btn" onclick="checkWriting()">Save &amp; highlight -ed sounds</button>
+      <button type="button" class="btn ghost" onclick="showWriteModel()">Show model</button>
+    </div>
+    <div class="highlight-box" id="writeHighlight"></div>
+    <div class="feedback" id="writeFeedback"></div>
+    <div class="note" id="modelAnswer" style="display:none">
+      <strong>Model:</strong> Last Monday I <span class="mark-t">booked</span> an early train and <span class="mark-t">packed</span> too quickly. At the station nobody <span class="mark-t">announced</span> the platform change, so I <span class="mark-t">missed</span> the first service. I <span class="mark-id">waited</span> twenty minutes, <span class="mark-id">contacted</span> my manager and <span class="mark-d">explained</span> the delay. She <span class="mark-d">agreed</span> to start without me. I finally <span class="mark-d">arrived</span>, <span class="mark-d">apologised</span> and <span class="mark-id">completed</span> the presentation. That evening I <span class="mark-d">realised</span> that I had <span class="mark-d">learned</span> more from the mess than from a perfect morning.
+    </div>
+  `;
+}
+
+function exitHTML() {
+  return `
+    <h4>8 · Can-do · exit ticket</h4>
+    <p class="intro">Be honest — this is for you and your teacher, not a grade. Then write three true past sentences about yesterday and mark each -ed sound.</p>
+    <div class="cando" id="candoBox">
+      ${candoItems.map((t, i) => `
+        <label>
+          <input type="checkbox" data-cando="${i}" ${state.cando && state.cando[i] ? 'checked' : ''} onchange="saveCando()">
+          <span>${t}</span>
+          <span class="lvl">B1</span>
+        </label>`).join('')}
+    </div>
+    <div class="progress-mini"><span id="candoBar"></span></div>
+    <p style="margin:0;font-size:.85rem;color:var(--muted)" id="candoLabel">0 / 5 can-do statements</p>
+    <h5>Micro production · yesterday (3 sentences)</h5>
+    <textarea id="exitWrite" placeholder="1. I …ed …  (/t/ or /d/ or /ɪd/)&#10;2.&#10;3.">${state.exitWrite || ''}</textarea>
+    <button type="button" class="btn" style="margin-top:10px" onclick="checkExit()">Save exit ticket</button>
+    <div class="feedback" id="exitFb"></div>
+    <div class="tip"><strong>Done?</strong> If 4–5 boxes are ticked and your three sentences mix the sounds without extra beats on walked / played / asked, you are ready for freer past-tense speaking.</div>
+  `;
+}
+
+/* ========== READING STORY ========== */
+const storyBeats = [
+  'Maya had prepared for weeks. She booked a cheap early flight, packed her bag the night before and checked the gate on her phone. At the airport she waited near gate twelve. Then everything changed.',
+  'The airline cancelled the flight without a clear announcement. Maya missed the first message because she was charging her phone. When she finally noticed, a long line had already formed. She asked three different people, received three different answers and started to panic.',
+  'She decided not to give up. She called the company, explained the delay and asked if they could move her interview. The assistant sounded busy but agreed to wait until eleven. Maya reserved a seat on the next train, rushed through security and reached the platform just as the doors closed. She jumped on anyway.',
+  'On the train she reviewed her notes, practised her answers and tried to look calm. She arrived at the office twenty minutes late, introduced herself, apologised and completed the interview. Two days later the company emailed her: they had offered her the job. Maya realised that the worst morning of the month had also been the most useful.'
+];
+
+const storyVerbs = ['prepared','booked','packed','checked','waited','changed','cancelled','missed','noticed','formed','asked','received','started','decided','called','explained','asked','sounded','agreed','reserved','rushed','reached','closed','jumped','reviewed','practised','tried','arrived','introduced','apologised','completed','emailed','offered','realised'];
+
+function storyHTML() {
+  const seen = {};
+  return storyBeats.map(p => {
+    const html = p.replace(/\b([A-Za-z]+ed|practised|apologised|realised|cancelled)\b/g, (m) => {
+      const key = m.toLowerCase();
+      if (!lex[key]) return m;
+      const n = (seen[key] = (seen[key] || 0) + 1);
+      return `<span class="ed-hit" data-word="${key}" data-sound="${lex[key]}" data-n="${n}" onclick="tapEd(this)">${m}</span>`;
+    });
+    return `<p>${html}</p>`;
+  }).join('');
+}
+
+/* ========== RENDER ========== */
+function render() {
+  document.getElementById('tabs').innerHTML = sections.map((s, i) =>
+    `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" role="tab" onclick="openTab(${i})">${s}</button>`
+  ).join('');
+  const htmls = [grammarHTML(), sortHTML(), practiceHTML(), readingHTML(), listeningHTML(), speakingHTML(), writingHTML(), exitHTML()];
+  document.getElementById('panels').innerHTML = htmls.map((h, i) =>
+    `<section class="panel ${i === (state.tab || 0) ? 'active' : ''}">${h}</section>`
+  ).join('');
+
+  loadRound(state.round || 1);
+  renderQuiz('soundQuiz', soundQuiz, 'sound');
+  renderQuiz('extraQuiz', extraQuiz, 'extra');
+  renderQuiz('oddQuiz', oddQuiz, 'odd');
+  document.getElementById('readingStory').innerHTML = storyHTML();
+  renderQuiz('readingQuiz', readingQs, 'reading');
+  document.getElementById('transcript').innerHTML =
+    `<div class="dialogue">${listeningScript.map(([who, line]) =>
+      `<div class="dialogue-line"><span class="speaker-name">${who}:</span> ${line}</div>`
+    ).join('')}</div>`;
+  renderQuiz('listeningQuiz', listeningQs, 'listening');
+  updateCandoBar();
+  updateReadScore();
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((x, n) => x.classList.toggle('active', n === i));
+  document.querySelectorAll('.panel').forEach((x, n) => x.classList.toggle('active', n === i));
+  const lesson = document.querySelector('.lesson-card');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function toggleEx(btn) {
+  const ex = btn.closest('.exercise');
+  if (!ex) return;
+  ex.classList.toggle('open');
+}
+
+/* ========== SORT ========== */
+let currentRound = 1;
+let selectedWord = null;
+
+function wordEl(item) {
+  const el = document.createElement('span');
+  el.className = 'word';
+  el.draggable = true;
+  el.dataset.word = item.w;
+  el.dataset.sound = item.s;
+  el.innerHTML = `<button type="button" class="mini-play" aria-label="Play ${item.w}">▶</button> ${item.w}`;
+  el.querySelector('.mini-play').onclick = (e) => playWord(item.w, e);
+  el.onclick = (e) => {
+    if (e.target.closest('.mini-play')) return;
+    if (el.classList.contains('good')) return;
+    document.querySelectorAll('.word').forEach(x => x.classList.remove('selected'));
+    selectedWord = el;
+    el.classList.add('selected');
+  };
+  el.addEventListener('dragstart', () => { selectedWord = el; });
+  return el;
+}
+
+function loadRound(n) {
+  currentRound = n;
+  state.round = n;
+  save();
+  selectedWord = null;
+  const r1 = document.getElementById('round1Btn');
+  const r2 = document.getElementById('round2Btn');
+  if (r1) r1.setAttribute('aria-pressed', n === 1 ? 'true' : 'false');
+  if (r2) r2.setAttribute('aria-pressed', n === 2 ? 'true' : 'false');
+  ['id', 't', 'd'].forEach(k => {
+    const box = document.getElementById('bin-' + k);
+    if (box) box.innerHTML = '';
+  });
+  const bank = document.getElementById('wordBank');
+  if (!bank) return;
+  bank.innerHTML = '';
+  shuffle(rounds[n]).forEach(item => bank.appendChild(wordEl(item)));
+  document.querySelectorAll('.bin').forEach(bin => {
+    bin.ondragover = e => { e.preventDefault(); bin.classList.add('over'); };
+    bin.ondragleave = () => bin.classList.remove('over');
+    bin.ondrop = e => { e.preventDefault(); dropIn(bin); };
+  });
+  updateSortScore();
+}
+
+function dropIn(bin) {
+  bin.classList.remove('over');
+  if (!selectedWord || selectedWord.classList.contains('good')) return;
+  const ok = selectedWord.dataset.sound === bin.dataset.bin;
+  selectedWord.classList.remove('selected', 'bad');
+  if (ok) {
+    selectedWord.classList.add('good');
+    selectedWord.draggable = false;
+    bin.querySelector('.bin-drop').appendChild(selectedWord);
+  } else {
+    selectedWord.classList.add('bad');
+    setTimeout(() => selectedWord && selectedWord.classList.remove('bad'), 650);
+  }
+  selectedWord = null;
+  updateSortScore();
+}
+
+function updateSortScore() {
+  const good = document.querySelectorAll('#wordBank .word.good, .bin-drop .word.good').length;
+  const total = (rounds[currentRound] || []).length;
+  const el = document.getElementById('sortScore');
+  if (el) el.textContent = `${good} / ${total} sorted`;
+  const fb = document.getElementById('sortFb');
+  if (!fb) return;
+  if (good === total && total) {
+    fb.className = 'feedback show good';
+    fb.textContent = currentRound === 1
+      ? 'Round 1 complete. Open Round 2 for longer B1 verbs (published, downloaded, organised…).'
+      : 'Both rounds done. You can hear the last-sound rule, not just the easy examples.';
+  } else {
+    fb.className = 'feedback';
+    fb.textContent = '';
+  }
+}
+
+function speakAllBank() {
+  const left = [...document.querySelectorAll('#wordBank .word')].map(x => x.dataset.word);
+  if (!left.length) { speak('All words are already sorted.'); return; }
+  speak(left.join('. '), 0.8);
+}
+
+/* ========== QUIZ ENGINE ========== */
+function renderQuiz(id, qs, key) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  quizBank[key] = qs;
+  el.innerHTML = qs.map((item, i) => `
+    <div class="q-block">
+      <p class="q-prompt">${i + 1}. ${item.q}</p>
+      ${item.opts.map((o, j) =>
+        `<button type="button" class="option-btn" data-quiz="${key}" data-q="${i}" data-a="${j}" onclick="answer(this)">${o}</button>`
+      ).join('')}
+      <div class="why-box" id="why-${key}-${i}"></div>
+    </div>
+  `).join('') + `<div class="feedback" id="fb-${key}"></div>`;
+}
+
+function answer(btn) {
+  const k = btn.dataset.quiz;
+  const q = Number(btn.dataset.q);
+  const item = quizBank[k] && quizBank[k][q];
+  if (!item) return;
+  document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+    x.classList.remove('selected', 'correct', 'wrong');
+  });
+  const ok = Number(btn.dataset.a) === item.ans;
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if (!ok) {
+    document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+      if (Number(x.dataset.a) === item.ans) x.classList.add('correct');
+    });
+  }
+  const whyEl = document.getElementById(`why-${k}-${q}`);
+  if (whyEl) {
+    whyEl.classList.add('show');
+    whyEl.innerHTML = (ok ? '✓ ' : '→ ') + item.why;
+  }
+  state[k] = state[k] || {};
+  state[k][q] = ok;
+  save();
+  const total = quizBank[k].length;
+  const done = Object.keys(state[k]).length;
+  const score = Object.values(state[k]).filter(Boolean).length;
+  const fb = document.getElementById(`fb-${k}`);
+  if (!fb) return;
+  fb.className = 'feedback show ' + (done >= total && score === total ? 'good' : 'warn');
+  fb.textContent = `Progress: ${score} correct · ${done} answered` +
+    (done >= total && score < total ? ' · Read the grey boxes and try the ones you missed again later.' : '');
+}
+
+/* ========== READING ========== */
+function tapEd(el) {
+  if (el.classList.contains('found-id') || el.classList.contains('found-t') || el.classList.contains('found-d')) return;
+  const s = el.dataset.sound;
+  el.classList.add('found-' + s);
+  updateReadScore();
+}
+
+function resetReading() {
+  document.querySelectorAll('.ed-hit').forEach(el => {
+    el.className = 'ed-hit';
+  });
+  updateReadScore();
+}
+
+function revealReading() {
+  document.querySelectorAll('.ed-hit').forEach(el => {
+    el.className = 'ed-hit found-' + el.dataset.sound;
+  });
+  updateReadScore();
+}
+
+function updateReadScore() {
+  const all = document.querySelectorAll('.ed-hit');
+  const found = document.querySelectorAll('.ed-hit[class*="found-"]');
+  const el = document.getElementById('readScore');
+  if (el) el.textContent = `${found.length} / ${all.length} found`;
+  const fb = document.getElementById('readFb');
+  if (!fb) return;
+  if (all.length && found.length === all.length) {
+    fb.className = 'feedback show good';
+    fb.textContent = 'Every regular -ed verb is marked. Gold-orange = extra syllable, navy = /t/, teal = /d/. Now do the questions.';
+  } else {
+    fb.className = 'feedback';
+  }
+}
+
+/* ========== LISTENING ========== */
+function playDialogue() {
+  const text = listeningScript.map(([who, line]) => `${who}. ${line}`).join(' ');
+  speak(text, 0.9);
+}
+function stopTalk() {
+  if (window.speechSynthesis) speechSynthesis.cancel();
+}
+function toggleTranscript() {
+  const el = document.getElementById('transcript');
+  if (el) el.classList.toggle('show');
+}
+
+/* ========== SPEAKING ========== */
+let wheelDeg = 0;
+function spin() {
+  const pack = speakPack[Math.floor(Math.random() * speakPack.length)];
+  wheelDeg += 720 + Math.floor(Math.random() * 360);
+  const wheel = document.getElementById('wheel');
+  if (wheel) wheel.style.transform = `rotate(${wheelDeg}deg)`;
+  const prompt = document.getElementById('speakPrompt');
+  const help = document.getElementById('speakHelp');
+  const frames = document.getElementById('speakFrames');
+  if (prompt) prompt.textContent = pack.prompt;
+  if (frames) frames.innerHTML = pack.frames.map(f => `<li>${f}</li>`).join('');
+  if (help) help.style.display = 'block';
+}
+
+/* ========== WRITING ========== */
+function insertStem(s) {
+  const box = document.getElementById('writingBox');
+  if (!box) return;
+  const pad = box.value && !box.value.endsWith('\n') && box.value.length ? ' ' : '';
+  box.value += pad + s + ' ';
+  box.focus();
+}
+
+function classifyToken(raw) {
+  const w = raw.toLowerCase().replace(/[^a-z']/g, '');
+  if (lex[w]) return { w, s: lex[w] };
+  if (/ed$/.test(w) && w.length > 3) return { w, s: 'unk' };
+  return null;
+}
+
+function checkWriting() {
+  const box = document.getElementById('writingBox');
+  const fb = document.getElementById('writeFeedback');
+  const hi = document.getElementById('writeHighlight');
+  if (!box || !fb || !hi) return;
+  state.writing = box.value;
+  save();
+  const words = box.value.trim().split(/\s+/).filter(Boolean);
+  const found = [];
+  hi.innerHTML = box.value.replace(/[A-Za-z']+/g, (tok) => {
+    const info = classifyToken(tok);
+    if (!info) return tok;
+    found.push(info);
+    const cls = info.s === 'unk' ? 'mark-unk' : 'mark-' + info.s;
+    return `<span class="${cls}">${tok}</span>`;
+  }).replace(/\n/g, '<br>');
+  hi.classList.add('show');
+  const counts = { id: 0, t: 0, d: 0, unk: 0 };
+  found.forEach(x => { counts[x.s] = (counts[x.s] || 0) + 1; });
+  const n = found.filter(x => x.s !== 'unk').length;
+  const mix = [counts.id, counts.t, counts.d].filter(c => c > 0).length;
+  const ok = n >= 8 && mix === 3 && words.length >= 80;
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.innerHTML = `About <strong>${words.length}</strong> words · <strong>${n}</strong> known -ed verbs
+    (${counts.id} × /ɪd/, ${counts.t} × /t/, ${counts.d} × /d/${counts.unk ? `, ${counts.unk} amber to check` : ''}).
+    ${ok ? ' Strong mix — now read it aloud and clap only on /ɪd/.' : ' Aim for 100–140 words, 8 regular verbs, and at least one of each sound.'}`;
+}
+
+function showWriteModel() {
+  const el = document.getElementById('modelAnswer');
+  if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+/* ========== CAN-DO ========== */
+function saveCando() {
+  state.cando = [...document.querySelectorAll('[data-cando]')].map(x => x.checked);
+  save();
+  updateCandoBar();
+}
+function updateCandoBar() {
+  const n = (state.cando || []).filter(Boolean).length;
+  const bar = document.getElementById('candoBar');
+  const lab = document.getElementById('candoLabel');
+  if (bar) bar.style.width = (n / 5 * 100) + '%';
+  if (lab) lab.textContent = `${n} / 5 can-do statements`;
+}
+function checkExit() {
+  const box = document.getElementById('exitWrite');
+  const fb = document.getElementById('exitFb');
+  if (!box || !fb) return;
+  state.exitWrite = box.value;
+  save();
+  const n = (state.cando || []).filter(Boolean).length;
+  const lines = box.value.split(/\n/).map(s => s.trim()).filter(Boolean);
+  fb.className = 'feedback show ' + (n >= 4 && lines.length >= 3 ? 'good' : 'warn');
+  fb.textContent = n >= 4 && lines.length >= 3
+    ? 'Exit ticket saved. You are ready for freer past-tense speaking this week.'
+    : 'Tick at least 4 can-do statements and write 3 sentences before you close the lesson.';
+}
+
+render();
+</script>
+</body>
+</html>
