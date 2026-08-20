@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>Reported Speech | B1 | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --brand-logo: url("../favicon.png");
+      --accent: #6b4c9a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(107, 76, 154, 0.14), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.05; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.84rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-1px); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #f6f4fb; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: clamp(0.75rem, 3vw, 1.75rem); top: 50%;
+      transform: translateY(-50%); width: clamp(140px, 20vw, 240px); max-width: 30%;
+      aspect-ratio: 1 / 1; border-radius: 999px; background-image: var(--brand-logo);
+      background-repeat: no-repeat; background-position: center; background-size: contain;
+      opacity: 0.14; pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px);
+      max-width: min(760px, calc(100% - clamp(100px, 22vw, 230px)));
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 900;
+    }
+    .hero h2 { margin: 0; font-size: clamp(1.85rem, 4.5vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 900; }
+    .hero h2 span { color: var(--accent); }
+    .hero-copy { color: var(--muted); margin: 16px 0 0; max-width: 680px; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: #fff;
+      border: 1px solid rgba(30, 45, 90, 0.1); font-size: 0.72rem; font-weight: 800; color: var(--navy);
+    }
+
+    .lesson-card {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
+    .lesson-head h3 { margin: 0; font-size: 1.28rem; }
+    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
+
+    .tabs {
+      display: flex; gap: 6px; overflow-x: auto; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); background: #fff; scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted); font-weight: 800;
+      font-size: 0.78rem; padding: 9px 11px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab:hover, .tab.active { color: var(--navy); background: #f3eefb; }
+    .panel { display: none; padding: 24px; }
+    .panel.active { display: block; }
+    .panel h4 { margin: 0 0 12px; color: var(--navy); font-size: 1.12rem; }
+    .panel h5 { margin: 18px 0 8px; color: var(--navy); font-size: 1rem; }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; line-height: 1.6; }
+    .box.tint { background: var(--wash); }
+    .box.lilac { background: #f6f3fb; border-color: rgba(107, 76, 154, 0.18); }
+    .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+    .tip { padding: 12px 14px; border-left: 4px solid var(--teal); background: var(--wash); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+
+    .grammar-hero {
+      padding: 20px; background: #f6f3fb; border: 1px solid rgba(107, 76, 154, 0.18);
+      border-radius: 16px; margin-bottom: 18px;
+    }
+    .grammar-hero h4 { font-size: 1.2rem; margin: 0 0 8px; color: var(--navy); }
+    .grammar-hero p { margin: 0; line-height: 1.65; color: var(--muted); }
+    .section-index {
+      width: 28px; height: 28px; display: grid; place-items: center;
+      border-radius: 8px; background: var(--accent); color: #fff; font-size: 0.75rem; flex: 0 0 auto; font-weight: 900;
+    }
+    .grammar-section { margin-top: 20px; }
+    .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
+
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; font-size: 0.92rem; }
+    .compare-table th, .compare-table td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    .compare-table th { background: var(--navy); color: #fff; font-size: 0.76rem; letter-spacing: 0.02em; }
+    .compare-table tr:last-child td { border-bottom: 0; }
+    .compare-table td:first-child { font-weight: 800; color: var(--navy); width: 22%; }
+    .compare-table em { color: var(--accent); font-style: normal; font-weight: 800; }
+    .table-wrap { overflow-x: auto; border-radius: 13px; }
+
+    .formula { font-weight: 900; color: var(--navy); font-size: 1.02rem; }
+    .example { color: var(--teal-dark); font-weight: 800; }
+    .direct { color: var(--accent); font-weight: 800; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .chip {
+      display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--soft); font-weight: 800; font-size: 0.78rem; color: var(--navy);
+    }
+    .chip.accent { background: #f3eefb; border-color: rgba(107, 76, 154, 0.28); color: var(--accent); }
+
+    .flip-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .flip {
+      border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: #fff; text-align: left; color: inherit;
+      min-height: 148px; display: grid; align-content: start; gap: 8px;
+    }
+    .flip .kicker { font-size: 0.7rem; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .flip.open { background: #f6f3fb; border-color: rgba(107, 76, 154, 0.35); }
+    .flip .reported { display: none; }
+    .flip.open .reported { display: block; }
+    .flip.open .direct-line { opacity: 0.55; }
+
+    .mistake-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .wrong-example, .right-example { padding: 12px; border-radius: 11px; border: 1px solid; }
+    .wrong-example { background: var(--bad); border-color: #efd0d0; }
+    .right-example { background: var(--good); border-color: #cce7d5; }
+    .wrong-example strong, .right-example strong { display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+    .wrong-example strong { color: #a94e4e; }
+    .right-example strong { color: #287849; }
+
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; }
+    .filter-bar button {
+      border: 1px solid var(--line); background: #fff; color: var(--navy);
+      border-radius: 999px; padding: 7px 12px; font-size: 0.78rem; font-weight: 800;
+    }
+    .filter-bar button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .exercise { border: 1px solid var(--line); border-radius: 14px; margin-top: 14px; overflow: hidden; }
+    .exercise-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      border: 0; padding: 14px 16px; background: var(--soft); text-align: left; color: var(--ink);
+    }
+    .exercise-toggle:hover { background: #f3eefb; }
+    .exercise-title small { display: block; color: var(--muted); font-weight: 600; margin-top: 3px; }
+    .exercise-content { display: none; padding: 16px; }
+    .exercise.open .exercise-content { display: block; }
+    .chevron { color: var(--accent); font-weight: 900; transition: transform 0.2s; }
+    .exercise.open .chevron { transform: rotate(180deg); }
+
+    .q-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q-block:last-child { border-bottom: 0; }
+    .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; }
+    .option-btn {
+      display: block; width: 100%; text-align: left; border: 1px solid var(--line);
+      background: #fff; border-radius: 10px; padding: 10px 12px; margin-top: 7px; color: var(--ink);
+    }
+    .option-btn:hover { border-color: var(--accent); }
+    .option-btn.selected { border-color: var(--accent); background: #f6f3fb; }
+    .option-btn.correct { border-color: #6fbd8c; background: var(--good); }
+    .option-btn.wrong { border-color: #d88383; background: var(--bad); }
+    .why-box { display: none; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 0.84rem; line-height: 1.5; color: var(--muted); }
+    .why-box.show { display: block; }
+    .why-box strong { color: var(--navy); }
+
+    .transform { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .transform:last-child { border-bottom: 0; }
+    .tag-mini {
+      display: inline-block; margin-bottom: 6px; padding: 3px 8px; border-radius: 999px;
+      background: #f3eefb; color: var(--accent); font-size: 0.68rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .direct-quote {
+      margin: 0 0 8px; padding: 10px 12px; border-radius: 10px; background: var(--soft);
+      border-left: 3px solid var(--accent); line-height: 1.5;
+    }
+    .transform input[type=text] { width: 100%; border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; }
+    .transform.ok input { border-color: #6fbd8c; background: var(--good); }
+    .transform.no input { border-color: #d88383; background: var(--bad); }
+    .model-line { display: none; margin-top: 8px; font-size: 0.84rem; color: #287849; line-height: 1.5; }
+    .transform.no .model-line, .transform.show-ans .model-line { display: block; }
+
+    .reading-text { font-size: 1.02rem; line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .reading-text p { margin: 0 0 15px; }
+    .reading-text p:last-child { margin-bottom: 0; }
+    .hit {
+      cursor: pointer; border-radius: 6px; padding: 1px 4px;
+      border-bottom: 2px dotted var(--accent); font-weight: 800; color: var(--accent); background: transparent;
+    }
+    .hit.found { background: #f3eefb; }
+    .hit.miss { background: var(--bad); }
+
+    .audio-bar {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 14px; background: var(--navy); color: #fff; border-radius: 12px; margin-bottom: 12px;
+    }
+    .audio-bar p { margin: 0; color: #d7ecea; font-size: 0.82rem; line-height: 1.45; flex: 1 1 200px; }
+    .play-big {
+      width: 46px; height: 46px; border: 0; border-radius: 999px; background: var(--teal);
+      color: var(--navy); font-weight: 900; font-size: 1rem; flex: 0 0 auto;
+    }
+    .dialogue { display: grid; gap: 8px; }
+    .dialogue-line { padding: 10px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); line-height: 1.55; }
+    .dialogue-line:nth-child(even) { background: #f6f3fb; }
+    .speaker-name { color: var(--accent); font-weight: 900; }
+    .transcript { display: none; margin-top: 14px; }
+    .transcript.show { display: block; }
+
+    .wheel-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: center; }
+    .wheel {
+      width: 260px; height: 260px; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0 16.66%, var(--gold) 0 33.33%, #2f5d8c 0 50%, var(--teal) 0 66.66%, #d9c48f 0 83.33%, var(--navy) 0);
+      border: 10px solid #fff; box-shadow: 0 8px 26px rgba(30, 45, 90, 0.18);
+      position: relative; transition: transform 2.2s cubic-bezier(.2, .8, .2, 1); cursor: pointer; margin: 0 auto;
+    }
+    .wheel::after {
+      content: "SPIN"; position: absolute; inset: 86px; border-radius: 50%;
+      display: grid; place-items: center; background: #fff; color: var(--navy); font-weight: 900;
+    }
+    .pointer { text-align: center; color: var(--gold); font-size: 1.6rem; line-height: 0.6; }
+    .speak-prompt { font-size: 1.08rem; line-height: 1.5; padding: 16px; background: #f6f3fb; border-radius: 14px; min-height: 72px; font-weight: 750; }
+    .peer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .peer label {
+      display: flex; gap: 6px; align-items: center; background: #fff; border: 1px solid var(--line);
+      border-radius: 999px; padding: 6px 10px; font-size: 0.78rem; font-weight: 700;
+    }
+    .frame-list { margin: 8px 0 0; padding-left: 18px; line-height: 1.7; color: var(--muted); }
+
+    textarea, input[type=text] { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65; }
+    textarea { min-height: 150px; resize: vertical; }
+    textarea:focus, input:focus, select:focus { outline: 3px solid rgba(107, 76, 154, 0.2); border-color: var(--accent); }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--accent); background: #f6f3fb; color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+    .cando .lvl { font-size: 0.72rem; font-weight: 800; color: var(--accent); }
+    .progress-mini { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 10px 0 4px; }
+    .progress-mini span { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; align-items: center; }
+    .btn { border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 850; background: var(--navy); color: #fff; }
+    .btn.secondary { background: var(--accent); }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .feedback { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px; line-height: 1.5; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+    .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
+    .score { font-weight: 800; color: var(--accent); }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .legend span { font-size: 0.74rem; font-weight: 800; padding: 5px 9px; border-radius: 999px; background: #f3eefb; color: var(--accent); }
+
+    @media (max-width: 760px) {
+      .grid-2, .grid-3, .mistake-row, .wheel-wrap, .flip-grid { grid-template-columns: 1fr; }
+      .hero-inner { max-width: 100%; }
+      .hero::after { opacity: 0.1; width: 120px; }
+      .shell { padding: 14px; }
+      .topbar { top: 8px; border-radius: 14px; }
+      .brand p, .mode-pill { display: none; }
+      .panel { padding: 18px; }
+      .home-btn .home-btn-label { display: none; }
+      .cando label { grid-template-columns: auto 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+      <div>
+        <h1>Reported Speech</h1>
+        <p>All tenses · statements · questions</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
+        <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
+      </a>
+      <span class="mode-pill">B1 · 55–65 min</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Grammar · Reporting what people said</span>
+      <h2>She said she <span>would wait</span></h2>
+      <p class="hero-copy">
+        Direct speech quotes the exact words. Reported speech retells them later: tenses usually move one step back,
+        pronouns change, and questions lose their question order. Practise <strong>affirmative</strong>, <strong>negative</strong>,
+        <strong>yes/no</strong> and <strong>Wh-</strong> questions in every common tense.
+      </p>
+      <div class="path" aria-label="Lesson path">
+        <span>1 Notice</span><span>2 Grammar</span><span>3 Practice</span><span>4 Read</span>
+        <span>5 Listen</span><span>6 Speak</span><span>7 Write</span><span>8 Can-do</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-card">
+    <header class="lesson-head">
+      <h3>What they said after the storm</h3>
+      <p>Maya tells Sofia about Saturday’s group chat. First you hear the original words. Then you report them.</p>
+    </header>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Lesson sections"></nav>
+    <div id="panels"></div>
+  </article>
+
+  <footer class="footer">English by Israel Ventura · Reported speech · Progress is stored in this browser</footer>
+</div>
+
+<script>
+const sections = ['1 Notice', '2 Grammar', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v1') || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem('reportedSpeechB1v1', JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+const quizBank = {};
+
+let voicesReady = [];
+function loadVoices() { voicesReady = speechSynthesis.getVoices(); }
+if (window.speechSynthesis) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function pickVoice() {
+  const voices = voicesReady.length ? voicesReady : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  return voices.find(v => /en-GB/i.test(v.lang) && /Google|Female|Libby|Serena|Susan/i.test(v.name))
+    || voices.find(v => /en-US/i.test(v.lang) && /Google|Female|Samantha|Jenny|Aria/i.test(v.name))
+    || voices.find(v => /^en/i.test(v.lang))
+    || null;
+}
+function speak(text, rate) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  u.rate = rate || 0.92;
+  const v = pickVoice();
+  if (v) { u.voice = v; u.lang = v.lang; }
+  speechSynthesis.speak(u);
+}
+
+const noticeCards = [
+  { speaker: 'Leo', direct: '"I am making pizza tonight."', reported: 'Leo said (that) he was making pizza that night.', kind: 'Present continuous → past continuous' },
+  { speaker: 'Sara', direct: '"I don\'t want to cycle if it rains."', reported: 'Sara said (that) she didn\'t want to cycle if it rained.', kind: 'Present simple negative' },
+  { speaker: 'Mum', direct: '"Have you packed the camera?"', reported: 'Mum asked if I had packed the camera.', kind: 'Yes/no · present perfect' },
+  { speaker: 'Leo', direct: '"Where is the exhibition?"', reported: 'Leo asked where the exhibition was.', kind: 'Wh- · present simple' },
+  { speaker: 'Maya', direct: '"I will send the photos tomorrow."', reported: 'Maya said (that) she would send the photos the next day.', kind: 'will → would + time change' },
+  { speaker: 'Sara', direct: '"I have already bought the tickets."', reported: 'Sara said (that) she had already bought the tickets.', kind: 'Present perfect → past perfect' }
+];
+
+const tenseRows = [
+  ['Present simple', '"I live here." / "I don\'t live here."', 'She said she <em>lived</em> there. / she <em>didn\'t live</em> there.'],
+  ['Present continuous', '"I am waiting." / "I\'m not waiting."', 'He said he <em>was waiting</em>. / he <em>wasn\'t waiting</em>.'],
+  ['Present perfect', '"I have finished." / "I haven\'t finished."', 'She said she <em>had finished</em>. / she <em>hadn\'t finished</em>.'],
+  ['Present perfect continuous', '"I have been studying."', 'He said he <em>had been studying</em>.'],
+  ['Past simple', '"I missed the bus." / "I didn\'t miss it."', 'She said she <em>had missed</em> the bus. / she <em>hadn\'t missed</em> it.'],
+  ['Past continuous', '"I was cooking." / "I wasn\'t cooking."', 'He said he <em>had been cooking</em>. / he <em>hadn\'t been cooking</em>.'],
+  ['Past perfect', '"I had left." / "I hadn\'t left."', 'She said she <em>had left</em>. / she <em>hadn\'t left</em>. (no change)'],
+  ['will', '"I will help." / "I won\'t help."', 'He said he <em>would help</em>. / he <em>wouldn\'t help</em>.'],
+  ['be going to', '"I\'m going to apply."', 'She said she <em>was going to apply</em>.'],
+  ['can', '"I can wait." / "I can\'t wait."', 'He said he <em>could wait</em>. / he <em>couldn\'t wait</em>.'],
+  ['may', '"I may be late."', 'She said she <em>might be late</em>.'],
+  ['must (obligation)', '"I must leave."', 'He said he <em>had to leave</em>.'],
+  ['would / could / might / should', '"I would stay."', 'No further change: she said she <em>would stay</em>.']
+];
+
+const timeRows = [
+  ['now', 'then / at that moment'],
+  ['today / tonight', 'that day / that night'],
+  ['yesterday', 'the day before / the previous day'],
+  ['tomorrow', 'the next day / the following day'],
+  ['last week / last night', 'the week before / the night before'],
+  ['next week / next Monday', 'the following week / the following Monday'],
+  ['this / these', 'that / those'],
+  ['here', 'there'],
+  ['ago', 'before']
+];
+
+const noticeQuiz = [
+  { q: 'Maya is talking to Sofia the day after. Leo said: "I am making pizza tonight." What is the best report?', opts: ['Leo said he is making pizza tonight.', 'Leo said he was making pizza that night.', 'Leo said he made pizza tonight.'], ans: 1, why: 'Reporting verb is past (<strong>said</strong>) → present continuous backshifts to <strong>past continuous</strong>, and <em>tonight</em> becomes <em>that night</em>.' },
+  { q: 'Which reporting verb is correct? Mum: "Have you packed the camera?"', opts: ['Mum said if I had packed the camera.', 'Mum asked if I had packed the camera.', 'Mum told if I had packed the camera.'], ans: 1, why: 'Questions use <strong>asked</strong>, not said/told. Yes/no questions take <strong>if</strong> or <strong>whether</strong>.' },
+  { q: 'Sara: "Where is the exhibition?" Why is “Sara asked where was the exhibition” wrong?', opts: ['Because we never change the tense.', 'Because reported questions use statement word order: where the exhibition was.', 'Because we must use if, not where.'], ans: 1, why: 'Keep the Wh-word, drop inversion: <strong>where the exhibition was</strong>, not where was the exhibition.' }
+];
+
+const tenseQuiz = [
+  { q: '"I work on Saturdays." → She said she ___ on Saturdays.', opts: ['works', 'worked', 'had been working'], ans: 1, why: 'Present simple → <strong>past simple</strong>.' },
+  { q: '"I\'m not coming." → He said he ___ coming.', opts: ['isn\'t', 'wasn\'t', 'hadn\'t been'], ans: 1, why: 'Present continuous negative → <strong>wasn\'t coming</strong>.' },
+  { q: '"We have already eaten." → They said they ___ already eaten.', opts: ['have', 'had', 'would have'], ans: 1, why: 'Present perfect → <strong>past perfect</strong>.' },
+  { q: '"I didn\'t see Leo." → She said she ___ Leo.', opts: ['didn\'t see', 'hadn\'t seen', 'wasn\'t seeing'], ans: 1, why: 'Past simple negative → <strong>past perfect negative</strong>: hadn\'t seen.' },
+  { q: '"I will not be late." → He said he ___ late.', opts: ['will not be', 'would not be', 'had not been'], ans: 1, why: 'will / won\'t → <strong>would / wouldn\'t</strong>.' },
+  { q: '"I can\'t find the tickets." → She said she ___ the tickets.', opts: ['can\'t find', 'couldn\'t find', 'hadn\'t found'], ans: 1, why: 'can / can\'t → <strong>could / couldn\'t</strong>.' },
+  { q: '"I was waiting at the stop." → He said he ___ at the stop.', opts: ['was waiting', 'had been waiting', 'waited'], ans: 1, why: 'Past continuous → <strong>past perfect continuous</strong>.' },
+  { q: '"I had already left." → She said she ___ already left.', opts: ['has', 'had', 'would have'], ans: 1, why: 'Past perfect stays <strong>past perfect</strong> — there is no further backshift.' }
+];
+
+const questionQuiz = [
+  { q: '"Do you like photography?" → She asked ___ photography.', opts: ['do I like', 'if I liked', 'that I liked'], ans: 1, why: 'Yes/no → <strong>asked if/whether</strong> + statement order + backshift.' },
+  { q: '"Are you going to the café?" → He asked if I ___ to the café.', opts: ['am going', 'was going', 'went'], ans: 1, why: 'Present continuous → past continuous after a past reporting verb.' },
+  { q: '"Did you check the weather?" → She asked if I ___ the weather.', opts: ['checked', 'had checked', 'have checked'], ans: 1, why: 'Past simple in a yes/no question → <strong>if + past perfect</strong>.' },
+  { q: '"Will you send the photos?" → He asked if I ___ the photos.', opts: ['will send', 'would send', 'sent'], ans: 1, why: 'will → <strong>would</strong>.' },
+  { q: '"Where do you live?" → She asked where I ___.', opts: ['do live', 'lived', 'live I'], ans: 1, why: 'Wh- + statement order: <strong>where I lived</strong> (not where do I live).' },
+  { q: '"What are you doing?" → He asked what I ___.', opts: ['am doing', 'was doing', 'did'], ans: 1, why: 'Present continuous → <strong>what I was doing</strong>.' },
+  { q: '"Why have you stopped?" → She asked why I ___.', opts: ['have stopped', 'had stopped', 'stopped'], ans: 1, why: 'Present perfect → <strong>past perfect</strong>.' },
+  { q: '"Who called you?" → He asked who ___ me.', opts: ['did call', 'had called', 'called did'], ans: 1, why: 'Wh- as subject: no extra auxiliary. Past simple → <strong>who had called me</strong>.' }
+];
+
+const errorClinic = [
+  { q: 'Find the correct sentence.', opts: ['He said me that he was tired.', 'He told that he was tired.', 'He told me (that) he was tired.'], ans: 2, why: '<strong>tell + person</strong>. say does not take a person without <em>to</em>: He said (to me) that…' },
+  { q: 'Find the correct sentence.', opts: ['She asked me that if I was ready.', 'She asked if I was ready.', 'She said if I was ready.'], ans: 1, why: 'Never use <strong>that if</strong>. Questions: <strong>asked if/whether</strong>. said is for statements.' },
+  { q: 'Find the correct sentence.', opts: ['She asked where did I live.', 'She asked where I lived.', 'She asked where I did live.'], ans: 1, why: 'Reported questions use <strong>statement word order</strong>. No did/do inversion.' },
+  { q: 'Find the correct sentence.', opts: ['He asked me what was my name.', 'He asked me what my name was.', 'He asked me what is my name.'], ans: 1, why: 'Wh- + subject + verb: <strong>what my name was</strong>.' },
+  { q: 'Find the correct sentence.', opts: ['Leo said he will come tomorrow.', 'Leo said he would come the next day.', 'Leo said he comes the next day.'], ans: 1, why: 'will → would, and tomorrow → <strong>the next day</strong> when the reporting happens later.' },
+  { q: 'Find the correct sentence.', opts: ['Mum asked had I packed the camera.', 'Mum asked if I had packed the camera.', 'Mum asked if had I packed the camera.'], ans: 1, why: 'Yes/no: <strong>if + subject + verb</strong>. Do not keep question inversion.' }
+];
+
+const transforms = [
+  { kind: 'aff', tag: 'Present simple · +', speaker: 'Leo', quote: '"I live near the lake."', accept: ['leo said (that) he lived near the lake', 'he said (that) he lived near the lake'], model: 'Leo said (that) he lived near the lake.' },
+  { kind: 'neg', tag: 'Present simple · −', speaker: 'Sara', quote: '"I don\'t like cycling in the rain."', accept: ['sara said (that) she did not like cycling in the rain', 'sara said (that) she didn\'t like cycling in the rain', 'she said (that) she did not like cycling in the rain'], model: 'Sara said (that) she didn\'t like cycling in the rain.' },
+  { kind: 'aff', tag: 'Present continuous · +', speaker: 'Leo', quote: '"I\'m making pizza tonight."', accept: ['leo said (that) he was making pizza that night', 'he said (that) he was making pizza that night'], model: 'Leo said (that) he was making pizza that night.' },
+  { kind: 'neg', tag: 'Present continuous · −', speaker: 'Maya', quote: '"I\'m not going to the lake."', accept: ['maya said (that) she was not going to the lake', 'maya said (that) she wasn\'t going to the lake', 'she said (that) she was not going to the lake'], model: 'Maya said (that) she wasn\'t going to the lake.' },
+  { kind: 'aff', tag: 'Present perfect · +', speaker: 'Sara', quote: '"I have already bought the tickets."', accept: ['sara said (that) she had already bought the tickets', 'she said (that) she had already bought the tickets'], model: 'Sara said (that) she had already bought the tickets.' },
+  { kind: 'neg', tag: 'Present perfect · −', speaker: 'Mum', quote: '"I haven\'t seen the photos yet."', accept: ['mum said (that) she had not seen the photos yet', 'mum said (that) she hadn\'t seen the photos yet', 'she said (that) she had not seen the photos yet'], model: 'Mum said (that) she hadn\'t seen the photos yet.' },
+  { kind: 'aff', tag: 'Past simple · +', speaker: 'Maya', quote: '"I missed the first bus."', accept: ['maya said (that) she had missed the first bus', 'she said (that) she had missed the first bus'], model: 'Maya said (that) she had missed the first bus.' },
+  { kind: 'neg', tag: 'Past simple · −', speaker: 'Leo', quote: '"I didn\'t check the forecast."', accept: ['leo said (that) he had not checked the forecast', 'leo said (that) he hadn\'t checked the forecast', 'he said (that) he had not checked the forecast'], model: 'Leo said (that) he hadn\'t checked the forecast.' },
+  { kind: 'aff', tag: 'Past continuous · +', speaker: 'Leo', quote: '"I was waiting at the bus stop."', accept: ['leo said (that) he had been waiting at the bus stop', 'he said (that) he had been waiting at the bus stop'], model: 'Leo said (that) he had been waiting at the bus stop.' },
+  { kind: 'aff', tag: 'will · +', speaker: 'Maya', quote: '"I will send the photos tomorrow."', accept: ['maya said (that) she would send the photos the next day', 'maya said (that) she would send the photos the following day', 'she said (that) she would send the photos the next day'], model: 'Maya said (that) she would send the photos the next day.' },
+  { kind: 'neg', tag: 'will · −', speaker: 'Sara', quote: '"I won\'t cycle if it rains."', accept: ['sara said (that) she would not cycle if it rained', 'sara said (that) she wouldn\'t cycle if it rained', 'she said (that) she would not cycle if it rained'], model: 'Sara said (that) she wouldn\'t cycle if it rained.' },
+  { kind: 'aff', tag: 'can · +', speaker: 'Leo', quote: '"We can meet at the café."', accept: ['leo said (that) they could meet at the cafe', 'leo said (that) they could meet at the café', 'he said (that) they could meet at the cafe', 'he said (that) we could meet at the cafe'], model: 'Leo said (that) they could meet at the café.' },
+  { kind: 'yn', tag: 'Yes/no · present simple', speaker: 'Mum', quote: '"Do you have your camera?"', accept: ['mum asked if i had my camera', 'mum asked whether i had my camera', 'she asked if i had my camera', 'mum asked if i had the camera'], model: 'Mum asked if I had my camera.' },
+  { kind: 'yn', tag: 'Yes/no · present perfect', speaker: 'Mum', quote: '"Have you packed the camera?"', accept: ['mum asked if i had packed the camera', 'mum asked whether i had packed the camera', 'she asked if i had packed the camera'], model: 'Mum asked if I had packed the camera.' },
+  { kind: 'yn', tag: 'Yes/no · past simple', speaker: 'Leo', quote: '"Did you check the weather?"', accept: ['leo asked if i had checked the weather', 'leo asked whether i had checked the weather', 'he asked if i had checked the weather'], model: 'Leo asked if I had checked the weather.' },
+  { kind: 'yn', tag: 'Yes/no · will', speaker: 'Sara', quote: '"Will you wait for me?"', accept: ['sara asked if i would wait for her', 'sara asked whether i would wait for her', 'she asked if i would wait for her'], model: 'Sara asked if I would wait for her.' },
+  { kind: 'wh', tag: 'Wh- · present simple', speaker: 'Leo', quote: '"Where is the exhibition?"', accept: ['leo asked where the exhibition was', 'he asked where the exhibition was'], model: 'Leo asked where the exhibition was.' },
+  { kind: 'wh', tag: 'Wh- · present continuous', speaker: 'Sara', quote: '"What are you doing?"', accept: ['sara asked what i was doing', 'she asked what i was doing'], model: 'Sara asked what I was doing.' },
+  { kind: 'wh', tag: 'Wh- · present perfect', speaker: 'Mum', quote: '"Why have you stopped?"', accept: ['mum asked why i had stopped', 'she asked why i had stopped'], model: 'Mum asked why I had stopped.' },
+  { kind: 'wh', tag: 'Wh- · past simple', speaker: 'Leo', quote: '"When did you arrive?"', accept: ['leo asked when i had arrived', 'he asked when i had arrived'], model: 'Leo asked when I had arrived.' },
+  { kind: 'wh', tag: 'Wh- · will', speaker: 'Sara', quote: '"How will you get there?"', accept: ['sara asked how i would get there', 'she asked how i would get there'], model: 'Sara asked how I would get there.' },
+  { kind: 'wh', tag: 'Wh- subject', speaker: 'Maya', quote: '"Who called you?"', accept: ['maya asked who had called me', 'she asked who had called me'], model: 'Maya asked who had called me.' }
+];
+
+const readingHits = [
+  { id: 'r1', label: 'past continuous' },
+  { id: 'r2', label: 'negative past simple' },
+  { id: 'r3', label: 'yes/no past perfect' },
+  { id: 'r4', label: 'Wh- statement order' },
+  { id: 'r5', label: 'would + time change' },
+  { id: 'r6', label: 'present perfect → past perfect' },
+  { id: 'r7', label: 'could' },
+  { id: 'r8', label: 'past perfect continuous' }
+];
+
+const readingQs = [
+  { q: 'Why does Maya write to Sofia?', opts: ['To cancel the exhibition.', 'To report what everyone said after the storm.', 'To ask Sofia for pizza recipes.'], ans: 1, why: 'The email retells Saturday’s conversation — that is reported speech in a real text.' },
+  { q: 'What did Sara say about cycling?', opts: ['She said she loved cycling in the rain.', 'She said she didn\'t want to cycle if it rained.', 'She asked if they could cycle at night.'], ans: 1, why: 'Negative present simple → <strong>she didn\'t want to cycle if it rained</strong>.' },
+  { q: 'Which is a yes/no reported question from the email?', opts: ['Mum asked if Maya had packed the camera.', 'Leo asked where the exhibition was.', 'Maya said she would send the photos.'], ans: 0, why: 'Yes/no questions take <strong>if/whether</strong>. The other two are Wh- and a statement.' },
+  { q: '“Leo asked where the exhibition was” is correct because…', opts: ['the question word stays and the verb follows the subject', 'we keep Did + subject', 'we add that before where'], ans: 0, why: 'Wh- + <strong>statement order</strong>: where + the exhibition + was.' },
+  { q: 'tomorrow in Maya’s original words becomes…', opts: ['tomorrow (no change)', 'the next day', 'yesterday'], ans: 1, why: 'She is reporting later, so <em>tomorrow</em> → <strong>the next day</strong>.' },
+  { q: '“She had already bought the tickets” came from…', opts: ['"I buy the tickets."', '"I have already bought the tickets."', '"I will buy the tickets."'], ans: 1, why: 'Present perfect → <strong>past perfect</strong>.' }
+];
+
+const listeningScript = [
+  ['Sofia', 'So what did everybody say after the storm? I missed the whole group chat.'],
+  ['Maya', 'It was a long morning. Leo said he was making pizza that night, so at least dinner was safe.'],
+  ['Sofia', 'And Sara? She usually wants to cycle.'],
+  ['Maya', 'She said she didn’t want to cycle if it rained. She also said she had already bought the tickets for the exhibition.'],
+  ['Sofia', 'Did your mum join the chat?'],
+  ['Maya', 'Yes. She asked if I had packed the camera. Then she asked why we had stopped at the café.'],
+  ['Sofia', 'Typical mum. What about Leo’s questions?'],
+  ['Maya', 'He asked where the exhibition was, and he asked if I had checked the weather. I hadn’t, so I felt a bit guilty.'],
+  ['Sofia', 'And you? What did you promise?'],
+  ['Maya', 'I said I would send the photos the next day. I also said we could meet at the café if the rain got heavier.'],
+  ['Sofia', 'Did anyone talk about the bus?'],
+  ['Maya', 'Leo said he had been waiting at the bus stop when it started raining. He said he hadn’t checked the forecast.']
+];
+
+const listeningQs = [
+  { q: 'What did Leo say about dinner?', opts: ['He said he would buy pizza the next day.', 'He said he was making pizza that night.', 'He asked if Maya could make pizza.'], ans: 1, why: '"I am making pizza tonight" → <strong>he was making pizza that night</strong>.' },
+  { q: 'Which form reports Sara’s tickets?', opts: ['She said she bought the tickets.', 'She said she had already bought the tickets.', 'She said she would buy the tickets.'], ans: 1, why: 'Present perfect → past perfect.' },
+  { q: 'Mum’s first question is reported with…', opts: ['said that', 'asked if', 'told to'], ans: 1, why: 'Yes/no question → <strong>asked if</strong>.' },
+  { q: '“He asked where the exhibition was” came from…', opts: ['"Where is the exhibition?"', '"Is the exhibition here?"', '"The exhibition is where?"'], ans: 0, why: 'Wh- question, present simple → past simple, statement order.' },
+  { q: 'Maya’s promise about the photos uses…', opts: ['will', 'would', 'had'], ans: 1, why: '"I will send…" → <strong>I said I would send…</strong>' },
+  { q: 'The bus story uses which tense in the report?', opts: ['Past continuous', 'Past perfect continuous', 'Present perfect'], ans: 1, why: '"I was waiting" → <strong>he had been waiting</strong>.' }
+];
+
+const speakPack = [
+  { prompt: 'Report Leo’s statement: "I\'m making pizza tonight."', frames: ['Leo said (that)…', 'He told me (that)…', '…that night.'], model: 'Leo said he was making pizza that night.' },
+  { prompt: 'Report Sara’s negative: "I don\'t want to cycle if it rains."', frames: ['Sara said she didn\'t…', 'if it rained'], model: 'Sara said she didn\'t want to cycle if it rained.' },
+  { prompt: 'Report Mum’s yes/no question: "Have you packed the camera?"', frames: ['Mum asked if…', 'Mum asked whether…'], model: 'Mum asked if I had packed the camera.' },
+  { prompt: 'Report Leo’s Wh- question: "Where is the exhibition?"', frames: ['Leo asked where…', 'statement order: where + subject + verb'], model: 'Leo asked where the exhibition was.' },
+  { prompt: 'Report Maya’s future: "I will send the photos tomorrow."', frames: ['Maya said she would…', 'the next day'], model: 'Maya said she would send the photos the next day.' },
+  { prompt: 'Mix: report one +, one −, one yes/no and one Wh- from your weekend.', frames: ['X said (that)…', 'Y said (that) … not…', 'Z asked if…', 'Z asked where/what/why…'], model: 'My brother said he had studied. He said he didn’t want to go out. Mum asked if we had eaten. Dad asked what time we would be home.' }
+];
+
+const writeStems = [
+  'Leo said (that)',
+  'Sara said she didn\'t',
+  'Mum asked if',
+  'Leo asked where',
+  'Maya said she would',
+  'Sara said she had already'
+];
+
+const candoItems = [
+  'I can backshift statements in all common tenses (including will, can, present perfect and past).',
+  'I can report negative statements (didn\'t, wasn\'t, hadn’t, wouldn’t, couldn’t).',
+  'I can report yes/no questions with asked if/whether + statement order.',
+  'I can report Wh- questions with the question word + statement order.',
+  'I can change pronouns and time words (tomorrow → the next day, here → there).'
+];
+
+function grammarHTML() {
+  return `
+    <h4>2 · The reporting machine</h4>
+    <div class="grammar-hero">
+      <h4>When the reporting verb is past, the original tense usually takes one step back.</h4>
+      <p>You also change pronouns and many time/place words. Questions become clauses: no inversion, no question mark in the report.</p>
+    </div>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">1</span>Two jobs: say / tell / ask</h4>
+      <div class="grid-3">
+        <div class="box"><div class="formula">say (that) + clause</div><p class="example">Leo said (that) he was tired.</p><p>No person after <em>say</em> unless you add <em>to</em>: said to me.</p></div>
+        <div class="box"><div class="formula">tell + person + (that)</div><p class="example">Leo told me (that) he was tired.</p><p><em>tell</em> needs an object: me / us / Maya.</p></div>
+        <div class="box lilac"><div class="formula">ask + if / Wh-</div><p class="example">Mum asked if I had packed it.</p><p>Questions: <strong>asked</strong>, never said if / told if.</p></div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">2</span>All tenses: the backshift map</h4>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Direct tense</th><th>Direct example</th><th>Reported (after said / asked)</th></tr></thead>
+          <tbody>
+            ${tenseRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><strong>One-step rule:</strong> present → past · past simple / present perfect → past perfect · will → would · can → could. Past perfect has nowhere left to go.</div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">3</span>Negatives keep the negative, and still backshift</h4>
+      <div class="grid-2">
+        <div class="box">
+          <strong>Don’t / doesn’t → didn’t</strong>
+          <p class="direct">"I don’t like rain."</p>
+          <p class="example">She said she didn’t like rain.</p>
+        </div>
+        <div class="box">
+          <strong>Isn’t / aren’t → wasn’t / weren’t</strong>
+          <p class="direct">"I’m not ready."</p>
+          <p class="example">He said he wasn’t ready.</p>
+        </div>
+        <div class="box">
+          <strong>Haven’t / hasn’t → hadn’t</strong>
+          <p class="direct">"I haven’t finished."</p>
+          <p class="example">She said she hadn’t finished.</p>
+        </div>
+        <div class="box">
+          <strong>Didn’t → hadn’t + past participle</strong>
+          <p class="direct">"I didn’t see Leo."</p>
+          <p class="example">She said she hadn’t seen Leo.</p>
+        </div>
+        <div class="box">
+          <strong>Won’t → wouldn’t</strong>
+          <p class="direct">"I won’t cycle."</p>
+          <p class="example">She said she wouldn’t cycle.</p>
+        </div>
+        <div class="box">
+          <strong>Can’t → couldn’t</strong>
+          <p class="direct">"I can’t find it."</p>
+          <p class="example">He said he couldn’t find it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">4</span>Yes/no questions: if / whether + statement order</h4>
+      <div class="box lilac">
+        <p class="formula">asked + if/whether + subject + verb</p>
+        <p>Drop <em>do/does/did</em>. Do <strong>not</strong> write <em>that if</em>.</p>
+        <div class="table-wrap" style="margin-top:10px">
+          <table class="compare-table">
+            <thead><tr><th>Direct</th><th>Reported</th></tr></thead>
+            <tbody>
+              <tr><td>"Do you like it?"</td><td>She asked <em>if I liked</em> it.</td></tr>
+              <tr><td>"Are you coming?"</td><td>He asked <em>if I was coming</em>.</td></tr>
+              <tr><td>"Have you packed it?"</td><td>Mum asked <em>if I had packed</em> it.</td></tr>
+              <tr><td>"Did you check?"</td><td>He asked <em>if I had checked</em>.</td></tr>
+              <tr><td>"Will you wait?"</td><td>She asked <em>if I would wait</em>.</td></tr>
+              <tr><td>"Can you help?"</td><td>He asked <em>if I could help</em>.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">5</span>Wh- questions: keep the Wh-word, lose the inversion</h4>
+      <div class="box">
+        <p class="formula">asked + Wh- + subject + verb</p>
+        <div class="table-wrap" style="margin-top:10px">
+          <table class="compare-table">
+            <thead><tr><th>Direct</th><th>Reported</th></tr></thead>
+            <tbody>
+              <tr><td>"Where do you live?"</td><td>She asked <em>where I lived</em>.</td></tr>
+              <tr><td>"What are you doing?"</td><td>He asked <em>what I was doing</em>.</td></tr>
+              <tr><td>"Why have you stopped?"</td><td>She asked <em>why I had stopped</em>.</td></tr>
+              <tr><td>"When did you arrive?"</td><td>He asked <em>when I had arrived</em>.</td></tr>
+              <tr><td>"How will you get there?"</td><td>She asked <em>how I would get there</em>.</td></tr>
+              <tr><td>"Who called you?"</td><td>He asked <em>who had called me</em>. (Wh- = subject)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tip"><strong>Trap:</strong> not <em>where did I live</em> / <em>what was I doing</em>. The clause is not a question any more.</div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">6</span>Pronouns and time words</h4>
+      <div class="grid-2">
+        <div class="box tint">
+          <strong>People change with the reporter</strong>
+          <p>"I / we / my / our / you / your" become he, she, they, his, her… depending on who is speaking to whom.</p>
+          <p class="direct">Leo to Maya: "I will help you."</p>
+          <p class="example">Leo said he would help her. / me. (depends who reports)</p>
+        </div>
+        <div class="box">
+          <div class="table-wrap">
+            <table class="compare-table">
+              <thead><tr><th>Direct</th><th>Reported later</th></tr></thead>
+              <tbody>
+                ${timeRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">7</span>Typical mistakes</h4>
+      <div class="mistake-row" style="margin-bottom:10px">
+        <div class="wrong-example"><strong>Wrong</strong>He said me that he was tired.</div>
+        <div class="right-example"><strong>Right</strong>He told me (that) he was tired. / He said (that) he was tired.</div>
+      </div>
+      <div class="mistake-row" style="margin-bottom:10px">
+        <div class="wrong-example"><strong>Wrong</strong>She asked me that if I was ready.</div>
+        <div class="right-example"><strong>Right</strong>She asked if I was ready.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Wrong</strong>She asked where did I live.</div>
+        <div class="right-example"><strong>Right</strong>She asked where I lived.</div>
+      </div>
+      <div class="note"><strong>No backshift?</strong> If the reporting verb is present (<em>She says…</em>) or the fact is still true, you may keep the original tense. This lesson trains the standard past-report pattern first.</div>
+    </section>
+  `;
+}
+
+function noticeHTML() {
+  return `
+    <h4>1 · Hear the original, then report it</h4>
+    <p class="intro">Saturday’s group chat is still on Maya’s phone. Tap a card to flip from <strong>direct speech</strong> to Maya’s report for Sofia.</p>
+    <div class="flip-grid" id="flipGrid">
+      ${noticeCards.map((c, i) => `
+        <button type="button" class="flip" data-flip="${i}" onclick="toggleFlip(${i})">
+          <span class="kicker">${c.kind}</span>
+          <div class="direct-line"><strong>${c.speaker}:</strong> ${c.direct}</div>
+          <div class="reported"><strong>Maya’s report:</strong> ${c.reported}</div>
+          <span class="chip accent" style="justify-self:start">Tap to report</span>
+        </button>
+      `).join('')}
+    </div>
+    <p class="intro" style="margin-top:16px">Three quick checks before the grammar map.</p>
+    <div id="noticeQuiz"></div>
+    <div class="tip"><strong>Pattern:</strong> Direct = quotation marks + original tense. Reported = no quotes + one step back + if/Wh- for questions.</div>
+  `;
+}
+
+function practiceHTML() {
+  return `
+    <h4>3 · Controlled practice</h4>
+    <p class="intro">Work in layers: choose the tense, then the question form, then write full reports. Filter the writing bank if you want only negatives or only Wh- questions.</p>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>A · Backshift</strong><small>Choose the correct verb form</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="tenseQuiz"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>B · Questions</strong><small>Yes/no and Wh- · statement order</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="questionQuiz"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>C · Error clinic</strong><small>Spanish-speaker traps: said me, that if, inversion</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="errorClinic"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>D · Write the report</strong><small>Affirmative · negative · yes/no · Wh-</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content">
+        <div class="filter-bar" role="group" aria-label="Filter by form">
+          <button type="button" aria-pressed="true" onclick="filterTransforms('all', this)">All</button>
+          <button type="button" aria-pressed="false" onclick="filterTransforms('aff', this)">Affirmative</button>
+          <button type="button" aria-pressed="false" onclick="filterTransforms('neg', this)">Negative</button>
+          <button type="button" aria-pressed="false" onclick="filterTransforms('yn', this)">Yes / no</button>
+          <button type="button" aria-pressed="false" onclick="filterTransforms('wh', this)">Wh- questions</button>
+        </div>
+        <p class="intro" style="margin-bottom:8px"><em>that</em> is optional after <strong>said</strong>. Use <strong>asked if/whether</strong> for yes/no and <strong>asked + Wh-</strong> for Wh- questions.</p>
+        <div id="transformBox"></div>
+        <div class="actions">
+          <button type="button" class="btn" onclick="checkTransforms()">Check</button>
+          <button type="button" class="btn ghost" onclick="revealTransforms()">Show answers</button>
+        </div>
+        <div class="feedback" id="fb-transform"></div>
+      </div>
+    </div>
+  `;
+}
+
+function readingHTML() {
+  return `
+    <h4>4 · Reading · Maya’s email</h4>
+    <p class="intro">Tap every reported form in purple. Then answer the questions. You are hunting the grammar, not only the story.</p>
+    <div class="legend">
+      ${readingHits.map(h => `<span>${h.label}</span>`).join('')}
+    </div>
+    <p class="score" id="hitScore">Found 0 / ${readingHits.length}</p>
+    <article class="reading-text">
+      <p>Hi Sofia,</p>
+      <p>You asked what happened on Saturday, so here is the short version. After the storm, Leo
+      <button type="button" class="hit" data-hit="r1" onclick="markHit(this)">said he was making pizza that night</button>,
+      which made everyone calmer. Sara
+      <button type="button" class="hit" data-hit="r2" onclick="markHit(this)">said she didn’t want to cycle if it rained</button>.
+      That was fair: the streets were already full of puddles.</p>
+      <p>Mum joined the chat late.
+      <button type="button" class="hit" data-hit="r3" onclick="markHit(this)">She asked if I had packed the camera</button>.
+      Then Leo
+      <button type="button" class="hit" data-hit="r4" onclick="markHit(this)">asked where the exhibition was</button>.
+      I had to look it up again because I had only saved the ticket, not the map.</p>
+      <p>I
+      <button type="button" class="hit" data-hit="r5" onclick="markHit(this)">said I would send the photos the next day</button>.
+      Sara
+      <button type="button" class="hit" data-hit="r6" onclick="markHit(this)">said she had already bought the tickets</button>,
+      so we were not going to waste them. Leo
+      <button type="button" class="hit" data-hit="r7" onclick="markHit(this)">said we could meet at the café</button>
+      if the rain got heavier.</p>
+      <p>On the way there, the bus was a disaster. Leo
+      <button type="button" class="hit" data-hit="r8" onclick="markHit(this)">said he had been waiting at the bus stop</button>
+      when it started raining, and he admitted he hadn’t checked the forecast. Typical Leo — and typical Saturday.</p>
+      <p>See you tomorrow,<br>Maya</p>
+    </article>
+    <h5>Comprehension</h5>
+    <div id="readingQuiz"></div>
+  `;
+}
+
+function listeningHTML() {
+  return `
+    <h4>5 · Listening · Maya tells Sofia</h4>
+    <p class="intro">Play the conversation. Listen for reporting verbs and backshift. Then answer. Open the transcript only after the first listen.</p>
+    <div class="audio-bar">
+      <button type="button" class="play-big" onclick="playListening()" aria-label="Play conversation">▶</button>
+      <p>Browser voice · Maya reports the group chat. Press again to stop and restart.</p>
+      <button type="button" class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.28);background:transparent" onclick="toggleTranscript()">Transcript</button>
+    </div>
+    <div class="transcript" id="transcript">
+      <div class="dialogue">
+        ${listeningScript.map(line => `<div class="dialogue-line"><span class="speaker-name">${line[0]}:</span> ${line[1]}</div>`).join('')}
+      </div>
+    </div>
+    <h5>Listen and choose</h5>
+    <div id="listeningQuiz"></div>
+  `;
+}
+
+function speakingHTML() {
+  return `
+    <h4>6 · Speaking · spin and report</h4>
+    <p class="intro">Spin → look at the original words → report them out loud. Partner ticks the checklist. Two spins each is a full round.</p>
+    <div class="wheel-wrap">
+      <div>
+        <div class="pointer" aria-hidden="true">▼</div>
+        <div class="wheel" id="wheel" role="button" tabindex="0" aria-label="Spin the speaking wheel"
+          onclick="spin()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();spin();}"></div>
+      </div>
+      <div>
+        <div class="speak-prompt" id="speakPrompt">Click the wheel to get a reporting challenge.</div>
+        <div id="speakHelp" style="display:none;margin-top:12px">
+          <div class="box lilac">
+            <strong>Frames</strong>
+            <ul class="frame-list" id="speakFrames"></ul>
+          </div>
+          <div class="note" style="margin-top:10px"><strong>Model:</strong> <span id="speakModel"></span></div>
+          <div class="peer">
+            <span style="font-size:.78rem;font-weight:800;width:100%">Partner checklist</span>
+            <label><input type="checkbox"> Backshift</label>
+            <label><input type="checkbox"> Pronouns</label>
+            <label><input type="checkbox"> if / Wh- + statement order</label>
+            <label><input type="checkbox"> Time word if needed</label>
+          </div>
+        </div>
+        <button type="button" class="btn secondary" style="margin-top:14px" onclick="spin()">Spin the wheel</button>
+      </div>
+    </div>
+    <div class="tip"><strong>Classroom flow:</strong> A speaks 20–30 seconds → B ticks → swap. No reading the model until after the first attempt.</div>
+  `;
+}
+
+function writingHTML() {
+  return `
+    <h4>7 · Writing · report the group chat</h4>
+    <p class="intro">Write 90–130 words as Maya. Report Saturday without quotation marks. Include all four forms below.</p>
+    <div class="box lilac">
+      <strong>Must include:</strong> 2 affirmative reports · 1 negative · 1 yes/no question · 1 Wh- question · at least two different tenses
+    </div>
+    <div class="stems">
+      ${writeStems.map(s => `<button type="button" data-stem="${encodeURIComponent(s)}" onclick="insertStem(decodeURIComponent(this.dataset.stem))">${s}…</button>`).join('')}
+    </div>
+    <textarea id="writingBox" placeholder="On Saturday Leo said…">${state.writing || ''}</textarea>
+    <div class="actions">
+      <button type="button" class="btn" onclick="checkWriting()">Save &amp; check</button>
+      <button type="button" class="btn ghost" onclick="showWriteModel()">Show model</button>
+    </div>
+    <div class="feedback" id="writeFeedback"></div>
+    <div class="note" id="writeModel" style="display:none">
+      <strong>Model:</strong> On Saturday Leo said he was making pizza that night. Sara said she didn’t want to cycle if it rained, but she said she had already bought the tickets. Mum asked if I had packed the camera. Leo asked where the exhibition was and if I had checked the weather. I said I would send the photos the next day and that we could meet at the café. Leo also said he had been waiting at the bus stop when the rain started.
+    </div>
+  `;
+}
+
+function exitHTML() {
+  return `
+    <h4>8 · Can-do · exit ticket</h4>
+    <p class="intro">Tick what you can do now. Then write four mini-reports: +, −, yes/no, Wh-.</p>
+    <div class="cando" id="candoBox">
+      ${candoItems.map((t, i) => `
+        <label>
+          <input type="checkbox" data-cando="${i}" ${state.cando && state.cando[i] ? 'checked' : ''} onchange="saveCando()">
+          <span>${t}</span>
+          <span class="lvl">B1</span>
+        </label>`).join('')}
+    </div>
+    <div class="progress-mini"><span id="candoBar"></span></div>
+    <p style="margin:0;font-size:.85rem;color:var(--muted)" id="candoLabel">0 / 5 can-do statements</p>
+    <h5>Micro production</h5>
+    <textarea id="exitWrite" placeholder="1. He said…&#10;2. She said she didn’t…&#10;3. Mum asked if…&#10;4. Leo asked where…">${state.exitWrite || ''}</textarea>
+    <button type="button" class="btn" style="margin-top:10px" onclick="checkExit()">Save exit ticket</button>
+    <div class="feedback" id="exitFb"></div>
+    <div class="tip"><strong>Done?</strong> If 4–5 boxes are ticked and your four lines use backshift + question order, you are ready for freer reporting tasks.</div>
+  `;
+}
+
+function render() {
+  document.getElementById('tabs').innerHTML = sections.map((s, i) =>
+    `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" onclick="openTab(${i})">${s}</button>`
+  ).join('');
+  document.getElementById('panels').innerHTML = [
+    `<section class="panel">${noticeHTML()}</section>`,
+    `<section class="panel">${grammarHTML()}</section>`,
+    `<section class="panel">${practiceHTML()}</section>`,
+    `<section class="panel">${readingHTML()}</section>`,
+    `<section class="panel">${listeningHTML()}</section>`,
+    `<section class="panel">${speakingHTML()}</section>`,
+    `<section class="panel">${writingHTML()}</section>`,
+    `<section class="panel">${exitHTML()}</section>`
+  ].join('');
+  renderQuiz('noticeQuiz', noticeQuiz, 'notice');
+  renderQuiz('tenseQuiz', tenseQuiz, 'tense');
+  renderQuiz('questionQuiz', questionQuiz, 'question');
+  renderQuiz('errorClinic', errorClinic, 'error');
+  renderQuiz('readingQuiz', readingQs, 'reading');
+  renderQuiz('listeningQuiz', listeningQs, 'listening');
+  renderTransforms(state.filter || 'all');
+  restoreHits();
+  updateCandoBar();
+  openTab(state.tab || 0);
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((x, n) => x.classList.toggle('active', n === i));
+  document.querySelectorAll('.panel').forEach((x, n) => x.classList.toggle('active', n === i));
+  const lesson = document.querySelector('.lesson-card');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function toggleExercise(btn) {
+  const ex = btn.closest('.exercise');
+  if (ex) ex.classList.toggle('open');
+}
+
+function toggleFlip(i) {
+  const el = document.querySelector(`[data-flip="${i}"]`);
+  if (!el) return;
+  el.classList.toggle('open');
+  const chip = el.querySelector('.chip');
+  if (chip) chip.textContent = el.classList.contains('open') ? 'Tap to hide' : 'Tap to report';
+}
+
+function renderQuiz(id, qs, key) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  quizBank[key] = qs;
+  el.innerHTML = qs.map((item, i) => `
+    <div class="q-block">
+      <p class="q-prompt">${i + 1}. ${item.q}</p>
+      ${item.opts.map((o, j) =>
+        `<button type="button" class="option-btn" data-quiz="${key}" data-q="${i}" data-a="${j}" onclick="answer(this)">${o}</button>`
+      ).join('')}
+      <div class="why-box" id="why-${key}-${i}"></div>
+    </div>
+  `).join('') + `<div class="feedback" id="fb-${key}"></div>`;
+}
+
+function answer(btn) {
+  const k = btn.dataset.quiz;
+  const q = Number(btn.dataset.q);
+  const item = quizBank[k] && quizBank[k][q];
+  if (!item) return;
+  document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+    x.classList.remove('selected', 'correct', 'wrong');
+  });
+  const ok = Number(btn.dataset.a) === item.ans;
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if (!ok) {
+    document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+      if (Number(x.dataset.a) === item.ans) x.classList.add('correct');
+    });
+  }
+  const whyEl = document.getElementById(`why-${k}-${q}`);
+  if (whyEl) {
+    whyEl.classList.add('show');
+    whyEl.innerHTML = (ok ? '✓ ' : '→ ') + item.why;
+  }
+  state[k] = state[k] || {};
+  state[k][q] = ok;
+  save();
+  const total = quizBank[k].length;
+  const done = Object.keys(state[k]).length;
+  const score = Object.values(state[k]).filter(Boolean).length;
+  const fb = document.getElementById(`fb-${k}`);
+  if (!fb) return;
+  fb.className = 'feedback show ' + (done >= total && score === total ? 'good' : 'warn');
+  fb.textContent = `Progress: ${score} correct · ${done} answered` +
+    (done >= total && score < total ? ' · Read the grey explanations.' : '');
+}
+
+function expand(s) {
+  return String(s || '').toLowerCase()
+    .replace(/[’‘]/g, "'")
+    .replace(/[“”]/g, '"')
+    .replace(/\bwon'?t\b/g, 'will not')
+    .replace(/\bwouldn'?t\b/g, 'would not')
+    .replace(/\bcan'?t\b/g, 'cannot')
+    .replace(/\bcannot\b/g, 'can not')
+    .replace(/\bcouldn'?t\b/g, 'could not')
+    .replace(/\bdidn'?t\b/g, 'did not')
+    .replace(/\bdoesn'?t\b/g, 'does not')
+    .replace(/\bdon'?t\b/g, 'do not')
+    .replace(/\bisn'?t\b/g, 'is not')
+    .replace(/\baren'?t\b/g, 'are not')
+    .replace(/\bwasn'?t\b/g, 'was not')
+    .replace(/\bweren'?t\b/g, 'were not')
+    .replace(/\bhasn'?t\b/g, 'has not')
+    .replace(/\bhaven'?t\b/g, 'have not')
+    .replace(/\bhadn'?t\b/g, 'had not')
+    .replace(/\bi'?m\b/g, 'i am')
+    .replace(/\byou'?re\b/g, 'you are')
+    .replace(/\bwe'?re\b/g, 'we are')
+    .replace(/\bthey'?re\b/g, 'they are')
+    .replace(/\bit'?s\b/g, 'it is')
+    .replace(/\bwhether\b/g, 'if')
+    .replace(/café/g, 'cafe');
+}
+
+function normalize(s) {
+  return expand(s)
+    .replace(/['"]/g, '')
+    .replace(/\bthat\b/g, ' ')
+    .replace(/[.,!?;:]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function renderTransforms(filter) {
+  state.filter = filter || 'all';
+  save();
+  const el = document.getElementById('transformBox');
+  if (!el) return;
+  const items = transforms.map((t, i) => ({ ...t, i })).filter(t => filter === 'all' || t.kind === filter);
+  el.innerHTML = items.map(t => `
+    <div class="transform" data-ti="${t.i}">
+      <span class="tag-mini">${t.tag}</span>
+      <p class="direct-quote"><strong>${t.speaker}:</strong> ${t.quote}</p>
+      <input type="text" id="tr-${t.i}" placeholder="Write the reported sentence…" value="${(state.tr && state.tr[t.i]) || ''}" oninput="storeTr(${t.i}, this.value)">
+      <div class="model-line">Model: ${t.model}</div>
+    </div>
+  `).join('');
+}
+
+function filterTransforms(kind, btn) {
+  document.querySelectorAll('.filter-bar button').forEach(b => b.setAttribute('aria-pressed', 'false'));
+  if (btn) btn.setAttribute('aria-pressed', 'true');
+  renderTransforms(kind);
+}
+
+function storeTr(i, v) {
+  state.tr = state.tr || {};
+  state.tr[i] = v;
+  save();
+}
+
+function checkTransforms() {
+  const nodes = document.querySelectorAll('.transform[data-ti]');
+  let ok = 0, n = 0;
+  nodes.forEach(node => {
+    const i = Number(node.dataset.ti);
+    const item = transforms[i];
+    const val = normalize(document.getElementById('tr-' + i).value);
+    const accepted = item.accept.map(normalize);
+    n += 1;
+    const good = accepted.some(a => val === a || val.replace(/\b(leo|sara|mum|maya|he|she)\b/, '').trim() === a.replace(/\b(leo|sara|mum|maya|he|she)\b/, '').trim());
+    node.classList.toggle('ok', good && val);
+    node.classList.toggle('no', !good);
+    if (good) ok += 1;
+  });
+  const fb = document.getElementById('fb-transform');
+  fb.className = 'feedback show ' + (ok === n ? 'good' : 'warn');
+  fb.textContent = `${ok} / ${n} correct. Optional that is accepted. if and whether both count.`;
+}
+
+function revealTransforms() {
+  document.querySelectorAll('.transform').forEach(n => n.classList.add('show-ans'));
+}
+
+function markHit(btn) {
+  const id = btn.dataset.hit;
+  state.hits = state.hits || {};
+  if (state.hits[id]) return;
+  state.hits[id] = true;
+  btn.classList.add('found');
+  save();
+  updateHits();
+}
+
+function restoreHits() {
+  state.hits = state.hits || {};
+  document.querySelectorAll('.hit').forEach(btn => {
+    if (state.hits[btn.dataset.hit]) btn.classList.add('found');
+  });
+  updateHits();
+}
+
+function updateHits() {
+  const n = Object.keys(state.hits || {}).length;
+  const el = document.getElementById('hitScore');
+  if (el) el.textContent = `Found ${n} / ${readingHits.length}`;
+}
+
+function playListening() {
+  if (!window.speechSynthesis) return;
+  if (speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
+  const text = listeningScript.map(l => l[0] + '. ' + l[1]).join(' ');
+  speak(text, 0.94);
+}
+
+function toggleTranscript() {
+  document.getElementById('transcript').classList.toggle('show');
+}
+
+let wheelAngle = 0;
+function spin() {
+  const i = Math.floor(Math.random() * speakPack.length);
+  wheelAngle += 720 + i * 60;
+  const wheel = document.getElementById('wheel');
+  if (wheel) wheel.style.transform = `rotate(${wheelAngle}deg)`;
+  const pack = speakPack[i];
+  document.getElementById('speakPrompt').textContent = pack.prompt;
+  document.getElementById('speakHelp').style.display = 'block';
+  document.getElementById('speakFrames').innerHTML = pack.frames.map(f => `<li>${f}</li>`).join('');
+  document.getElementById('speakModel').textContent = pack.model;
+  document.querySelectorAll('.peer input').forEach(x => { x.checked = false; });
+}
+
+function insertStem(s) {
+  const box = document.getElementById('writingBox');
+  if (!box) return;
+  const start = box.value ? box.value.replace(/\s*$/, '') + ' ' : '';
+  box.value = start + s + ' ';
+  box.focus();
+  state.writing = box.value;
+  save();
+}
+
+function checkWriting() {
+  const text = (document.getElementById('writingBox').value || '').trim();
+  state.writing = text;
+  save();
+  const low = text.toLowerCase();
+  const checks = [
+    { ok: /\bsaid\b/.test(low), label: 'said' },
+    { ok: /\basked\b/.test(low), label: 'asked' },
+    { ok: /\b(if|whether)\b/.test(low), label: 'if/whether' },
+    { ok: /\b(where|what|why|when|how|who)\b/.test(low), label: 'Wh- word' },
+    { ok: /\b(didn'?t|did not|wasn'?t|was not|hadn'?t|had not|wouldn'?t|would not|couldn'?t|could not)\b/.test(low), label: 'a negative' },
+    { ok: text.split(/\s+/).length >= 70, label: 'enough length' }
+  ];
+  const ok = checks.filter(c => c.ok).length;
+  const fb = document.getElementById('writeFeedback');
+  fb.className = 'feedback show ' + (ok >= 5 ? 'good' : 'warn');
+  fb.innerHTML = `Checklist: ${ok} / ${checks.length}. Missing: ${checks.filter(c => !c.ok).map(c => c.label).join(', ') || 'nothing — nice work.'}`;
+}
+
+function showWriteModel() {
+  document.getElementById('writeModel').style.display = 'block';
+}
+
+function saveCando() {
+  state.cando = [...document.querySelectorAll('[data-cando]')].map(x => x.checked);
+  save();
+  updateCandoBar();
+}
+
+function updateCandoBar() {
+  const n = (state.cando || []).filter(Boolean).length;
+  const bar = document.getElementById('candoBar');
+  const lab = document.getElementById('candoLabel');
+  if (bar) bar.style.width = (n / candoItems.length * 100) + '%';
+  if (lab) lab.textContent = `${n} / ${candoItems.length} can-do statements`;
+}
+
+function checkExit() {
+  const text = (document.getElementById('exitWrite').value || '').trim();
+  state.exitWrite = text;
+  save();
+  const low = text.toLowerCase();
+  const hasSaid = /\bsaid\b/.test(low);
+  const hasAsked = /\basked\b/.test(low);
+  const hasIf = /\b(if|whether)\b/.test(low);
+  const hasWh = /\b(where|what|why|when|how|who)\b/.test(low);
+  const hasNeg = /\b(didn'?t|did not|wasn'?t|hadn'?t|wouldn'?t|couldn'?t|not)\b/.test(low);
+  const fb = document.getElementById('exitFb');
+  const score = [hasSaid, hasAsked, hasIf, hasWh, hasNeg].filter(Boolean).length;
+  fb.className = 'feedback show ' + (score >= 4 ? 'good' : 'warn');
+  fb.textContent = score >= 4
+    ? 'Saved. You used the four reporting shapes. Compare with the models in Practice D if you want to check backshift.'
+    : 'Saved. Try to include: said + clause, a negative, asked if, and asked + Wh-word.';
+}
+
+render();
+</script>
+</body>
+</html>
