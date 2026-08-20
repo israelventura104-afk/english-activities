@@ -14,4 +14,4 @@ Open the portal: [index.html](./index.html)
 6. [There Is / There Are](./there-is-there-are/) — A1 scaffolded grammar (around the house)
 7. [-ed Pronunciation](./ed-pronunciation/) — B1: /t/, /d/, /ɪd/ with Maya's delayed-flight story
 8. [Reported Speech](./reported-speech/) — B1: all tenses, affirmative/negative, yes/no and Wh- questions
-9. [Possessive Adjectives](./possessive-adjectives/) — A1–A2: my/your/his/her/its/our/their with family vocabulary
+9. [Possessive Adjectives & Nouns](./possessive-adjectives/) — A1–A2: my/your/his/her and Maya’s brother, my parents’ house, family vocabulary

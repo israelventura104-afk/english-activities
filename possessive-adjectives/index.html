@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="../favicon.png">
   <link rel="apple-touch-icon" href="../favicon.png">
-  <title>Possessive Adjectives | Family | A1–A2 | Israel Ventura</title>
+  <title>Possessives | Family | A1–A2 | Israel Ventura</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -172,6 +172,10 @@
       min-height: 72px; line-height: 1.55;
     }
     .caption .who { color: var(--accent); font-weight: 900; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .caption p { margin: 8px 0 0; }
+    .caption p:first-of-type { margin-top: 6px; }
+    .two-way { display: grid; gap: 8px; margin-top: 8px; }
+    .two-way .box { padding: 10px 12px; }
     .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .chip {
       display: inline-flex; align-items: center; gap: 6px;
@@ -241,6 +245,8 @@
       border-bottom: 2px dotted var(--accent); font-weight: 800; color: var(--accent); background: transparent;
     }
     .hit.found { background: #fdeef3; }
+    .hit.noun { color: #2f5d8c; border-bottom-color: #2f5d8c; }
+    .hit.noun.found { background: #e8eef6; }
     .score { font-weight: 800; color: var(--accent); }
 
     .audio-bar {
@@ -328,8 +334,8 @@
     <div class="brand">
       <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
       <div>
-        <h1>Possessive Adjectives</h1>
-        <p>Family vocabulary · my, your, his, her…</p>
+        <h1>Possessives</h1>
+        <p>Adjectives + nouns · family</p>
       </div>
     </div>
     <div class="topbar-actions">
@@ -345,8 +351,9 @@
       <span class="eyebrow">Grammar · Family vocabulary</span>
       <h2>This is <span>my family</span></h2>
       <p class="hero-copy">
-        Open Maya’s family album. Learn <strong>my, your, his, her, its, our, their</strong> with mothers, fathers,
-        brothers, cousins and a dog called Coco — then talk about <em>your</em> family.
+        Open Maya’s family album. Learn <strong>my, your, his, her, its, our, their</strong>
+        and possessive nouns: <strong>Maya’s brother</strong>, <strong>Leo’s sister</strong>,
+        <strong>my parents’ house</strong> — then talk about <em>your</em> family.
       </p>
       <div class="path" aria-label="Lesson path">
         <span>1 Family tree</span><span>2 Grammar</span><span>3 Practice</span><span>4 Read</span>
@@ -358,24 +365,24 @@
   <article class="lesson-card">
     <header class="lesson-head">
       <h3>Maya’s family album</h3>
-      <p>The possessive adjective matches the <em>owner</em>, not the person on the photo. Tap, listen, then make the same sentences about you.</p>
+      <p>Two ways to say “whose”: <em>her brother</em> and <em>Maya’s brother</em>. The owner comes first. Tap, listen, then make the same sentences about you.</p>
     </header>
     <nav class="tabs" id="tabs" role="tablist" aria-label="Lesson sections"></nav>
     <div id="panels"></div>
   </article>
 
-  <footer class="footer">English by Israel Ventura · Possessive adjectives · Family · Progress is stored in this browser</footer>
+  <footer class="footer">English by Israel Ventura · Possessive adjectives and nouns · Family · Progress is stored in this browser</footer>
 </div>
 
 <script>
 const sections = ['1 Family', '2 Grammar', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem('possAdjFamilyA1v1') || '{}'); }
+  try { return JSON.parse(localStorage.getItem('possAdjFamilyA1v2') || '{}'); }
   catch { return {}; }
 }
 function save() {
-  try { localStorage.setItem('possAdjFamilyA1v1', JSON.stringify(state)); }
+  try { localStorage.setItem('possAdjFamilyA1v2', JSON.stringify(state)); }
   catch { /* ignore */ }
 }
 const state = loadState();
@@ -406,16 +413,16 @@ function speak(text, rate) {
 }
 
 const people = [
-  { id: 'rosa', name: 'Rosa', emoji: '👵', rel: 'grandmother', gen: 1, maya: 'This is my grandmother. Her name is Rosa.' },
-  { id: 'luis', name: 'Luis', emoji: '👴', rel: 'grandfather', gen: 1, maya: 'This is my grandfather. His name is Luis.' },
-  { id: 'ana', name: 'Ana', emoji: '👩', rel: 'mother / mum', gen: 2, maya: 'This is my mother. Her name is Ana. I call her Mum.' },
-  { id: 'diego', name: 'Diego', emoji: '👨', rel: 'father / dad', gen: 2, maya: 'This is my father. His name is Diego. I call him Dad.' },
-  { id: 'carmen', name: 'Carmen', emoji: '👩', rel: 'aunt', gen: 2, maya: 'This is my aunt. Her name is Carmen. She is my dad’s sister.' },
-  { id: 'mateo', name: 'Mateo', emoji: '👨', rel: 'uncle', gen: 2, maya: 'This is my uncle. His name is Mateo. He is Carmen’s husband.' },
-  { id: 'maya', name: 'Maya', emoji: '👩', rel: 'me', gen: 3, maya: 'This is me. My name is Maya. Leo is my brother.' },
-  { id: 'leo', name: 'Leo', emoji: '👦', rel: 'brother', gen: 3, maya: 'This is my brother. His name is Leo. I am his sister.' },
-  { id: 'luna', name: 'Luna', emoji: '👧', rel: 'cousin', gen: 3, maya: 'This is my cousin. Her name is Luna. Her parents are Carmen and Mateo.' },
-  { id: 'coco', name: 'Coco', emoji: '🐕', rel: 'dog', gen: 4, maya: 'This is our dog. Its name is Coco.' }
+  { id: 'rosa', name: 'Rosa', emoji: '👵', rel: 'grandmother', gen: 1, maya: 'This is my grandmother. Her name is Rosa.', noun: "This is Maya's grandmother. Rosa is Mum's mother." },
+  { id: 'luis', name: 'Luis', emoji: '👴', rel: 'grandfather', gen: 1, maya: 'This is my grandfather. His name is Luis.', noun: "This is Maya's grandfather. Luis is Mum's father." },
+  { id: 'ana', name: 'Ana', emoji: '👩', rel: 'mother / mum', gen: 2, maya: 'This is my mother. Her name is Ana. I call her Mum.', noun: "This is Maya's mum. Ana is Leo's mother." },
+  { id: 'diego', name: 'Diego', emoji: '👨', rel: 'father / dad', gen: 2, maya: 'This is my father. His name is Diego. I call him Dad.', noun: "This is Maya's dad. Diego is Leo's father." },
+  { id: 'carmen', name: 'Carmen', emoji: '👩', rel: 'aunt', gen: 2, maya: 'This is my aunt. Her name is Carmen. She is my dad’s sister.', noun: "This is Maya's aunt. Carmen is Dad's sister." },
+  { id: 'mateo', name: 'Mateo', emoji: '👨', rel: 'uncle', gen: 2, maya: 'This is my uncle. His name is Mateo. He is Carmen’s husband.', noun: "This is Maya's uncle. Mateo is Carmen's husband." },
+  { id: 'maya', name: 'Maya', emoji: '👩', rel: 'me', gen: 3, maya: 'This is me. My name is Maya. Leo is my brother.', noun: "I am Leo's sister. I am my parents' daughter." },
+  { id: 'leo', name: 'Leo', emoji: '👦', rel: 'brother', gen: 3, maya: 'This is my brother. His name is Leo. I am his sister.', noun: "This is Maya's brother. Maya is Leo's sister." },
+  { id: 'luna', name: 'Luna', emoji: '👧', rel: 'cousin', gen: 3, maya: 'This is my cousin. Her name is Luna. Her parents are Carmen and Mateo.', noun: "This is Maya's cousin. Luna is Carmen's daughter." },
+  { id: 'coco', name: 'Coco', emoji: '🐕', rel: 'dog', gen: 4, maya: 'This is our dog. Its name is Coco.', noun: "Coco is the family's dog. Coco is my parents' dog too." }
 ];
 
 const gens = [
@@ -462,7 +469,8 @@ const treeQuiz = [
   { q: 'Maya and Leo talk about Mum and Dad. They say:', opts: ['my parents', 'your parents', 'our parents'], ans: 2, why: 'Two speakers + the same mum and dad → <strong>our parents</strong>.' },
   { q: 'Mum and Dad have two children. We say:', opts: ['His children are Maya and Leo.', 'Their children are Maya and Leo.', 'Our children are Maya and Leo.'], ans: 1, why: 'Mum and Dad = they → <strong>their children</strong>.' },
   { q: 'Sofia asks Maya about Ana. What does Sofia say?', opts: ['Is this my mother?', 'Is this your mother?', 'Is this her mother?'], ans: 1, why: 'Sofia is talking <em>to</em> Maya → <strong>your mother</strong>.' },
-  { q: 'Coco is the family dog. Which is correct?', opts: ["It's name is Coco.", 'Its name is Coco.', 'His name is Coco — dogs are always his.'], ans: 1, why: '<strong>its</strong> = possessive (no apostrophe). <em>It’s</em> = it is. For animals you may also hear <em>his/her</em> if you know the gender; this lesson trains <strong>its</strong> for the pet as a thing we own.' }
+  { q: 'Coco is the family dog. Which is correct?', opts: ["It's name is Coco.", 'Its name is Coco.', 'His name is Coco — dogs are always his.'], ans: 1, why: '<strong>its</strong> = possessive (no apostrophe). <em>It’s</em> = it is. For animals you may also hear <em>his/her</em> if you know the gender; this lesson trains <strong>its</strong> for the pet as a thing we own.' },
+  { q: 'Sofia talks about Maya. Which pair has the same meaning?', opts: ["her brother / Maya's brother", 'her brother / Maya brother', "his brother / Maya's brother"], ans: 0, why: 'Maya = she → <strong>her brother</strong> = <strong>Maya’s brother</strong>.' }
 ];
 
 const chooseQuiz = [
@@ -491,7 +499,10 @@ const errorClinic = [
   { q: 'Find the correct sentence.', opts: ["It's name is Coco.", 'Its name is Coco.', 'It name is Coco.'], ans: 1, why: '<strong>its</strong> = possessive. <em>It’s</em> = it is.' },
   { q: 'Find the correct sentence.', opts: ['Your a good brother.', "You're a good brother.", 'You brother is good.'], ans: 1, why: '<strong>You’re</strong> = you are. <em>Your</em> needs a noun: your brother.' },
   { q: 'Find the correct sentence.', opts: ['This is my parents.', 'These are my parents.', 'This are my parents.'], ans: 1, why: 'Parents = plural → <strong>These are</strong> my parents. (This is my family / This is my mum.)' },
-  { q: 'Find the correct sentence.', opts: ['The name of my father is Diego.', 'His name is Diego. / My father’s name is Diego.', 'Name my father Diego.'], ans: 1, why: 'Both long forms exist, but A1 English loves <strong>His name is…</strong> and <strong>My father’s name is…</strong>.' }
+  { q: 'Find the correct sentence.', opts: ['The name of my father is Diego.', 'His name is Diego. / My father’s name is Diego.', 'Name my father Diego.'], ans: 1, why: 'Both long forms exist, but A1 English loves <strong>His name is…</strong> and <strong>My father’s name is…</strong>.' },
+  { q: 'Find the correct sentence.', opts: ['This is Mayas brother.', "This is Maya's brother.", 'This is Maya brother.'], ans: 1, why: 'A singular name takes <strong>’s</strong>: Maya’s brother.' },
+  { q: 'Mum and Dad own the house. Which is correct?', opts: ["This is my parent's house.", "This is my parents' house.", 'This is my parents house.'], ans: 1, why: '<em>parents</em> already ends in s → add only the apostrophe: <strong>parents’</strong> house.' },
+  { q: 'Find the correct sentence.', opts: ["the childrens' room", "the children's room", 'the children room'], ans: 1, why: '<em>children</em> is an irregular plural (no s) → <strong>children’s</strong>.' }
 ];
 
 const gaps = [
@@ -507,13 +518,37 @@ const gaps = [
   { before: 'Luna is a girl.', choices: ['His', 'Her', 'Your'], ans: 'Her', after: 'parents are Carmen and Mateo.', why: 'Luna = she → Her parents.' }
 ];
 
+const nounQuiz = [
+  { q: 'Leo is ___ .', opts: ['Mayas brother', "Maya's brother", 'Maya brother'], ans: 1, why: 'Singular name → add <strong>’s</strong>: Maya’s brother.' },
+  { q: 'Maya is ___ .', opts: ["Leo's sister", 'Leos sister', 'Leo sister'], ans: 0, why: 'Leo’s sister = his sister.' },
+  { q: 'Ana is ___ mum.', opts: ["Maya's and Leo mum", "Maya and Leo's mum", 'Mayas mum'], ans: 1, why: 'Two owners, one thing: put <strong>’s</strong> on the last name: Maya and Leo’s mum.' },
+  { q: 'This is ___ house. (Mum and Dad together)', opts: ["my parent's house", "my parents' house", 'my parents house'], ans: 1, why: '<em>parents</em> already ends in s → <strong>parents’</strong> house.' },
+  { q: 'The room of the children =', opts: ["the childrens' room", "the children's room", 'the children room'], ans: 1, why: 'Irregular plural (no s) → <strong>children’s</strong> room.' },
+  { q: 'Which pair has the same meaning?', opts: ["her brother / Maya's brother", 'her brother / Maya brother', "his brother / Maya's brother"], ans: 0, why: 'Maya = she → her brother = Maya’s brother.' },
+  { q: 'Whose cousin is Luna?', opts: ['She is Maya cousin.', "She is Maya's cousin.", "She is Mayas' cousin."], ans: 1, why: 'Whose? → Maya’s cousin. (not Mayas’ — Maya is singular.)' },
+  { q: 'Coco is ___ dog.', opts: ["the family's dog", "the familys' dog", 'the family dog of'], ans: 0, why: '<em>family</em> is singular → <strong>the family’s dog</strong>. We also say our dog / their dog.' }
+];
+
+const nounGaps = [
+  { before: 'Leo is', choices: ["Maya's brother", 'Maya brother', 'Mayas brother'], ans: "Maya's brother", after: '.', why: "singular name + 's" },
+  { before: 'Maya is', choices: ["Leo's sister", 'Leos sister', "Leos' sister"], ans: "Leo's sister", after: '.', why: "Leo is singular → Leo's" },
+  { before: 'Carmen is', choices: ["Dad's sister", 'Dads sister', "Dads' sister"], ans: "Dad's sister", after: '.', why: "Dad is singular → Dad's sister" },
+  { before: 'Luna is', choices: ["Carmen's daughter", 'Carmen daughter', "Carmens' daughter"], ans: "Carmen's daughter", after: '.', why: "Carmen's daughter = her daughter" },
+  { before: 'This is', choices: ["my parents' house", "my parent's house", 'my parents house'], ans: "my parents' house", after: '.', why: 'plural ending in s → s’' },
+  { before: 'Coco is', choices: ["the family's dog", "the familys' dog", 'the family dog'], ans: "the family's dog", after: '.', why: "family is singular → family's" },
+  { before: 'The toys are in', choices: ["the children's room", "the childrens' room", 'the children room'], ans: "the children's room", after: '.', why: "children → children's" },
+  { before: 'Rosa is', choices: ["Maya's grandmother", 'Maya grandmother', "Mayas' grandmother"], ans: "Maya's grandmother", after: '.', why: "Maya's grandmother = her grandmother" }
+];
+
 const readingQs = [
   { q: 'Who is Leo?', opts: ['Maya’s father', 'Maya’s brother', 'Maya’s cousin'], ans: 1, why: 'The text says Leo is her brother.' },
   { q: 'What is Ana to Maya?', opts: ['her aunt', 'her mother', 'her grandmother'], ans: 1, why: 'Ana is Mum → <strong>her mother</strong>.' },
   { q: 'Luna is Maya’s…', opts: ['sister', 'daughter', 'cousin'], ans: 2, why: 'Luna is Aunt Carmen’s daughter → cousin.' },
-  { q: '“Their names are Rosa and Luis” — who are they?', opts: ['Maya’s parents', 'Maya’s grandparents', 'Maya’s children'], ans: 1, why: 'Rosa and Luis are her grandmother and grandfather.' },
-  { q: 'Why does Maya say <em>our dog</em>?', opts: ['Because Coco is Sofia’s dog.', 'Because the dog belongs to Maya and her family.', 'Because dogs always take our.'], ans: 1, why: 'Maya + family = we → <strong>our dog</strong>. Then <strong>its</strong> name is Coco.' },
-  { q: '“His wife is Ana” — who is <em>his</em>?', opts: ['Leo', 'Diego', 'Mateo'], ans: 1, why: 'Diego is Dad. <strong>His</strong> wife is Ana.' }
+  { q: 'Carmen’s daughter is…', opts: ['Maya', 'Ana', 'Luna'], ans: 2, why: 'Luna is Carmen’s daughter = her daughter = Maya’s cousin.' },
+  { q: 'Why does Maya say <em>our dog</em>?', opts: ['Because Coco is Sofia’s dog.', 'Because the dog belongs to Maya and her family.', 'Because dogs always take our.'], ans: 1, why: 'Maya + family = we → <strong>our dog</strong> = the family’s dog.' },
+  { q: '“I am Leo’s sister” means the same as…', opts: ['I am her sister', 'I am his sister', 'I am their sister'], ans: 1, why: 'Leo = he → Leo’s sister = <strong>his sister</strong>.' },
+  { q: '“my parents’ house” means…', opts: ['one parent has a house', 'Mum and Dad have a house', 'Maya has two houses'], ans: 1, why: '<em>parents’</em> (s’) = more than one parent.' },
+  { q: 'Maya’s brother and her brother…', opts: ['mean different people', 'mean the same person, Leo', 'are both wrong'], ans: 1, why: 'Maya = she → Maya’s brother = her brother = Leo.' }
 ];
 
 const listeningScript = [
@@ -527,8 +562,10 @@ const listeningScript = [
   ['Maya', 'That is my cousin. Her name is Luna. Her parents are my aunt and my uncle.'],
   ['Sofia', 'Your aunt… is that Carmen?'],
   ['Maya', 'Yes. Her name is Carmen. She is my dad’s sister. Her husband is Mateo.'],
+  ['Sofia', 'Is this Maya’s brother?'],
+  ['Maya', 'Yes. Leo is my brother, so I am Leo’s sister. This is my parents’ house too.'],
   ['Sofia', 'And the dog?'],
-  ['Maya', 'That is our dog. Its name is Coco. Coco is part of our family too.']
+  ['Maya', 'That is our dog — the family’s dog. Its name is Coco. Coco is part of our family too.']
 ];
 
 const listeningQs = [
@@ -537,39 +574,41 @@ const listeningQs = [
   { q: 'Diego is Maya’s…', opts: ['brother', 'uncle', 'father'], ans: 2, why: 'Sofia asks if he is her father. Maya says yes. His name is Diego.' },
   { q: 'Maya says “I am his sister.” Who is <em>his</em>?', opts: ['Diego', 'Leo', 'Mateo'], ans: 1, why: 'Leo is her brother, so she is <strong>his</strong> sister.' },
   { q: 'Luna’s parents are…', opts: ['Ana and Diego', 'Carmen and Mateo', 'Rosa and Luis'], ans: 1, why: 'Her parents are Maya’s aunt and uncle: Carmen and Mateo.' },
-  { q: 'Coco takes which possessive?', opts: ['her name', 'its name', "it's name"], ans: 1, why: 'our dog → <strong>Its name is Coco</strong>.' }
+  { q: 'Coco takes which possessive?', opts: ['her name', 'its name', "it's name"], ans: 1, why: 'our dog → <strong>Its name is Coco</strong>.' },
+  { q: 'Maya says she is…', opts: ["Leo's sister", "Leo sister", "Leos' sister"], ans: 0, why: 'I am Leo’s sister = I am his sister.' },
+  { q: 'The house in the photo is…', opts: ["Maya's one parent house", "Maya's parents' house", 'Sofia’s house'], ans: 1, why: 'Maya says <strong>my parents’ house</strong> — two parents, s’.' }
 ];
 
 const speakPack = [
-  { prompt: 'Show a photo (or imagine one). Talk about your mother or a woman in your family.', frames: ['This is my…', 'Her name is…', 'She is…'], model: 'This is my mum. Her name is Ana. She is a teacher.' },
-  { prompt: 'Talk about your father or a man in your family.', frames: ['This is my…', 'His name is…', 'He is…'], model: 'This is my dad. His name is Diego. He is tall.' },
-  { prompt: 'Talk about a brother, sister or cousin. If you have none, talk about a friend’s family.', frames: ['This is my…', 'His / Her name is…', 'He / She is… years old.'], model: 'This is my brother. His name is Leo. He is fourteen.' },
-  { prompt: 'Talk about your grandparents, or say you do not live with them.', frames: ['These are my grandparents.', 'Their names are…', 'They are…'], model: 'These are my grandparents. Their names are Rosa and Luis. They are kind.' },
-  { prompt: 'Ask your partner 3 questions about their family.', frames: ['What’s your mother’s name?', 'Have you got a brother?', 'Is this your cousin?'], model: 'What’s your father’s name? Have you got any brothers or sisters? Is this your family photo?' },
-  { prompt: 'Talk about a pet or a family house using our / their / its.', frames: ['This is our…', 'Its name is…', 'Their house is…'], model: 'This is our dog. Its name is Coco. Their house is small but nice.' }
+  { prompt: 'Show a photo (or imagine one). Talk about your mother or a woman in your family. Use her and ’s.', frames: ['This is my…', 'Her name is…', "She is my dad's / Leo's…"], model: "This is my mum. Her name is Ana. She is Leo's mother." },
+  { prompt: 'Talk about your father or a man in your family. Use his and ’s.', frames: ['This is my…', 'His name is…', "He is Maya's / my mum's…"], model: "This is my dad. His name is Diego. He is Maya's father." },
+  { prompt: 'Talk about a brother, sister or cousin with two ways: my/his/her and Name’s.', frames: ['This is my…', 'His / Her name is…', "This is Maya's / Leo's…"], model: "This is my brother. His name is Leo. He is Maya's brother." },
+  { prompt: 'Talk about your grandparents, or say you do not live with them.', frames: ['These are my grandparents.', 'Their names are…', "This is my grandparents' …"], model: "These are my grandparents. Their names are Rosa and Luis. This is my grandparents' dog." },
+  { prompt: 'Ask your partner 3 Whose / What’s questions.', frames: ["What's your mother's name?", 'Whose brother is this?', "Is this your parents' house?"], model: "What's your father's name? Whose cousin is Luna? Is this your parents' house?" },
+  { prompt: 'Talk about a pet or a family house using our / their / its and ’s.', frames: ['This is our…', "This is my parents' …", "the family's / Coco's …"], model: "This is our dog. It is the family's dog. This is my parents' house." }
 ];
 
 const writeStems = [
   'This is my',
   'His name is',
   'Her name is',
-  'These are my parents.',
-  'Our family is',
-  'Their names are'
+  "This is Maya's",
+  "This is my parents'",
+  "the children's"
 ];
 
 const candoItems = [
   'I can use my, your, his, her, its, our, their before a family word.',
-  'I choose his / her from the owner (Leo → his sister), not from the other person.',
-  'I can name family members: mother, father, brother, sister, grandparents, aunt, uncle, cousin.',
-  'I can ask about family: What’s your mother’s name? Is this your brother?',
-  'I do not confuse its / it’s and your / you’re.'
+  'I can use possessive nouns: Maya’s brother, Leo’s sister, Mum’s name.',
+  'I can write parents’ (two parents) and children’s (irregular plural).',
+  'I know Maya’s brother = her brother.',
+  'I can ask Whose…? and What’s your mother’s name?'
 ];
 
 function familyHTML() {
   return `
     <h4>1 · Tap the family tree</h4>
-    <p class="intro">This is Maya’s family. Tap a person. Maya tells you who they are with <strong>my / his / her / our / its</strong>.</p>
+    <p class="intro">This is Maya’s family. Tap a person. You will hear two ways: a <strong>possessive adjective</strong> (<em>my brother</em>) and a <strong>possessive noun</strong> (<em>Maya’s brother</em>).</p>
     <div class="tree-wrap">
       <p class="tree-label">Maya’s family</p>
       ${gens.map(g => `
@@ -594,16 +633,18 @@ function familyHTML() {
     </div>
     <h5>Quick check</h5>
     <div id="treeQuiz"></div>
-    <div class="tip"><strong>Remember:</strong> <em>my brother</em> = the brother belongs to me. <em>His name</em> = the name belongs to him.</div>
+    <div class="tip"><strong>Remember:</strong> <em>my brother</em> = <em>Maya’s brother</em>. The owner comes first. <em>His name</em> = the name belongs to him.</div>
   `;
 }
 
 function grammarHTML() {
   return `
-    <h4>2 · my, your, his, her, its, our, their</h4>
+    <h4>2 · Whose is it?</h4>
     <div class="grammar-hero">
-      <h4>A possessive adjective goes before a noun. It answers “Whose?”</h4>
-      <p class="formula">possessive adjective + family word &nbsp;→&nbsp; <span class="example">my mum &nbsp;·&nbsp; his sister &nbsp;·&nbsp; our dog</span></p>
+      <h4>English has two classroom tools for “Whose?”</h4>
+      <p class="formula">adjective + noun &nbsp;→&nbsp; <span class="example">her brother</span></p>
+      <p class="formula" style="margin-top:8px">noun + ’s &nbsp;→&nbsp; <span class="example">Maya’s brother</span></p>
+      <p style="margin-top:10px;color:var(--muted)">Same meaning. First you name the owner, then the family word.</p>
     </div>
 
     <section class="grammar-section">
@@ -685,27 +726,76 @@ function grammarHTML() {
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">7</span>Also useful: ’s with names</h4>
+      <h4><span class="section-index">7</span>Possessive nouns: add ’s to the owner</h4>
+      <div class="box rose">
+        <p class="formula">owner + ’s + family word</p>
+        <p class="example">Maya’s brother &nbsp;·&nbsp; Leo’s sister &nbsp;·&nbsp; Mum’s name &nbsp;·&nbsp; my dad’s sister</p>
+        <p style="margin:10px 0 0"><strong>Same meaning:</strong> Maya’s brother = her brother. Leo’s sister = his sister.</p>
+      </div>
+      <div class="table-wrap" style="margin-top:12px">
+        <table class="compare-table">
+          <thead><tr><th>Owner</th><th>Possessive noun</th><th>Possessive adjective</th></tr></thead>
+          <tbody>
+            <tr><td>Maya (she)</td><td><em>Maya’s brother</em></td><td>her brother</td></tr>
+            <tr><td>Leo (he)</td><td><em>Leo’s sister</em></td><td>his sister</td></tr>
+            <tr><td>Mum (she)</td><td><em>Mum’s son</em></td><td>her son</td></tr>
+            <tr><td>Dad (he)</td><td><em>Dad’s sister</em></td><td>his sister</td></tr>
+            <tr><td>Carmen (she)</td><td><em>Carmen’s daughter</em></td><td>her daughter</td></tr>
+            <tr><td>the family (it)</td><td><em>the family’s dog</em></td><td>its / our / their dog</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><strong>People:</strong> prefer ’s, not <em>of</em>. Say <em>Maya’s brother</em>, not <em>the brother of Maya</em>.</div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">8</span>One owner or many owners?</h4>
+      <div class="grid-3">
+        <div class="box">
+          <strong>1 person → ’s</strong>
+          <p class="example">Maya’s cousin</p>
+          <p>my brother’s name<br>the girl’s bag</p>
+        </div>
+        <div class="box rose">
+          <strong>plural with s → s’</strong>
+          <p class="example">my parents’ house</p>
+          <p>my grandparents’ dog<br>the girls’ names</p>
+        </div>
+        <div class="box">
+          <strong>irregular plural → ’s</strong>
+          <p class="example">the children’s room</p>
+          <p>the women’s bags<br>the men’s jackets</p>
+        </div>
+      </div>
+      <div class="tip" style="margin-top:12px"><strong>Listen for the extra beat:</strong> <em>parent’s</em> (one parent) vs <em>parents’</em> (two parents). In this family, Mum and Dad together → <strong>parents’</strong>.</div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">9</span>Whose…?</h4>
       <div class="box">
-        <p><strong>Maya’s brother</strong> = the brother of Maya = <em>her brother</em>.</p>
-        <p class="example">Leo’s sister &nbsp; Mum’s name &nbsp; my dad’s sister</p>
-        <p>This lesson focuses on <strong>my / your / his / her / its / our / their</strong>. The ’s is a friend, not the main guest.</p>
+        <p class="formula">Whose + family word + is / are…?</p>
+        <p class="example">Whose brother is Leo? — He is Maya’s brother. / He is her brother.</p>
+        <p class="example">Whose house is this? — It’s my parents’ house. / It’s their house.</p>
       </div>
     </section>
 
     <section class="grammar-section">
-      <h4><span class="section-index">8</span>Typical mistakes</h4>
+      <h4><span class="section-index">10</span>Typical mistakes</h4>
       <div class="mistake-row">
         <div class="wrong-example"><strong>Wrong</strong>This is the brother of me.</div>
-        <div class="right-example"><strong>Right</strong>This is my brother.</div>
+        <div class="right-example"><strong>Right</strong>This is my brother. / This is Maya’s brother.</div>
       </div>
       <div class="mistake-row">
         <div class="wrong-example"><strong>Wrong</strong>Leo and her sister</div>
-        <div class="right-example"><strong>Right</strong>Leo and his sister</div>
+        <div class="right-example"><strong>Right</strong>Leo and his sister / Leo’s sister</div>
       </div>
       <div class="mistake-row">
-        <div class="wrong-example"><strong>Wrong</strong>It's name is Coco.</div>
-        <div class="right-example"><strong>Right</strong>Its name is Coco.</div>
+        <div class="wrong-example"><strong>Wrong</strong>It's name is Coco. · Mayas brother</div>
+        <div class="right-example"><strong>Right</strong>Its name is Coco. · Maya’s brother</div>
+      </div>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Wrong</strong>my parent’s house (two parents) · the childrens’ room</div>
+        <div class="right-example"><strong>Right</strong>my parents’ house · the children’s room</div>
       </div>
     </section>
   `;
@@ -714,7 +804,7 @@ function grammarHTML() {
 function practiceHTML() {
   return `
     <h4>3 · Practice</h4>
-    <p class="intro">Short, clear tasks. Feedback tells you <em>why</em>. Use the family tree in your head: Maya, Leo, Mum Ana, Dad Diego, cousin Luna, dog Coco.</p>
+    <p class="intro">Short, clear tasks. Feedback tells you <em>why</em>. Use the family tree: Maya, Leo, Mum Ana, Dad Diego, cousin Luna, dog Coco. Practice <strong>adjectives</strong> first, then <strong>’s / s’</strong>.</p>
 
     <div class="exercise open">
       <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
@@ -734,7 +824,7 @@ function practiceHTML() {
 
     <div class="exercise open">
       <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
-        <span class="exercise-title"><strong>C · Error clinic</strong><small>the mother of me · his/her · its/it’s</small></span>
+        <span class="exercise-title"><strong>C · Error clinic</strong><small>the mother of me · his/her · Maya’s · parents’</small></span>
         <span class="chevron">▾</span>
       </button>
       <div class="exercise-content"><div id="errorClinic"></div></div>
@@ -753,42 +843,69 @@ function practiceHTML() {
         <div class="feedback" id="fb-gaps"></div>
       </div>
     </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>E · Possessive nouns</strong><small>Maya’s brother · my parents’ house · children’s</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content">
+        <div id="nounQuiz"></div>
+        <h5>Complete with ’s or s’</h5>
+        <div id="nounGapBox"></div>
+        <div class="actions">
+          <button type="button" class="btn" onclick="checkNounGaps()">Check</button>
+        </div>
+        <div class="feedback" id="fb-noun-gaps"></div>
+      </div>
+    </div>
   `;
 }
 
 function readingHTML() {
   return `
     <h4>4 · Reading · a page from the album</h4>
-    <p class="intro">Tap every possessive adjective. Then answer.</p>
+    <p class="intro">Tap every possessive. Pink = adjective (<em>my, her</em>). Blue = noun + ’s (<em>Maya’s, parents’</em>).</p>
     <div class="legend">
-      <span>my</span><span>his</span><span>her</span><span>our</span><span>their</span><span>its</span>
+      <span>my / his / her</span><span>our / their / its</span><span style="background:#e8eef6;color:#2f5d8c">’s / s’</span>
     </div>
-    <p class="score" id="hitScore">Found 0 / 12</p>
+    <p class="score" id="hitScore">Found 0</p>
     <article class="reading-text">
       <p>Hello. My name is Maya. This is
       <button type="button" class="hit" data-hit="h1" onclick="markHit(this)">my family</button>.</p>
       <p>This is
       <button type="button" class="hit" data-hit="h2" onclick="markHit(this)">my mother</button>.
       <button type="button" class="hit" data-hit="h3" onclick="markHit(this)">Her name</button>
-      is Ana. This is
+      is Ana — she is
+      <button type="button" class="hit noun" data-hit="n1" onclick="markHit(this)">Maya’s mum</button>.
+      This is
       <button type="button" class="hit" data-hit="h4" onclick="markHit(this)">my father</button>.
       <button type="button" class="hit" data-hit="h5" onclick="markHit(this)">His name</button>
       is Diego. They are
       <button type="button" class="hit" data-hit="h6" onclick="markHit(this)">my parents</button>.
       <button type="button" class="hit" data-hit="h7" onclick="markHit(this)">Their children</button>
-      are Leo and me.</p>
+      are Leo and me. This is
+      <button type="button" class="hit noun" data-hit="n2" onclick="markHit(this)">my parents’ house</button>.</p>
       <p>Leo is
-      <button type="button" class="hit" data-hit="h8" onclick="markHit(this)">my brother</button>.
+      <button type="button" class="hit" data-hit="h8" onclick="markHit(this)">my brother</button>
+      — he is
+      <button type="button" class="hit noun" data-hit="n3" onclick="markHit(this)">Maya’s brother</button>.
       I am
-      <button type="button" class="hit" data-hit="h11" onclick="markHit(this)">his sister</button>.
-      Luna is my cousin.
+      <button type="button" class="hit" data-hit="h11" onclick="markHit(this)">his sister</button>
+      and
+      <button type="button" class="hit noun" data-hit="n4" onclick="markHit(this)">Leo’s sister</button>.
+      Luna is my cousin. She is
+      <button type="button" class="hit noun" data-hit="n5" onclick="markHit(this)">Carmen’s daughter</button>.
       <button type="button" class="hit" data-hit="h9" onclick="markHit(this)">Her parents</button>
       are Aunt Carmen and Uncle Mateo.</p>
-      <p>We also have a dog.
+      <p>
+      <button type="button" class="hit noun" data-hit="n6" onclick="markHit(this)">The children’s room</button>
+      is blue. We also have a dog.
       <button type="button" class="hit" data-hit="h10" onclick="markHit(this)">Our dog</button>
-      is small.
+      is
+      <button type="button" class="hit noun" data-hit="n7" onclick="markHit(this)">the family’s dog</button>.
       <button type="button" class="hit" data-hit="h12" onclick="markHit(this)">Its name</button>
-      is Coco. Coco is part of the family too.</p>
+      is Coco.</p>
     </article>
     <h5>Comprehension</h5>
     <div id="readingQuiz"></div>
@@ -798,7 +915,7 @@ function readingHTML() {
 function listeningHTML() {
   return `
     <h4>5 · Listening · Is this your family photo?</h4>
-    <p class="intro">Sofia looks at Maya’s album. Listen for <strong>my / your / his / her / our / its</strong>.</p>
+    <p class="intro">Sofia looks at Maya’s album. Listen for <strong>my / your / his / her</strong> and for <strong>Maya’s, Leo’s, parents’, family’s</strong>.</p>
     <div class="audio-bar">
       <button type="button" class="play-big" onclick="playListening()" aria-label="Play conversation">▶</button>
       <p>Browser voice · Press again to stop. Open the transcript after the first listen.</p>
@@ -835,15 +952,15 @@ function speakingHTML() {
           <div class="peer">
             <span style="font-size:.78rem;font-weight:800;width:100%">Partner checklist</span>
             <label><input type="checkbox"> my / your / his / her</label>
+            <label><input type="checkbox"> Name’s or parents’</label>
             <label><input type="checkbox"> a family word</label>
-            <label><input type="checkbox"> a name</label>
-            <label><input type="checkbox"> asked a question</label>
+            <label><input type="checkbox"> asked Whose / What’s</label>
           </div>
         </div>
         <button type="button" class="btn secondary" style="margin-top:14px" onclick="spin()">Spin the wheel</button>
       </div>
     </div>
-    <div class="tip"><strong>Support:</strong> This is my… / His name is… / Her name is… / These are my parents. / What’s your… name?</div>
+    <div class="tip"><strong>Support:</strong> This is my… / His name is… / This is Maya’s… / my parents’ house / Whose brother is this?</div>
   `;
 }
 
@@ -852,7 +969,7 @@ function writingHTML() {
     <h4>7 · Writing · my family</h4>
     <p class="intro">Write 60–100 words about your family (or a family from a film). Use the stems if you need help.</p>
     <div class="box rose">
-      <strong>Must include:</strong> my · his or her · our or their · 4 family words · 2 names
+      <strong>Must include:</strong> my · his or her · one ’s (Maya’s / my mum’s) · one s’ or children’s (parents’ house) · 4 family words
     </div>
     <div class="stems">
       ${writeStems.map(s => `<button type="button" data-stem="${encodeURIComponent(s)}" onclick="insertStem(decodeURIComponent(this.dataset.stem))">${s}…</button>`).join('')}
@@ -864,7 +981,7 @@ function writingHTML() {
     </div>
     <div class="feedback" id="writeFeedback"></div>
     <div class="note" id="writeModel" style="display:none">
-      <strong>Model:</strong> My name is Maya. This is my family. This is my mother. Her name is Ana. This is my father. His name is Diego. These are my parents. Their children are Leo and me. Leo is my brother. His favourite colour is blue. Luna is my cousin. Her parents are Carmen and Mateo. Our dog is small. Its name is Coco. I love my family.
+      <strong>Model:</strong> My name is Maya. This is my family. This is my mother. Her name is Ana — she is Maya’s mum. This is my father. His name is Diego. These are my parents. This is my parents’ house. Their children are Leo and me. Leo is my brother. He is Maya’s brother, and I am Leo’s sister. Luna is Carmen’s daughter. The children’s room is blue. Our dog is the family’s dog. Its name is Coco.
     </div>
   `;
 }
@@ -884,7 +1001,7 @@ function exitHTML() {
     <div class="progress-mini"><span id="candoBar"></span></div>
     <p style="margin:0;font-size:.85rem;color:var(--muted)" id="candoLabel">0 / 5 can-do statements</p>
     <h5>Micro production</h5>
-    <textarea id="exitWrite" placeholder="1. This is my…&#10;2. His / Her name is…&#10;3. These are my parents. Their…&#10;4. Our…">${state.exitWrite || ''}</textarea>
+    <textarea id="exitWrite" placeholder="1. This is my…&#10;2. His / Her name is…&#10;3. This is Maya's / my mum's…&#10;4. This is my parents' …">${state.exitWrite || ''}</textarea>
     <button type="button" class="btn" style="margin-top:10px" onclick="checkExit()">Save exit ticket</button>
     <div class="feedback" id="exitFb"></div>
   `;
@@ -908,9 +1025,11 @@ function render() {
   renderQuiz('chooseQuiz', chooseQuiz, 'choose');
   renderQuiz('vocabQuiz', vocabQuiz, 'vocab');
   renderQuiz('errorClinic', errorClinic, 'error');
+  renderQuiz('nounQuiz', nounQuiz, 'noun');
   renderQuiz('readingQuiz', readingQs, 'reading');
   renderQuiz('listeningQuiz', listeningQs, 'listening');
   renderGaps();
+  renderNounGaps();
   restoreHits();
   updateCandoBar();
   if (state.person) selectPerson(state.person, true);
@@ -938,13 +1057,18 @@ function selectPerson(id, silent) {
   save();
   document.querySelectorAll('.person').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
   const cap = document.getElementById('familyCaption');
-  if (cap) cap.innerHTML = `<div class="who">Maya says · ${p.name}</div>${p.maya}`;
-  if (!silent) speak(p.maya, 0.9);
+  if (cap) cap.innerHTML = `
+    <div class="who">Two ways · ${p.name}</div>
+    <div class="two-way">
+      <div class="box"><strong>Adjective</strong><p>${p.maya}</p></div>
+      <div class="box rose"><strong>Noun + ’s</strong><p>${p.noun}</p></div>
+    </div>`;
+  if (!silent) speak(p.maya + ' ' + p.noun, 0.9);
 }
 
 function speakCaption() {
   const p = people.find(x => x.id === state.person) || people[6];
-  speak(p.maya, 0.9);
+  speak(p.maya + ' ' + p.noun, 0.9);
 }
 
 function renderQuiz(id, qs, key) {
@@ -1033,6 +1157,47 @@ function checkGaps() {
   fb.textContent = `${ok} / ${gaps.length} correct`;
 }
 
+function renderNounGaps() {
+  const el = document.getElementById('nounGapBox');
+  if (!el) return;
+  el.innerHTML = nounGaps.map((g, i) => `
+    <div class="gap-line" data-ngap="${i}">
+      <span>${g.before}</span>
+      <select id="ngap-${i}">
+        <option value="">—</option>
+        ${g.choices.map(c => `<option ${state.ngaps && state.ngaps[i] === c ? 'selected' : ''}>${c}</option>`).join('')}
+      </select>
+      <span>${g.after}</span>
+    </div>
+  `).join('');
+}
+
+function checkNounGaps() {
+  let ok = 0;
+  nounGaps.forEach((g, i) => {
+    const sel = document.getElementById('ngap-' + i);
+    const line = document.querySelector(`[data-ngap="${i}"]`);
+    const val = sel.value;
+    state.ngaps = state.ngaps || {};
+    state.ngaps[i] = val;
+    const good = val === g.ans;
+    if (good) ok += 1;
+    line.classList.toggle('ok', good);
+    line.classList.toggle('no', !good);
+    if (!line.querySelector('.why-inline')) {
+      const w = document.createElement('small');
+      w.className = 'why-inline';
+      w.style.cssText = 'width:100%;font-weight:600;color:#4a5a78';
+      w.textContent = g.why;
+      line.appendChild(w);
+    }
+  });
+  save();
+  const fb = document.getElementById('fb-noun-gaps');
+  fb.className = 'feedback show ' + (ok === nounGaps.length ? 'good' : 'warn');
+  fb.textContent = `${ok} / ${nounGaps.length} correct`;
+}
+
 function markHit(btn) {
   state.hits = state.hits || {};
   state.hits[btn.dataset.hit] = true;
@@ -1049,7 +1214,8 @@ function restoreHits() {
 }
 function updateHits() {
   const el = document.getElementById('hitScore');
-  if (el) el.textContent = `Found ${Object.keys(state.hits || {}).length} / 12`;
+  const total = document.querySelectorAll('.hit').length || 19;
+  if (el) el.textContent = `Found ${Object.keys(state.hits || {}).length} / ${total}`;
 }
 
 function playListening() {
@@ -1092,7 +1258,8 @@ function checkWriting() {
   const checks = [
     { ok: /\bmy\b/.test(low), label: 'my' },
     { ok: /\b(his|her)\b/.test(low), label: 'his or her' },
-    { ok: /\b(our|their)\b/.test(low), label: 'our or their' },
+    { ok: /'s|’s/.test(text), label: "a ’s form (Maya's / mum's)" },
+    { ok: /s'|s’|children's|children’s/.test(text), label: "parents’ or children’s" },
     { ok: (low.match(/\b(mother|mum|mom|father|dad|parent|parents|brother|sister|grandmother|grandfather|grandparents|grandma|grandpa|aunt|uncle|cousin|son|daughter|husband|wife|baby|family|dog)\b/g) || []).length >= 4, label: '4 family words' },
     { ok: text.split(/\s+/).length >= 45, label: 'enough length' }
   ];
@@ -1123,13 +1290,13 @@ function checkExit() {
   state.exitWrite = text;
   save();
   const low = text.toLowerCase();
-  const score = [/\bmy\b/, /\b(his|her)\b/, /\b(our|their)\b/, /\b(mother|mum|father|dad|brother|sister|parents|cousin|family)\b/]
-    .filter(r => r.test(low)).length;
+  const score = [/\bmy\b/, /\b(his|her)\b/, /'s|’s/, /\b(mother|mum|father|dad|brother|sister|parents|cousin|family)\b/]
+    .filter(r => r.test(low) || r.test(text)).length;
   const fb = document.getElementById('exitFb');
   fb.className = 'feedback show ' + (score >= 3 ? 'good' : 'warn');
   fb.textContent = score >= 3
-    ? 'Saved. Nice — you used possessive adjectives with family words.'
-    : 'Saved. Try: This is my… / His or Her name is… / These are my parents.';
+    ? 'Saved. Nice — you used possessive adjectives and ’s with family words.'
+    : 'Saved. Try: This is my… / His or Her name is… / This is Maya’s / my parents’ …';
 }
 
 render();
