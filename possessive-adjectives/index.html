@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>Possessive Adjectives | Family | A1–A2 | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --brand-logo: url("../favicon.png");
+      --accent: #c45c7a;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(196, 92, 122, 0.14), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.35rem); line-height: 1.05; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.84rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #fdf6f8; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: clamp(0.75rem, 3vw, 1.75rem); top: 50%;
+      transform: translateY(-50%); width: clamp(140px, 20vw, 240px); max-width: 30%;
+      aspect-ratio: 1 / 1; border-radius: 999px; background-image: var(--brand-logo);
+      background-repeat: no-repeat; background-position: center; background-size: contain;
+      opacity: 0.14; pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px);
+      max-width: min(760px, calc(100% - clamp(100px, 22vw, 230px)));
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
+      color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 900;
+    }
+    .hero h2 { margin: 0; font-size: clamp(1.85rem, 4.5vw, 3.2rem); line-height: 1.02; letter-spacing: -0.02em; font-weight: 900; }
+    .hero h2 span { color: var(--accent); }
+    .hero-copy { color: var(--muted); margin: 16px 0 0; max-width: 680px; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: #fff;
+      border: 1px solid rgba(30, 45, 90, 0.1); font-size: 0.72rem; font-weight: 800; color: var(--navy);
+    }
+
+    .lesson-card {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
+    .lesson-head h3 { margin: 0; font-size: 1.28rem; }
+    .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
+    .tabs {
+      display: flex; gap: 6px; overflow-x: auto; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); background: #fff; scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted); font-weight: 800;
+      font-size: 0.78rem; padding: 9px 11px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab:hover, .tab.active { color: var(--navy); background: #fdeef3; }
+    .panel { display: none; padding: 24px; }
+    .panel.active { display: block; }
+    .panel h4 { margin: 0 0 12px; color: var(--navy); font-size: 1.12rem; }
+    .panel h5 { margin: 18px 0 8px; color: var(--navy); font-size: 1rem; }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; line-height: 1.6; }
+    .box.tint { background: var(--wash); }
+    .box.rose { background: #fdf6f8; border-color: rgba(196, 92, 122, 0.2); }
+    .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+    .tip { padding: 12px 14px; border-left: 4px solid var(--teal); background: var(--wash); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
+    .grammar-hero {
+      padding: 20px; background: #fdf6f8; border: 1px solid rgba(196, 92, 122, 0.18);
+      border-radius: 16px; margin-bottom: 18px;
+    }
+    .grammar-hero h4 { font-size: 1.2rem; margin: 0 0 8px; color: var(--navy); }
+    .grammar-hero p { margin: 0; line-height: 1.65; color: var(--muted); }
+    .section-index {
+      width: 28px; height: 28px; display: grid; place-items: center;
+      border-radius: 8px; background: var(--accent); color: #fff; font-size: 0.75rem; flex: 0 0 auto; font-weight: 900;
+    }
+    .grammar-section { margin-top: 20px; }
+    .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
+    .formula { font-weight: 900; color: var(--navy); font-size: 1.05rem; }
+    .example { color: var(--accent); font-weight: 800; }
+    .table-wrap { overflow-x: auto; border-radius: 13px; }
+    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; font-size: 0.92rem; }
+    .compare-table th, .compare-table td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    .compare-table th { background: var(--navy); color: #fff; font-size: 0.76rem; }
+    .compare-table tr:last-child td { border-bottom: 0; }
+    .compare-table td:first-child { font-weight: 800; color: var(--navy); }
+    .compare-table em { color: var(--accent); font-style: normal; font-weight: 800; }
+
+    .tree-wrap { background: var(--navy); border-radius: 18px; padding: 18px 14px 16px; color: #fff; }
+    .tree-label { text-align: center; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 900; color: #9ce0da; margin: 0 0 12px; }
+    .gen { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 12px; }
+    .gen-tag { width: 100%; text-align: center; font-size: 0.68rem; font-weight: 800; color: #d7ecea; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+    .person {
+      width: 118px; border: 2px solid rgba(255,255,255,.22); border-radius: 16px;
+      background: #fff; color: var(--navy); padding: 10px 8px; text-align: center;
+    }
+    .person.selected { box-shadow: 0 0 0 3px rgba(196, 92, 122, 0.45); border-color: var(--accent); }
+    .face { font-size: 1.7rem; line-height: 1; }
+    .person strong { display: block; font-size: 0.88rem; margin-top: 4px; }
+    .person small { display: block; color: var(--muted); font-size: 0.72rem; font-weight: 800; }
+    .caption {
+      margin-top: 8px; padding: 14px 16px; border-radius: 12px; background: #fff; color: var(--navy);
+      min-height: 72px; line-height: 1.55;
+    }
+    .caption .who { color: var(--accent); font-weight: 900; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 10px; border-radius: 999px; border: 1px solid var(--line);
+      background: var(--soft); font-weight: 800; font-size: 0.78rem; color: var(--navy);
+    }
+    .chip button {
+      width: 22px; height: 22px; border: 0; border-radius: 999px;
+      background: var(--navy); color: #fff; font-size: 0.65rem; padding: 0;
+    }
+
+    .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+    .vocab {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      border: 1px solid var(--line); border-radius: 12px; padding: 8px 10px; background: #fff;
+    }
+    .vocab b { color: var(--navy); font-size: 0.88rem; }
+    .vocab small { display: block; color: var(--muted); font-weight: 700; }
+    .vocab button {
+      width: 28px; height: 28px; border: 0; border-radius: 999px;
+      background: var(--accent); color: #fff; font-weight: 900; flex: 0 0 auto;
+    }
+
+    .mistake-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .wrong-example, .right-example { padding: 12px; border-radius: 11px; border: 1px solid; }
+    .wrong-example { background: var(--bad); border-color: #efd0d0; }
+    .right-example { background: var(--good); border-color: #cce7d5; }
+    .wrong-example strong, .right-example strong { display: block; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+    .wrong-example strong { color: #a94e4e; }
+    .right-example strong { color: #287849; }
+
+    .exercise { border: 1px solid var(--line); border-radius: 14px; margin-top: 14px; overflow: hidden; }
+    .exercise-toggle {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      border: 0; padding: 14px 16px; background: var(--soft); text-align: left; color: var(--ink);
+    }
+    .exercise-toggle:hover { background: #fdeef3; }
+    .exercise-title small { display: block; color: var(--muted); font-weight: 600; margin-top: 3px; }
+    .exercise-content { display: none; padding: 16px; }
+    .exercise.open .exercise-content { display: block; }
+    .chevron { color: var(--accent); font-weight: 900; transition: transform 0.2s; }
+    .exercise.open .chevron { transform: rotate(180deg); }
+    .q-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q-block:last-child { border-bottom: 0; }
+    .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; }
+    .option-btn {
+      display: block; width: 100%; text-align: left; border: 1px solid var(--line);
+      background: #fff; border-radius: 10px; padding: 10px 12px; margin-top: 7px; color: var(--ink);
+    }
+    .option-btn:hover { border-color: var(--accent); }
+    .option-btn.correct { border-color: #6fbd8c; background: var(--good); }
+    .option-btn.wrong { border-color: #d88383; background: var(--bad); }
+    .why-box { display: none; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 0.84rem; line-height: 1.5; color: var(--muted); }
+    .why-box.show { display: block; }
+    .why-box strong { color: var(--navy); }
+    .gap-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); font-weight: 700; }
+    .gap-line select, .gap-line input[type=text] {
+      border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-width: 110px; font-weight: 700;
+    }
+    .gap-line.ok { background: var(--good); border-radius: 8px; padding-left: 8px; }
+    .gap-line.no { background: var(--bad); border-radius: 8px; padding-left: 8px; }
+
+    .reading-text { font-size: 1.02rem; line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .reading-text p { margin: 0 0 15px; }
+    .hit {
+      cursor: pointer; border-radius: 6px; padding: 1px 4px;
+      border-bottom: 2px dotted var(--accent); font-weight: 800; color: var(--accent); background: transparent;
+    }
+    .hit.found { background: #fdeef3; }
+    .score { font-weight: 800; color: var(--accent); }
+
+    .audio-bar {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      padding: 14px; background: var(--navy); color: #fff; border-radius: 12px; margin-bottom: 12px;
+    }
+    .audio-bar p { margin: 0; color: #d7ecea; font-size: 0.82rem; line-height: 1.45; flex: 1 1 200px; }
+    .play-big {
+      width: 46px; height: 46px; border: 0; border-radius: 999px; background: var(--teal);
+      color: var(--navy); font-weight: 900; font-size: 1rem; flex: 0 0 auto;
+    }
+    .dialogue { display: grid; gap: 8px; }
+    .dialogue-line { padding: 10px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); line-height: 1.55; }
+    .dialogue-line:nth-child(even) { background: #fdf6f8; }
+    .speaker-name { color: var(--accent); font-weight: 900; }
+    .transcript { display: none; margin-top: 14px; }
+    .transcript.show { display: block; }
+
+    .wheel-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: center; }
+    .wheel {
+      width: 260px; height: 260px; border-radius: 50%;
+      background: conic-gradient(var(--accent) 0 16.66%, var(--gold) 0 33.33%, #2f5d8c 0 50%, var(--teal) 0 66.66%, #d9c48f 0 83.33%, var(--navy) 0);
+      border: 10px solid #fff; box-shadow: 0 8px 26px rgba(30, 45, 90, 0.18);
+      position: relative; transition: transform 2.2s cubic-bezier(.2, .8, .2, 1); cursor: pointer; margin: 0 auto;
+    }
+    .wheel::after {
+      content: "SPIN"; position: absolute; inset: 86px; border-radius: 50%;
+      display: grid; place-items: center; background: #fff; color: var(--navy); font-weight: 900;
+    }
+    .pointer { text-align: center; color: var(--gold); font-size: 1.6rem; line-height: 0.6; }
+    .speak-prompt { font-size: 1.08rem; line-height: 1.5; padding: 16px; background: #fdf6f8; border-radius: 14px; min-height: 72px; font-weight: 750; }
+    .peer { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .peer label {
+      display: flex; gap: 6px; align-items: center; background: #fff; border: 1px solid var(--line);
+      border-radius: 999px; padding: 6px 10px; font-size: 0.78rem; font-weight: 700;
+    }
+    .frame-list { margin: 8px 0 0; padding-left: 18px; line-height: 1.7; color: var(--muted); }
+
+    textarea, input[type=text] { width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65; }
+    textarea { min-height: 150px; resize: vertical; }
+    textarea:focus, input:focus, select:focus { outline: 3px solid rgba(196, 92, 122, 0.2); border-color: var(--accent); }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--accent); background: #fdf6f8; color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+    .cando .lvl { font-size: 0.72rem; font-weight: 800; color: var(--accent); }
+    .progress-mini { height: 10px; background: var(--line); border-radius: 999px; overflow: hidden; margin: 10px 0 4px; }
+    .progress-mini span { display: block; height: 100%; background: var(--accent); width: 0; transition: width 0.3s; }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 15px; align-items: center; }
+    .btn { border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 850; background: var(--navy); color: #fff; }
+    .btn.secondary { background: var(--accent); }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .feedback { display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px; line-height: 1.5; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+    .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .legend span { font-size: 0.74rem; font-weight: 800; padding: 5px 9px; border-radius: 999px; background: #fdeef3; color: var(--accent); }
+
+    @media (max-width: 760px) {
+      .grid-2, .grid-3, .mistake-row, .wheel-wrap { grid-template-columns: 1fr; }
+      .hero-inner { max-width: 100%; }
+      .hero::after { opacity: 0.1; width: 120px; }
+      .shell { padding: 14px; }
+      .topbar { top: 8px; border-radius: 14px; }
+      .brand p, .mode-pill { display: none; }
+      .panel { padding: 18px; }
+      .home-btn .home-btn-label { display: none; }
+      .cando label { grid-template-columns: auto 1fr; }
+      .person { width: 104px; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+      <div>
+        <h1>Possessive Adjectives</h1>
+        <p>Family vocabulary · my, your, his, her…</p>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
+        <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
+      </a>
+      <span class="mode-pill">A1–A2 · 45–55 min</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Grammar · Family vocabulary</span>
+      <h2>This is <span>my family</span></h2>
+      <p class="hero-copy">
+        Open Maya’s family album. Learn <strong>my, your, his, her, its, our, their</strong> with mothers, fathers,
+        brothers, cousins and a dog called Coco — then talk about <em>your</em> family.
+      </p>
+      <div class="path" aria-label="Lesson path">
+        <span>1 Family tree</span><span>2 Grammar</span><span>3 Practice</span><span>4 Read</span>
+        <span>5 Listen</span><span>6 Speak</span><span>7 Write</span><span>8 Can-do</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="lesson-card">
+    <header class="lesson-head">
+      <h3>Maya’s family album</h3>
+      <p>The possessive adjective matches the <em>owner</em>, not the person on the photo. Tap, listen, then make the same sentences about you.</p>
+    </header>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Lesson sections"></nav>
+    <div id="panels"></div>
+  </article>
+
+  <footer class="footer">English by Israel Ventura · Possessive adjectives · Family · Progress is stored in this browser</footer>
+</div>
+
+<script>
+const sections = ['1 Family', '2 Grammar', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem('possAdjFamilyA1v1') || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem('possAdjFamilyA1v1', JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+const quizBank = {};
+
+let voicesReady = [];
+function loadVoices() { voicesReady = speechSynthesis.getVoices(); }
+if (window.speechSynthesis) {
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+function pickVoice() {
+  const voices = voicesReady.length ? voicesReady : (window.speechSynthesis ? speechSynthesis.getVoices() : []);
+  return voices.find(v => /en-GB/i.test(v.lang) && /Google|Female|Libby|Serena|Susan/i.test(v.name))
+    || voices.find(v => /en-US/i.test(v.lang) && /Google|Female|Samantha|Jenny|Aria/i.test(v.name))
+    || voices.find(v => /^en/i.test(v.lang))
+    || null;
+}
+function speak(text, rate) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'en-GB';
+  u.rate = rate || 0.9;
+  const v = pickVoice();
+  if (v) { u.voice = v; u.lang = v.lang; }
+  speechSynthesis.speak(u);
+}
+
+const people = [
+  { id: 'rosa', name: 'Rosa', emoji: '👵', rel: 'grandmother', gen: 1, maya: 'This is my grandmother. Her name is Rosa.' },
+  { id: 'luis', name: 'Luis', emoji: '👴', rel: 'grandfather', gen: 1, maya: 'This is my grandfather. His name is Luis.' },
+  { id: 'ana', name: 'Ana', emoji: '👩', rel: 'mother / mum', gen: 2, maya: 'This is my mother. Her name is Ana. I call her Mum.' },
+  { id: 'diego', name: 'Diego', emoji: '👨', rel: 'father / dad', gen: 2, maya: 'This is my father. His name is Diego. I call him Dad.' },
+  { id: 'carmen', name: 'Carmen', emoji: '👩', rel: 'aunt', gen: 2, maya: 'This is my aunt. Her name is Carmen. She is my dad’s sister.' },
+  { id: 'mateo', name: 'Mateo', emoji: '👨', rel: 'uncle', gen: 2, maya: 'This is my uncle. His name is Mateo. He is Carmen’s husband.' },
+  { id: 'maya', name: 'Maya', emoji: '👩', rel: 'me', gen: 3, maya: 'This is me. My name is Maya. Leo is my brother.' },
+  { id: 'leo', name: 'Leo', emoji: '👦', rel: 'brother', gen: 3, maya: 'This is my brother. His name is Leo. I am his sister.' },
+  { id: 'luna', name: 'Luna', emoji: '👧', rel: 'cousin', gen: 3, maya: 'This is my cousin. Her name is Luna. Her parents are Carmen and Mateo.' },
+  { id: 'coco', name: 'Coco', emoji: '🐕', rel: 'dog', gen: 4, maya: 'This is our dog. Its name is Coco.' }
+];
+
+const gens = [
+  { n: 1, label: 'Grandparents' },
+  { n: 2, label: 'Parents · aunt · uncle' },
+  { n: 3, label: 'Maya, Leo and cousin Luna' },
+  { n: 4, label: 'The family dog' }
+];
+
+const familyVocab = [
+  ['mother / mum', 'mum'],
+  ['father / dad', 'dad'],
+  ['parents', 'parents'],
+  ['brother', 'brother'],
+  ['sister', 'sister'],
+  ['son', 'son'],
+  ['daughter', 'daughter'],
+  ['children', 'children'],
+  ['grandmother / grandma', 'grandmother'],
+  ['grandfather / grandpa', 'grandfather'],
+  ['grandparents', 'grandparents'],
+  ['aunt', 'aunt'],
+  ['uncle', 'uncle'],
+  ['cousin', 'cousin'],
+  ['husband', 'husband'],
+  ['wife', 'wife'],
+  ['baby', 'baby'],
+  ['family', 'family']
+];
+
+const possChart = [
+  ['I', 'my', 'my mother, my brother'],
+  ['you', 'your', 'your father, your cousin'],
+  ['he', 'his', 'his sister, his mum'],
+  ['she', 'her', 'her dad, her son'],
+  ['it', 'its', 'its name (Coco / the photo)'],
+  ['we', 'our', 'our parents, our dog'],
+  ['they', 'their', 'their children, their house']
+];
+
+const treeQuiz = [
+  { q: 'Maya points to Leo. What does she say?', opts: ['This is your brother.', 'This is my brother. His name is Leo.', 'This is her brother. His name is Leo.'], ans: 1, why: 'Maya is speaking about her own brother → <strong>my brother</strong>. Leo is a boy → <strong>His</strong> name is Leo.' },
+  { q: 'Leo is a boy. Maya is a girl. Which sentence is correct?', opts: ['Leo and her sister Maya', 'Leo and his sister Maya', 'Leo and its sister Maya'], ans: 1, why: 'Look at the <strong>owner</strong> (Leo = he), not at sister. <strong>his sister</strong>.' },
+  { q: 'Maya and Leo talk about Mum and Dad. They say:', opts: ['my parents', 'your parents', 'our parents'], ans: 2, why: 'Two speakers + the same mum and dad → <strong>our parents</strong>.' },
+  { q: 'Mum and Dad have two children. We say:', opts: ['His children are Maya and Leo.', 'Their children are Maya and Leo.', 'Our children are Maya and Leo.'], ans: 1, why: 'Mum and Dad = they → <strong>their children</strong>.' },
+  { q: 'Sofia asks Maya about Ana. What does Sofia say?', opts: ['Is this my mother?', 'Is this your mother?', 'Is this her mother?'], ans: 1, why: 'Sofia is talking <em>to</em> Maya → <strong>your mother</strong>.' },
+  { q: 'Coco is the family dog. Which is correct?', opts: ["It's name is Coco.", 'Its name is Coco.', 'His name is Coco — dogs are always his.'], ans: 1, why: '<strong>its</strong> = possessive (no apostrophe). <em>It’s</em> = it is. For animals you may also hear <em>his/her</em> if you know the gender; this lesson trains <strong>its</strong> for the pet as a thing we own.' }
+];
+
+const chooseQuiz = [
+  { q: 'I have a brother. ___ name is Leo.', opts: ['My', 'His', 'Her'], ans: 1, why: 'The owner of the name is Leo (he) → <strong>His name</strong>. <em>My brother</em> is a different phrase.' },
+  { q: 'This is Maya. ___ brother is Leo.', opts: ['His', 'Her', 'Their'], ans: 1, why: 'Maya = she → <strong>Her brother</strong>.' },
+  { q: 'Hello, Leo. Is this ___ sister?', opts: ['my', 'your', 'her'], ans: 1, why: 'We are talking <em>to</em> Leo → <strong>your sister</strong>.' },
+  { q: 'Ana is a woman. ___ husband is Diego.', opts: ['His', 'Her', 'Its'], ans: 1, why: 'Ana = she → <strong>Her husband</strong>.' },
+  { q: 'Diego is a man. ___ wife is Ana.', opts: ['His', 'Her', 'Our'], ans: 0, why: 'Diego = he → <strong>His wife</strong>.' },
+  { q: 'Maya and Leo live with Mum and Dad. This is ___ house.', opts: ['her', 'their', 'our'], ans: 1, why: 'We talk about Maya and Leo (they) → <strong>their house</strong>. If Maya speaks, she says <em>our house</em>.' },
+  { q: 'Rosa and Luis are old. Maya is ___ granddaughter.', opts: ['his', 'her', 'their'], ans: 2, why: 'Two grandparents = they → <strong>their granddaughter</strong>.' },
+  { q: 'Look at the photo. ___ frame is blue.', opts: ['Its', "It's", 'Her'], ans: 0, why: 'The photo = it → <strong>Its</strong> frame. No apostrophe.' }
+];
+
+const vocabQuiz = [
+  { q: 'My mother’s mother is my…', opts: ['aunt', 'grandmother', 'cousin'], ans: 1, why: 'Mother’s mother = <strong>grandmother</strong>.' },
+  { q: 'My father’s brother is my…', opts: ['uncle', 'cousin', 'husband'], ans: 0, why: 'A parent’s brother = <strong>uncle</strong>.' },
+  { q: 'My aunt’s daughter is my…', opts: ['sister', 'cousin', 'niece'], ans: 1, why: 'The child of your aunt or uncle = <strong>cousin</strong>.' },
+  { q: 'Mum and Dad together are my…', opts: ['parents', 'grandparents', 'children'], ans: 0, why: '<strong>parents</strong> = mother + father.' },
+  { q: 'Maya is a girl. For Mum and Dad, Maya is their…', opts: ['son', 'daughter', 'brother'], ans: 1, why: 'A girl child = <strong>daughter</strong>. A boy child = son.' },
+  { q: 'Leo is Ana’s…', opts: ['father', 'husband', 'son'], ans: 2, why: 'Ana is his mother → Leo is her <strong>son</strong>.' }
+];
+
+const errorClinic = [
+  { q: 'Find the correct sentence.', opts: ['This is the mother of me.', 'This is my mother.', 'This is mother my.'], ans: 1, why: 'English prefers <strong>my + noun</strong>, not “the mother of me”.' },
+  { q: 'Find the correct sentence.', opts: ['Leo and her sister are at home.', 'Leo and his sister are at home.', 'Leo and he sister are at home.'], ans: 1, why: 'Owner = Leo (he) → <strong>his sister</strong>, even if sister is a girl.' },
+  { q: 'Find the correct sentence.', opts: ["It's name is Coco.", 'Its name is Coco.', 'It name is Coco.'], ans: 1, why: '<strong>its</strong> = possessive. <em>It’s</em> = it is.' },
+  { q: 'Find the correct sentence.', opts: ['Your a good brother.', "You're a good brother.", 'You brother is good.'], ans: 1, why: '<strong>You’re</strong> = you are. <em>Your</em> needs a noun: your brother.' },
+  { q: 'Find the correct sentence.', opts: ['This is my parents.', 'These are my parents.', 'This are my parents.'], ans: 1, why: 'Parents = plural → <strong>These are</strong> my parents. (This is my family / This is my mum.)' },
+  { q: 'Find the correct sentence.', opts: ['The name of my father is Diego.', 'His name is Diego. / My father’s name is Diego.', 'Name my father Diego.'], ans: 1, why: 'Both long forms exist, but A1 English loves <strong>His name is…</strong> and <strong>My father’s name is…</strong>.' }
+];
+
+const gaps = [
+  { before: 'Maya: “This is', choices: ['my', 'your', 'her'], ans: 'my', after: 'brother.”', why: 'Maya talks about her own brother.' },
+  { before: 'Maya: “', choices: ['My', 'His', 'Her'], ans: 'His', after: 'name is Leo.”', why: 'Leo = he → His name.' },
+  { before: 'Sofia to Maya: “Is this', choices: ['my', 'your', 'his'], ans: 'your', after: 'mum?”', why: 'Sofia talks to Maya → your.' },
+  { before: 'Ana is Mum.', choices: ['His', 'Her', 'Their'], ans: 'Her', after: 'son is Leo.', why: 'Ana = she → Her son.' },
+  { before: 'Diego is Dad.', choices: ['His', 'Her', 'Our'], ans: 'His', after: 'daughter is Maya.', why: 'Diego = he → His daughter.' },
+  { before: 'Maya and Leo: “These are', choices: ['my', 'our', 'their'], ans: 'our', after: 'parents.”', why: 'We → our.' },
+  { before: 'Mum and Dad:', choices: ['His', 'Her', 'Their'], ans: 'Their', after: 'children are Maya and Leo.', why: 'They → their.' },
+  { before: 'Rosa and Luis are old.', choices: ['His', 'Her', 'Their'], ans: 'Their', after: 'granddaughter is Maya.', why: 'Two people → their.' },
+  { before: 'Coco is the dog.', choices: ['Its', "It's", 'Her'], ans: 'Its', after: 'name is Coco.', why: 'it → its (no apostrophe).' },
+  { before: 'Luna is a girl.', choices: ['His', 'Her', 'Your'], ans: 'Her', after: 'parents are Carmen and Mateo.', why: 'Luna = she → Her parents.' }
+];
+
+const readingQs = [
+  { q: 'Who is Leo?', opts: ['Maya’s father', 'Maya’s brother', 'Maya’s cousin'], ans: 1, why: 'The text says Leo is her brother.' },
+  { q: 'What is Ana to Maya?', opts: ['her aunt', 'her mother', 'her grandmother'], ans: 1, why: 'Ana is Mum → <strong>her mother</strong>.' },
+  { q: 'Luna is Maya’s…', opts: ['sister', 'daughter', 'cousin'], ans: 2, why: 'Luna is Aunt Carmen’s daughter → cousin.' },
+  { q: '“Their names are Rosa and Luis” — who are they?', opts: ['Maya’s parents', 'Maya’s grandparents', 'Maya’s children'], ans: 1, why: 'Rosa and Luis are her grandmother and grandfather.' },
+  { q: 'Why does Maya say <em>our dog</em>?', opts: ['Because Coco is Sofia’s dog.', 'Because the dog belongs to Maya and her family.', 'Because dogs always take our.'], ans: 1, why: 'Maya + family = we → <strong>our dog</strong>. Then <strong>its</strong> name is Coco.' },
+  { q: '“His wife is Ana” — who is <em>his</em>?', opts: ['Leo', 'Diego', 'Mateo'], ans: 1, why: 'Diego is Dad. <strong>His</strong> wife is Ana.' }
+];
+
+const listeningScript = [
+  ['Sofia', 'Maya, is this your family photo?'],
+  ['Maya', 'Yes. This is my mum. Her name is Ana.'],
+  ['Sofia', 'And this man? Is he your father?'],
+  ['Maya', 'Yes. His name is Diego. These are my parents.'],
+  ['Sofia', 'Who is the boy?'],
+  ['Maya', 'He is my brother. His name is Leo. I am his sister.'],
+  ['Sofia', 'The girl with the yellow dress?'],
+  ['Maya', 'That is my cousin. Her name is Luna. Her parents are my aunt and my uncle.'],
+  ['Sofia', 'Your aunt… is that Carmen?'],
+  ['Maya', 'Yes. Her name is Carmen. She is my dad’s sister. Her husband is Mateo.'],
+  ['Sofia', 'And the dog?'],
+  ['Maya', 'That is our dog. Its name is Coco. Coco is part of our family too.']
+];
+
+const listeningQs = [
+  { q: 'The photo is…', opts: ['Sofia’s family photo', 'Maya’s family photo', 'Luna’s family photo'], ans: 1, why: 'Sofia asks “Is this your family photo?” Maya says yes.' },
+  { q: 'Ana is…', opts: ['Maya’s aunt', 'Maya’s mum', 'Maya’s sister'], ans: 1, why: '“This is my mum. Her name is Ana.”' },
+  { q: 'Diego is Maya’s…', opts: ['brother', 'uncle', 'father'], ans: 2, why: 'Sofia asks if he is her father. Maya says yes. His name is Diego.' },
+  { q: 'Maya says “I am his sister.” Who is <em>his</em>?', opts: ['Diego', 'Leo', 'Mateo'], ans: 1, why: 'Leo is her brother, so she is <strong>his</strong> sister.' },
+  { q: 'Luna’s parents are…', opts: ['Ana and Diego', 'Carmen and Mateo', 'Rosa and Luis'], ans: 1, why: 'Her parents are Maya’s aunt and uncle: Carmen and Mateo.' },
+  { q: 'Coco takes which possessive?', opts: ['her name', 'its name', "it's name"], ans: 1, why: 'our dog → <strong>Its name is Coco</strong>.' }
+];
+
+const speakPack = [
+  { prompt: 'Show a photo (or imagine one). Talk about your mother or a woman in your family.', frames: ['This is my…', 'Her name is…', 'She is…'], model: 'This is my mum. Her name is Ana. She is a teacher.' },
+  { prompt: 'Talk about your father or a man in your family.', frames: ['This is my…', 'His name is…', 'He is…'], model: 'This is my dad. His name is Diego. He is tall.' },
+  { prompt: 'Talk about a brother, sister or cousin. If you have none, talk about a friend’s family.', frames: ['This is my…', 'His / Her name is…', 'He / She is… years old.'], model: 'This is my brother. His name is Leo. He is fourteen.' },
+  { prompt: 'Talk about your grandparents, or say you do not live with them.', frames: ['These are my grandparents.', 'Their names are…', 'They are…'], model: 'These are my grandparents. Their names are Rosa and Luis. They are kind.' },
+  { prompt: 'Ask your partner 3 questions about their family.', frames: ['What’s your mother’s name?', 'Have you got a brother?', 'Is this your cousin?'], model: 'What’s your father’s name? Have you got any brothers or sisters? Is this your family photo?' },
+  { prompt: 'Talk about a pet or a family house using our / their / its.', frames: ['This is our…', 'Its name is…', 'Their house is…'], model: 'This is our dog. Its name is Coco. Their house is small but nice.' }
+];
+
+const writeStems = [
+  'This is my',
+  'His name is',
+  'Her name is',
+  'These are my parents.',
+  'Our family is',
+  'Their names are'
+];
+
+const candoItems = [
+  'I can use my, your, his, her, its, our, their before a family word.',
+  'I choose his / her from the owner (Leo → his sister), not from the other person.',
+  'I can name family members: mother, father, brother, sister, grandparents, aunt, uncle, cousin.',
+  'I can ask about family: What’s your mother’s name? Is this your brother?',
+  'I do not confuse its / it’s and your / you’re.'
+];
+
+function familyHTML() {
+  return `
+    <h4>1 · Tap the family tree</h4>
+    <p class="intro">This is Maya’s family. Tap a person. Maya tells you who they are with <strong>my / his / her / our / its</strong>.</p>
+    <div class="tree-wrap">
+      <p class="tree-label">Maya’s family</p>
+      ${gens.map(g => `
+        <div class="gen" data-gen="${g.n}">
+          <div class="gen-tag">${g.label}</div>
+          ${people.filter(p => p.gen === g.n).map(p => `
+            <button type="button" class="person" data-id="${p.id}" onclick="selectPerson('${p.id}')">
+              <div class="face" aria-hidden="true">${p.emoji}</div>
+              <strong>${p.name}</strong>
+              <small>${p.rel}</small>
+            </button>
+          `).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <div class="caption" id="familyCaption">
+      <div class="who">Maya says</div>
+      Tap a photo to hear Maya.
+    </div>
+    <div class="actions">
+      <button type="button" class="btn secondary" onclick="speakCaption()">▶ Play sentence</button>
+    </div>
+    <h5>Quick check</h5>
+    <div id="treeQuiz"></div>
+    <div class="tip"><strong>Remember:</strong> <em>my brother</em> = the brother belongs to me. <em>His name</em> = the name belongs to him.</div>
+  `;
+}
+
+function grammarHTML() {
+  return `
+    <h4>2 · my, your, his, her, its, our, their</h4>
+    <div class="grammar-hero">
+      <h4>A possessive adjective goes before a noun. It answers “Whose?”</h4>
+      <p class="formula">possessive adjective + family word &nbsp;→&nbsp; <span class="example">my mum &nbsp;·&nbsp; his sister &nbsp;·&nbsp; our dog</span></p>
+    </div>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">1</span>The seven words</h4>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Person</th><th>Possessive</th><th>Family example</th></tr></thead>
+          <tbody>
+            ${possChart.map(r => `<tr><td>${r[0]}</td><td><em>${r[1]}</em></td><td>${r[2]}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><strong>Never alone:</strong> we say <em>my brother</em>, not just <em>my</em>. (mine / yours come later — possessive pronouns.)</div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">2</span>his / her = the owner, not the family member</h4>
+      <div class="grid-2">
+        <div class="box rose">
+          <strong>Leo is a boy → his</strong>
+          <p class="example">his sister &nbsp; his mother &nbsp; his dog</p>
+          <p>Sister is a girl, but we still say <strong>his</strong> because Leo is the owner.</p>
+        </div>
+        <div class="box">
+          <strong>Maya is a girl → her</strong>
+          <p class="example">her brother &nbsp; her father &nbsp; her cousin</p>
+          <p>Brother is a boy, but we still say <strong>her</strong> because Maya is the owner.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">3</span>our and their</h4>
+      <div class="grid-2">
+        <div class="box tint">
+          <strong>we → our</strong>
+          <p>Maya and Leo: <span class="example">our parents, our dog, our grandparents</span></p>
+        </div>
+        <div class="box">
+          <strong>they → their</strong>
+          <p>Mum and Dad: <span class="example">their children, their house</span></p>
+          <p>Rosa and Luis: <span class="example">their granddaughter</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">4</span>your = I am talking to you</h4>
+      <div class="box rose">
+        <p>Sofia talks <em>to</em> Maya:</p>
+        <p class="example">Is this your mum? &nbsp; What’s your brother’s name?</p>
+        <p>Maya answers with <strong>my</strong>: Yes, she is my mum. His name is Leo.</p>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">5</span>its — no apostrophe</h4>
+      <div class="grid-2">
+        <div class="wrong-example"><strong>It’s = it is</strong>It’s a small dog. (= It is)</div>
+        <div class="right-example"><strong>Its = possessive</strong>Its name is Coco. / Its ears are long.</div>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">6</span>Family words</h4>
+      <div class="vocab-grid">
+        ${familyVocab.map(v => `
+          <div class="vocab">
+            <span><b>${v[0]}</b></span>
+            <button type="button" onclick="speak('${v[1]}', 0.8)" aria-label="Play ${v[1]}">▶</button>
+          </div>
+        `).join('')}
+      </div>
+      <div class="chip-row">
+        <span class="chip">son / daughter = child</span>
+        <span class="chip">parents = mum + dad</span>
+        <span class="chip">cousin = aunt/uncle’s child</span>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">7</span>Also useful: ’s with names</h4>
+      <div class="box">
+        <p><strong>Maya’s brother</strong> = the brother of Maya = <em>her brother</em>.</p>
+        <p class="example">Leo’s sister &nbsp; Mum’s name &nbsp; my dad’s sister</p>
+        <p>This lesson focuses on <strong>my / your / his / her / its / our / their</strong>. The ’s is a friend, not the main guest.</p>
+      </div>
+    </section>
+
+    <section class="grammar-section">
+      <h4><span class="section-index">8</span>Typical mistakes</h4>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Wrong</strong>This is the brother of me.</div>
+        <div class="right-example"><strong>Right</strong>This is my brother.</div>
+      </div>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Wrong</strong>Leo and her sister</div>
+        <div class="right-example"><strong>Right</strong>Leo and his sister</div>
+      </div>
+      <div class="mistake-row">
+        <div class="wrong-example"><strong>Wrong</strong>It's name is Coco.</div>
+        <div class="right-example"><strong>Right</strong>Its name is Coco.</div>
+      </div>
+    </section>
+  `;
+}
+
+function practiceHTML() {
+  return `
+    <h4>3 · Practice</h4>
+    <p class="intro">Short, clear tasks. Feedback tells you <em>why</em>. Use the family tree in your head: Maya, Leo, Mum Ana, Dad Diego, cousin Luna, dog Coco.</p>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>A · Choose the possessive</strong><small>my / your / his / her / its / our / their</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="chooseQuiz"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>B · Family words</strong><small>Who is who?</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="vocabQuiz"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>C · Error clinic</strong><small>the mother of me · his/her · its/it’s</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content"><div id="errorClinic"></div></div>
+    </div>
+
+    <div class="exercise open">
+      <button type="button" class="exercise-toggle" onclick="toggleExercise(this)">
+        <span class="exercise-title"><strong>D · Complete Maya’s album</strong><small>Gap fill from the family tree</small></span>
+        <span class="chevron">▾</span>
+      </button>
+      <div class="exercise-content">
+        <div id="gapBox"></div>
+        <div class="actions">
+          <button type="button" class="btn" onclick="checkGaps()">Check</button>
+        </div>
+        <div class="feedback" id="fb-gaps"></div>
+      </div>
+    </div>
+  `;
+}
+
+function readingHTML() {
+  return `
+    <h4>4 · Reading · a page from the album</h4>
+    <p class="intro">Tap every possessive adjective. Then answer.</p>
+    <div class="legend">
+      <span>my</span><span>his</span><span>her</span><span>our</span><span>their</span><span>its</span>
+    </div>
+    <p class="score" id="hitScore">Found 0 / 12</p>
+    <article class="reading-text">
+      <p>Hello. My name is Maya. This is
+      <button type="button" class="hit" data-hit="h1" onclick="markHit(this)">my family</button>.</p>
+      <p>This is
+      <button type="button" class="hit" data-hit="h2" onclick="markHit(this)">my mother</button>.
+      <button type="button" class="hit" data-hit="h3" onclick="markHit(this)">Her name</button>
+      is Ana. This is
+      <button type="button" class="hit" data-hit="h4" onclick="markHit(this)">my father</button>.
+      <button type="button" class="hit" data-hit="h5" onclick="markHit(this)">His name</button>
+      is Diego. They are
+      <button type="button" class="hit" data-hit="h6" onclick="markHit(this)">my parents</button>.
+      <button type="button" class="hit" data-hit="h7" onclick="markHit(this)">Their children</button>
+      are Leo and me.</p>
+      <p>Leo is
+      <button type="button" class="hit" data-hit="h8" onclick="markHit(this)">my brother</button>.
+      I am
+      <button type="button" class="hit" data-hit="h11" onclick="markHit(this)">his sister</button>.
+      Luna is my cousin.
+      <button type="button" class="hit" data-hit="h9" onclick="markHit(this)">Her parents</button>
+      are Aunt Carmen and Uncle Mateo.</p>
+      <p>We also have a dog.
+      <button type="button" class="hit" data-hit="h10" onclick="markHit(this)">Our dog</button>
+      is small.
+      <button type="button" class="hit" data-hit="h12" onclick="markHit(this)">Its name</button>
+      is Coco. Coco is part of the family too.</p>
+    </article>
+    <h5>Comprehension</h5>
+    <div id="readingQuiz"></div>
+  `;
+}
+
+function listeningHTML() {
+  return `
+    <h4>5 · Listening · Is this your family photo?</h4>
+    <p class="intro">Sofia looks at Maya’s album. Listen for <strong>my / your / his / her / our / its</strong>.</p>
+    <div class="audio-bar">
+      <button type="button" class="play-big" onclick="playListening()" aria-label="Play conversation">▶</button>
+      <p>Browser voice · Press again to stop. Open the transcript after the first listen.</p>
+      <button type="button" class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.28);background:transparent" onclick="toggleTranscript()">Transcript</button>
+    </div>
+    <div class="transcript" id="transcript">
+      <div class="dialogue">
+        ${listeningScript.map(line => `<div class="dialogue-line"><span class="speaker-name">${line[0]}:</span> ${line[1]}</div>`).join('')}
+      </div>
+    </div>
+    <h5>Listen and choose</h5>
+    <div id="listeningQuiz"></div>
+  `;
+}
+
+function speakingHTML() {
+  return `
+    <h4>6 · Speaking · my family, your family</h4>
+    <p class="intro">Spin → use the frames → speak 20–30 seconds. Partner ticks the boxes. Then swap.</p>
+    <div class="wheel-wrap">
+      <div>
+        <div class="pointer" aria-hidden="true">▼</div>
+        <div class="wheel" id="wheel" role="button" tabindex="0" aria-label="Spin the speaking wheel"
+          onclick="spin()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();spin();}"></div>
+      </div>
+      <div>
+        <div class="speak-prompt" id="speakPrompt">Click the wheel to get a family prompt.</div>
+        <div id="speakHelp" style="display:none;margin-top:12px">
+          <div class="box rose">
+            <strong>Say it like this</strong>
+            <ul class="frame-list" id="speakFrames"></ul>
+          </div>
+          <div class="note" style="margin-top:10px"><strong>Model:</strong> <span id="speakModel"></span></div>
+          <div class="peer">
+            <span style="font-size:.78rem;font-weight:800;width:100%">Partner checklist</span>
+            <label><input type="checkbox"> my / your / his / her</label>
+            <label><input type="checkbox"> a family word</label>
+            <label><input type="checkbox"> a name</label>
+            <label><input type="checkbox"> asked a question</label>
+          </div>
+        </div>
+        <button type="button" class="btn secondary" style="margin-top:14px" onclick="spin()">Spin the wheel</button>
+      </div>
+    </div>
+    <div class="tip"><strong>Support:</strong> This is my… / His name is… / Her name is… / These are my parents. / What’s your… name?</div>
+  `;
+}
+
+function writingHTML() {
+  return `
+    <h4>7 · Writing · my family</h4>
+    <p class="intro">Write 60–100 words about your family (or a family from a film). Use the stems if you need help.</p>
+    <div class="box rose">
+      <strong>Must include:</strong> my · his or her · our or their · 4 family words · 2 names
+    </div>
+    <div class="stems">
+      ${writeStems.map(s => `<button type="button" data-stem="${encodeURIComponent(s)}" onclick="insertStem(decodeURIComponent(this.dataset.stem))">${s}…</button>`).join('')}
+    </div>
+    <textarea id="writingBox" placeholder="My name is… This is my family.">${state.writing || ''}</textarea>
+    <div class="actions">
+      <button type="button" class="btn" onclick="checkWriting()">Save &amp; check</button>
+      <button type="button" class="btn ghost" onclick="showWriteModel()">Show model</button>
+    </div>
+    <div class="feedback" id="writeFeedback"></div>
+    <div class="note" id="writeModel" style="display:none">
+      <strong>Model:</strong> My name is Maya. This is my family. This is my mother. Her name is Ana. This is my father. His name is Diego. These are my parents. Their children are Leo and me. Leo is my brother. His favourite colour is blue. Luna is my cousin. Her parents are Carmen and Mateo. Our dog is small. Its name is Coco. I love my family.
+    </div>
+  `;
+}
+
+function exitHTML() {
+  return `
+    <h4>8 · Can-do · exit ticket</h4>
+    <p class="intro">Tick what you can do. Then write 4 sentences about <strong>your</strong> family.</p>
+    <div class="cando" id="candoBox">
+      ${candoItems.map((t, i) => `
+        <label>
+          <input type="checkbox" data-cando="${i}" ${state.cando && state.cando[i] ? 'checked' : ''} onchange="saveCando()">
+          <span>${t}</span>
+          <span class="lvl">A1–A2</span>
+        </label>`).join('')}
+    </div>
+    <div class="progress-mini"><span id="candoBar"></span></div>
+    <p style="margin:0;font-size:.85rem;color:var(--muted)" id="candoLabel">0 / 5 can-do statements</p>
+    <h5>Micro production</h5>
+    <textarea id="exitWrite" placeholder="1. This is my…&#10;2. His / Her name is…&#10;3. These are my parents. Their…&#10;4. Our…">${state.exitWrite || ''}</textarea>
+    <button type="button" class="btn" style="margin-top:10px" onclick="checkExit()">Save exit ticket</button>
+    <div class="feedback" id="exitFb"></div>
+  `;
+}
+
+function render() {
+  document.getElementById('tabs').innerHTML = sections.map((s, i) =>
+    `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" onclick="openTab(${i})">${s}</button>`
+  ).join('');
+  document.getElementById('panels').innerHTML = [
+    `<section class="panel">${familyHTML()}</section>`,
+    `<section class="panel">${grammarHTML()}</section>`,
+    `<section class="panel">${practiceHTML()}</section>`,
+    `<section class="panel">${readingHTML()}</section>`,
+    `<section class="panel">${listeningHTML()}</section>`,
+    `<section class="panel">${speakingHTML()}</section>`,
+    `<section class="panel">${writingHTML()}</section>`,
+    `<section class="panel">${exitHTML()}</section>`
+  ].join('');
+  renderQuiz('treeQuiz', treeQuiz, 'tree');
+  renderQuiz('chooseQuiz', chooseQuiz, 'choose');
+  renderQuiz('vocabQuiz', vocabQuiz, 'vocab');
+  renderQuiz('errorClinic', errorClinic, 'error');
+  renderQuiz('readingQuiz', readingQs, 'reading');
+  renderQuiz('listeningQuiz', listeningQs, 'listening');
+  renderGaps();
+  restoreHits();
+  updateCandoBar();
+  if (state.person) selectPerson(state.person, true);
+  openTab(state.tab || 0);
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((x, n) => x.classList.toggle('active', n === i));
+  document.querySelectorAll('.panel').forEach((x, n) => x.classList.toggle('active', n === i));
+  const lesson = document.querySelector('.lesson-card');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function toggleExercise(btn) {
+  const ex = btn.closest('.exercise');
+  if (ex) ex.classList.toggle('open');
+}
+
+function selectPerson(id, silent) {
+  const p = people.find(x => x.id === id);
+  if (!p) return;
+  state.person = id;
+  save();
+  document.querySelectorAll('.person').forEach(el => el.classList.toggle('selected', el.dataset.id === id));
+  const cap = document.getElementById('familyCaption');
+  if (cap) cap.innerHTML = `<div class="who">Maya says · ${p.name}</div>${p.maya}`;
+  if (!silent) speak(p.maya, 0.9);
+}
+
+function speakCaption() {
+  const p = people.find(x => x.id === state.person) || people[6];
+  speak(p.maya, 0.9);
+}
+
+function renderQuiz(id, qs, key) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  quizBank[key] = qs;
+  el.innerHTML = qs.map((item, i) => `
+    <div class="q-block">
+      <p class="q-prompt">${i + 1}. ${item.q}</p>
+      ${item.opts.map((o, j) =>
+        `<button type="button" class="option-btn" data-quiz="${key}" data-q="${i}" data-a="${j}" onclick="answer(this)">${o}</button>`
+      ).join('')}
+      <div class="why-box" id="why-${key}-${i}"></div>
+    </div>
+  `).join('') + `<div class="feedback" id="fb-${key}"></div>`;
+}
+
+function answer(btn) {
+  const k = btn.dataset.quiz;
+  const q = Number(btn.dataset.q);
+  const item = quizBank[k] && quizBank[k][q];
+  if (!item) return;
+  document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => x.classList.remove('correct', 'wrong'));
+  const ok = Number(btn.dataset.a) === item.ans;
+  btn.classList.add(ok ? 'correct' : 'wrong');
+  if (!ok) {
+    document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
+      if (Number(x.dataset.a) === item.ans) x.classList.add('correct');
+    });
+  }
+  const whyEl = document.getElementById(`why-${k}-${q}`);
+  if (whyEl) {
+    whyEl.classList.add('show');
+    whyEl.innerHTML = (ok ? '✓ ' : '→ ') + item.why;
+  }
+  state[k] = state[k] || {};
+  state[k][q] = ok;
+  save();
+  const total = quizBank[k].length;
+  const done = Object.keys(state[k]).length;
+  const score = Object.values(state[k]).filter(Boolean).length;
+  const fb = document.getElementById(`fb-${k}`);
+  if (!fb) return;
+  fb.className = 'feedback show ' + (done >= total && score === total ? 'good' : 'warn');
+  fb.textContent = `Progress: ${score} correct · ${done} answered`;
+}
+
+function renderGaps() {
+  const el = document.getElementById('gapBox');
+  if (!el) return;
+  el.innerHTML = gaps.map((g, i) => `
+    <div class="gap-line" data-gap="${i}">
+      <span>${g.before}</span>
+      <select id="gap-${i}">
+        <option value="">—</option>
+        ${g.choices.map(c => `<option ${state.gaps && state.gaps[i] === c ? 'selected' : ''}>${c}</option>`).join('')}
+      </select>
+      <span>${g.after}</span>
+    </div>
+  `).join('');
+}
+
+function checkGaps() {
+  let ok = 0;
+  gaps.forEach((g, i) => {
+    const sel = document.getElementById('gap-' + i);
+    const line = document.querySelector(`[data-gap="${i}"]`);
+    const val = sel.value;
+    state.gaps = state.gaps || {};
+    state.gaps[i] = val;
+    const good = val === g.ans;
+    if (good) ok += 1;
+    line.classList.toggle('ok', good);
+    line.classList.toggle('no', !good);
+    if (!line.querySelector('.why-inline')) {
+      const w = document.createElement('small');
+      w.className = 'why-inline';
+      w.style.cssText = 'width:100%;font-weight:600;color:#4a5a78';
+      w.textContent = g.why;
+      line.appendChild(w);
+    }
+  });
+  save();
+  const fb = document.getElementById('fb-gaps');
+  fb.className = 'feedback show ' + (ok === gaps.length ? 'good' : 'warn');
+  fb.textContent = `${ok} / ${gaps.length} correct`;
+}
+
+function markHit(btn) {
+  state.hits = state.hits || {};
+  state.hits[btn.dataset.hit] = true;
+  btn.classList.add('found');
+  save();
+  updateHits();
+}
+function restoreHits() {
+  state.hits = state.hits || {};
+  document.querySelectorAll('.hit').forEach(btn => {
+    if (state.hits[btn.dataset.hit]) btn.classList.add('found');
+  });
+  updateHits();
+}
+function updateHits() {
+  const el = document.getElementById('hitScore');
+  if (el) el.textContent = `Found ${Object.keys(state.hits || {}).length} / 12`;
+}
+
+function playListening() {
+  if (!window.speechSynthesis) return;
+  if (speechSynthesis.speaking) { speechSynthesis.cancel(); return; }
+  speak(listeningScript.map(l => l[0] + '. ' + l[1]).join(' '), 0.92);
+}
+function toggleTranscript() {
+  document.getElementById('transcript').classList.toggle('show');
+}
+
+let wheelAngle = 0;
+function spin() {
+  const i = Math.floor(Math.random() * speakPack.length);
+  wheelAngle += 720 + i * 60;
+  const wheel = document.getElementById('wheel');
+  if (wheel) wheel.style.transform = `rotate(${wheelAngle}deg)`;
+  const pack = speakPack[i];
+  document.getElementById('speakPrompt').textContent = pack.prompt;
+  document.getElementById('speakHelp').style.display = 'block';
+  document.getElementById('speakFrames').innerHTML = pack.frames.map(f => `<li>${f}</li>`).join('');
+  document.getElementById('speakModel').textContent = pack.model;
+  document.querySelectorAll('.peer input').forEach(x => { x.checked = false; });
+}
+
+function insertStem(s) {
+  const box = document.getElementById('writingBox');
+  if (!box) return;
+  box.value = (box.value ? box.value.replace(/\s*$/, ' ') : '') + s + ' ';
+  box.focus();
+  state.writing = box.value;
+  save();
+}
+
+function checkWriting() {
+  const text = (document.getElementById('writingBox').value || '').trim();
+  state.writing = text;
+  save();
+  const low = text.toLowerCase();
+  const checks = [
+    { ok: /\bmy\b/.test(low), label: 'my' },
+    { ok: /\b(his|her)\b/.test(low), label: 'his or her' },
+    { ok: /\b(our|their)\b/.test(low), label: 'our or their' },
+    { ok: (low.match(/\b(mother|mum|mom|father|dad|parent|parents|brother|sister|grandmother|grandfather|grandparents|grandma|grandpa|aunt|uncle|cousin|son|daughter|husband|wife|baby|family|dog)\b/g) || []).length >= 4, label: '4 family words' },
+    { ok: text.split(/\s+/).length >= 45, label: 'enough length' }
+  ];
+  const ok = checks.filter(c => c.ok).length;
+  const fb = document.getElementById('writeFeedback');
+  fb.className = 'feedback show ' + (ok >= 4 ? 'good' : 'warn');
+  fb.innerHTML = `Checklist: ${ok} / ${checks.length}. Missing: ${checks.filter(c => !c.ok).map(c => c.label).join(', ') || 'nothing — well done.'}`;
+}
+
+function showWriteModel() {
+  document.getElementById('writeModel').style.display = 'block';
+}
+
+function saveCando() {
+  state.cando = [...document.querySelectorAll('[data-cando]')].map(x => x.checked);
+  save();
+  updateCandoBar();
+}
+function updateCandoBar() {
+  const n = (state.cando || []).filter(Boolean).length;
+  const bar = document.getElementById('candoBar');
+  const lab = document.getElementById('candoLabel');
+  if (bar) bar.style.width = (n / candoItems.length * 100) + '%';
+  if (lab) lab.textContent = `${n} / ${candoItems.length} can-do statements`;
+}
+function checkExit() {
+  const text = (document.getElementById('exitWrite').value || '').trim();
+  state.exitWrite = text;
+  save();
+  const low = text.toLowerCase();
+  const score = [/\bmy\b/, /\b(his|her)\b/, /\b(our|their)\b/, /\b(mother|mum|father|dad|brother|sister|parents|cousin|family)\b/]
+    .filter(r => r.test(low)).length;
+  const fb = document.getElementById('exitFb');
+  fb.className = 'feedback show ' + (score >= 3 ? 'good' : 'warn');
+  fb.textContent = score >= 3
+    ? 'Saved. Nice — you used possessive adjectives with family words.'
+    : 'Saved. Try: This is my… / His or Her name is… / These are my parents.';
+}
+
+render();
+</script>
+</body>
+</html>
