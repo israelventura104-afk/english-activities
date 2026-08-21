@@ -354,7 +354,7 @@
         <strong>yes/no</strong> and <strong>Wh-</strong> questions in every common tense.
       </p>
       <div class="path" aria-label="Lesson path">
-        <span>1 Notice</span><span>2 Grammar</span><span>3 Practice</span><span>4 Read</span>
+        <span>1 Grammar</span><span>2 Notice</span><span>3 Practice</span><span>4 Read</span>
         <span>5 Listen</span><span>6 Speak</span><span>7 Write</span><span>8 Can-do</span>
       </div>
     </div>
@@ -363,7 +363,7 @@
   <article class="lesson-card">
     <header class="lesson-head">
       <h3>What they said after the storm</h3>
-      <p>Maya tells Sofia about Saturday’s group chat. First you hear the original words. Then you report them.</p>
+      <p>Maya tells Sofia about Saturday’s group chat. Start with the reporting machine, then notice the original words.</p>
     </header>
     <nav class="tabs" id="tabs" role="tablist" aria-label="Lesson sections"></nav>
     <div id="panels"></div>
@@ -373,14 +373,14 @@
 </div>
 
 <script>
-const sections = ['1 Notice', '2 Grammar', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
+const sections = ['1 Grammar', '2 Notice', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v1') || '{}'); }
+  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v2') || '{}'); }
   catch { return {}; }
 }
 function save() {
-  try { localStorage.setItem('reportedSpeechB1v1', JSON.stringify(state)); }
+  try { localStorage.setItem('reportedSpeechB1v2', JSON.stringify(state)); }
   catch { /* ignore */ }
 }
 const state = loadState();
@@ -450,7 +450,7 @@ const timeRows = [
 const noticeQuiz = [
   { q: 'Maya is talking to Sofia the day after. Leo said: "I am making pizza tonight." What is the best report?', opts: ['Leo said he is making pizza tonight.', 'Leo said he was making pizza that night.', 'Leo said he made pizza tonight.'], ans: 1, why: 'Reporting verb is past (<strong>said</strong>) → present continuous backshifts to <strong>past continuous</strong>, and <em>tonight</em> becomes <em>that night</em>.' },
   { q: 'Which reporting verb is correct? Mum: "Have you packed the camera?"', opts: ['Mum said if I had packed the camera.', 'Mum asked if I had packed the camera.', 'Mum told if I had packed the camera.'], ans: 1, why: 'Questions use <strong>asked</strong>, not said/told. Yes/no questions take <strong>if</strong> or <strong>whether</strong>.' },
-  { q: 'Sara: "Where is the exhibition?" Why is “Sara asked where was the exhibition” wrong?', opts: ['Because we never change the tense.', 'Because reported questions use statement word order: where the exhibition was.', 'Because we must use if, not where.'], ans: 1, why: 'Keep the Wh-word, drop inversion: <strong>where the exhibition was</strong>, not where was the exhibition.' }
+  { q: 'Leo: "Where is the exhibition?" Why is “Leo asked where was the exhibition” wrong?', opts: ['Because we never change the tense.', 'Because reported questions use statement word order: where the exhibition was.', 'Because we must use if, not where.'], ans: 1, why: 'Keep the Wh-word, drop inversion: <strong>where the exhibition was</strong>, not where was the exhibition.' }
 ];
 
 const tenseQuiz = [
@@ -581,7 +581,7 @@ const candoItems = [
 
 function grammarHTML() {
   return `
-    <h4>2 · The reporting machine</h4>
+    <h4>1 · The reporting machine</h4>
     <div class="grammar-hero">
       <h4>When the reporting verb is past, the original tense usually takes one step back.</h4>
       <p>You also change pronouns and many time/place words. Questions become clauses: no inversion, no question mark in the report.</p>
@@ -730,7 +730,7 @@ function grammarHTML() {
 
 function noticeHTML() {
   return `
-    <h4>1 · Hear the original, then report it</h4>
+    <h4>2 · Hear the original, then report it</h4>
     <p class="intro">Saturday’s group chat is still on Maya’s phone. Tap a card to flip from <strong>direct speech</strong> to Maya’s report for Sofia.</p>
     <div class="flip-grid" id="flipGrid">
       ${noticeCards.map((c, i) => `
@@ -940,8 +940,8 @@ function render() {
     `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" onclick="openTab(${i})">${s}</button>`
   ).join('');
   document.getElementById('panels').innerHTML = [
-    `<section class="panel">${noticeHTML()}</section>`,
     `<section class="panel">${grammarHTML()}</section>`,
+    `<section class="panel">${noticeHTML()}</section>`,
     `<section class="panel">${practiceHTML()}</section>`,
     `<section class="panel">${readingHTML()}</section>`,
     `<section class="panel">${listeningHTML()}</section>`,
