@@ -376,11 +376,11 @@
 const sections = ['1 Grammar', '2 Notice', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v2') || '{}'); }
+  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v3') || '{}'); }
   catch { return {}; }
 }
 function save() {
-  try { localStorage.setItem('reportedSpeechB1v2', JSON.stringify(state)); }
+  try { localStorage.setItem('reportedSpeechB1v3', JSON.stringify(state)); }
   catch { /* ignore */ }
 }
 const state = loadState();
@@ -412,11 +412,11 @@ function speak(text, rate) {
 
 const noticeCards = [
   { speaker: 'Leo', direct: '"I am making pizza tonight."', reported: 'Leo said (that) he was making pizza that night.', kind: 'Present continuous → past continuous' },
-  { speaker: 'Sara', direct: '"I don\'t want to cycle if it rains."', reported: 'Sara said (that) she didn\'t want to cycle if it rained.', kind: 'Present simple negative' },
+  { speaker: 'Luna', direct: '"I don\'t want to cycle if it rains."', reported: 'Luna said (that) she didn\'t want to cycle if it rained.', kind: 'Present simple negative' },
   { speaker: 'Mum', direct: '"Have you packed the camera?"', reported: 'Mum asked if I had packed the camera.', kind: 'Yes/no · present perfect' },
   { speaker: 'Leo', direct: '"Where is the exhibition?"', reported: 'Leo asked where the exhibition was.', kind: 'Wh- · present simple' },
   { speaker: 'Maya', direct: '"I will send the photos tomorrow."', reported: 'Maya said (that) she would send the photos the next day.', kind: 'will → would + time change' },
-  { speaker: 'Sara', direct: '"I have already bought the tickets."', reported: 'Sara said (that) she had already bought the tickets.', kind: 'Present perfect → past perfect' }
+  { speaker: 'Luna', direct: '"I have already bought the tickets."', reported: 'Luna said (that) she had already bought the tickets.', kind: 'Present perfect → past perfect' }
 ];
 
 const tenseRows = [
@@ -486,26 +486,26 @@ const errorClinic = [
 
 const transforms = [
   { kind: 'aff', tag: 'Present simple · +', speaker: 'Leo', quote: '"I live near the lake."', accept: ['leo said (that) he lived near the lake', 'he said (that) he lived near the lake'], model: 'Leo said (that) he lived near the lake.' },
-  { kind: 'neg', tag: 'Present simple · −', speaker: 'Sara', quote: '"I don\'t like cycling in the rain."', accept: ['sara said (that) she did not like cycling in the rain', 'sara said (that) she didn\'t like cycling in the rain', 'she said (that) she did not like cycling in the rain'], model: 'Sara said (that) she didn\'t like cycling in the rain.' },
+  { kind: 'neg', tag: 'Present simple · −', speaker: 'Luna', quote: '"I don\'t like cycling in the rain."', accept: ['luna said (that) she did not like cycling in the rain', 'luna said (that) she didn\'t like cycling in the rain', 'she said (that) she did not like cycling in the rain'], model: 'Luna said (that) she didn\'t like cycling in the rain.' },
   { kind: 'aff', tag: 'Present continuous · +', speaker: 'Leo', quote: '"I\'m making pizza tonight."', accept: ['leo said (that) he was making pizza that night', 'he said (that) he was making pizza that night'], model: 'Leo said (that) he was making pizza that night.' },
   { kind: 'neg', tag: 'Present continuous · −', speaker: 'Maya', quote: '"I\'m not going to the lake."', accept: ['maya said (that) she was not going to the lake', 'maya said (that) she wasn\'t going to the lake', 'she said (that) she was not going to the lake'], model: 'Maya said (that) she wasn\'t going to the lake.' },
-  { kind: 'aff', tag: 'Present perfect · +', speaker: 'Sara', quote: '"I have already bought the tickets."', accept: ['sara said (that) she had already bought the tickets', 'she said (that) she had already bought the tickets'], model: 'Sara said (that) she had already bought the tickets.' },
+  { kind: 'aff', tag: 'Present perfect · +', speaker: 'Luna', quote: '"I have already bought the tickets."', accept: ['luna said (that) she had already bought the tickets', 'she said (that) she had already bought the tickets'], model: 'Luna said (that) she had already bought the tickets.' },
   { kind: 'neg', tag: 'Present perfect · −', speaker: 'Mum', quote: '"I haven\'t seen the photos yet."', accept: ['mum said (that) she had not seen the photos yet', 'mum said (that) she hadn\'t seen the photos yet', 'she said (that) she had not seen the photos yet'], model: 'Mum said (that) she hadn\'t seen the photos yet.' },
   { kind: 'aff', tag: 'Past simple · +', speaker: 'Maya', quote: '"I missed the first bus."', accept: ['maya said (that) she had missed the first bus', 'she said (that) she had missed the first bus'], model: 'Maya said (that) she had missed the first bus.' },
   { kind: 'neg', tag: 'Past simple · −', speaker: 'Leo', quote: '"I didn\'t check the forecast."', accept: ['leo said (that) he had not checked the forecast', 'leo said (that) he hadn\'t checked the forecast', 'he said (that) he had not checked the forecast'], model: 'Leo said (that) he hadn\'t checked the forecast.' },
   { kind: 'aff', tag: 'Past continuous · +', speaker: 'Leo', quote: '"I was waiting at the bus stop."', accept: ['leo said (that) he had been waiting at the bus stop', 'he said (that) he had been waiting at the bus stop'], model: 'Leo said (that) he had been waiting at the bus stop.' },
   { kind: 'aff', tag: 'will · +', speaker: 'Maya', quote: '"I will send the photos tomorrow."', accept: ['maya said (that) she would send the photos the next day', 'maya said (that) she would send the photos the following day', 'she said (that) she would send the photos the next day'], model: 'Maya said (that) she would send the photos the next day.' },
-  { kind: 'neg', tag: 'will · −', speaker: 'Sara', quote: '"I won\'t cycle if it rains."', accept: ['sara said (that) she would not cycle if it rained', 'sara said (that) she wouldn\'t cycle if it rained', 'she said (that) she would not cycle if it rained'], model: 'Sara said (that) she wouldn\'t cycle if it rained.' },
+  { kind: 'neg', tag: 'will · −', speaker: 'Luna', quote: '"I won\'t cycle if it rains."', accept: ['luna said (that) she would not cycle if it rained', 'luna said (that) she wouldn\'t cycle if it rained', 'she said (that) she would not cycle if it rained'], model: 'Luna said (that) she wouldn\'t cycle if it rained.' },
   { kind: 'aff', tag: 'can · +', speaker: 'Leo', quote: '"We can meet at the café."', accept: ['leo said (that) they could meet at the cafe', 'leo said (that) they could meet at the café', 'he said (that) they could meet at the cafe', 'he said (that) we could meet at the cafe'], model: 'Leo said (that) they could meet at the café.' },
   { kind: 'yn', tag: 'Yes/no · present simple', speaker: 'Mum', quote: '"Do you have your camera?"', accept: ['mum asked if i had my camera', 'mum asked whether i had my camera', 'she asked if i had my camera', 'mum asked if i had the camera'], model: 'Mum asked if I had my camera.' },
   { kind: 'yn', tag: 'Yes/no · present perfect', speaker: 'Mum', quote: '"Have you packed the camera?"', accept: ['mum asked if i had packed the camera', 'mum asked whether i had packed the camera', 'she asked if i had packed the camera'], model: 'Mum asked if I had packed the camera.' },
   { kind: 'yn', tag: 'Yes/no · past simple', speaker: 'Leo', quote: '"Did you check the weather?"', accept: ['leo asked if i had checked the weather', 'leo asked whether i had checked the weather', 'he asked if i had checked the weather'], model: 'Leo asked if I had checked the weather.' },
-  { kind: 'yn', tag: 'Yes/no · will', speaker: 'Sara', quote: '"Will you wait for me?"', accept: ['sara asked if i would wait for her', 'sara asked whether i would wait for her', 'she asked if i would wait for her'], model: 'Sara asked if I would wait for her.' },
+  { kind: 'yn', tag: 'Yes/no · will', speaker: 'Luna', quote: '"Will you wait for me?"', accept: ['luna asked if i would wait for her', 'luna asked whether i would wait for her', 'she asked if i would wait for her'], model: 'Luna asked if I would wait for her.' },
   { kind: 'wh', tag: 'Wh- · present simple', speaker: 'Leo', quote: '"Where is the exhibition?"', accept: ['leo asked where the exhibition was', 'he asked where the exhibition was'], model: 'Leo asked where the exhibition was.' },
-  { kind: 'wh', tag: 'Wh- · present continuous', speaker: 'Sara', quote: '"What are you doing?"', accept: ['sara asked what i was doing', 'she asked what i was doing'], model: 'Sara asked what I was doing.' },
+  { kind: 'wh', tag: 'Wh- · present continuous', speaker: 'Luna', quote: '"What are you doing?"', accept: ['luna asked what i was doing', 'she asked what i was doing'], model: 'Luna asked what I was doing.' },
   { kind: 'wh', tag: 'Wh- · present perfect', speaker: 'Mum', quote: '"Why have you stopped?"', accept: ['mum asked why i had stopped', 'she asked why i had stopped'], model: 'Mum asked why I had stopped.' },
   { kind: 'wh', tag: 'Wh- · past simple', speaker: 'Leo', quote: '"When did you arrive?"', accept: ['leo asked when i had arrived', 'he asked when i had arrived'], model: 'Leo asked when I had arrived.' },
-  { kind: 'wh', tag: 'Wh- · will', speaker: 'Sara', quote: '"How will you get there?"', accept: ['sara asked how i would get there', 'she asked how i would get there'], model: 'Sara asked how I would get there.' },
+  { kind: 'wh', tag: 'Wh- · will', speaker: 'Luna', quote: '"How will you get there?"', accept: ['luna asked how i would get there', 'she asked how i would get there'], model: 'Luna asked how I would get there.' },
   { kind: 'wh', tag: 'Wh- subject', speaker: 'Maya', quote: '"Who called you?"', accept: ['maya asked who had called me', 'she asked who had called me'], model: 'Maya asked who had called me.' }
 ];
 
@@ -522,7 +522,7 @@ const readingHits = [
 
 const readingQs = [
   { q: 'Why does Maya write to Sofia?', opts: ['To cancel the exhibition.', 'To report what everyone said after the storm.', 'To ask Sofia for pizza recipes.'], ans: 1, why: 'The email retells Saturday’s conversation — that is reported speech in a real text.' },
-  { q: 'What did Sara say about cycling?', opts: ['She said she loved cycling in the rain.', 'She said she didn\'t want to cycle if it rained.', 'She asked if they could cycle at night.'], ans: 1, why: 'Negative present simple → <strong>she didn\'t want to cycle if it rained</strong>.' },
+  { q: 'What did Luna say about cycling?', opts: ['She said she loved cycling in the rain.', 'She said she didn\'t want to cycle if it rained.', 'She asked if they could cycle at night.'], ans: 1, why: 'Negative present simple → <strong>she didn\'t want to cycle if it rained</strong>.' },
   { q: 'Which is a yes/no reported question from the email?', opts: ['Mum asked if Maya had packed the camera.', 'Leo asked where the exhibition was.', 'Maya said she would send the photos.'], ans: 0, why: 'Yes/no questions take <strong>if/whether</strong>. The other two are Wh- and a statement.' },
   { q: '“Leo asked where the exhibition was” is correct because…', opts: ['the question word stays and the verb follows the subject', 'we keep Did + subject', 'we add that before where'], ans: 0, why: 'Wh- + <strong>statement order</strong>: where + the exhibition + was.' },
   { q: 'tomorrow in Maya’s original words becomes…', opts: ['tomorrow (no change)', 'the next day', 'yesterday'], ans: 1, why: 'She is reporting later, so <em>tomorrow</em> → <strong>the next day</strong>.' },
@@ -532,7 +532,7 @@ const readingQs = [
 const listeningScript = [
   ['Sofia', 'So what did everybody say after the storm? I missed the whole group chat.'],
   ['Maya', 'It was a long morning. Leo said he was making pizza that night, so at least dinner was safe.'],
-  ['Sofia', 'And Sara? She usually wants to cycle.'],
+  ['Sofia', 'And Luna? She usually wants to cycle.'],
   ['Maya', 'She said she didn’t want to cycle if it rained. She also said she had already bought the tickets for the exhibition.'],
   ['Sofia', 'Did your mum join the chat?'],
   ['Maya', 'Yes. She asked if I had packed the camera. Then she asked why we had stopped at the café.'],
@@ -546,7 +546,7 @@ const listeningScript = [
 
 const listeningQs = [
   { q: 'What did Leo say about dinner?', opts: ['He said he would buy pizza the next day.', 'He said he was making pizza that night.', 'He asked if Maya could make pizza.'], ans: 1, why: '"I am making pizza tonight" → <strong>he was making pizza that night</strong>.' },
-  { q: 'Which form reports Sara’s tickets?', opts: ['She said she bought the tickets.', 'She said she had already bought the tickets.', 'She said she would buy the tickets.'], ans: 1, why: 'Present perfect → past perfect.' },
+  { q: 'Which form reports Luna’s tickets?', opts: ['She said she bought the tickets.', 'She said she had already bought the tickets.', 'She said she would buy the tickets.'], ans: 1, why: 'Present perfect → past perfect.' },
   { q: 'Mum’s first question is reported with…', opts: ['said that', 'asked if', 'told to'], ans: 1, why: 'Yes/no question → <strong>asked if</strong>.' },
   { q: '“He asked where the exhibition was” came from…', opts: ['"Where is the exhibition?"', '"Is the exhibition here?"', '"The exhibition is where?"'], ans: 0, why: 'Wh- question, present simple → past simple, statement order.' },
   { q: 'Maya’s promise about the photos uses…', opts: ['will', 'would', 'had'], ans: 1, why: '"I will send…" → <strong>I said I would send…</strong>' },
@@ -555,7 +555,7 @@ const listeningQs = [
 
 const speakPack = [
   { prompt: 'Report Leo’s statement: "I\'m making pizza tonight."', frames: ['Leo said (that)…', 'He told me (that)…', '…that night.'], model: 'Leo said he was making pizza that night.' },
-  { prompt: 'Report Sara’s negative: "I don\'t want to cycle if it rains."', frames: ['Sara said she didn\'t…', 'if it rained'], model: 'Sara said she didn\'t want to cycle if it rained.' },
+  { prompt: 'Report Luna’s negative: "I don\'t want to cycle if it rains."', frames: ['Luna said she didn\'t…', 'if it rained'], model: 'Luna said she didn\'t want to cycle if it rained.' },
   { prompt: 'Report Mum’s yes/no question: "Have you packed the camera?"', frames: ['Mum asked if…', 'Mum asked whether…'], model: 'Mum asked if I had packed the camera.' },
   { prompt: 'Report Leo’s Wh- question: "Where is the exhibition?"', frames: ['Leo asked where…', 'statement order: where + subject + verb'], model: 'Leo asked where the exhibition was.' },
   { prompt: 'Report Maya’s future: "I will send the photos tomorrow."', frames: ['Maya said she would…', 'the next day'], model: 'Maya said she would send the photos the next day.' },
@@ -564,11 +564,11 @@ const speakPack = [
 
 const writeStems = [
   'Leo said (that)',
-  'Sara said she didn\'t',
+  'Luna said she didn\'t',
   'Mum asked if',
   'Leo asked where',
   'Maya said she would',
-  'Sara said she had already'
+  'Luna said she had already'
 ];
 
 const candoItems = [
@@ -814,7 +814,7 @@ function readingHTML() {
       <p>Hi Sofia,</p>
       <p>You asked what happened on Saturday, so here is the short version. After the storm, Leo
       <button type="button" class="hit" data-hit="r1" onclick="markHit(this)">said he was making pizza that night</button>,
-      which made everyone calmer. Sara
+      which made everyone calmer. Luna
       <button type="button" class="hit" data-hit="r2" onclick="markHit(this)">said she didn’t want to cycle if it rained</button>.
       That was fair: the streets were already full of puddles.</p>
       <p>Mum joined the chat late.
@@ -824,7 +824,7 @@ function readingHTML() {
       I had to look it up again because I had only saved the ticket, not the map.</p>
       <p>I
       <button type="button" class="hit" data-hit="r5" onclick="markHit(this)">said I would send the photos the next day</button>.
-      Sara
+      Luna
       <button type="button" class="hit" data-hit="r6" onclick="markHit(this)">said she had already bought the tickets</button>,
       so we were not going to waste them. Leo
       <button type="button" class="hit" data-hit="r7" onclick="markHit(this)">said we could meet at the café</button>
@@ -908,7 +908,7 @@ function writingHTML() {
     </div>
     <div class="feedback" id="writeFeedback"></div>
     <div class="note" id="writeModel" style="display:none">
-      <strong>Model:</strong> On Saturday Leo said he was making pizza that night. Sara said she didn’t want to cycle if it rained, but she said she had already bought the tickets. Mum asked if I had packed the camera. Leo asked where the exhibition was and if I had checked the weather. I said I would send the photos the next day and that we could meet at the café. Leo also said he had been waiting at the bus stop when the rain started.
+      <strong>Model:</strong> On Saturday Leo said he was making pizza that night. Luna said she didn’t want to cycle if it rained, but she said she had already bought the tickets. Mum asked if I had packed the camera. Leo asked where the exhibition was and if I had checked the weather. I said I would send the photos the next day and that we could meet at the café. Leo also said he had been waiting at the bus stop when the rain started.
     </div>
   `;
 }
@@ -1105,7 +1105,7 @@ function checkTransforms() {
     const val = normalize(document.getElementById('tr-' + i).value);
     const accepted = item.accept.map(normalize);
     n += 1;
-    const good = accepted.some(a => val === a || val.replace(/\b(leo|sara|mum|maya|he|she)\b/, '').trim() === a.replace(/\b(leo|sara|mum|maya|he|she)\b/, '').trim());
+    const good = accepted.some(a => val === a || val.replace(/\b(leo|luna|mum|maya|he|she)\b/, '').trim() === a.replace(/\b(leo|luna|mum|maya|he|she)\b/, '').trim());
     node.classList.toggle('ok', good && val);
     node.classList.toggle('no', !good);
     if (good) ok += 1;
