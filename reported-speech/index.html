@@ -29,7 +29,7 @@
       --accent: #238d85;
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -38,10 +38,11 @@
         radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
         linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
       min-height: 100vh;
+      overflow-x: hidden;
     }
     button, input, textarea, select { font: inherit; }
     button { cursor: pointer; }
-    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    .shell { max-width: 1120px; margin: 0 auto; padding: clamp(20px, 4.2vw, 42px); }
 
     .topbar {
       position: sticky; top: 16px; z-index: 20;
@@ -109,7 +110,7 @@
       background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
       border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
     }
-    .lesson-head { padding: 22px 24px; background: var(--navy); color: #fff; }
+    .lesson-head { padding: 24px 28px; background: var(--navy); color: #fff; }
     .lesson-head h3 { margin: 0; font-size: 1.28rem; }
     .lesson-head p { margin: 7px 0 0; color: #d7ecea; line-height: 1.55; }
 
@@ -122,15 +123,15 @@
       font-size: 0.78rem; padding: 9px 11px; border-radius: 10px; white-space: nowrap;
     }
     .tab:hover, .tab.active { color: var(--navy); background: var(--wash); }
-    .panel { display: none; padding: 24px; }
+    .panel { display: none; padding: clamp(22px, 3.4vw, 36px); min-width: 0; }
     .panel.active { display: block; }
     .panel h4 { margin: 0 0 12px; color: var(--navy); font-size: 1.12rem; }
     .panel h5 { margin: 18px 0 8px; color: var(--navy); font-size: 1rem; }
     .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .box { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; line-height: 1.6; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 18px; background: #fff; line-height: 1.6; min-width: 0; overflow: visible; }
     .box.tint { background: var(--wash); }
     .box.lilac { background: var(--wash); border-color: rgba(35, 141, 133, 0.18); }
     .note { padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--warn); margin-top: 14px; line-height: 1.55; border-radius: 0 10px 10px 0; }
@@ -149,17 +150,23 @@
     .grammar-section { margin-top: 20px; }
     .grammar-section > h4 { display: flex; align-items: center; gap: 9px; margin: 0 0 12px; color: var(--navy); }
 
-    .compare-table { width: 100%; border-collapse: separate; border-spacing: 0; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; font-size: 0.92rem; }
-    .compare-table th, .compare-table td { padding: 11px 12px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.45; }
+    .compare-table { width: 100%; min-width: 0; border-collapse: collapse; font-size: 0.9rem; }
+    .compare-table th, .compare-table td {
+      padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--line);
+      vertical-align: top; line-height: 1.55; overflow-wrap: anywhere; word-break: break-word;
+    }
     .compare-table th { background: var(--navy); color: #fff; font-size: 0.76rem; letter-spacing: 0.02em; }
     .compare-table tr:last-child td { border-bottom: 0; }
-    .compare-table td:first-child { font-weight: 800; color: var(--navy); width: 22%; }
+    .compare-table td:first-child { font-weight: 800; color: var(--navy); width: 28%; white-space: normal; }
     .compare-table em { color: var(--accent); font-style: normal; font-weight: 800; }
-    .table-wrap { overflow-x: auto; border-radius: 13px; }
+    .table-wrap {
+      overflow-x: auto; max-width: 100%; border: 1px solid var(--line); border-radius: 13px;
+      -webkit-overflow-scrolling: touch;
+    }
 
-    .formula { font-weight: 900; color: var(--navy); font-size: 1.02rem; }
-    .example { color: var(--teal-dark); font-weight: 800; }
-    .direct { color: var(--accent); font-weight: 800; }
+    .formula { font-weight: 900; color: var(--navy); font-size: 1.02rem; overflow-wrap: anywhere; }
+    .example { color: var(--teal-dark); font-weight: 800; overflow-wrap: anywhere; }
+    .direct { color: var(--accent); font-weight: 800; overflow-wrap: anywhere; }
     .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
     .chip {
       display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 999px;
@@ -207,10 +214,11 @@
 
     .q-block { padding: 14px 0; border-bottom: 1px solid var(--line); }
     .q-block:last-child { border-bottom: 0; }
-    .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; }
+    .q-prompt { font-weight: 750; line-height: 1.5; margin: 0 0 10px; overflow-wrap: anywhere; }
     .option-btn {
       display: block; width: 100%; text-align: left; border: 1px solid var(--line);
       background: #fff; border-radius: 10px; padding: 10px 12px; margin-top: 7px; color: var(--ink);
+      overflow-wrap: anywhere; white-space: normal;
     }
     .option-btn:hover { border-color: var(--accent); }
     .option-btn.selected { border-color: var(--accent); background: var(--wash); }
@@ -313,14 +321,17 @@
     .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
     .legend span { font-size: 0.74rem; font-weight: 800; padding: 5px 9px; border-radius: 999px; background: var(--wash); color: var(--accent); }
 
+    @media (max-width: 980px) {
+      .grid-3, .wheel-wrap { grid-template-columns: 1fr; }
+      .compare-table td:first-child { width: auto; }
+    }
     @media (max-width: 760px) {
       .grid-2, .grid-3, .mistake-row, .wheel-wrap, .flip-grid { grid-template-columns: 1fr; }
       .hero-inner { max-width: 100%; }
       .hero::after { opacity: 0.1; width: 120px; }
-      .shell { padding: 14px; }
       .topbar { top: 8px; border-radius: 14px; }
       .brand p, .mode-pill { display: none; }
-      .panel { padding: 18px; }
+      .lesson-head { padding: 20px; }
       .home-btn .home-btn-label { display: none; }
       .cando label { grid-template-columns: auto 1fr; }
     }
@@ -376,11 +387,11 @@
 const sections = ['1 Grammar', '2 Notice', '3 Practice', '4 Reading', '5 Listening', '6 Speaking', '7 Writing', '8 Can-do'];
 
 function loadState() {
-  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v4') || '{}'); }
+  try { return JSON.parse(localStorage.getItem('reportedSpeechB1v5') || '{}'); }
   catch { return {}; }
 }
 function save() {
-  try { localStorage.setItem('reportedSpeechB1v4', JSON.stringify(state)); }
+  try { localStorage.setItem('reportedSpeechB1v5', JSON.stringify(state)); }
   catch { /* ignore */ }
 }
 const state = loadState();
@@ -598,13 +609,15 @@ function grammarHTML() {
 
     <section class="grammar-section">
       <h4><span class="section-index">2</span>All tenses: the backshift map</h4>
-      <div class="table-wrap">
-        <table class="compare-table">
-          <thead><tr><th>Direct tense</th><th>Direct example</th><th>Reported (after said / asked)</th></tr></thead>
-          <tbody>
-            ${tenseRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}
-          </tbody>
-        </table>
+      <div class="box" style="padding:0; overflow:hidden">
+        <div class="table-wrap" style="border:0; border-radius:14px">
+          <table class="compare-table">
+            <thead><tr><th>Direct tense</th><th>Direct example</th><th>Reported (after said / asked)</th></tr></thead>
+            <tbody>
+              ${tenseRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="note"><strong>One-step rule:</strong> present → past · past simple / present perfect → past perfect · will → would · can → could. Past perfect has nowhere left to go.</div>
     </section>
@@ -689,22 +702,22 @@ function grammarHTML() {
 
     <section class="grammar-section">
       <h4><span class="section-index">6</span>Pronouns and time words</h4>
-      <div class="grid-2">
-        <div class="box tint">
-          <strong>People change with the reporter</strong>
-          <p>"I / we / my / our / you / your" become he, she, they, his, her… depending on who is speaking to whom.</p>
-          <p class="direct">Leo to Maya: "I will help you."</p>
-          <p class="example">Leo said he would help her. / me. (depends who reports)</p>
-        </div>
-        <div class="box">
-          <div class="table-wrap">
-            <table class="compare-table">
-              <thead><tr><th>Direct</th><th>Reported later</th></tr></thead>
-              <tbody>
-                ${timeRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
-              </tbody>
-            </table>
-          </div>
+      <div class="box tint" style="margin-bottom:14px">
+        <strong>People change with the reporter</strong>
+        <p>"I / we / my / our / you / your" become he, she, they, his, her… depending on who is speaking to whom.</p>
+        <p class="direct">Leo to Maya: "I will help you."</p>
+        <p class="example">Leo said he would help her. / me. (depends who reports)</p>
+      </div>
+      <div class="box">
+        <strong>Time and place words when you report later</strong>
+        <p class="intro" style="margin:8px 0 12px">These only change if the reporting happens on a different day or in a different place.</p>
+        <div class="table-wrap">
+          <table class="compare-table">
+            <thead><tr><th>Direct</th><th>Reported later</th></tr></thead>
+            <tbody>
+              ${timeRows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('')}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
