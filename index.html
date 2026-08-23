@@ -2,62 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#eef3f6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="English">
+  <meta name="description" content="English learning system by Israel Ventura. Start at your level: A1.1, A1.2, A2, B1, Business, and TOEFL.">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
-  <title>English Activities | Israel Ventura</title>
+  <title>English · Israel Ventura</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #1e2d5a;
       --teal: #5bb8b0;
       --teal-dark: #238d85;
       --gold: #d4a843;
-      --ink: #172033;
-      --muted: #6b7fa3;
-      --line: #e8ecf4;
+      --ink: #1c2438;
+      --secondary: #6b7a94;
+      --tertiary: #8b97ab;
+      --line: rgba(30, 45, 90, 0.08);
+      --fill: rgba(30, 45, 90, 0.045);
       --paper: #ffffff;
-      --wash: #f0faf9;
-      --soft: #f8fafc;
-      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
-      --brand-logo: url("favicon.png");
+      --bg: #e8eef3;
+      --wash: #eef7f6;
+      --shadow: 0 1px 2px rgba(30, 45, 90, 0.04), 0 12px 32px rgba(30, 45, 90, 0.06);
+      --radius: 20px;
+      --header-h: 0px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
 
     body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Segoe UI", sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
-        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+        radial-gradient(1200px 480px at 100% -10%, rgba(91, 184, 176, 0.18), transparent 55%),
+        radial-gradient(900px 420px at -10% 8%, rgba(30, 45, 90, 0.06), transparent 50%),
+        var(--bg);
       min-height: 100vh;
+      min-height: 100dvh;
+      line-height: 1.45;
     }
+
+    a { color: inherit; }
 
     .shell {
-      max-width: 1120px;
+      width: min(760px, 100%);
       margin: 0 auto;
-      padding: 24px 16px 48px;
+      padding: calc(18px + var(--safe-top)) 16px calc(48px + var(--safe-bottom));
     }
 
-    /* Topbar */
-    .topbar {
-      position: sticky;
-      top: 16px;
-      z-index: 20;
+    /* Header */
+    .masthead {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 18px;
-      padding: 12px 16px;
-      background: var(--navy);
-      color: #fff;
-      border-radius: 18px;
-      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+      gap: 12px;
+      margin-bottom: 28px;
     }
 
     .brand {
@@ -68,479 +84,674 @@
     }
 
     .brand-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.98);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 0 0 1px var(--line), 0 8px 20px rgba(30, 45, 90, 0.08);
       overflow: hidden;
-      padding: 3px;
       flex: 0 0 auto;
     }
 
     .brand-mark img {
       width: 100%;
       height: 100%;
-      border-radius: 999px;
       object-fit: cover;
       display: block;
     }
 
-    .brand h1 {
-      margin: 0;
-      color: #fff;
-      font-size: clamp(1.05rem, 2vw, 1.35rem);
-      line-height: 1.05;
-      font-weight: 800;
+    .brand-name {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      line-height: 1.15;
     }
 
-    .brand p {
-      margin: 3px 0 0;
-      color: #d7ecea;
-      font-size: 0.84rem;
+    .brand-meta {
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--secondary);
     }
 
-    .mode-pill {
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #fff;
-      background: rgba(255, 255, 255, 0.10);
+    .teacher {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      background: var(--paper);
+      border: 1px solid var(--line);
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.82rem;
-      font-weight: 800;
+      padding: 7px 12px;
       white-space: nowrap;
     }
 
-    /* Hero */
+    /* Large title */
     .hero {
-      position: relative;
-      overflow: hidden;
-      border-radius: 20px;
-      background: #f4fbfa;
-      color: var(--navy);
-      border: 1px solid rgba(30, 45, 90, 0.08);
-      box-shadow: var(--shadow);
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
-    .hero::after {
+    .hero h1 {
+      font-size: clamp(34px, 8vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 1.02;
+      color: var(--navy);
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--teal-dark);
+    }
+
+    .hero p {
+      margin-top: 10px;
+      max-width: 36rem;
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--secondary);
+      letter-spacing: -0.01em;
+    }
+
+    /* Segmented levels */
+    .level-bar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      margin: 0 -16px 28px;
+      padding: 10px 16px 12px;
+      background: rgba(232, 238, 243, 0.78);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    .levels {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 2px;
+    }
+
+    .levels::-webkit-scrollbar { display: none; }
+
+    .levels button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--navy);
+      font: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      padding: 8px 14px;
+      min-height: 36px;
+      border-radius: 999px;
+      white-space: nowrap;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .levels button[aria-pressed="true"] {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .levels button:focus-visible {
+      outline: 3px solid rgba(91, 184, 176, 0.65);
+      outline-offset: 2px;
+    }
+
+    /* Stage */
+    .stage {
+      margin-bottom: 36px;
+      scroll-margin-top: 72px;
+    }
+
+    .stage.is-hidden { display: none; }
+
+    .stage-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 4px 10px;
+    }
+
+    .stage-kicker {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--teal-dark);
+    }
+
+    .stage-head h2 {
+      margin-top: 4px;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      line-height: 1.15;
+    }
+
+    .stage-count {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--tertiary);
+      white-space: nowrap;
+    }
+
+    .stage-can {
+      padding: 0 4px 14px;
+      font-size: 15px;
+      color: var(--secondary);
+      letter-spacing: -0.01em;
+    }
+
+    /* Featured starter */
+    .featured {
+      display: grid;
+      gap: 6px;
+      padding: 22px 22px 20px;
+      margin-bottom: 12px;
+      border-radius: 24px;
+      text-decoration: none;
+      color: #fff;
+      background:
+        radial-gradient(480px 220px at 100% 0%, rgba(91, 184, 176, 0.45), transparent 60%),
+        linear-gradient(165deg, #24366c 0%, var(--navy) 58%, #17324a 100%);
+      box-shadow: var(--shadow);
+      min-height: 168px;
+      min-width: 0;
+      max-width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured::after {
       content: "";
       position: absolute;
-      right: clamp(0.75rem, 3vw, 1.75rem);
-      top: 50%;
-      transform: translateY(-50%);
-      width: clamp(160px, 22vw, 280px);
-      max-width: 32%;
-      aspect-ratio: 1 / 1;
-      border-radius: 999px;
-      background-image: var(--brand-logo);
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      opacity: 0.14;
+      right: -12px;
+      bottom: -28px;
+      width: 168px;
+      height: 168px;
+      border-radius: 50%;
+      background: url("favicon.png") center / contain no-repeat;
+      opacity: 0.16;
       pointer-events: none;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      padding: clamp(24px, 5vw, 42px);
-      max-width: min(700px, calc(100% - clamp(120px, 24vw, 270px)));
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      color: var(--teal-dark);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.75rem;
-      font-weight: 900;
-    }
-
-    .hero h2 {
-      margin: 0;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      font-weight: 900;
-    }
-
-    .hero h2 span {
-      color: var(--teal);
-    }
-
-    .hero-copy {
-      color: var(--muted);
-      margin: 18px 0 0;
-      max-width: 640px;
-      line-height: 1.65;
-      font-size: 1.02rem;
-    }
-
-    /* Section label */
-    .section-label {
-      margin: 0 4px 14px;
-      color: var(--navy);
-      font-size: 0.82rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    /* Activity menu cards */
-    .menu {
-      display: grid;
-      gap: 14px;
-    }
-
-    .menu-card {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 16px;
-      align-items: center;
-      padding: 18px 18px 18px 16px;
-      background: var(--paper);
-      border: 1px solid rgba(30, 45, 90, 0.08);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-    }
-
-    .menu-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(91, 184, 176, 0.45);
-      box-shadow: 0 22px 48px rgba(30, 45, 90, 0.12);
-    }
-
-    .menu-card:focus-visible {
-      outline: 3px solid rgba(91, 184, 176, 0.55);
+    .featured:focus-visible {
+      outline: 3px solid rgba(91, 184, 176, 0.8);
       outline-offset: 3px;
     }
 
-    .menu-num {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
+    .featured-kicker {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .featured h3 {
+      position: relative;
+      z-index: 1;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+      max-width: 16ch;
+      min-width: 0;
+    }
+
+    .featured p {
+      position: relative;
+      z-index: 1;
+      margin-top: 6px;
+      max-width: 34ch;
+      font-size: 15px;
+      color: rgba(235, 246, 244, 0.86);
+      min-width: 0;
+    }
+
+    .featured-go {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      justify-self: start;
+      width: max-content;
+      background: #fff;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      padding: 9px 14px;
+      border-radius: 999px;
+    }
+
+    /* Grouped list */
+    .group {
+      background: var(--paper);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      min-height: 64px;
+      min-width: 0;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .row + .row::before {
+      content: "";
+      position: absolute;
+      left: 66px;
+      right: 0;
+      top: 0;
+      height: 1px;
+      background: var(--line);
+    }
+
+    a.row {
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a.row:hover {
+      background: var(--fill);
+    }
+
+    a.row:active {
+      background: rgba(30, 45, 90, 0.06);
+    }
+
+    a.row:focus-visible {
+      outline: 3px solid rgba(91, 184, 176, 0.55);
+      outline-offset: -3px;
+    }
+
+    .row.is-soon {
+      opacity: 0.72;
+    }
+
+    .glyph {
+      width: 40px;
+      height: 40px;
+      border-radius: 11px;
       display: grid;
       place-items: center;
-      font-weight: 900;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #fff;
       flex-shrink: 0;
     }
 
-    .menu-num.n1 {
-      background: var(--navy);
-      color: #fff;
-    }
+    .g-teal { background: var(--teal); }
+    .g-navy { background: var(--navy); }
+    .g-gold { background: var(--gold); color: var(--navy); }
+    .g-blue { background: #3a6ea5; }
+    .g-plum { background: #6b4c9a; }
+    .g-clay { background: #c46b3a; }
+    .g-rose { background: #c45c7a; }
+    .g-sea { background: #168c8c; }
+    .g-mute { background: #c5cedb; color: var(--navy); }
 
-    .menu-num.n2 {
-      background: var(--teal);
-      color: #fff;
-    }
+    .row-body { min-width: 0; }
 
-    .menu-num.n3 {
-      background: var(--gold);
-      color: var(--navy);
-    }
-
-    .menu-num.n4 {
-      background: #2f5d8c;
-      color: #fff;
-    }
-
-    .menu-num.n5 {
-      background: #8b6bb8;
-      color: #fff;
-    }
-
-    .menu-num.n6 {
-      background: #168C8C;
-      color: #fff;
-    }
-
-    .menu-num.n7 {
-      background: #c46b3a;
-      color: #fff;
-    }
-
-    .menu-num.n8 {
-      background: #6b4c9a;
-      color: #fff;
-    }
-
-    .menu-num.n9 {
-      background: #c45c7a;
-      color: #fff;
-    }
-
-    .menu-body h3 {
-      margin: 0;
-      font-size: 1.15rem;
-      font-weight: 900;
-      color: var(--navy);
+    .row-body h3 {
+      font-size: 16px;
+      font-weight: 600;
       letter-spacing: -0.02em;
+      color: var(--navy);
       line-height: 1.2;
     }
 
-    .menu-body h3 span {
-      color: var(--teal);
+    .row-body p {
+      margin-top: 2px;
+      font-size: 13px;
+      color: var(--secondary);
+      line-height: 1.35;
     }
 
-    .menu-body p {
-      margin: 6px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
+    .chev {
+      width: 18px;
+      height: 18px;
+      color: #c2cad6;
+      flex-shrink: 0;
     }
 
-    .menu-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 10px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
+    .badge {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--navy);
+      background: #f3efe2;
       border-radius: 999px;
-      font-size: 0.72rem;
-      font-weight: 800;
-      background: var(--wash);
-      color: var(--teal-dark);
-      border: 1px solid rgba(91, 184, 176, 0.28);
-    }
-
-    .menu-go {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 800;
+      padding: 4px 9px;
       white-space: nowrap;
-      box-shadow: 0 8px 18px rgba(30, 45, 90, 0.18);
-      transition: background 0.15s ease;
     }
 
-    .menu-card:hover .menu-go {
-      background: var(--teal-dark);
+    .badge-soon {
+      background: var(--fill);
+      color: var(--secondary);
+    }
+
+    .note {
+      margin-top: 10px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      color: var(--secondary);
     }
 
     .footer {
-      margin-top: 40px;
+      margin-top: 12px;
+      padding: 8px 4px 0;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 13px;
+      color: var(--tertiary);
     }
 
     .footer strong {
       color: var(--navy);
+      font-weight: 600;
     }
 
-    @media (max-width: 720px) {
-      .topbar {
-        top: 8px;
-        border-radius: 14px;
-        flex-wrap: wrap;
+    @media (max-width: 520px) {
+      .teacher { display: none; }
+      .stage-count { display: none; }
+      .featured h3 { font-size: 24px; }
+      .hero h1 { font-size: 34px; }
+      .hero p { font-size: 16px; }
+      .level-bar {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
       }
+      .chev { display: none; }
+    }
 
-      .mode-pill {
-        margin-left: auto;
-      }
-
-      .hero-inner {
-        max-width: 100%;
-      }
-
-      .hero::after {
-        opacity: 0.1;
-        width: 140px;
-      }
-
-      .menu-card {
-        grid-template-columns: auto 1fr;
-        gap: 12px;
-      }
-
-      .menu-go {
-        grid-column: 2;
-        justify-self: start;
-        margin-top: 2px;
-      }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      a.row, .levels button { transition: none; }
     }
   </style>
 </head>
 <body>
   <div class="shell">
-    <header class="topbar">
+    <header class="masthead">
       <div class="brand">
         <div class="brand-mark" aria-hidden="true">
           <img src="favicon.png" alt="">
         </div>
         <div>
-          <h1>English Activities</h1>
-          <p>Interactive practice for real communication</p>
+          <div class="brand-name">Israel Ventura</div>
+          <div class="brand-meta">English learning system</div>
         </div>
       </div>
-      <span class="mode-pill">Teacher Israel Ventura</span>
+      <span class="teacher">Teacher · Classroom</span>
     </header>
 
     <section class="hero" aria-label="Welcome">
-      <div class="hero-inner">
-        <span class="eyebrow">Classroom-ready · Interactive</span>
-        <h2>Choose your <span>activity</span></h2>
-        <p class="hero-copy">
-          Open a module to practice vocabulary, grammar, listening, and speaking with clean, classroom-friendly tools designed for real lessons.
-        </p>
+      <h1>Choose your <em>level</em></h1>
+      <p>Start where you are. A1.1 closes with pointing at the world. A1.2 begins daily life. Intensives stay on their own track.</p>
+    </section>
+
+    <div class="level-bar">
+      <nav class="levels" aria-label="Levels">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="a11" aria-pressed="false">A1.1</button>
+        <button type="button" data-filter="a12" aria-pressed="false">A1.2</button>
+        <button type="button" data-filter="a2" aria-pressed="false">A2</button>
+        <button type="button" data-filter="b1" aria-pressed="false">B1</button>
+        <button type="button" data-filter="tracks" aria-pressed="false">Tracks</button>
+      </nav>
+    </div>
+
+    <section class="stage" id="a11" data-stage="a11">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">A1.1 · Beginner</div>
+          <h2>Who I am, what I see</h2>
+        </div>
+        <span class="stage-count">Starter + practice</span>
+      </div>
+      <p class="stage-can">Say who you are. Name things around you. Close the stage by pointing: this, that, these, those.</p>
+
+      <a class="featured" href="https://first-english-flow.base44.app/">
+        <span class="featured-kicker">A1.1 starter course</span>
+        <h3>First English Flow</h3>
+        <p>Alphabet, numbers, greetings, nationality, verb to be, family, and introducing yourself — 12 lessons.</p>
+        <span class="featured-go">Open course
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+      </a>
+
+      <div class="group" aria-label="A1.1 practice">
+        <a class="row" href="./verb-to-be/">
+          <span class="glyph g-navy">Be</span>
+          <div class="row-body">
+            <h3>Verb to Be</h3>
+            <p>Sofia, Maya, and Carlos — am / is / are in a story. Second pass after the starter.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./around-the-house/">
+          <span class="glyph g-teal">Ho</span>
+          <div class="row-body">
+            <h3>Around the House</h3>
+            <p>Rooms, furniture, and things you can point to.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./in-the-city/">
+          <span class="glyph g-blue">Ci</span>
+          <div class="row-body">
+            <h3>In the City</h3>
+            <p>Places, directions, and getting around town.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./adjectives/">
+          <span class="glyph g-gold">Ad</span>
+          <div class="row-body">
+            <h3>Adjectives</h3>
+            <p>Photo cards, audio, and games for how things feel and look.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./possessive-adjectives/">
+          <span class="glyph g-rose">My</span>
+          <div class="row-body">
+            <h3>Possessives</h3>
+            <p>My brother, Maya’s brother, my parents’ house.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="row is-soon" aria-label="This, that, these, those. Coming next. Closes A1.1">
+          <span class="glyph g-mute">Th</span>
+          <div class="row-body">
+            <h3>This / that / these / those</h3>
+            <p>Point near and far. This is the A1.1 closer.</p>
+          </div>
+          <span class="badge">Up next</span>
+        </div>
       </div>
     </section>
 
-    <p class="section-label">Activity menu</p>
-
-    <nav class="menu" aria-label="English activities">
-      <a class="menu-card" href="./around-the-house/">
-        <span class="menu-num n1">01</span>
-        <div class="menu-body">
-          <h3>Around the <span>House</span></h3>
-          <p>Vocabulary, games, and speaking tasks for homes, rooms, furniture, and daily routines.</p>
-          <div class="menu-tags">
-            <span class="tag">Vocabulary</span>
-            <span class="tag">Speaking</span>
-            <span class="tag">Classroom</span>
-          </div>
+    <section class="stage" id="a12" data-stage="a12">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">A1.2 · Beginner</div>
+          <h2>Daily life</h2>
         </div>
-        <span class="menu-go">Open →</span>
-      </a>
+        <span class="stage-count">Opening now</span>
+      </div>
+      <p class="stage-can">What is in the room. Next: what I do every day — present simple, routines, can.</p>
 
-      <a class="menu-card" href="./adjectives/">
-        <span class="menu-num n2">02</span>
-        <div class="menu-body">
-          <h3>Adjectives <span>Flashcards</span></h3>
-          <p>High-frequency adjectives with photo cards, audio, memory match, speed round, and emoji challenge.</p>
-          <div class="menu-tags">
-            <span class="tag">A1–A2</span>
-            <span class="tag">Flashcards</span>
-            <span class="tag">Games</span>
+      <div class="group" aria-label="A1.2 modules">
+        <a class="row" href="./there-is-there-are/">
+          <span class="glyph g-sea">Is</span>
+          <div class="row-body">
+            <h3>There is / There are</h3>
+            <p>What exists in a place — around the house.</p>
           </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <div class="row is-soon" aria-label="Present simple. Coming next.">
+          <span class="glyph g-mute">Pr</span>
+          <div class="row-body">
+            <h3>Present Simple</h3>
+            <p>I live, she works, we get up — routines and habits.</p>
+          </div>
+          <span class="badge badge-soon">Up next</span>
         </div>
-        <span class="menu-go">Open →</span>
-      </a>
+      </div>
+    </section>
 
-      <a class="menu-card" href="./conditionals/">
-        <span class="menu-num n3">03</span>
-        <div class="menu-body">
-          <h3>Conditionals <span>Course</span></h3>
-          <p>Zero, first, and second conditionals through everyday choices, plans, dreams, and real situations.</p>
-          <div class="menu-tags">
-            <span class="tag">Grammar</span>
-            <span class="tag">Practice</span>
-            <span class="tag">Interactive</span>
-          </div>
+    <section class="stage" id="a2" data-stage="a2">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">A2 · Elementary</div>
+          <h2>Real possibilities</h2>
         </div>
-        <span class="menu-go">Open →</span>
-      </a>
+        <span class="stage-count">Inside the pack</span>
+      </div>
+      <p class="stage-can">Zero and first conditionals: habits and real future plans. They live in the Conditionals intensive until they are split out.</p>
 
-      <a class="menu-card" href="./verb-to-be/">
-        <span class="menu-num n4">04</span>
-        <div class="menu-body">
-          <h3>Verb to <span>Be</span></h3>
-          <p>Sofia's first day at university with Maya and Carlos — am / is / are through story, not empty drills (A2).</p>
-          <div class="menu-tags">
-            <span class="tag">A2</span>
-            <span class="tag">Story</span>
-            <span class="tag">Grammar</span>
+      <div class="group" aria-label="A2 modules">
+        <a class="row" href="./conditionals/">
+          <span class="glyph g-gold">If</span>
+          <div class="row-body">
+            <h3>Zero &amp; First Conditionals</h3>
+            <p>Start at Lesson 1. Later lessons in this pack are B1–B2.</p>
           </div>
-        </div>
-        <span class="menu-go">Open →</span>
-      </a>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
 
-      <a class="menu-card" href="./in-the-city/">
-        <span class="menu-num n5">05</span>
-        <div class="menu-body">
-          <h3>In the <span>City</span></h3>
-          <p>Places, city elements, road verbs, adjectives, directions, and prepositions — Vocabulary I + II for getting around town.</p>
-          <div class="menu-tags">
-            <span class="tag">A1–A2</span>
-            <span class="tag">Vocabulary</span>
-            <span class="tag">Directions</span>
-          </div>
+    <section class="stage" id="b1" data-stage="b1">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">B1 · Intermediate</div>
+          <h2>Past, reports, imagined if</h2>
         </div>
-        <span class="menu-go">Open →</span>
-      </a>
+        <span class="stage-count">3 modules</span>
+      </div>
+      <p class="stage-can">Tell what happened, report what someone said, and talk about imagined present situations.</p>
 
-      <a class="menu-card" href="./there-is-there-are/">
-        <span class="menu-num n6">06</span>
-        <div class="menu-body">
-          <h3>There Is / <span>There Are</span></h3>
-          <p>Scaffolded A1 grammar lesson: notice, build, fix, read, listen, speak, write, and can-do exit ticket around the house.</p>
-          <div class="menu-tags">
-            <span class="tag">A1</span>
-            <span class="tag">Grammar</span>
-            <span class="tag">Interactive</span>
+      <div class="group" aria-label="B1 modules">
+        <a class="row" href="./ed-pronunciation/">
+          <span class="glyph g-clay">-ed</span>
+          <div class="row-body">
+            <h3>-ed Pronunciation</h3>
+            <p>/t/, /d/, /ɪd/ — Maya’s delayed flight.</p>
           </div>
-        </div>
-        <span class="menu-go">Open →</span>
-      </a>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./reported-speech/">
+          <span class="glyph g-plum">RS</span>
+          <div class="row-body">
+            <h3>Reported Speech</h3>
+            <p>Statements and questions from Saturday’s group chat.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="./conditionals/">
+          <span class="glyph g-gold">2nd</span>
+          <div class="row-body">
+            <h3>Second Conditional</h3>
+            <p>Inside the pack — Lesson 2: dreams and imagined choices.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
 
-      <a class="menu-card" href="./ed-pronunciation/">
-        <span class="menu-num n7">07</span>
-        <div class="menu-body">
-          <h3>-ed <span>Pronunciation</span></h3>
-          <p>The three endings /t/, /d/ and /ɪd/ through Maya's delayed-flight story — sort, listen, speak, and drop the extra-syllable habit (B1).</p>
-          <div class="menu-tags">
-            <span class="tag">B1</span>
-            <span class="tag">Pronunciation</span>
-            <span class="tag">Past tense</span>
-          </div>
+    <section class="stage" id="tracks" data-stage="tracks">
+      <div class="stage-head">
+        <div>
+          <div class="stage-kicker">Other tracks</div>
+          <h2>Intensives, work, exam</h2>
         </div>
-        <span class="menu-go">Open →</span>
-      </a>
+      </div>
+      <p class="stage-can">Not the next A-level. Open these when that is the class in front of you.</p>
 
-      <a class="menu-card" href="./reported-speech/">
-        <span class="menu-num n8">08</span>
-        <div class="menu-body">
-          <h3>Reported <span>Speech</span></h3>
-          <p>Maya reports Saturday’s group chat — all tenses, affirmative and negative, plus yes/no and Wh- questions (B1).</p>
-          <div class="menu-tags">
-            <span class="tag">B1</span>
-            <span class="tag">Grammar</span>
-            <span class="tag">Questions</span>
+      <div class="group" aria-label="Other tracks">
+        <a class="row" href="./conditionals/">
+          <span class="glyph g-gold">If</span>
+          <div class="row-body">
+            <h3>Conditionals intensive</h3>
+            <p>Zero → Mixed in one pack. Built for TOEFL repair.</p>
           </div>
-        </div>
-        <span class="menu-go">Open →</span>
-      </a>
-
-      <a class="menu-card" href="./possessive-adjectives/">
-        <span class="menu-num n9">09</span>
-        <div class="menu-body">
-          <h3>Possessive <span>Adjectives &amp; Nouns</span></h3>
-          <p>Maya’s family album: my / her brother and Maya’s brother, my parents’ house, the children’s room (A1–A2).</p>
-          <div class="menu-tags">
-            <span class="tag">A1–A2</span>
-            <span class="tag">Family</span>
-            <span class="tag">Grammar</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="https://israelventura104-afk.github.io/business-english/">
+          <span class="glyph g-navy">BE</span>
+          <div class="row-body">
+            <h3>Business English</h3>
+            <p>Workplace scenarios — deadlines, clients, reports, email.</p>
           </div>
-        </div>
-        <span class="menu-go">Open →</span>
-      </a>
-    </nav>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="row" href="https://israelventura104-afk.github.io/toefl-itp-boost-lms/">
+          <span class="glyph g-plum">ITP</span>
+          <div class="row-body">
+            <h3>TOEFL ITP Boost</h3>
+            <p>Exam practice platform. Listening, structure, reading.</p>
+          </div>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
 
     <footer class="footer">
-      <strong>Israel Ventura</strong> · English Activities Portal · Educational use
+      <strong>Israel Ventura</strong> · Educational use
     </footer>
   </div>
+
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll(".levels [data-filter]"));
+      const stages = Array.from(document.querySelectorAll("[data-stage]"));
+
+      function applyFilter(id) {
+        buttons.forEach((btn) => {
+          btn.setAttribute("aria-pressed", btn.dataset.filter === id ? "true" : "false");
+        });
+        stages.forEach((stage) => {
+          const show = id === "all" || stage.dataset.stage === id;
+          stage.classList.toggle("is-hidden", !show);
+        });
+        if (id !== "all") {
+          const target = document.querySelector('[data-stage="' + id + '"]');
+          if (target) target.scrollIntoView({ block: "start" });
+        } else {
+          window.scrollTo({ top: 0 });
+        }
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => applyFilter(btn.dataset.filter));
+      });
+    })();
+  </script>
 </body>
 </html>
