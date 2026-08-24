@@ -62,9 +62,9 @@
     a { color: inherit; }
 
     .shell {
-      width: min(760px, 100%);
+      width: min(1080px, 100%);
       margin: 0 auto;
-      padding: calc(18px + var(--safe-top)) 16px calc(48px + var(--safe-bottom));
+      padding: calc(18px + var(--safe-top)) 20px calc(48px + var(--safe-bottom));
     }
 
     /* Header */
@@ -146,7 +146,7 @@
 
     .hero p {
       margin-top: 10px;
-      max-width: 36rem;
+      max-width: 42rem;
       font-size: 17px;
       font-weight: 400;
       color: var(--secondary);
@@ -470,6 +470,23 @@
     .footer strong {
       color: var(--navy);
       font-weight: 600;
+    }
+
+    @media (min-width: 900px) {
+      .shell {
+        padding-left: 36px;
+        padding-right: 36px;
+      }
+      .featured {
+        min-height: 200px;
+        padding: 28px 32px 26px;
+      }
+      .featured h3 { font-size: 32px; }
+      .featured p { max-width: 42ch; }
+      .row {
+        padding: 14px 18px;
+        min-height: 72px;
+      }
     }
 
     @media (max-width: 520px) {
