@@ -402,28 +402,34 @@
           <span class="activity-num n5">05</span>
           <div class="activity-meta">
             <h3>Write the <span>verb</span></h3>
-            <p>Look at the photo. Type the verb. 8 photos.</p>
+            <p>45 seconds. Look at the photo. Type the verb.</p>
           </div>
           <span class="activity-chevron" aria-hidden="true">▾</span>
         </summary>
         <div class="activity-body">
           <div class="activity-body-inner">
             <div class="score-row">
-              <span class="stat">Photo <em id="typeRound">1 / 8</em></span>
+              <span class="stat" id="typeTimeStat">Time <em id="typeTime">0:45</em></span>
               <span class="stat">Score <em id="typeScore">0</em></span>
+              <span class="stat">Best <em id="typeBest">0</em></span>
             </div>
-            <div id="typePlay">
+            <div id="typeIdle">
+              <p class="intro">Type the verb. The clock starts when you press Start.</p>
+              <div class="btn-row">
+                <button type="button" class="btn" id="btnTypeStart">Start</button>
+              </div>
+            </div>
+            <div id="typePlay" hidden>
               <img class="type-photo" id="typeImg" alt="Daily-life photo">
               <input class="type-box" id="typeInput" type="text" autocomplete="off" spellcheck="false" placeholder="type the verb" aria-label="Type the verb">
               <p class="fb" id="typeFb" role="status"></p>
               <div class="btn-row">
                 <button type="button" class="btn" id="btnTypeCheck">Check</button>
-                <button type="button" class="btn ghost" id="btnTypeNew">New set</button>
               </div>
             </div>
             <div id="typeDone" hidden>
-              <p class="stem" id="typeFinal">8 / 8</p>
-              <p class="hint">You wrote the verbs from the photos.</p>
+              <p class="stem" id="typeFinal">0 in 45 seconds</p>
+              <p class="hint" id="typeHint">Press Play again to beat your score.</p>
               <div class="btn-row"><button type="button" class="btn" id="btnTypeAgain">Play again</button></div>
             </div>
           </div>
@@ -434,8 +440,8 @@
         <summary>
           <span class="activity-num n6">06</span>
           <div class="activity-meta">
-            <h3>Say <span>it</span></h3>
-            <p>Look at the photo. Say the verb out loud. Then reveal. 8 photos.</p>
+            <h3>Mime <span>it</span></h3>
+            <p>Look at the photo. Act the verb. Don't speak. Then reveal.</p>
           </div>
           <span class="activity-chevron" aria-hidden="true">▾</span>
         </summary>
@@ -445,8 +451,8 @@
               <span class="stat">Photo <em id="sayRound">1 / 8</em></span>
             </div>
             <img class="speak-photo" id="sayImg" alt="Daily-life photo">
-            <p class="stem" id="sayWord">Say the verb.</p>
-            <p class="hint" id="sayHint">Look. Speak. Then tap Reveal.</p>
+            <p class="stem" id="sayWord">Mime the verb.</p>
+            <p class="hint" id="sayHint">Look. Act it out. No talking. Then tap Reveal.</p>
             <div class="btn-row">
               <button type="button" class="btn" id="btnSayReveal">Reveal</button>
               <button type="button" class="btn ghost" id="btnSayNext">Next photo</button>
@@ -863,60 +869,111 @@ document.getElementById('btnBinReset').addEventListener('click', binReset);
 binReset();
 
 /* ----- 05 Type the verb ----- */
-let typeSet = [];
-let typeQ = 0;
-let typeScore = 0;
+const TYPE_MS = 45000;
+let typeRunning = false;
 let typeLocked = false;
+let typeScore = 0;
+let typeCurrent = -1;
+let typeQueue = [];
+let typeEndsAt = 0;
+let typeTick = null;
+let typeNextTimer = null;
 
 function norm(s) {
   return String(s).trim().toLowerCase().replace(/[-_]/g, ' ').replace(/\s+/g, ' ');
 }
-function startType() {
-  typeSet = shuffle(verbs.map((_, i) => i)).slice(0, 8);
-  typeQ = 0;
-  typeScore = 0;
-  typeLocked = false;
-  document.getElementById('typePlay').hidden = false;
-  document.getElementById('typeDone').hidden = true;
-  document.getElementById('typeScore').textContent = '0';
-  showType();
+function showTypeBest() {
+  document.getElementById('typeBest').textContent = String(state.typeBest || 0);
 }
-function showType() {
-  if (typeQ >= typeSet.length) {
-    document.getElementById('typePlay').hidden = true;
-    document.getElementById('typeDone').hidden = false;
-    document.getElementById('typeFinal').textContent = `${typeScore} / ${typeSet.length}`;
-    return;
+function setTypeView(view) {
+  document.getElementById('typeIdle').hidden = view !== 'idle';
+  document.getElementById('typePlay').hidden = view !== 'play';
+  document.getElementById('typeDone').hidden = view !== 'done';
+}
+function clearTypeTimers() {
+  if (typeTick) { clearInterval(typeTick); typeTick = null; }
+  if (typeNextTimer) { clearTimeout(typeNextTimer); typeNextTimer = null; }
+}
+function paintTypeClock() {
+  const left = typeRunning ? Math.max(0, typeEndsAt - Date.now()) : TYPE_MS;
+  document.getElementById('typeTime').textContent = formatTime(typeRunning ? left : TYPE_MS);
+  document.getElementById('typeTimeStat').classList.toggle('low', typeRunning && left <= 10000 && left > 0);
+}
+function typeFinish() {
+  if (!typeRunning) return;
+  typeRunning = false;
+  typeLocked = true;
+  clearTypeTimers();
+  paintTypeClock();
+  document.getElementById('typeTime').textContent = '0:00';
+  document.getElementById('typeTimeStat').classList.remove('low');
+  const prevBest = state.typeBest || 0;
+  if (typeScore > prevBest) {
+    state.typeBest = typeScore;
+    save();
   }
+  showTypeBest();
+  document.getElementById('typeFinal').textContent = typeScore + ' in 45 seconds';
+  document.getElementById('typeHint').textContent = typeScore > prevBest
+    ? 'New best. Press Play again to go higher.'
+    : 'Press Play again to beat your score.';
+  setTypeView('done');
+}
+function typeShowPhoto() {
+  if (!typeRunning) return;
   typeLocked = false;
-  const i = typeSet[typeQ];
-  document.getElementById('typeRound').textContent = `${typeQ + 1} / ${typeSet.length}`;
-  document.getElementById('typeImg').src = front(i);
+  if (!typeQueue.length) typeQueue = shuffle(verbs.map((_, i) => i));
+  if (typeQueue[0] === typeCurrent && typeQueue.length > 1) {
+    typeQueue.push(typeQueue.shift());
+  }
+  typeCurrent = typeQueue.shift();
+  document.getElementById('typeImg').src = front(typeCurrent);
   document.getElementById('typeImg').alt = 'Type the verb for this photo';
   document.getElementById('typeInput').value = '';
   document.getElementById('typeFb').textContent = '';
   document.getElementById('typeInput').focus();
 }
 function checkType() {
-  if (typeLocked || typeQ >= typeSet.length) return;
-  const i = typeSet[typeQ];
+  if (!typeRunning || typeLocked) return;
+  const i = typeCurrent;
   const ok = norm(document.getElementById('typeInput').value) === norm(verbs[i]);
   typeLocked = true;
   if (ok) {
     typeScore += 1;
-    document.getElementById('typeFb').textContent = 'Yes — ' + verbs[i] + '.';
+    document.getElementById('typeScore').textContent = String(typeScore);
+    document.getElementById('typeFb').textContent = 'Yes.';
   } else {
     document.getElementById('typeFb').textContent = 'The verb is ' + verbs[i] + '.';
   }
-  document.getElementById('typeScore').textContent = String(typeScore);
-  setTimeout(() => { typeQ += 1; showType(); }, 850);
+  typeNextTimer = setTimeout(typeShowPhoto, ok ? 280 : 700);
+}
+function typeStart() {
+  clearTypeTimers();
+  typeRunning = true;
+  typeLocked = false;
+  typeScore = 0;
+  typeCurrent = -1;
+  typeQueue = shuffle(verbs.map((_, i) => i));
+  typeEndsAt = Date.now() + TYPE_MS;
+  document.getElementById('typeScore').textContent = '0';
+  showTypeBest();
+  setTypeView('play');
+  paintTypeClock();
+  typeTick = setInterval(() => {
+    paintTypeClock();
+    if (Date.now() >= typeEndsAt) typeFinish();
+  }, 100);
+  typeShowPhoto();
 }
 document.getElementById('btnTypeCheck').addEventListener('click', checkType);
 document.getElementById('typeInput').addEventListener('keydown', (e) => {
   if (e.key === 'Enter') { e.preventDefault(); checkType(); }
 });
-document.getElementById('btnTypeNew').addEventListener('click', startType);
-document.getElementById('btnTypeAgain').addEventListener('click', startType);
+document.getElementById('btnTypeStart').addEventListener('click', typeStart);
+document.getElementById('btnTypeAgain').addEventListener('click', typeStart);
+showTypeBest();
+paintTypeClock();
+setTypeView('idle');
 
 /* ----- 06 Say it ----- */
 let saySet = [];
@@ -933,11 +990,11 @@ function showSay() {
   const i = saySet[sayQ];
   document.getElementById('sayRound').textContent = `${sayQ + 1} / ${saySet.length}`;
   document.getElementById('sayImg').src = front(i);
-  document.getElementById('sayImg').alt = 'Say this verb';
-  document.getElementById('sayWord').textContent = sayOpen ? verbs[i].toUpperCase() : 'Say the verb.';
+  document.getElementById('sayImg').alt = 'Mime this verb';
+  document.getElementById('sayWord').textContent = sayOpen ? verbs[i].toUpperCase() : 'Mime the verb.';
   document.getElementById('sayHint').textContent = sayOpen
-    ? 'Say it one more time, then go to the next photo.'
-    : 'Look. Speak. Then tap Reveal.';
+    ? 'That was the verb. Next photo.'
+    : 'Look. Act it out. No talking. Then tap Reveal.';
 }
 document.getElementById('btnSayReveal').addEventListener('click', () => {
   sayOpen = true;
@@ -953,7 +1010,7 @@ document.getElementById('btnSayNew').addEventListener('click', startSay);
 /* ----- 07 Can-do ----- */
 const candoItems = [
   ['name', 'I can name these 30 daily-life verbs from a photo.'],
-  ['say', 'I can say the verb out loud when I see the picture.'],
+  ['say', 'I can mime these verbs from a photo.'],
   ['speed', 'I can name verbs from a photo against the clock.'],
   ['group', 'I can group verbs: move, food, and school.'],
   ['write', 'I can write the verb for a photo.']
@@ -981,15 +1038,14 @@ const activityPanels = Array.from(document.querySelectorAll('.activity'));
 activityPanels.forEach((panel) => {
   panel.addEventListener('toggle', () => {
     if (panel.id === 'act-speed' && !panel.open && speedRunning) speedFinish();
+    if (panel.id === 'act-type' && !panel.open && typeRunning) typeFinish();
     if (!panel.open) return;
     activityPanels.forEach((other) => { if (other !== panel) other.open = false; });
     if (panel.id === 'act-name' && !nameSet.length) startName();
-    if (panel.id === 'act-type' && !typeSet.length) startType();
     if (panel.id === 'act-say' && !saySet.length) startSay();
   });
 });
 startName();
-startType();
 startSay();
 </script>
 </body>
