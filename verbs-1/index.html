@@ -177,6 +177,7 @@
     .activity-body { padding: 0 18px 20px; border-top: 1px solid var(--line); }
     .activity-body-inner { padding-top: 16px; }
     .photo-quiz { display: grid; gap: 14px; justify-items: center; }
+    .photo-quiz[hidden] { display: none; }
     .photo-quiz img, .speak-photo, .type-photo { width: min(100%, 420px); border-radius: 14px; display: block; }
     .opts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
     .opt { border: 1px solid var(--line); background: #fff; border-radius: 10px; padding: 10px 14px; font-weight: 800; color: var(--navy); }
@@ -331,7 +332,6 @@
               <p class="fb" id="nameFb" role="status"></p>
             </div>
             <div class="photo-quiz" id="nameDone" hidden>
-              <p class="stem" id="nameFinal">10 / 10</p>
               <p class="hint">You named the photos. Press New set to play again.</p>
             </div>
             <div class="btn-row">
@@ -646,7 +646,6 @@ function showName() {
   if (nameQ >= nameSet.length) {
     document.getElementById('namePlay').hidden = true;
     document.getElementById('nameDone').hidden = false;
-    document.getElementById('nameFinal').textContent = `${nameScore} / ${nameSet.length}`;
     return;
   }
   nameLocked = false;
