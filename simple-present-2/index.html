@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>Simple Present II | A1.2 | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --cream: #fbfaf6;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(11, 31, 58, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: #fff;
+      overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.1; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.82rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #f4fbfa; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+      width: 200px; height: 200px; border-radius: 999px;
+      background: url("../favicon.png") center / contain no-repeat; opacity: 0.12; pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px); max-width: 700px; }
+    .eyebrow {
+      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 800;
+    }
+    .hero h2 {
+      margin: 10px 0 0; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1;
+      letter-spacing: -0.03em; font-weight: 800;
+    }
+    .hero h2 span { color: var(--teal); }
+    .hero p { color: var(--muted); margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: var(--wash);
+      font-size: 0.72rem; font-weight: 800; color: var(--teal-dark);
+    }
+
+    .lesson {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { background: var(--navy); color: #fff; padding: 22px 24px; }
+    .lesson-head h3 { margin: 0; font-size: 1.15rem; }
+    .lesson-head p { color: #d7ecea; line-height: 1.55; margin: 6px 0 0; }
+    .tabs {
+      display: flex; overflow-x: auto; gap: 5px; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted);
+      font-size: 0.76rem; font-weight: 800; padding: 10px 12px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab.active, .tab:hover { background: var(--wash); color: var(--navy); }
+    .panel { display: none; padding: 26px; }
+    .panel.active { display: block; }
+    .panel h4 { font-size: 1.15rem; margin: 0 0 10px; color: var(--navy); }
+    .panel h5 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--navy); }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .card {
+      border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff;
+    }
+    .card.mint { background: var(--wash); }
+    .card.soft { background: var(--soft); }
+    .label {
+      font-size: 0.7rem; letter-spacing: 0.08em; color: var(--teal-dark);
+      font-weight: 800; text-transform: uppercase;
+    }
+    .teal { color: var(--teal-dark); }
+    .big-rule { font-size: 1.15rem; font-weight: 800; margin: 8px 0 0; color: var(--navy); }
+    .example {
+      padding: 10px 12px; border-left: 3px solid var(--gold);
+      background: var(--soft); margin-top: 10px; font-weight: 700;
+    }
+    .note {
+      background: var(--warn); border-left: 4px solid var(--gold);
+      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin-top: 14px;
+    }
+    .tip {
+      background: var(--wash); border-left: 4px solid var(--teal);
+      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin: 12px 0;
+    }
+
+    .issue {
+      background: var(--cream); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+    }
+    .issue-bar {
+      background: var(--navy); color: #d7ecea; font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase; font-weight: 800;
+      padding: 10px 18px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    .issue-hero { padding: 22px 22px 8px; }
+    .issue-kicker { color: var(--teal-dark); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+    .issue-title { margin: 8px 0 0; font-size: clamp(1.6rem, 3.4vw, 2.35rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--navy); }
+    .issue-lead { color: var(--muted); margin: 10px 0 0; line-height: 1.65; max-width: 54ch; }
+    .cast { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .cast span {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid var(--line); border-radius: 999px;
+      padding: 6px 12px 6px 6px; font-size: 0.8rem; font-weight: 800; color: var(--navy);
+    }
+    .dot {
+      width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center;
+      background: var(--wash); color: var(--teal-dark); font-size: 0.72rem;
+    }
+    .beat {
+      display: grid; grid-template-columns: 7.2rem 1fr; gap: 14px;
+      padding: 16px 22px; border-top: 1px solid var(--line);
+    }
+    .beat time {
+      font-weight: 800; color: var(--teal-dark); font-size: 0.88rem; letter-spacing: 0.02em;
+    }
+    .beat p { margin: 0; line-height: 1.7; }
+    .beat p + p { margin-top: 8px; }
+
+    .q { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q:last-child { border: 0; }
+    .q p { margin: 0; font-weight: 700; line-height: 1.45; }
+    .q .why { display: none; margin-top: 8px; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
+    .q.done .why { display: block; }
+    .opts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+    .opt, .btn {
+      border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800;
+    }
+    .opt { background: #fff; border: 1px solid var(--line); color: var(--navy); }
+    .opt.selected { background: var(--wash); border-color: var(--teal); }
+    .opt.correct { background: var(--good); border-color: #72b98c; }
+    .opt.wrong { background: var(--bad); border-color: #d98989; }
+    .btn { background: var(--navy); color: #fff; }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .feedback { display: none; margin-top: 12px; padding: 12px; border-radius: 10px; line-height: 1.55; font-weight: 600; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+
+    .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .hit {
+      cursor: pointer; border-radius: 6px; padding: 1px 4px;
+      border-bottom: 2px dotted var(--teal); font-weight: 800; color: var(--teal-dark);
+    }
+    .hit.found { background: var(--wash); border-bottom-color: var(--gold); }
+    .hit.miss { background: var(--bad); }
+
+    .speak { display: grid; gap: 10px; }
+    .prompt {
+      padding: 16px; background: var(--wash); border-radius: 14px;
+      font-weight: 700; line-height: 1.5; font-size: 1.05rem;
+    }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--teal); background: var(--wash); color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    textarea, input[type=text] {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65;
+    }
+    textarea { min-height: 150px; resize: vertical; }
+
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+
+    .spell {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-weight: 800; color: var(--navy);
+    }
+
+    .footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 24px; }
+    .footer strong { color: var(--navy); }
+
+    @media (max-width: 720px) {
+      .shell { padding: 12px; }
+      .brand p { display: none; }
+      .panel { padding: 18px; }
+      .grid2, .grid3 { grid-template-columns: 1fr; }
+      .beat { grid-template-columns: 1fr; gap: 4px; }
+      .hero::after { opacity: 0.08; width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+        <div>
+          <h1>Simple Present II</h1>
+          <p>A1.2 · He, she, it</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="home-btn" href="../">Home</a>
+        <span class="mode-pill">A1.2</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">A1.2 · Daily life</span>
+        <h2>She <span>opens</span> at dawn.</h2>
+        <p>
+          A Saturday with Nadia Brooks, baker on Main Street in Cedar Falls.
+          Read her day first. Then open Reference for <strong>he, she, it</strong> and the letter on the verb.
+        </p>
+        <div class="path">
+          <span>1 Story</span><span>2 Reference</span><span>3 Practice</span>
+          <span>4 Reading</span><span>5 Speaking</span><span>6 Writing</span><span>7 Can-do</span>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson">
+      <header class="lesson-head">
+        <h3>From a Saturday story to he / she / it</h3>
+        <p>Read the profile. Notice the times. Grammar waits in Reference.</p>
+      </header>
+      <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
+      <div id="panels"></div>
+    </article>
+
+    <footer class="footer"><strong>Israel Ventura</strong> · A1.2 · Educational use</footer>
+  </div>
+
+<script>
+const sections = ['1 Story', '2 Reference', '3 Practice', '4 Reading', '5 Speaking', '6 Writing', '7 Can-do'];
+const KEY = 'simplePresent2A12v1';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+
+const panels = {
+  0: storyHTML,
+  1: referenceHTML,
+  2: practiceHTML,
+  3: readingHTML,
+  4: speakingHTML,
+  5: writingHTML,
+  6: candoHTML
+};
+
+function storyHTML() {
+  return `
+    <div class="issue">
+      <div class="issue-bar">
+        <span>Cedar Falls Review</span>
+        <span>Saturday profile · Main Street</span>
+      </div>
+      <div class="issue-hero">
+        <div class="issue-kicker">A day in the bakery</div>
+        <h4 class="issue-title">The baker on Main Street</h4>
+        <p class="issue-lead">Nadia Brooks opens Brooks Bakery before the sun. This is her Saturday — from the first coffee to the last light on the street.</p>
+        <div class="cast">
+          <span><i class="dot">NB</i> Nadia Brooks · baker</span>
+          <span><i class="dot">B</i> Ben · her helper</span>
+          <span><i class="dot">BB</i> the bakery · on Main Street</span>
+        </div>
+      </div>
+
+      <div class="beat">
+        <time>5:15 a.m.</time>
+        <p>Nadia gets up in the dark. She drinks coffee in a quiet kitchen. The town still sleeps.</p>
+      </div>
+      <div class="beat">
+        <time>5:45 a.m.</time>
+        <p>She walks down Main Street. Brooks Bakery stands between a bookstore and a small bank. It sits on the corner with a gold sign in the window.</p>
+      </div>
+      <div class="beat">
+        <time>6:00 a.m.</time>
+        <p>She opens the door. She turns on the lights. The oven cooks the first bread in the back room. It has two big trays and a warm, sweet smell.</p>
+      </div>
+      <div class="beat">
+        <time>6:30 a.m.</time>
+        <p>Ben arrives. He helps Nadia. He takes trays from the oven. He stands at the counter with a clean white apron.</p>
+      </div>
+      <div class="beat">
+        <time>Morning</time>
+        <p>People come in from the cold. Nadia gives them bread. She takes their money. Ben does the morning jobs at the sink. The bakery helps the whole block — coffee, bread, and a place to wait.</p>
+      </div>
+      <div class="beat">
+        <time>12:00 p.m.</time>
+        <p>Nadia eats lunch in the back. Ben sits with her. He reads a small book. She looks at the street. A bus goes by every twenty minutes.</p>
+      </div>
+      <div class="beat">
+        <time>Afternoon</time>
+        <p>She works on the Monday list. She writes names in a notebook. She studies the list one more time. At the window, she watches the bookstore next door.</p>
+      </div>
+      <div class="beat">
+        <time>4:00 p.m.</time>
+        <p>On Saturday the bakery closes early. Nadia closes the door. Ben waits for his bus. She walks home in the late light.</p>
+      </div>
+      <div class="beat">
+        <time>Night</time>
+        <p>At home she cooks a simple dinner. She watches a show on the sofa. She sleeps at 9:30 — the bakery opens again on Monday.</p>
+      </div>
+    </div>
+  `;
+}
+
+function referenceHTML() {
+  return `
+    <h4>He / she / it + a letter on the verb</h4>
+    <p class="intro">Nadia is <strong>she</strong>. Ben is <strong>he</strong>. The bakery is <strong>it</strong>. The verb takes a letter at the end.</p>
+    <div class="grid3">
+      <div class="card mint">
+        <div class="label">She</div>
+        <p class="big-rule">She opens the door.</p>
+        <div class="example">Nadia gets up at 5:15.</div>
+      </div>
+      <div class="card mint">
+        <div class="label">He</div>
+        <p class="big-rule">He helps Nadia.</p>
+        <div class="example">Ben stands at the counter.</div>
+      </div>
+      <div class="card mint">
+        <div class="label">It</div>
+        <p class="big-rule">It sits on the corner.</p>
+        <div class="example">The bakery opens at 6:00.</div>
+      </div>
+    </div>
+
+    <h5>Spelling</h5>
+    <div class="grid2">
+      <div class="card">
+        <div class="label">1 · Most verbs</div>
+        <p class="big-rule">+ <span class="teal">s</span></p>
+        <div class="example"><span class="spell">walk → walks</span></div>
+        <div class="example"><span class="spell">eat → eats &nbsp; help → helps</span></div>
+        <div class="example"><span class="spell">close → closes &nbsp; get up → gets up</span></div>
+      </div>
+      <div class="card">
+        <div class="label">2 · s, sh, ch, x, o</div>
+        <p class="big-rule">+ <span class="teal">es</span></p>
+        <div class="example"><span class="spell">watch → watches</span></div>
+        <div class="example"><span class="spell">go → goes</span></div>
+        <div class="example"><span class="spell">wash → washes</span></div>
+      </div>
+      <div class="card">
+        <div class="label">3 · consonant + y</div>
+        <p class="big-rule">y → <span class="teal">ies</span></p>
+        <div class="example"><span class="spell">study → studies</span></div>
+        <div class="example">She studies the list.</div>
+      </div>
+      <div class="card">
+        <div class="label">4 · Two special verbs</div>
+        <p class="big-rule">have → <span class="teal">has</span> &nbsp; do → <span class="teal">does</span></p>
+        <div class="example">The oven has two trays.</div>
+        <div class="example">Ben does the morning jobs.</div>
+      </div>
+    </div>
+    <div class="note"><strong>Remember:</strong> I / you / we / they keep the verb as it is. He / she / it take the extra letter. <em>She walks. They walk.</em></div>
+  `;
+}
+
+function practiceHTML() {
+  const saved = state.practice || {};
+  return `
+    <h4>Choose the form from Nadia’s Saturday.</h4>
+    <p class="intro">A: he, she, or it. B: the extra letter. C: spelling — s, es, ies, has, does.</p>
+
+    <h5>A · He, she, or it</h5>
+    ${mcGroup('A', [
+      { q: 'Nadia gets up at 5:15. ______ gets up early.', opts: ['He', 'She', 'It'], a: 'She', why: 'Nadia is one woman → she.' },
+      { q: 'Ben stands at the counter. ______ helps Nadia.', opts: ['He', 'She', 'It'], a: 'He', why: 'Ben is one man → he.' },
+      { q: 'Brooks Bakery sits on the corner. ______ opens at 6:00.', opts: ['He', 'She', 'It'], a: 'It', why: 'A shop is a thing → it.' }
+    ], saved)}
+
+    <h5>B · The extra letter</h5>
+    ${mcGroup('B', [
+      { q: 'Nadia ______ coffee at 5:15.', opts: ['drink', 'drinks'], a: 'drinks', why: 'She + drinks.' },
+      { q: 'Ben ______ trays from the oven.', opts: ['take', 'takes'], a: 'takes', why: 'He + takes.' },
+      { q: 'The bakery ______ on Main Street.', opts: ['stand', 'stands'], a: 'stands', why: 'It + stands.' },
+      { q: 'They ______ sandwiches at 12:00. (Owen and Lila, from last lesson)', opts: ['eat', 'eats'], a: 'eat', why: 'They keep eat — no extra letter.' }
+    ], saved)}
+
+    <h5>C · Spelling</h5>
+    ${mcGroup('C', [
+      { q: 'A bus ______ by every twenty minutes.', opts: ['gos', 'goes', 'go'], a: 'goes', why: 'go ends in o → goes.' },
+      { q: 'She ______ a show at night.', opts: ['watchs', 'watches', 'watch'], a: 'watches', why: 'watch ends in ch → watches.' },
+      { q: 'She ______ the Monday list.', opts: ['studys', 'studies', 'study'], a: 'studies', why: 'study: y after a consonant → studies.' },
+      { q: 'The oven ______ two big trays.', opts: ['have', 'haves', 'has'], a: 'has', why: 'have → has with he / she / it.' },
+      { q: 'Ben ______ the morning jobs.', opts: ['do', 'dos', 'does'], a: 'does', why: 'do → does with he / she / it.' },
+      { q: 'Nadia ______ the door at 4:00.', opts: ['close', 'closes', 'clos'], a: 'closes', why: 'close already ends in e, so + s → closes.' }
+    ], saved)}
+
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="checkPractice">Check answers</button>
+      <button type="button" class="btn ghost" id="resetPractice">Reset</button>
+    </div>
+    <div class="feedback" id="practiceFb"></div>
+  `;
+}
+
+function mcGroup(group, items, saved) {
+  return items.map((item, i) => {
+    const id = group + i;
+    const picked = saved[id] || '';
+    const opts = item.opts.map((o) =>
+      `<button type="button" class="opt${picked === o ? ' selected' : ''}" data-g="${group}" data-i="${i}" data-v="${escapeAttr(o)}">${escapeHtml(o)}</button>`
+    ).join('');
+    return `<div class="q" data-qid="${id}" data-answer="${escapeAttr(item.a)}" data-why="${escapeAttr(item.why)}">
+      <p>${item.q}</p>
+      <div class="opts">${opts}</div>
+      <div class="why"></div>
+    </div>`;
+  }).join('');
+}
+
+function readingHTML() {
+  return `
+    <h4>Nadia’s Saturday, in short. Tap every verb with the extra letter.</h4>
+    <p class="intro">Find all 10. Then choose the time or the person.</p>
+    <div class="reading" id="reading">
+      Nadia <span class="hit" data-ok="1">gets</span> up at 5:15. She <span class="hit" data-ok="1">walks</span> to Main Street.
+      The bakery <span class="hit" data-ok="1">stands</span> on the corner. It <span class="hit" data-ok="1">opens</span> at 6:00.
+      Ben <span class="hit" data-ok="1">helps</span> her. He <span class="hit" data-ok="1">does</span> the morning jobs.
+      At noon she <span class="hit" data-ok="1">eats</span> lunch. She <span class="hit" data-ok="1">studies</span> the Monday list.
+      A bus <span class="hit" data-ok="1">goes</span> by. At night she <span class="hit" data-ok="1">sleeps</span> at 9:30.
+    </div>
+    <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 10</div>
+    <div class="q">
+      <p>Nadia gets up at ______.</p>
+      <div class="opts" data-readq="up">
+        <button type="button" class="opt" data-v="515">5:15 a.m.</button>
+        <button type="button" class="opt" data-v="600">6:00 a.m.</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>The bakery closes at ______ on Saturday.</p>
+      <div class="opts" data-readq="close">
+        <button type="button" class="opt" data-v="400">4:00 p.m.</button>
+        <button type="button" class="opt" data-v="930">9:30 p.m.</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>Ben ______ the morning jobs.</p>
+      <div class="opts" data-readq="does">
+        <button type="button" class="opt" data-v="does">does</button>
+        <button type="button" class="opt" data-v="do">do</button>
+      </div>
+    </div>
+    <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
+    <div class="feedback" id="readFb"></div>
+  `;
+}
+
+function speakingHTML() {
+  const prompts = [
+    'Talk about a woman in your family. She gets up at ______.',
+    'Talk about a man you know. He works in the morning.',
+    'Talk about a place. The school opens at ______. It stands on ______ Street.',
+    'Tell Nadia’s morning in three sentences: She ______. Ben ______. The bakery ______.',
+    'Tell a real person’s night: He / She cooks ______. He / She watches ______. He / She sleeps at ______.'
+  ];
+  return `
+    <h4>Tell someone’s day. Use he, she, or it — and a time.</h4>
+    <p class="intro">Look at a real person or a real place. Speak in full sentences. Keep them affirmative: She works. He helps. It opens.</p>
+    <div class="speak" id="speakPrompts">
+      ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="nextSpeak">Next prompt</button>
+      <button type="button" class="btn ghost" id="showModel">Show a model</button>
+    </div>
+    <div class="card soft" id="speakModel" hidden style="margin-top:12px">
+      <div class="label">Models</div>
+      <div class="example">She gets up at 6:30.</div>
+      <div class="example">He works in the morning.</div>
+      <div class="example">The school opens at 8:00. It stands on Oak Street.</div>
+      <div class="example">She opens the door. Ben helps her. The bakery sits on the corner.</div>
+      <div class="example">She cooks dinner. She watches a show. She sleeps at 10:00.</div>
+    </div>
+  `;
+}
+
+function writingHTML() {
+  const text = state.writing || '';
+  return `
+    <h4>Write a Saturday profile for one person you know.</h4>
+    <p class="intro">Eight sentences. Use <strong>she</strong> or <strong>he</strong>, and one sentence with <strong>it</strong> (a place or a thing). Put a time in every sentence. Use at least one special spelling: <em>goes, watches, studies, has,</em> or <em>does</em>.</p>
+    <div class="stems">
+      <button type="button">She gets up at…</button>
+      <button type="button">He walks…</button>
+      <button type="button">The shop opens at…</button>
+      <button type="button">It stands…</button>
+      <button type="button">She studies…</button>
+      <button type="button">He does…</button>
+      <button type="button">She watches…</button>
+      <button type="button">He sleeps at…</button>
+    </div>
+    <textarea id="writingBox" placeholder="Marta gets up at 7:00. She drinks coffee.…">${escapeHtml(text)}</textarea>
+    <div class="cando" style="margin-top:12px">
+      <label><input type="checkbox" data-writechk="person"> I used he or she in most sentences.</label>
+      <label><input type="checkbox" data-writechk="it"> I used it for a place or a thing.</label>
+      <label><input type="checkbox" data-writechk="spell"> I used the extra letter: walks, goes, studies, has, does…</label>
+      <label><input type="checkbox" data-writechk="time"> Every sentence has a time of day or a clock time.</label>
+    </div>
+  `;
+}
+
+function candoHTML() {
+  const c = state.cando || {};
+  const items = [
+    ['she', 'I can make a sentence with she + a verb: She opens the door.'],
+    ['he', 'I can make a sentence with he + a verb: He helps in the morning.'],
+    ['it', 'I can make a sentence with it + a verb: It stands on Main Street.'],
+    ['s', 'I can add -s to most verbs: walks, eats, helps.'],
+    ['es', 'I can spell goes, watches, and closes.'],
+    ['ies', 'I can spell studies.'],
+    ['has', 'I remember have → has and do → does.'],
+    ['day', 'I can tell one person’s day with times: morning, afternoon, night.']
+  ];
+  return `
+    <h4>Can-do · He, she, it</h4>
+    <p class="intro">Check what is true for you now. You can talk about your day (I / you / we / they) and about one person or one place (he / she / it).</p>
+    <div class="cando">
+      ${items.map(([id, label]) => `
+        <label>
+          <input type="checkbox" data-cando="${id}" ${c[id] ? 'checked' : ''}>
+          <span>${label}</span>
+        </label>`).join('')}
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;' }[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function renderTabs() {
+  const i = state.tab || 0;
+  document.getElementById('tabs').innerHTML = sections.map((s, n) =>
+    `<button type="button" class="tab ${n === i ? 'active' : ''}" data-tab="${n}">${s}</button>`
+  ).join('');
+  openTab(i);
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((el, n) => el.classList.toggle('active', n === i));
+  const host = document.getElementById('panels');
+  host.innerHTML = `<div class="panel active">${panels[i]()}</div>`;
+  bindPanel(i);
+  const lesson = document.querySelector('.lesson');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function bindPanel(i) {
+  if (i === 2) bindPractice();
+  if (i === 3) bindReading();
+  if (i === 4) bindSpeaking();
+  if (i === 5) bindWriting();
+  if (i === 6) {
+    document.querySelectorAll('[data-cando]').forEach((el) => {
+      el.addEventListener('change', () => {
+        state.cando = state.cando || {};
+        state.cando[el.dataset.cando] = el.checked;
+        save();
+      });
+    });
+  }
+}
+
+function bindPractice() {
+  document.querySelectorAll('.opt[data-g]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.g;
+      const idx = btn.dataset.i;
+      document.querySelectorAll(`.opt[data-g="${group}"][data-i="${idx}"]`).forEach((o) => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.practice = state.practice || {};
+      state.practice[group + idx] = btn.dataset.v;
+      save();
+    });
+  });
+  document.getElementById('checkPractice').addEventListener('click', () => {
+    let right = 0, total = 0;
+    document.querySelectorAll('.q[data-qid]').forEach((q) => {
+      total += 1;
+      const answer = q.dataset.answer;
+      const picked = q.querySelector('.opt.selected');
+      q.querySelectorAll('.opt').forEach((o) => {
+        o.classList.remove('correct', 'wrong');
+        if (o.dataset.v === answer) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      if (picked && picked.dataset.v === answer) right += 1;
+      q.classList.add('done');
+      q.querySelector('.why').textContent = q.dataset.why;
+    });
+    const fb = document.getElementById('practiceFb');
+    fb.className = 'feedback show ' + (right === total ? 'good' : 'warn');
+    fb.textContent = right === total
+      ? `All ${total} correct. He / she / it take the extra letter.`
+      : `${right} / ${total}. Read the note under each item — spelling lives in Reference.`;
+  });
+  document.getElementById('resetPractice').addEventListener('click', () => {
+    state.practice = {};
+    save();
+    openTab(2);
+  });
+}
+
+function bindReading() {
+  let found = 0;
+  const total = document.querySelectorAll('#reading .hit[data-ok]').length;
+  document.querySelectorAll('#reading .hit').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('found')) return;
+      el.classList.add(el.dataset.ok ? 'found' : 'miss');
+      if (el.dataset.ok) found += 1;
+      document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
+    });
+  });
+  const answers = { up: '515', close: '400', does: 'does' };
+  document.querySelectorAll('.opt[data-v]').forEach((btn) => {
+    if (!btn.closest('[data-readq]')) return;
+    btn.addEventListener('click', () => {
+      btn.parentElement.querySelectorAll('.opt').forEach((o) => o.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+  document.getElementById('checkReading').addEventListener('click', () => {
+    let ok = found === total;
+    document.querySelectorAll('[data-readq]').forEach((box) => {
+      const key = box.dataset.readq;
+      const picked = box.querySelector('.opt.selected');
+      box.querySelectorAll('.opt').forEach((o) => {
+        o.classList.remove('correct', 'wrong');
+        if (o.dataset.v === answers[key]) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      if (!(picked && picked.dataset.v === answers[key])) ok = false;
+    });
+    const fb = document.getElementById('readFb');
+    fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+    fb.textContent = ok
+      ? 'She gets up at 5:15. The bakery closes at 4:00. Ben does the morning jobs.'
+      : 'Tap the ten verbs with the extra letter, then finish the three lines.';
+  });
+}
+
+function bindSpeaking() {
+  let n = state.speakIndex || 0;
+  const prompts = document.querySelectorAll('[data-sp]');
+  function show() {
+    prompts.forEach((p, i) => { p.hidden = i !== n; });
+    state.speakIndex = n;
+    save();
+  }
+  show();
+  document.getElementById('nextSpeak').addEventListener('click', () => {
+    n = (n + 1) % prompts.length;
+    show();
+  });
+  document.getElementById('showModel').addEventListener('click', () => {
+    const box = document.getElementById('speakModel');
+    box.hidden = !box.hidden;
+  });
+}
+
+function bindWriting() {
+  const box = document.getElementById('writingBox');
+  box.addEventListener('input', () => { state.writing = box.value; save(); });
+  document.querySelectorAll('.stems button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pad = box.value && !box.value.endsWith('\n') ? '\n' : '';
+      box.value += pad + btn.textContent + ' ';
+      box.focus();
+      state.writing = box.value;
+      save();
+    });
+  });
+  document.querySelectorAll('[data-writechk]').forEach((el) => {
+    el.checked = !!(state.writechk && state.writechk[el.dataset.writechk]);
+    el.addEventListener('change', () => {
+      state.writechk = state.writechk || {};
+      state.writechk[el.dataset.writechk] = el.checked;
+      save();
+    });
+  });
+}
+
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-tab]');
+  if (btn) openTab(Number(btn.dataset.tab));
+});
+
+renderTabs();
+</script>
+</body>
+</html>
