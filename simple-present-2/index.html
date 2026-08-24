@@ -557,50 +557,50 @@ At four the bakery closes. He waits for his bus. He goes home. At night he cooks
     <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / ${packed.total}</div>
 
     <div class="q">
-      <p>1. This text is about ______.</p>
-      <div class="opts stack" data-readq="main">
-        <button type="button" class="opt" data-v="ben">Ben’s day at the bakery</button>
-        <button type="button" class="opt" data-v="nadia">Nadia’s family</button>
-        <button type="button" class="opt" data-v="bus">a bus driver</button>
+      <p>1. Every Saturday Ben’s day is ______.</p>
+      <div class="opts stack" data-readq="same">
+        <button type="button" class="opt" data-v="same">the same</button>
+        <button type="button" class="opt" data-v="new">different</button>
+        <button type="button" class="opt" data-v="night">only at night</button>
       </div>
     </div>
     <div class="q">
-      <p>2. Ben works ______.</p>
-      <div class="opts stack" data-readq="where">
-        <button type="button" class="opt" data-v="bakery">at the bakery</button>
-        <button type="button" class="opt" data-v="school">at a school</button>
-        <button type="button" class="opt" data-v="bus">on a bus</button>
+      <p>2. At the counter, Ben ______.</p>
+      <div class="opts stack" data-readq="counter">
+        <button type="button" class="opt" data-v="gives">gives people bread</button>
+        <button type="button" class="opt" data-v="cooks">cooks dinner</button>
+        <button type="button" class="opt" data-v="sleeps">sleeps</button>
       </div>
     </div>
     <div class="q">
-      <p>3. In this text, a <em>helper</em> ______.</p>
+      <p>3. Ben eats lunch ______.</p>
+      <div class="opts stack" data-readq="lunch">
+        <button type="button" class="opt" data-v="back">in the back room</button>
+        <button type="button" class="opt" data-v="home">at home</button>
+        <button type="button" class="opt" data-v="bus">on the bus</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>4. In this text, a <em>helper</em> ______.</p>
       <div class="opts stack" data-readq="helper">
         <button type="button" class="opt" data-v="with">works with Nadia</button>
-        <button type="button" class="opt" data-v="buy">buys the bread</button>
-        <button type="button" class="opt" data-v="sleep">sleeps at work</button>
+        <button type="button" class="opt" data-v="buy">buys bread</button>
+        <button type="button" class="opt" data-v="drive">drives the bus</button>
       </div>
     </div>
     <div class="q">
-      <p>4. Does Ben work alone?</p>
+      <p>5. Does Ben work alone?</p>
       <div class="opts stack" data-readq="alone">
         <button type="button" class="opt" data-v="no">No. He helps Nadia.</button>
         <button type="button" class="opt" data-v="yes">Yes. He opens the bakery.</button>
-        <button type="button" class="opt" data-v="night">Yes, but only at night.</button>
+        <button type="button" class="opt" data-v="night">Yes. He works at night.</button>
       </div>
     </div>
     <div class="q">
-      <p>5. At four, Ben waits because ______.</p>
-      <div class="opts stack" data-readq="four">
-        <button type="button" class="opt" data-v="bus">he waits for his bus</button>
-        <button type="button" class="opt" data-v="lunch">he eats lunch</button>
-        <button type="button" class="opt" data-v="open">he opens the door</button>
-      </div>
-    </div>
-    <div class="q">
-      <p>6. At night Ben ______.</p>
-      <div class="opts stack" data-readq="night">
-        <button type="button" class="opt" data-v="home">cooks and watches a show</button>
-        <button type="button" class="opt" data-v="work">works at the bakery</button>
+      <p>6. After the bakery closes, Ben ______.</p>
+      <div class="opts stack" data-readq="after">
+        <button type="button" class="opt" data-v="bus">waits for his bus</button>
+        <button type="button" class="opt" data-v="oven">takes bread from the oven</button>
         <button type="button" class="opt" data-v="door">opens the door</button>
       </div>
     </div>
@@ -836,7 +836,7 @@ function bindReading() {
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { main: 'ben', where: 'bakery', helper: 'with', alone: 'no', four: 'bus', night: 'home' };
+  const answers = { same: 'same', counter: 'gives', lunch: 'back', helper: 'with', alone: 'no', after: 'bus' };
   document.querySelectorAll('[data-readq] .opt').forEach((btn) => {
     btn.addEventListener('click', () => {
       btn.parentElement.querySelectorAll('.opt').forEach((o) => o.classList.remove('selected'));
