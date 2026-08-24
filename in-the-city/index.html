@@ -75,7 +75,7 @@
 
     .hero {
       position: relative; overflow: hidden; border-radius: 20px;
-      background: #f4fbfa; color: var(--navy);
+      background: var(--navy); color: #fff;
       border: 1px solid rgba(30,45,90,0.08); box-shadow: var(--shadow); margin-bottom: 22px;
     }
     .hero::after {
@@ -90,16 +90,16 @@
     }
     .eyebrow {
       display: inline-flex; gap: 8px; margin-bottom: 12px;
-      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--teal); text-transform: uppercase; letter-spacing: 0.12em;
       font-size: 0.75rem; font-weight: 900;
     }
     .hero h2 { margin: 0; font-size: clamp(1.85rem, 4.5vw, 3rem); line-height: 1.02; font-weight: 900; letter-spacing: -0.02em; }
     .hero h2 span { color: var(--teal); }
-    .hero-copy { color: var(--muted); margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
+    .hero-copy { color: #d7ecea; margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
     .cast { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
     .cast span {
-      padding: 6px 11px; border-radius: 999px; background: #fff;
-      border: 1px solid rgba(30,45,90,0.1); font-size: 0.78rem; font-weight: 800; color: var(--navy);
+      padding: 6px 11px; border-radius: 999px; background: rgba(91,184,176,.28);
+      border: 1px solid rgba(255,255,255,0.18); font-size: 0.78rem; font-weight: 800; color: #fff;
     }
 
     /* Vocabulary accordion (like Adjectives / Around the House) */
@@ -148,7 +148,7 @@
     .activity-meta { flex: 1; min-width: 0; }
     .activity-meta h3 {
       margin: 0; font-size: 1.15rem; font-weight: 900;
-      color: var(--navy); letter-spacing: -0.02em; line-height: 1.2;
+      color: #fff; letter-spacing: -0.02em; line-height: 1.2;
     }
     .activity-meta h3 span { color: var(--teal); }
     .activity-meta p {
@@ -408,7 +408,7 @@
     .deck-card .pic-label .word {
       font-size: clamp(1.35rem, 4vw, 1.75rem);
       font-weight: 900;
-      color: var(--navy);
+      color: #fff;
       line-height: 1.15;
       letter-spacing: -0.02em;
     }
@@ -961,7 +961,7 @@
       place-items: center;
       font-size: 0.62rem;
       font-weight: 900;
-      color: var(--navy);
+      color: #fff;
       text-align: center;
       line-height: 1.1;
       z-index: 3;
