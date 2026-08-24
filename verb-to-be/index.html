@@ -187,6 +187,13 @@
     .mini-dialogue strong { color: #9ce0da; }
     .pronunciation { padding: 14px; border: 1px dashed var(--teal-dark); border-radius: 12px; background: #fff; }
     .pronunciation code { color: var(--teal-dark); font-weight: 900; }
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
     .reference-check { padding: 16px; border-radius: 13px; background: var(--warn); border: 1px solid #f0dfb5; }
     .reference-check ol { margin: 8px 0 0; padding-left: 20px; line-height: 1.65; }
 
@@ -345,7 +352,7 @@
       <a class="home-btn" href="../" title="Back to main menu" aria-label="Back to main menu">
         <span aria-hidden="true">&#8962;</span> <span class="home-btn-label">Home</span>
       </a>
-      <span class="mode-pill">A2 · Story module</span>
+      <span class="mode-pill">A1.1 · Story module</span>
     </div>
   </header>
 
@@ -378,7 +385,7 @@
 </div>
 
 <script>
-const sections = ['Grammar Reference', 'Structure', 'Reading', 'Listening', 'Speaking', 'Writing'];
+const sections = ['Grammar Reference', 'Structure', 'Reading', 'Listening', 'Speaking', 'Writing', 'Can-do'];
 
 const listeningScript = [
   ['Maya', 'Hi… are you okay? You look a bit lost.'],
@@ -1044,6 +1051,33 @@ function writingHTML() {
     </div>`;
 }
 
+function candoHTML() {
+  const c = answers.cando || {};
+  const items = [
+    ['who', 'I can say who I am and who other people are with am / is / are.'],
+    ['place', 'I can say where someone is and where a place is.'],
+    ['feel', 'I can say how I feel: I am nervous. I am happy.'],
+    ['neg', 'I can make negatives: I am not / she isn\'t / they aren\'t.'],
+    ['ask', 'I can ask yes/no and Wh- questions: Are you…? Where is…?']
+  ];
+  return `
+    <h4>Can-do</h4>
+    <p class="intro">Check what you can do after Sofia’s first morning.</p>
+    <div class="cando">
+      ${items.map(([id, label]) => `
+        <label>
+          <input type="checkbox" data-cando="${id}" ${c[id] ? 'checked' : ''} onchange="saveCando(this)">
+          <span>${label}</span>
+        </label>`).join('')}
+    </div>`;
+}
+
+function saveCando(el) {
+  answers.cando = answers.cando || {};
+  answers.cando[el.dataset.cando] = el.checked;
+  save();
+}
+
 function saveWriting() {
   answers.writingText = document.getElementById('writingText').value;
   save();
@@ -1066,7 +1100,7 @@ function render() {
 
   const tabs = document.getElementById('tabs');
   const panels = document.getElementById('panels');
-  const htmls = [grammarHTML(), structureHTML(), readingHTML(), listeningHTML(), speakingHTML(), writingHTML()];
+  const htmls = [grammarHTML(), structureHTML(), readingHTML(), listeningHTML(), speakingHTML(), writingHTML(), candoHTML()];
 
   tabs.innerHTML = sections.map((s, i) =>
     `<button class="tab ${i === 0 ? 'active' : ''}" type="button" role="tab" onclick="openTab(${i})">${esc(s)}</button>`

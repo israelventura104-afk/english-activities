@@ -22,7 +22,7 @@
       --wash: #f0faf9;
       --soft: #f8fafc;
       --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
-      --brand-logo: url("Logo_circular2-removebg.png");
+      --brand-logo: url("../favicon.png");
       --card-w: min(520px, calc(100vw - 48px));
       --card-ratio: 1136 / 912;
     }
@@ -486,6 +486,19 @@
       background: var(--teal-dark);
       color: #fff;
     }
+
+    .activity-num.n5 {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .cando { display: grid; gap: 10px; margin-top: 8px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
 
     .activity-meta {
       flex: 1;
@@ -1265,6 +1278,24 @@
                 <button type="button" class="action-btn" id="btnEmojiReplay">Play again</button>
               </div>
             </section>
+          </div>
+        </div>
+      </details>
+
+      <details class="activity" id="act-cando">
+        <summary>
+          <span class="activity-num n5">05</span>
+          <div class="activity-meta">
+            <h3>Can-do</h3>
+            <p>Check what you can do with these adjectives.</p>
+          </div>
+        </summary>
+        <div class="activity-body">
+          <div class="cando">
+            <label><input type="checkbox"> I can name common adjectives for feelings and personality.</label>
+            <label><input type="checkbox"> I can match an adjective to a picture.</label>
+            <label><input type="checkbox"> I can say how I feel: I am happy. I am tired.</label>
+            <label><input type="checkbox"> I can describe a person with 2–3 adjectives.</label>
           </div>
         </div>
       </details>

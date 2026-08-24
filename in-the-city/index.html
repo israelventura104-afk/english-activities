@@ -1093,6 +1093,16 @@
       width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto;
     }
 
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft, #f8fafc); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+    .cando-block { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; margin: 22px 0; box-shadow: var(--shadow); }
+    .cando-block h3 { margin: 0 0 8px; color: var(--navy); }
+    .cando-block p { color: var(--muted); margin: 0 0 14px; }
     .footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 26px 0 8px; }
 
     @media (max-width: 720px) {
@@ -1223,6 +1233,17 @@
     <p class="activities-label">Activities</p>
     <!-- Accordion items injected by script -->
   </div>
+
+  <section class="cando-block" aria-label="Can-do">
+    <h3>Can-do</h3>
+    <p>Check what you can do in the city.</p>
+    <div class="cando">
+      <label><input type="checkbox"> I can name places in a city (park, bank, supermarket…).</label>
+      <label><input type="checkbox"> I can use prepositions: next to, across from, between, behind.</label>
+      <label><input type="checkbox"> I can ask for directions: Excuse me, where is the…?</label>
+      <label><input type="checkbox"> I can give simple directions: go straight, turn left, turn right.</label>
+    </div>
+  </section>
 
   <footer class="footer">In the City · English Activities · Israel Ventura · Educational use</footer>
 </div>

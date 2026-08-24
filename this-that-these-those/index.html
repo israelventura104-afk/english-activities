@@ -269,7 +269,7 @@
         <span class="eyebrow">A1.1 closer · Grammar in the room</span>
         <h2>Point to <span>it</span></h2>
         <p>
-          Maya is at Leo’s apartment. She names things next to her and things across the room.
+          Nina is at David’s apartment. She names things next to her and things across the room.
           Finish A1.1: one or many, near or far, and the right verb — <strong>is</strong> or <strong>are</strong>.
         </p>
         <div class="path">
@@ -317,11 +317,11 @@ const panels = {
 
 function noticeHTML() {
   return `
-    <h4>Maya is on the sofa. Look where she points.</h4>
-    <p class="intro">Things <strong>next to Maya</strong> are near. Things <strong>across the room</strong> are far. Tap a thing to hear the sentence in your head — then say it.</p>
-    <div class="scene" aria-label="Leo's living room">
+    <h4>Nina is on the sofa. Look where she points.</h4>
+    <p class="intro">Things <strong>next to Nina</strong> are near. Things <strong>across the room</strong> are far. Tap a thing to hear the sentence in your head — then say it.</p>
+    <div class="scene" aria-label="David's living room">
       <div class="zone">
-        <h5>Near Maya · here</h5>
+        <h5>Near Nina · here</h5>
         <div class="things">
           <button type="button" class="thing" data-sent="This is my phone.">
             <span class="ico" aria-hidden="true">📱</span>phone
@@ -334,15 +334,15 @@ function noticeHTML() {
         </div>
       </div>
       <div class="zone far">
-        <h5>Far from Maya · over there</h5>
+        <h5>Far from Nina · over there</h5>
         <div class="things">
           <button type="button" class="thing" data-sent="That is the door.">
             <span class="ico" aria-hidden="true">🚪</span>door
             <span class="sent">That is the door.</span>
           </button>
-          <button type="button" class="thing" data-sent="Those are Leo’s shoes.">
+          <button type="button" class="thing" data-sent="Those are David’s shoes.">
             <span class="ico" aria-hidden="true">👟</span>shoes
-            <span class="sent">Those are Leo’s shoes.</span>
+            <span class="sent">Those are David’s shoes.</span>
           </button>
         </div>
       </div>
@@ -371,13 +371,13 @@ function grammarHTML() {
         <p class="big-rule">What’s this? What’s that?</p>
         <div class="example">What’s this? It’s my phone.</div>
         <p class="big-rule" style="margin-top:14px">What are these? What are those?</p>
-        <div class="example">What are those? They’re Leo’s shoes.</div>
+        <div class="example">What are those? They’re David’s shoes.</div>
       </div>
       <div class="card">
         <div class="label">With possessives</div>
-        <p class="intro" style="margin:8px 0 0">You already know <em>my / Leo’s</em>. Put them after the verb.</p>
+        <p class="intro" style="margin:8px 0 0">You already know <em>my / David’s</em>. Put them after the verb.</p>
         <div class="example">This is <strong>my</strong> phone.</div>
-        <div class="example">Those are <strong>Leo’s</strong> shoes.</div>
+        <div class="example">Those are <strong>David’s</strong> shoes.</div>
       </div>
     </div>
     <div class="note"><strong>The usual mistake:</strong> <s>This are my keys.</s> → <strong>These are</strong> my keys. One thing → <em>is</em>. Two or more → <em>are</em>.</div>
@@ -388,14 +388,14 @@ function practiceHTML() {
   const saved = state.practice || {};
   return `
     <h4>Choose, then check. The why matters.</h4>
-    <p class="intro">A: near or far, one or many. B: <em>is</em> or <em>are</em>. C: fix Maya’s mistakes.</p>
+    <p class="intro">A: near or far, one or many. B: <em>is</em> or <em>are</em>. C: fix Nina’s mistakes.</p>
 
     <h5>A · The pointing word</h5>
     ${mcGroup('A', [
-      { q: 'Maya holds her phone. ______ is my phone.', opts: ['This', 'That', 'These', 'Those'], a: 'This', why: 'One thing, next to her → this + is.' },
+      { q: 'Nina holds her phone. ______ is my phone.', opts: ['This', 'That', 'These', 'Those'], a: 'This', why: 'One thing, next to her → this + is.' },
       { q: 'The door is across the room. ______ is the door.', opts: ['This', 'That', 'These', 'Those'], a: 'That', why: 'One thing, far → that + is.' },
       { q: 'Her keys are on the sofa, next to her. ______ are my keys.', opts: ['This', 'That', 'These', 'Those'], a: 'These', why: 'Many things, near → these + are.' },
-      { q: 'Leo’s shoes are by the far wall. ______ are Leo’s shoes.', opts: ['This', 'That', 'These', 'Those'], a: 'Those', why: 'Many things, far → those + are.' }
+      { q: 'David’s shoes are by the far wall. ______ are David’s shoes.', opts: ['This', 'That', 'These', 'Those'], a: 'Those', why: 'Many things, far → those + are.' }
     ], saved)}
 
     <h5>B · The verb</h5>
@@ -438,25 +438,25 @@ function mcGroup(group, items, saved) {
 
 function readingHTML() {
   return `
-    <h4>Maya’s message. Tap every this / that / these / those.</h4>
+    <h4>Nina’s message. Tap every this / that / these / those.</h4>
     <p class="intro">Find all 8. Then answer the two questions under the text.</p>
     <div class="reading" id="reading">
-      Hi! I’m at Leo’s apartment. <span class="hit" data-ok="1">This</span> is a small sofa, and I’m on it now.
+      Hi! I’m at David’s apartment. <span class="hit" data-ok="1">This</span> is a small sofa, and I’m on it now.
       <span class="hit" data-ok="1">These</span> are my keys and <span class="hit" data-ok="1">this</span> is my phone.
-      Look over there: <span class="hit" data-ok="1">that</span> is the kitchen door, and <span class="hit" data-ok="1">those</span> are Leo’s shoes next to it.
+      Look over there: <span class="hit" data-ok="1">that</span> is the kitchen door, and <span class="hit" data-ok="1">those</span> are David’s shoes next to it.
       <span class="hit" data-ok="1">That</span> is a big window. <span class="hit" data-ok="1">Those</span> are two green plants in front of it.
       <span class="hit" data-ok="1">These</span> are my photos of the family — here, in my hand.
     </div>
     <div class="notice-bar" id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 8</div>
     <div class="q">
-      <p>In the text, what is near Maya?</p>
+      <p>In the text, what is near Nina?</p>
       <div class="opts" data-readq="near">
         <button type="button" class="opt" data-v="sofa, keys, phone, photos">the sofa, keys, phone, photos</button>
         <button type="button" class="opt" data-v="door, shoes, window">the door, shoes, and window</button>
       </div>
     </div>
     <div class="q">
-      <p>Why “those are Leo’s shoes”, not “that are”?</p>
+      <p>Why “those are David’s shoes”, not “that are”?</p>
       <div class="opts" data-readq="why">
         <button type="button" class="opt" data-v="many">Shoes are more than one, so those + are.</button>
         <button type="button" class="opt" data-v="far">Because they are far — far always takes those.</button>
@@ -493,7 +493,6 @@ function speakingHTML() {
       <div class="example">Those are the windows.</div>
       <div class="example">What’s this? It’s a bag.</div>
     </div>
-    <p class="tip"><strong>Classroom:</strong> Walk. Point at real objects. Correct only <em>is/are</em> and one/many. Don’t stop the flow for tiny pronunciation yet.</p>
   `;
 }
 

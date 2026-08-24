@@ -16,7 +16,7 @@ Closes with *this / that / these / those*.
 - [Around the House](./around-the-house/)
 - [In the City](./in-the-city/)
 - [Adjectives](./adjectives/)
-- [Possessives](./possessive-adjectives/)
+- [Possessives](./possessive-adjectives/) — Emma’s family album
 - [There is / There are](./there-is-there-are/)
 - [This / that / these / those](./this-that-these-those/) — A1.1 closer
 
