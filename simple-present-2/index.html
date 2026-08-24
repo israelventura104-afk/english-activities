@@ -8,7 +8,7 @@
   <title>Simple Present II | A1.2 | Israel Ventura</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy: #0B1F3A;
@@ -41,7 +41,7 @@
     }
     button, input, textarea, select { font: inherit; }
     button { cursor: pointer; }
-    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 28px 32px 40px; }
 
     .topbar {
       position: sticky; top: 16px; z-index: 20;
@@ -77,24 +77,29 @@
     .hero {
       position: relative; overflow: hidden; border-radius: 20px;
       background: #f4fbfa; color: var(--navy);
-      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 28px;
     }
     .hero::after {
-      content: ""; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
-      width: 200px; height: 200px; border-radius: 999px;
-      background: url("../favicon.png") center / contain no-repeat; opacity: 0.12; pointer-events: none;
+      content: ""; position: absolute; right: clamp(0.75rem, 3vw, 1.75rem); top: 50%;
+      transform: translateY(-50%); width: clamp(160px, 22vw, 280px); max-width: 32%;
+      aspect-ratio: 1 / 1; border-radius: 999px;
+      background: url("../favicon.png") center / contain no-repeat; opacity: 0.16; pointer-events: none;
     }
-    .hero-inner { position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px); max-width: 700px; }
+    .hero-inner {
+      position: relative; z-index: 1; padding: clamp(36px, 6.5vw, 64px);
+      max-width: min(720px, calc(100% - clamp(100px, 22vw, 240px)));
+    }
     .eyebrow {
+      display: inline-flex; margin-bottom: 12px;
       color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
-      font-size: 0.75rem; font-weight: 800;
+      font-size: 0.75rem; font-weight: 900;
     }
     .hero h2 {
-      margin: 10px 0 0; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1;
-      letter-spacing: -0.03em; font-weight: 800;
+      margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); line-height: 0.98;
+      letter-spacing: -0.03em; font-weight: 900;
     }
     .hero h2 span { color: var(--teal); }
-    .hero p { color: var(--muted); margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
+    .hero p { color: var(--muted); margin: 18px 0 0; line-height: 1.65; font-size: 1.08rem; max-width: 40rem; }
     .path { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
     .path span {
       padding: 6px 10px; border-radius: 999px; background: var(--wash);
@@ -117,7 +122,7 @@
       font-size: 0.76rem; font-weight: 800; padding: 10px 12px; border-radius: 10px; white-space: nowrap;
     }
     .tab.active, .tab:hover { background: var(--wash); color: var(--navy); }
-    .panel { display: none; padding: 26px; }
+    .panel { display: none; padding: 36px 40px 40px; }
     .panel.active { display: block; }
     .panel h4 { font-size: 1.15rem; margin: 0 0 10px; color: var(--navy); }
     .panel h5 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--navy); }
@@ -182,7 +187,7 @@
     .beat p + p { margin-top: 8px; }
 
     .film {
-      background: var(--navy); color: #fff; border-radius: 16px; overflow: hidden; margin-bottom: 22px;
+      background: var(--navy); color: #fff; border-radius: 16px; overflow: hidden; margin: 4px 0 8px;
     }
     .film-bar {
       display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
@@ -234,13 +239,11 @@
     .feedback.good { background: var(--good); }
     .feedback.warn { background: var(--warn); }
 
-    .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
-    .hit {
-      cursor: pointer; border-radius: 6px; padding: 1px 4px;
-      border-bottom: 2px dotted var(--teal); font-weight: 800; color: var(--teal-dark);
-    }
-    .hit.found { background: var(--wash); border-bottom-color: var(--gold); }
-    .hit.miss { background: var(--bad); }
+    .reading { line-height: 1.9; background: var(--soft); padding: 22px 24px; border-radius: 14px; font-size: 1.05rem; }
+    .reading .w { cursor: pointer; border-radius: 4px; padding: 0 1px; }
+    .reading .w:hover { background: rgba(91, 184, 176, 0.14); }
+    .reading .w.found { background: var(--good); font-weight: 800; }
+    .reading .w.miss { background: var(--bad); }
 
     .speak { display: grid; gap: 10px; }
     .prompt {
@@ -274,12 +277,13 @@
     .footer strong { color: var(--navy); }
 
     @media (max-width: 720px) {
-      .shell { padding: 12px; }
+      .shell { padding: 16px; }
       .brand p { display: none; }
-      .panel { padding: 18px; }
+      .panel { padding: 22px 20px 28px; }
       .grid2, .grid3 { grid-template-columns: 1fr; }
       .beat { grid-template-columns: 1fr; gap: 4px; }
-      .hero::after { opacity: 0.08; width: 120px; }
+      .hero-inner { max-width: 100%; padding: 32px 22px; }
+      .hero::after { opacity: 0.1; width: 140px; max-width: 28%; }
     }
   </style>
 </head>
@@ -304,8 +308,8 @@
         <span class="eyebrow">A1.2 · Daily life</span>
         <h2>She <span>opens</span> at dawn.</h2>
         <p>
-          Watch <strong>One day in the life of Nadia Brooks</strong>.
-          Read the reporter line under the film. Then you report what she, he, and it do.
+          He, she, it: one person or one place. The verb takes a letter —
+          every Saturday, every morning, every time.
         </p>
         <div class="path">
           <span>1 Story</span><span>2 Reference</span><span>3 Practice</span>
@@ -316,8 +320,8 @@
 
     <article class="lesson">
       <header class="lesson-head">
-        <h3>From a Saturday film to he / she / it</h3>
-        <p>Watch the film. Then you report: she, he, it.</p>
+        <h3>He, she, it</h3>
+        <p>One person or one place. One extra letter on the verb.</p>
       </header>
       <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
       <div id="panels"></div>
@@ -379,23 +383,51 @@ function storyHTML() {
 
 function referenceHTML() {
   return `
-    <h4>He / she / it + a letter on the verb</h4>
-    <p class="intro">Nadia is <strong>she</strong>. Ben is <strong>he</strong>. The bakery is <strong>it</strong>. The verb takes a letter at the end.</p>
+    <h4>Simple present · he, she, it</h4>
+    <p class="intro">Nadia is <strong>she</strong>. Ben is <strong>he</strong>. The bakery is <strong>it</strong>.</p>
+
+    <h5>When do we use it?</h5>
     <div class="grid3">
       <div class="card mint">
-        <div class="label">She</div>
-        <p class="big-rule">She opens the door.</p>
-        <div class="example">Nadia gets up at 5:15.</div>
+        <div class="label">Routines</div>
+        <p class="big-rule">Every Saturday</p>
+        <div class="example">She gets up at 5:15.</div>
+        <div class="example">He walks to the bakery.</div>
       </div>
       <div class="card mint">
-        <div class="label">He</div>
-        <p class="big-rule">He helps Nadia.</p>
-        <div class="example">Ben stands at the counter.</div>
+        <div class="label">Facts</div>
+        <p class="big-rule">Things that are true</p>
+        <div class="example">The bakery has a warm smell.</div>
+        <div class="example">Ben helps Nadia.</div>
       </div>
       <div class="card mint">
-        <div class="label">It</div>
-        <p class="big-rule">It opens at six.</p>
-        <div class="example">The bakery closes at four.</div>
+        <div class="label">Times of a shop</div>
+        <p class="big-rule">It opens / It closes</p>
+        <div class="example">It opens at six.</div>
+        <div class="example">It closes at four.</div>
+      </div>
+    </div>
+    <div class="tip">Time words: <strong>every day</strong> · <strong>every Saturday</strong> · <strong>in the morning</strong> · <strong>at six</strong> · <strong>at night</strong>. This is her Saturday — every Saturday.</div>
+
+    <h5>Structure</h5>
+    <div class="card">
+      <p class="big-rule">person or place &nbsp;+&nbsp; verb &nbsp;+&nbsp; <span class="teal">s / es / ies</span></p>
+      <div class="example">She + open + s → <strong>She opens</strong> the door.</div>
+      <div class="example">He + help + s → <strong>He helps</strong> Nadia.</div>
+      <div class="example">It + close + s → <strong>It closes</strong> at four.</div>
+    </div>
+
+    <h5>Last lesson and this lesson</h5>
+    <div class="grid2">
+      <div class="card soft">
+        <div class="label">I / you / we / they</div>
+        <p class="big-rule">No extra letter</p>
+        <div class="example">I walk. They walk.</div>
+      </div>
+      <div class="card mint">
+        <div class="label">He / she / it</div>
+        <p class="big-rule">A letter on the verb</p>
+        <div class="example">She walks. He walks. It opens.</div>
       </div>
     </div>
 
@@ -428,7 +460,7 @@ function referenceHTML() {
         <div class="example">Ben does the morning jobs.</div>
       </div>
     </div>
-    <div class="note"><strong>Remember:</strong> I / you / we / they keep the verb as it is. He / she / it take the extra letter. <em>She walks. They walk.</em></div>
+    <div class="note"><strong>Remember:</strong> I / you / we / they keep the verb. He / she / it take a letter. <em>She walks. They walk.</em></div>
   `;
 }
 
@@ -449,7 +481,7 @@ function practiceHTML() {
     ${mcGroup('B', [
       { q: 'Nadia ______ coffee at 5:15.', opts: ['drink', 'drinks'], a: 'drinks', why: 'She + drinks.' },
       { q: 'Ben ______ trays from the oven.', opts: ['take', 'takes'], a: 'takes', why: 'He + takes.' },
-      { q: 'The bakery ______ on Main Street.', opts: ['stand', 'stands'], a: 'stands', why: 'It + stands.' },
+      { q: 'The bakery ______ at six.', opts: ['open', 'opens'], a: 'opens', why: 'It + opens.' },
       { q: 'They ______ sandwiches at 12:00. (Owen and Lila, from last lesson)', opts: ['eat', 'eats'], a: 'eat', why: 'They keep eat — no extra letter.' }
     ], saved)}
 
@@ -486,37 +518,88 @@ function mcGroup(group, items, saved) {
   }).join('');
 }
 
+function wrapReading(text) {
+  const hits = new Set([
+    'looks', 'gets', 'drinks', 'walks', 'opens', 'helps', 'takes', 'stands',
+    'gives', 'does', 'has', 'closes', 'eats', 'reads', 'goes', 'waits',
+    'cooks', 'watches', 'sleeps'
+  ]);
+  let total = 0;
+  const html = text.split(/(\s+)/).map((tok) => {
+    if (!tok || /^\s+$/.test(tok)) return tok;
+    const m = tok.match(/^([^A-Za-z]*)([A-Za-z]+(?:'[A-Za-z]+)?)([^A-Za-z]*)$/);
+    if (!m) return escapeHtml(tok);
+    const pre = m[1], word = m[2], post = m[3];
+    const ok = hits.has(word.toLowerCase());
+    if (ok) total += 1;
+    return escapeHtml(pre) + `<span class="w" data-ok="${ok ? '1' : ''}">${escapeHtml(word)}</span>` + escapeHtml(post);
+  }).join('');
+  return { html, total };
+}
+
 function readingHTML() {
+  const text = `Ben is Nadia's helper at Brooks Bakery on Main Street. Every Saturday looks the same.
+
+He gets up at six. He drinks coffee in a small kitchen. Then he walks to the bakery. He is not late. Nadia opens the door at six, and Ben is there with her.
+
+In the morning he helps Nadia. He takes bread from the oven. He stands at the counter. He gives people bread and coffee. He does the jobs at the sink. The bakery has a warm smell. It opens at six and it closes at four.
+
+At twelve he eats lunch in the back room. He reads a small book. A bus goes by the window. He looks at the street and he waits.
+
+At four the bakery closes. He waits for his bus. He goes home. At night he cooks a simple dinner. He watches a show. He sleeps at ten.`;
+  const packed = wrapReading(text);
   return `
-    <h4>Nadia’s Saturday, in short. Tap every verb with the extra letter.</h4>
-    <p class="intro">Find all 10. Then choose the time or the person.</p>
-    <div class="reading" id="reading">
-      Nadia <span class="hit" data-ok="1">gets</span> up at 5:15. She <span class="hit" data-ok="1">walks</span> to Main Street.
-      The bakery <span class="hit" data-ok="1">stands</span> on the corner. It <span class="hit" data-ok="1">opens</span> at 6:00.
-      Ben <span class="hit" data-ok="1">helps</span> her. He <span class="hit" data-ok="1">does</span> the morning jobs.
-      At noon she <span class="hit" data-ok="1">eats</span> lunch. She <span class="hit" data-ok="1">studies</span> the Monday list.
-      A bus <span class="hit" data-ok="1">goes</span> by. At night she <span class="hit" data-ok="1">sleeps</span> at 9:30.
-    </div>
-    <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 10</div>
+    <h4>Ben’s Saturday</h4>
+    <p class="intro">Read about Ben. Tap the verbs with <strong>-s</strong> / <strong>-es</strong> / <strong>has</strong> / <strong>does</strong>. Every word is a tap — nothing is marked for you.</p>
+    <div class="reading" id="reading">${packed.html}</div>
+    <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / ${packed.total}</div>
+
     <div class="q">
-      <p>Nadia gets up at ______.</p>
-      <div class="opts" data-readq="up">
-        <button type="button" class="opt" data-v="515">5:15 a.m.</button>
-        <button type="button" class="opt" data-v="600">6:00 a.m.</button>
+      <p>What is this text about?</p>
+      <div class="opts" data-readq="main">
+        <button type="button" class="opt" data-v="ben">Ben’s Saturday at the bakery</button>
+        <button type="button" class="opt" data-v="night">Nadia’s night at home</button>
+        <button type="button" class="opt" data-v="bus">A bus driver on Main Street</button>
       </div>
     </div>
     <div class="q">
-      <p>The bakery closes at ______ on Saturday.</p>
-      <div class="opts" data-readq="close">
-        <button type="button" class="opt" data-v="400">4:00 p.m.</button>
-        <button type="button" class="opt" data-v="930">9:30 p.m.</button>
+      <p>In this text, a <em>helper</em> is ______.</p>
+      <div class="opts" data-readq="helper">
+        <button type="button" class="opt" data-v="with">a person who works with Nadia</button>
+        <button type="button" class="opt" data-v="buy">a person who buys bread</button>
+        <button type="button" class="opt" data-v="bus">a person on the bus</button>
       </div>
     </div>
     <div class="q">
-      <p>Ben ______ the morning jobs.</p>
-      <div class="opts" data-readq="does">
-        <button type="button" class="opt" data-v="does">does</button>
-        <button type="button" class="opt" data-v="do">do</button>
+      <p>In this text, the <em>counter</em> is ______.</p>
+      <div class="opts" data-readq="counter">
+        <button type="button" class="opt" data-v="table">the table where people buy bread</button>
+        <button type="button" class="opt" data-v="clock">a clock on the wall</button>
+        <button type="button" class="opt" data-v="stop">a bus stop</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>Ben gets up at six. Nadia opens the door at six. So Ben ______.</p>
+      <div class="opts" data-readq="infer1">
+        <button type="button" class="opt" data-v="with">works with Nadia from the start</button>
+        <button type="button" class="opt" data-v="alone">opens the bakery alone</button>
+        <button type="button" class="opt" data-v="sleep">sleeps at the bakery</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>He waits for his bus at four because ______.</p>
+      <div class="opts" data-readq="infer2">
+        <button type="button" class="opt" data-v="close">the bakery closes</button>
+        <button type="button" class="opt" data-v="lunch">he eats lunch then</button>
+        <button type="button" class="opt" data-v="late">he is late for work</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>At night Ben ______.</p>
+      <div class="opts" data-readq="night">
+        <button type="button" class="opt" data-v="home">cooks and watches a show</button>
+        <button type="button" class="opt" data-v="work">works at the bakery</button>
+        <button type="button" class="opt" data-v="open">opens the door for Nadia</button>
       </div>
     </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
@@ -526,16 +609,15 @@ function readingHTML() {
 
 function speakingHTML() {
   const prompts = [
-    'You are the reporter. Start the film: One day in the life of Nadia Brooks. She ______ at 5:15.',
-    'What does she do at 6:00? She ______ the bakery.',
-    'What does Ben do? He ______ Nadia. He ______ trays.',
-    'The bakery is it. It ______ at six. It ______ at four.',
-    'Tell her whole Saturday in five sentences. Use she, he, and it.',
-    'Now a real person you know. She / He gets up at ______. She / He works…'
+    'Talk about your mother, or a woman in your family. She ______ in the morning.',
+    'Talk about your father, or a man in your family. He works…',
+    'Talk about a sister, a brother, or a friend.',
+    'Talk about a shop or a school you know. It opens at…',
+    'Someone at your house at night. She / He cooks… watches… sleeps at…'
   ];
   return `
-    <h4>You are the reporter. Tell what she does.</h4>
-    <p class="intro">Use the film. Full sentences. Affirmative only: She opens. He helps. It opens.</p>
+    <h4>People you know</h4>
+    <p class="intro">Talk about family and friends. Use <strong>she</strong>, <strong>he</strong>, or <strong>it</strong>.</p>
     <div class="speak" id="speakPrompts">
       ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
     </div>
@@ -545,12 +627,11 @@ function speakingHTML() {
     </div>
     <div class="card soft" id="speakModel" hidden style="margin-top:12px">
       <div class="label">Models</div>
-      <div class="example">She gets up at 5:15. She drinks coffee.</div>
-      <div class="example">She opens the bakery at 6:00.</div>
-      <div class="example">She gives people bread. He helps her. He takes the trays.</div>
-      <div class="example">It opens at six. It closes at four.</div>
-      <div class="example">She gets up at 5:15. She walks to Main Street. She opens the door. Ben helps her. She closes at 4:00.</div>
-      <div class="example">Marta gets up at 7:00. She works in the morning.</div>
+      <div class="example">She gets up at 7:00. She drinks coffee. She walks to work.</div>
+      <div class="example">He works in the morning. He helps at home.</div>
+      <div class="example">My brother studies at night. He watches a show. He sleeps at 11:00.</div>
+      <div class="example">The school opens at 8:00. It closes at 3:00.</div>
+      <div class="example">She cooks dinner. She watches TV. She sleeps at 10:00.</div>
     </div>
   `;
 }
@@ -585,12 +666,12 @@ function candoHTML() {
   const items = [
     ['she', 'I can make a sentence with she + a verb: She opens the door.'],
     ['he', 'I can make a sentence with he + a verb: He helps in the morning.'],
-    ['it', 'I can make a sentence with it + a verb: It stands on Main Street.'],
+    ['it', 'I can make a sentence with it + a verb: It opens at six.'],
     ['s', 'I can add -s to most verbs: walks, eats, helps.'],
     ['es', 'I can spell goes, watches, and closes.'],
     ['ies', 'I can spell studies.'],
     ['has', 'I remember have → has and do → does.'],
-    ['day', 'I can report Nadia’s Saturday: She opens. He helps. It opens at six.']
+    ['day', 'I can talk about one person I know: She works. He helps. It opens at…']
   ];
   return `
     <h4>Can-do · He, she, it</h4>
@@ -738,16 +819,22 @@ function bindPractice() {
 
 function bindReading() {
   let found = 0;
-  const total = document.querySelectorAll('#reading .hit[data-ok]').length;
-  document.querySelectorAll('#reading .hit').forEach((el) => {
+  const total = document.querySelectorAll('#reading .w[data-ok="1"]').length;
+  document.getElementById('readCount').textContent = `Found 0 / ${total}`;
+  document.querySelectorAll('#reading .w').forEach((el) => {
     el.addEventListener('click', () => {
       if (el.classList.contains('found')) return;
-      el.classList.add(el.dataset.ok ? 'found' : 'miss');
-      if (el.dataset.ok) found += 1;
+      if (el.dataset.ok === '1') {
+        el.classList.add('found');
+        el.classList.remove('miss');
+        found += 1;
+      } else {
+        el.classList.add('miss');
+      }
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { up: '515', close: '400', does: 'does' };
+  const answers = { main: 'ben', helper: 'with', counter: 'table', infer1: 'with', infer2: 'close', night: 'home' };
   document.querySelectorAll('.opt[data-v]').forEach((btn) => {
     if (!btn.closest('[data-readq]')) return;
     btn.addEventListener('click', () => {
@@ -756,8 +843,9 @@ function bindReading() {
     });
   });
   document.getElementById('checkReading').addEventListener('click', () => {
-    let ok = found === total;
-    document.querySelectorAll('[data-readq]').forEach((box) => {
+    let right = 0;
+    const qBoxes = document.querySelectorAll('[data-readq]');
+    qBoxes.forEach((box) => {
       const key = box.dataset.readq;
       const picked = box.querySelector('.opt.selected');
       box.querySelectorAll('.opt').forEach((o) => {
@@ -765,13 +853,14 @@ function bindReading() {
         if (o.dataset.v === answers[key]) o.classList.add('correct');
         else if (o.classList.contains('selected')) o.classList.add('wrong');
       });
-      if (!(picked && picked.dataset.v === answers[key])) ok = false;
+      if (picked && picked.dataset.v === answers[key]) right += 1;
     });
     const fb = document.getElementById('readFb');
-    fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
-    fb.textContent = ok
-      ? 'She gets up at 5:15. The bakery closes at 4:00. Ben does the morning jobs.'
-      : 'Tap the ten verbs with the extra letter, then finish the three lines.';
+    const huntOk = found === total;
+    fb.className = 'feedback show ' + (huntOk && right === qBoxes.length ? 'good' : 'warn');
+    fb.textContent = huntOk && right === qBoxes.length
+      ? 'Yes — Ben’s Saturday, and the verbs with -s.'
+      : `Verbs with -s: ${found} / ${total}. Questions: ${right} / ${qBoxes.length}.`;
   });
 }
 
