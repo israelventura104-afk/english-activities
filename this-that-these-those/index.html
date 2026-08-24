@@ -531,7 +531,7 @@ function candoHTML() {
   ];
   return `
     <h4>A1.1 exit ticket</h4>
-    <p class="intro">If these are true, this stage is closed. Next stage (A1.2) starts with <em>there is / there are</em> — what exists in a place, not what you are pointing at.</p>
+    <p class="intro">If these are true, you can close A1.1 together with <em>there is / there are</em>. A1.2 starts with present simple: what you <em>do</em> every day.</p>
     <div class="cando">
       ${items.map(([id, label]) => `
         <label>
@@ -539,7 +539,7 @@ function candoHTML() {
           <span>${label}</span>
         </label>`).join('')}
     </div>
-    <div class="note" style="margin-top:16px"><strong>Closed:</strong> You can name who you are, things around you, and you can point. Tomorrow’s grammar is different: <em>There is a sofa in the living room.</em></div>
+    <div class="note" style="margin-top:16px"><strong>Closed:</strong> You can name who you are, say what is in a place, and point to it. Next: <em>I live, she works, we get up.</em></div>
   `;
 }
 

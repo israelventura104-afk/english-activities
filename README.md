@@ -17,10 +17,10 @@ Closes with *this / that / these / those*.
 - [In the City](./in-the-city/)
 - [Adjectives](./adjectives/)
 - [Possessives](./possessive-adjectives/)
+- [There is / There are](./there-is-there-are/)
 - [This / that / these / those](./this-that-these-those/) — A1.1 closer
 
 ### A1.2 — Daily life
-- [There is / There are](./there-is-there-are/)
 - Present Simple — *up next*
 
 ### A2 — Real possibilities
