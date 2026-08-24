@@ -225,6 +225,8 @@
     .q .why { display: none; margin-top: 8px; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
     .q.done .why { display: block; }
     .opts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+    .opts.stack { display: grid; gap: 8px; }
+    .opts.stack .opt { width: 100%; text-align: left; white-space: normal; }
     .opt, .btn {
       border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800;
     }
@@ -520,8 +522,8 @@ function mcGroup(group, items, saved) {
 
 function wrapReading(text) {
   const hits = new Set([
-    'looks', 'gets', 'drinks', 'walks', 'opens', 'helps', 'takes', 'stands',
-    'gives', 'does', 'has', 'closes', 'eats', 'reads', 'goes', 'waits',
+    'gets', 'drinks', 'walks', 'opens', 'helps', 'takes', 'stands',
+    'gives', 'does', 'has', 'closes', 'eats', 'reads', 'goes', 'looks', 'waits',
     'cooks', 'watches', 'sleeps'
   ]);
   let total = 0;
@@ -538,7 +540,7 @@ function wrapReading(text) {
 }
 
 function readingHTML() {
-  const text = `Ben is Nadia's helper at Brooks Bakery on Main Street. Every Saturday looks the same.
+  const text = `Ben is Nadia's helper at Brooks Bakery on Main Street. Every Saturday is the same.
 
 He gets up at six. He drinks coffee in a small kitchen. Then he walks to the bakery. He is not late. Nadia opens the door at six, and Ben is there with her.
 
@@ -550,56 +552,56 @@ At four the bakery closes. He waits for his bus. He goes home. At night he cooks
   const packed = wrapReading(text);
   return `
     <h4>Ben’s Saturday</h4>
-    <p class="intro">Read about Ben. Tap the verbs with <strong>-s</strong> / <strong>-es</strong> / <strong>has</strong> / <strong>does</strong>. Every word is a tap — nothing is marked for you.</p>
+    <p class="intro">Read. Tap the verbs with <strong>-s</strong> (and <strong>has</strong> / <strong>does</strong>). Then answer.</p>
     <div class="reading" id="reading">${packed.html}</div>
     <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / ${packed.total}</div>
 
     <div class="q">
-      <p>What is this text about?</p>
-      <div class="opts" data-readq="main">
-        <button type="button" class="opt" data-v="ben">Ben’s Saturday at the bakery</button>
-        <button type="button" class="opt" data-v="night">Nadia’s night at home</button>
-        <button type="button" class="opt" data-v="bus">A bus driver on Main Street</button>
+      <p>1. This text is about ______.</p>
+      <div class="opts stack" data-readq="main">
+        <button type="button" class="opt" data-v="ben">Ben’s day at the bakery</button>
+        <button type="button" class="opt" data-v="nadia">Nadia’s family</button>
+        <button type="button" class="opt" data-v="bus">a bus driver</button>
       </div>
     </div>
     <div class="q">
-      <p>In this text, a <em>helper</em> is ______.</p>
-      <div class="opts" data-readq="helper">
-        <button type="button" class="opt" data-v="with">a person who works with Nadia</button>
-        <button type="button" class="opt" data-v="buy">a person who buys bread</button>
-        <button type="button" class="opt" data-v="bus">a person on the bus</button>
+      <p>2. Ben works ______.</p>
+      <div class="opts stack" data-readq="where">
+        <button type="button" class="opt" data-v="bakery">at the bakery</button>
+        <button type="button" class="opt" data-v="school">at a school</button>
+        <button type="button" class="opt" data-v="bus">on a bus</button>
       </div>
     </div>
     <div class="q">
-      <p>In this text, the <em>counter</em> is ______.</p>
-      <div class="opts" data-readq="counter">
-        <button type="button" class="opt" data-v="table">the table where people buy bread</button>
-        <button type="button" class="opt" data-v="clock">a clock on the wall</button>
-        <button type="button" class="opt" data-v="stop">a bus stop</button>
+      <p>3. In this text, a <em>helper</em> ______.</p>
+      <div class="opts stack" data-readq="helper">
+        <button type="button" class="opt" data-v="with">works with Nadia</button>
+        <button type="button" class="opt" data-v="buy">buys the bread</button>
+        <button type="button" class="opt" data-v="sleep">sleeps at work</button>
       </div>
     </div>
     <div class="q">
-      <p>Ben gets up at six. Nadia opens the door at six. So Ben ______.</p>
-      <div class="opts" data-readq="infer1">
-        <button type="button" class="opt" data-v="with">works with Nadia from the start</button>
-        <button type="button" class="opt" data-v="alone">opens the bakery alone</button>
-        <button type="button" class="opt" data-v="sleep">sleeps at the bakery</button>
+      <p>4. Does Ben work alone?</p>
+      <div class="opts stack" data-readq="alone">
+        <button type="button" class="opt" data-v="no">No. He helps Nadia.</button>
+        <button type="button" class="opt" data-v="yes">Yes. He opens the bakery.</button>
+        <button type="button" class="opt" data-v="night">Yes, but only at night.</button>
       </div>
     </div>
     <div class="q">
-      <p>He waits for his bus at four because ______.</p>
-      <div class="opts" data-readq="infer2">
-        <button type="button" class="opt" data-v="close">the bakery closes</button>
-        <button type="button" class="opt" data-v="lunch">he eats lunch then</button>
-        <button type="button" class="opt" data-v="late">he is late for work</button>
+      <p>5. At four, Ben waits because ______.</p>
+      <div class="opts stack" data-readq="four">
+        <button type="button" class="opt" data-v="bus">he waits for his bus</button>
+        <button type="button" class="opt" data-v="lunch">he eats lunch</button>
+        <button type="button" class="opt" data-v="open">he opens the door</button>
       </div>
     </div>
     <div class="q">
-      <p>At night Ben ______.</p>
-      <div class="opts" data-readq="night">
+      <p>6. At night Ben ______.</p>
+      <div class="opts stack" data-readq="night">
         <button type="button" class="opt" data-v="home">cooks and watches a show</button>
         <button type="button" class="opt" data-v="work">works at the bakery</button>
-        <button type="button" class="opt" data-v="open">opens the door for Nadia</button>
+        <button type="button" class="opt" data-v="door">opens the door</button>
       </div>
     </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
@@ -834,9 +836,8 @@ function bindReading() {
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { main: 'ben', helper: 'with', counter: 'table', infer1: 'with', infer2: 'close', night: 'home' };
-  document.querySelectorAll('.opt[data-v]').forEach((btn) => {
-    if (!btn.closest('[data-readq]')) return;
+  const answers = { main: 'ben', where: 'bakery', helper: 'with', alone: 'no', four: 'bus', night: 'home' };
+  document.querySelectorAll('[data-readq] .opt').forEach((btn) => {
     btn.addEventListener('click', () => {
       btn.parentElement.querySelectorAll('.opt').forEach((o) => o.classList.remove('selected'));
       btn.classList.add('selected');
@@ -856,11 +857,10 @@ function bindReading() {
       if (picked && picked.dataset.v === answers[key]) right += 1;
     });
     const fb = document.getElementById('readFb');
-    const huntOk = found === total;
-    fb.className = 'feedback show ' + (huntOk && right === qBoxes.length ? 'good' : 'warn');
-    fb.textContent = huntOk && right === qBoxes.length
-      ? 'Yes — Ben’s Saturday, and the verbs with -s.'
-      : `Verbs with -s: ${found} / ${total}. Questions: ${right} / ${qBoxes.length}.`;
+    fb.className = 'feedback show ' + (right === qBoxes.length ? 'good' : 'warn');
+    fb.textContent = right === qBoxes.length
+      ? 'Yes — six / six.'
+      : `${right} / ${qBoxes.length}. Read Ben’s Saturday again.`;
   });
 }
 
