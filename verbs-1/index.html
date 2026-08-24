@@ -119,6 +119,31 @@
     }
     .face img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .face.back { transform: rotateY(180deg); }
+    .audio-btn {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      z-index: 3;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(11, 31, 58, 0.82);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(30, 45, 90, 0.28);
+      transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      padding: 0;
+    }
+    .audio-btn:hover { background: rgba(35, 141, 133, 0.95); transform: scale(1.06); }
+    .audio-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .audio-btn.playing { background: rgba(35, 141, 133, 0.95); }
+    .audio-btn svg { width: 18px; height: 18px; display: block; pointer-events: none; }
+    .audio-btn.missing { opacity: 0.35; cursor: not-allowed; }
     .verb-name {
       text-align: center; font-weight: 800; color: var(--navy); font-size: 1.15rem; letter-spacing: 0.04em;
     }
@@ -225,7 +250,7 @@
       <div class="hero-inner">
         <span class="eyebrow">A1.2 · Verb set 1</span>
         <h2>Thirty <span>verbs</span></h2>
-        <p>Photo first. Flip the card for the verb, an example, and a question. Then play five short games with the same 30 words.</p>
+        <p>Photo first. Flip the card for the verb, an example, and a play button. Then play five short games with the same 30 words.</p>
       </div>
     </section>
 
@@ -237,19 +262,32 @@
           <span class="activity-num n1">01</span>
           <div class="activity-meta">
             <h3>Verb <span>deck</span></h3>
-            <p>30 verbs. Click the card to flip. Arrows keep the same side.</p>
+            <p>30 verbs. Flip the card, then tap play to hear the word.</p>
           </div>
           <span class="activity-chevron" aria-hidden="true">▾</span>
         </summary>
         <div class="activity-body">
           <div class="activity-body-inner">
-            <p class="intro">The back also shows other forms — today just learn the word.</p>
+            <p class="intro">The back shows the verb, an example, and a play button. Today just learn the word.</p>
             <div class="stage">
               <div class="card-shell">
                 <div class="flip" id="flipCard" role="button" tabindex="0" aria-label="Flip verb card">
                   <div class="flip-inner">
                     <div class="face front"><img id="frontImg" alt="" src="assets/front/01.jpg"></div>
-                    <div class="face back"><img id="backImg" alt="" src="assets/back/01.png"></div>
+                    <div class="face back">
+                      <img id="backImg" alt="" src="assets/back/01.png">
+                      <button type="button" class="audio-btn" id="btnAudio" title="Play pronunciation" aria-label="Play verb audio">
+                        <svg id="iconPlay" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                          <path d="M4 9v6h3.5L12 19V5L7.5 9H4z" fill="currentColor"/>
+                          <path d="M15.5 8.5a4.5 4.5 0 010 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                          <path d="M17.8 6a7.5 7.5 0 010 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        </svg>
+                        <svg id="iconPause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
+                          <rect x="6" y="5" width="4" height="14" rx="1"/>
+                          <rect x="14" y="5" width="4" height="14" rx="1"/>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -265,7 +303,7 @@
                   <button type="button" class="action-btn" id="btnShuffle">Shuffle</button>
                   <button type="button" class="action-btn" id="btnReset">Reset order</button>
                 </div>
-                <p class="hint">Click or <strong>Space</strong> to flip · arrows keep the same side</p>
+                <p class="hint">Click or <strong>Space</strong> to flip · play is on the back · arrows keep the same side</p>
               </div>
             </div>
           </div>
@@ -443,6 +481,7 @@ const verbs = [
 ];
 const pad = (n) => String(n).padStart(2, '0');
 const front = (i) => `assets/front/${pad(i + 1)}.jpg`;
+const audioSrc = (i) => `assets/audio/${verbs[i].replace(/\s+/g, '-')}.mp3`;
 const KEY = 'verbs1A12v1';
 
 function loadState() {
@@ -468,8 +507,59 @@ function shuffle(arr) {
 let order = verbs.map((_, i) => i);
 let card = 0;
 let flipped = false;
+const btnAudio = document.getElementById('btnAudio');
+const iconPlay = document.getElementById('iconPlay');
+const iconPause = document.getElementById('iconPause');
+const player = new Audio();
+player.preload = 'none';
+
+function setAudioUI(playing) {
+  btnAudio.classList.toggle('playing', playing);
+  iconPlay.hidden = playing;
+  iconPause.hidden = !playing;
+  btnAudio.setAttribute('aria-label', playing ? 'Stop audio' : 'Play verb audio');
+  btnAudio.title = playing ? 'Stop' : 'Play pronunciation';
+}
+function stopAudio() {
+  player.pause();
+  player.currentTime = 0;
+  setAudioUI(false);
+}
+function playAudioForCurrent() {
+  const i = order[card];
+  const src = audioSrc(i);
+  const absolute = new URL(src, window.location.href).href;
+  if (player.src !== absolute) player.src = src;
+  else player.currentTime = 0;
+  player.play().then(() => {
+    btnAudio.classList.remove('missing');
+    setAudioUI(true);
+  }).catch(() => {
+    btnAudio.classList.add('missing');
+    setAudioUI(false);
+  });
+}
+function toggleAudio(e) {
+  if (e) {
+    e.stopPropagation();
+    e.preventDefault();
+  }
+  if (!flipped) return;
+  if (!player.paused && !player.ended) {
+    stopAudio();
+    return;
+  }
+  playAudioForCurrent();
+}
+player.addEventListener('ended', () => setAudioUI(false));
+player.addEventListener('error', () => {
+  btnAudio.classList.add('missing');
+  setAudioUI(false);
+});
+btnAudio.addEventListener('click', toggleAudio);
 
 function show() {
+  stopAudio();
   const i = order[card];
   document.getElementById('frontImg').src = front(i);
   document.getElementById('frontImg').alt = verbs[i];
@@ -478,13 +568,18 @@ function show() {
   document.getElementById('verbName').textContent = verbs[i].toUpperCase();
   document.getElementById('counter').textContent = `${card + 1} / ${verbs.length}`;
   document.getElementById('flipCard').classList.toggle('is-flipped', flipped);
+  btnAudio.classList.remove('missing');
 }
 function flip() {
   flipped = !flipped;
   show();
 }
-document.getElementById('flipCard').addEventListener('click', flip);
+document.getElementById('flipCard').addEventListener('click', (e) => {
+  if (e.target.closest('#btnAudio')) return;
+  flip();
+});
 document.getElementById('flipCard').addEventListener('keydown', (e) => {
+  if (e.target.closest('#btnAudio')) return;
   if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); }
 });
 document.getElementById('btnFlip').addEventListener('click', (e) => { e.stopPropagation(); flip(); });
