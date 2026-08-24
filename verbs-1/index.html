@@ -381,12 +381,12 @@
         </summary>
         <div class="activity-body">
           <div class="activity-body-inner">
-            <p class="intro">Move the body. Home. Words we use with books, phones, and people.</p>
+            <p class="intro">Move. Food. School. Put each verb in one group.</p>
             <div class="chips" id="binPool"></div>
             <div class="bins">
               <div class="bin" data-bin="move"><h5>Move</h5><div class="chips" id="bin-move"></div></div>
-              <div class="bin" data-bin="home"><h5>Home</h5><div class="chips" id="bin-home"></div></div>
-              <div class="bin" data-bin="words"><h5>Words</h5><div class="chips" id="bin-words"></div></div>
+              <div class="bin" data-bin="food"><h5>Food</h5><div class="chips" id="bin-food"></div></div>
+              <div class="bin" data-bin="school"><h5>School</h5><div class="chips" id="bin-school"></div></div>
             </div>
             <p class="fb" id="binFb" role="status"></p>
             <div class="btn-row">
@@ -800,9 +800,9 @@ setSpeedView('idle');
 
 /* ----- 04 Verb groups ----- */
 const binItems = [
-  { i: 9, b: 'move' }, { i: 10, b: 'move' }, { i: 11, b: 'move' }, { i: 12, b: 'move' },
-  { i: 4, b: 'home' }, { i: 5, b: 'home' }, { i: 21, b: 'home' }, { i: 6, b: 'home' },
-  { i: 13, b: 'words' }, { i: 14, b: 'words' }, { i: 15, b: 'words' }, { i: 16, b: 'words' }
+  { i: 2, b: 'move' }, { i: 3, b: 'move' }, { i: 9, b: 'move' }, { i: 10, b: 'move' },
+  { i: 4, b: 'food' }, { i: 5, b: 'food' }, { i: 21, b: 'food' }, { i: 22, b: 'food' },
+  { i: 13, b: 'school' }, { i: 14, b: 'school' }, { i: 15, b: 'school' }, { i: 16, b: 'school' }
 ];
 let binPlace = {};
 let binPick = null;
@@ -817,7 +817,7 @@ function binReset() {
 function renderBins() {
   const pool = document.getElementById('binPool');
   pool.innerHTML = '';
-  ['move', 'home', 'words'].forEach((b) => { document.getElementById('bin-' + b).innerHTML = ''; });
+  ['move', 'food', 'school'].forEach((b) => { document.getElementById('bin-' + b).innerHTML = ''; });
   binItems.forEach((item) => {
     const loc = binPlace[item.i] || 'pool';
     const chip = document.createElement('button');
@@ -847,17 +847,17 @@ document.querySelectorAll('.bin').forEach((bin) => {
 document.getElementById('btnBinCheck').addEventListener('click', () => {
   let right = 0;
   document.querySelectorAll('.bin').forEach((el) => el.classList.remove('ok', 'bad'));
-  const miss = { move: false, home: false, words: false };
+  const miss = { move: false, food: false, school: false };
   binItems.forEach((item) => {
     if (binPlace[item.i] === item.b) right += 1;
     else miss[item.b] = true;
   });
-  ['move', 'home', 'words'].forEach((b) => {
+  ['move', 'food', 'school'].forEach((b) => {
     document.querySelector(`.bin[data-bin="${b}"]`).classList.add(miss[b] ? 'bad' : 'ok');
   });
   document.getElementById('binFb').textContent = right === binItems.length
     ? 'All twelve verbs are in the right group.'
-    : `${right} / 12. Move = walk, run, sit, stand. Home = eat, drink, cook, sleep. Words = read, write, listen, speak.`;
+    : `${right} / 12. Move = go, come, walk, run. Food = eat, drink, cook, buy. School = read, write, listen, speak.`;
 });
 document.getElementById('btnBinReset').addEventListener('click', binReset);
 binReset();
@@ -955,7 +955,7 @@ const candoItems = [
   ['name', 'I can name these 30 daily-life verbs from a photo.'],
   ['say', 'I can say the verb out loud when I see the picture.'],
   ['speed', 'I can name verbs from a photo against the clock.'],
-  ['group', 'I can group verbs: move, home, and words.'],
+  ['group', 'I can group verbs: move, food, and school.'],
   ['write', 'I can write the verb for a photo.']
 ];
 function renderCando() {
