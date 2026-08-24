@@ -21,7 +21,7 @@ Closes with *this / that / these / those*.
 - [This / that / these / those](./this-that-these-those/) — A1.1 closer
 
 ### A1.2 — Daily life
-- Present Simple — *up next*
+- [Present Simple](./present-simple/) — 30 daily verbs; I work / she works; do / does
 
 ### A2 — Real possibilities
 - Zero & First live inside [Conditionals](./conditionals/) (start at Lesson 1)

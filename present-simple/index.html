@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>Present Simple | A1.2 | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0B1F3A;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+      --card-w: min(520px, calc(100vw - 48px));
+      --card-ratio: 1136 / 912;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body {
+      margin: 0;
+      font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1080px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(11, 31, 58, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: #fff;
+      overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.1; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.82rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #f4fbfa; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+      width: 200px; height: 200px; border-radius: 999px;
+      background: url("../favicon.png") center / contain no-repeat; opacity: 0.12; pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px); max-width: 640px; }
+    .eyebrow {
+      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 800;
+    }
+    .hero h2 {
+      margin: 10px 0 0; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1;
+      letter-spacing: -0.03em; font-weight: 800;
+    }
+    .hero h2 span { color: var(--teal); }
+    .hero p { color: var(--muted); margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: var(--wash);
+      font-size: 0.72rem; font-weight: 800; color: var(--teal-dark);
+    }
+
+    .lesson {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { background: var(--navy); color: #fff; padding: 22px 24px; }
+    .lesson-head h3 { margin: 0; font-size: 1.15rem; }
+    .lesson-head p { color: #d7ecea; line-height: 1.55; margin: 6px 0 0; }
+    .tabs {
+      display: flex; overflow-x: auto; gap: 5px; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted);
+      font-size: 0.76rem; font-weight: 800; padding: 10px 12px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab.active, .tab:hover { background: var(--wash); color: var(--navy); }
+    .panel { display: none; padding: 26px; }
+    .panel.active { display: block; }
+    .panel h4 { font-size: 1.15rem; margin: 0 0 10px; color: var(--navy); }
+    .panel h5 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--navy); }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .label {
+      font-size: 0.7rem; letter-spacing: 0.08em; color: var(--teal-dark);
+      font-weight: 800; text-transform: uppercase;
+    }
+    .big-rule { font-size: 1.2rem; font-weight: 800; margin: 8px 0 0; color: var(--navy); }
+    .example {
+      padding: 10px 12px; border-left: 3px solid var(--gold);
+      background: var(--soft); margin-top: 10px; font-weight: 700;
+    }
+    .note {
+      background: var(--warn); border-left: 4px solid var(--gold);
+      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin-top: 14px;
+    }
+    .card-box {
+      border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff;
+    }
+    .card-box.mint { background: var(--wash); }
+
+    .stage {
+      display: flex; flex-direction: column; align-items: center; gap: 22px; padding: 8px 0 4px;
+    }
+    .card-shell { perspective: 1400px; width: var(--card-w); }
+    .flip {
+      width: 100%; aspect-ratio: var(--card-ratio); cursor: pointer; position: relative;
+      filter: drop-shadow(0 16px 32px rgba(30, 45, 90, 0.18));
+    }
+    .flip-inner {
+      width: 100%; height: 100%; position: relative; transform-style: preserve-3d;
+      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+    .flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+    .face {
+      position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      border-radius: 18px; overflow: hidden; background: #f4f1ea;
+    }
+    .face img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .face.back { transform: rotateY(180deg); }
+    .verb-name {
+      text-align: center; font-weight: 800; color: var(--navy); font-size: 1.15rem; letter-spacing: 0.04em;
+    }
+    .controls { display: flex; flex-direction: column; align-items: center; gap: 14px; width: 100%; max-width: 520px; }
+    .nav-row { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .nav-btn, .action-btn {
+      border: 1px solid var(--line); background: var(--paper); color: var(--navy);
+      font-weight: 700; box-shadow: 0 4px 14px rgba(30, 45, 90, 0.06);
+    }
+    .nav-btn { width: 48px; height: 48px; border-radius: 999px; font-size: 1.25rem; display: grid; place-items: center; }
+    .action-btn { border-radius: 999px; padding: 10px 16px; font-size: 0.9rem; }
+    .counter { min-width: 72px; text-align: center; font-weight: 800; color: var(--muted); }
+    .hint { text-align: center; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+
+    .q { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q:last-child { border: 0; }
+    .q p { margin: 0; font-weight: 700; line-height: 1.45; }
+    .q .why { display: none; margin-top: 8px; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
+    .q.done .why { display: block; }
+    .opts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+    .opt, .btn { border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800; }
+    .opt { background: #fff; border: 1px solid var(--line); }
+    .opt.selected { background: var(--wash); border-color: var(--teal); }
+    .opt.correct { background: var(--good); border-color: #72b98c; }
+    .opt.wrong { background: var(--bad); border-color: #d98989; }
+    .btn { background: var(--navy); color: #fff; }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .feedback { display: none; margin-top: 12px; padding: 12px; border-radius: 10px; line-height: 1.55; font-weight: 600; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+
+    .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .prompt { padding: 16px; background: var(--wash); border-radius: 14px; font-weight: 700; line-height: 1.5; font-size: 1.05rem; }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--teal); background: var(--wash); color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65;
+      min-height: 150px; resize: vertical;
+    }
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+    .footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 24px; }
+    .footer strong { color: var(--navy); }
+
+    @media (max-width: 720px) {
+      .shell { padding: 12px; }
+      .brand p { display: none; }
+      .panel { padding: 18px; }
+      .grid2 { grid-template-columns: 1fr; }
+      .hero::after { opacity: 0.08; width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+        <div>
+          <h1>Present Simple</h1>
+          <p>A1.2 · Daily life verbs</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="home-btn" href="../">Home</a>
+        <span class="mode-pill">A1.2</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">A1.2 · Habits and routines</span>
+        <h2>What I <span>do</span> every day</h2>
+        <p>
+          Thirty verbs for real life. Flip the photo, learn the form, then use
+          <strong>I work / she works</strong> and <strong>do / does</strong> for daily routines.
+        </p>
+        <div class="path">
+          <span>1 Verbs</span><span>2 Grammar</span><span>3 Practice</span>
+          <span>4 Reading</span><span>5 Speaking</span><span>6 Writing</span><span>7 Can-do</span>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson">
+      <header class="lesson-head">
+        <h3>From the picture to the sentence</h3>
+        <p>Learn the verbs first. Then build present simple for I / you / we / they and he / she / it.</p>
+      </header>
+      <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
+      <div id="panels"></div>
+    </article>
+    <footer class="footer"><strong>Israel Ventura</strong> · A1.2 · Educational use</footer>
+  </div>
+
+<script>
+const sections = ['1 Verbs', '2 Grammar', '3 Practice', '4 Reading', '5 Speaking', '6 Writing', '7 Can-do'];
+const KEY = 'presentSimpleA12v1';
+const verbs = [
+  { n: 1, base: 'have', s: 'has' },
+  { n: 2, base: 'do', s: 'does' },
+  { n: 3, base: 'go', s: 'goes' },
+  { n: 4, base: 'come', s: 'comes' },
+  { n: 5, base: 'eat', s: 'eats' },
+  { n: 6, base: 'drink', s: 'drinks' },
+  { n: 7, base: 'sleep', s: 'sleeps' },
+  { n: 8, base: 'wake up', s: 'wakes up' },
+  { n: 9, base: 'get up', s: 'gets up' },
+  { n: 10, base: 'walk', s: 'walks' },
+  { n: 11, base: 'run', s: 'runs' },
+  { n: 12, base: 'sit', s: 'sits' },
+  { n: 13, base: 'stand', s: 'stands' },
+  { n: 14, base: 'read', s: 'reads' },
+  { n: 15, base: 'write', s: 'writes' },
+  { n: 16, base: 'listen', s: 'listens' },
+  { n: 17, base: 'speak', s: 'speaks' },
+  { n: 18, base: 'watch', s: 'watches' },
+  { n: 19, base: 'look', s: 'looks' },
+  { n: 20, base: 'work', s: 'works' },
+  { n: 21, base: 'study', s: 'studies' },
+  { n: 22, base: 'cook', s: 'cooks' },
+  { n: 23, base: 'buy', s: 'buys' },
+  { n: 24, base: 'pay', s: 'pays' },
+  { n: 25, base: 'open', s: 'opens' },
+  { n: 26, base: 'close', s: 'closes' },
+  { n: 27, base: 'give', s: 'gives' },
+  { n: 28, base: 'take', s: 'takes' },
+  { n: 29, base: 'help', s: 'helps' },
+  { n: 30, base: 'wait', s: 'waits' }
+];
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch (e) { /* ignore */ }
+}
+const state = loadState();
+if (!Array.isArray(state.order)) state.order = verbs.map((_, i) => i);
+if (typeof state.card !== 'number') state.card = 0;
+if (typeof state.flipped !== 'boolean') state.flipped = false;
+
+const pad = (n) => String(n).padStart(2, '0');
+
+function verbsHTML() {
+  const i = state.order[state.card] || 0;
+  const v = verbs[i];
+  const flipped = state.flipped ? ' is-flipped' : '';
+  return `
+    <h4>30 verbs · photo first, then the form</h4>
+    <p class="intro">Click the card to flip. The back shows the verb, an example, and a question. The card also lists past forms — today we use the <strong>present</strong>.</p>
+    <div class="stage">
+      <div class="card-shell">
+        <div class="flip${flipped}" id="flipCard" role="button" tabindex="0" aria-label="Flip verb card">
+          <div class="flip-inner">
+            <div class="face front"><img id="frontImg" alt="${v.base}" src="assets/front/${pad(v.n)}.jpg"></div>
+            <div class="face back"><img id="backImg" alt="${v.base} form" src="assets/back/${pad(v.n)}.png"></div>
+          </div>
+        </div>
+      </div>
+      <div class="verb-name" id="verbName">${v.base.toUpperCase()} · ${v.s}</div>
+      <div class="controls">
+        <div class="nav-row">
+          <button type="button" class="nav-btn" id="btnPrev" aria-label="Previous">←</button>
+          <div class="counter" id="counter">${state.card + 1} / ${verbs.length}</div>
+          <button type="button" class="nav-btn" id="btnNext" aria-label="Next">→</button>
+        </div>
+        <div class="nav-row">
+          <button type="button" class="action-btn" id="btnFlip">Flip card</button>
+          <button type="button" class="action-btn" id="btnShuffle">Shuffle</button>
+          <button type="button" class="action-btn" id="btnReset">Reset order</button>
+        </div>
+        <p class="hint">Click or <strong>Space</strong> to flip · arrows keep the same side</p>
+      </div>
+    </div>
+  `;
+}
+
+function grammarHTML() {
+  return `
+    <h4>Habits, routines, and facts</h4>
+    <p class="intro">Use present simple for what you <strong>usually</strong> do — not for right now.</p>
+    <div class="grid2">
+      <div class="card-box mint">
+        <div class="label">I / you / we / they</div>
+        <p class="big-rule">base verb</p>
+        <div class="example">I <strong>get up</strong> at seven.</div>
+        <div class="example">They <strong>work</strong> in a store.</div>
+      </div>
+      <div class="card-box mint">
+        <div class="label">he / she / it</div>
+        <p class="big-rule">verb + s</p>
+        <div class="example">Elena <strong>gets up</strong> at seven.</div>
+        <div class="example">He <strong>works</strong> in a store.</div>
+      </div>
+    </div>
+    <h5>Spelling for he / she / it</h5>
+    <div class="grid2">
+      <div class="card-box">
+        <div class="label">Most verbs</div>
+        <div class="example">walk → walk<strong>s</strong> · eat → eat<strong>s</strong></div>
+      </div>
+      <div class="card-box">
+        <div class="label">-ch / -sh / -s / -x / -o</div>
+        <div class="example">watch → watch<strong>es</strong> · go → go<strong>es</strong> · do → do<strong>es</strong></div>
+      </div>
+      <div class="card-box">
+        <div class="label">consonant + y</div>
+        <div class="example">study → stud<strong>ies</strong></div>
+      </div>
+      <div class="card-box">
+        <div class="label">have</div>
+        <div class="example">I have → she <strong>has</strong></div>
+      </div>
+    </div>
+    <h5>Questions and negatives</h5>
+    <div class="grid2">
+      <div class="card-box mint">
+        <div class="label">I / you / we / they</div>
+        <div class="example"><strong>Do</strong> you cook at home?</div>
+        <div class="example">I <strong>don’t</strong> drink coffee.</div>
+      </div>
+      <div class="card-box mint">
+        <div class="label">he / she / it</div>
+        <div class="example"><strong>Does</strong> Alex work on Saturday?</div>
+        <div class="example">She <strong>doesn’t</strong> watch TV.</div>
+      </div>
+    </div>
+    <div class="note"><strong>After do / does / don’t / doesn’t</strong> use the base verb: Does she <em>work</em>? not <s>Does she works</s>.</div>
+  `;
+}
+
+function practiceHTML() {
+  const saved = state.practice || {};
+  return `
+    <h4>Choose, then check.</h4>
+    <h5>A · I / they or he / she</h5>
+    ${mc('A', [
+      { q: 'I ___ to work at eight.', opts: ['go', 'goes'], a: 'go', why: 'I → base verb: go.' },
+      { q: 'Elena ___ English in the evening.', opts: ['study', 'studies'], a: 'studies', why: 'She → y → ies: studies.' },
+      { q: 'Alex ___ breakfast at home.', opts: ['eat', 'eats'], a: 'eats', why: 'He → eats.' },
+      { q: 'They ___ the bus every day.', opts: ['take', 'takes'], a: 'take', why: 'They → base verb: take.' }
+    ], saved)}
+    <h5>B · Do or does</h5>
+    ${mc('B', [
+      { q: '___ you usually wake up early?', opts: ['Do', 'Does'], a: 'Do', why: 'You → Do.' },
+      { q: '___ she work on weekends?', opts: ['Do', 'Does'], a: 'Does', why: 'She → Does.' },
+      { q: '___ Alex have a car?', opts: ['Do', 'Does'], a: 'Does', why: 'Alex = he → Does. After does: have, not has.' },
+      { q: '___ they cook together?', opts: ['Do', 'Does'], a: 'Do', why: 'They → Do.' }
+    ], saved)}
+    <h5>C · Fix the sentence</h5>
+    ${mc('C', [
+      { q: 'She don’t like coffee.', opts: ['She doesn’t like coffee.', 'She doesn’t likes coffee.', 'She don’t likes coffee.'], a: 'She doesn’t like coffee.', why: 'She → doesn’t + base verb like.' },
+      { q: 'Does he works here?', opts: ['Does he work here?', 'Do he works here?', 'Does he works here?'], a: 'Does he work here?', why: 'After does, use work — no -s.' },
+      { q: 'Alex have two brothers.', opts: ['Alex has two brothers.', 'Alex haves two brothers.', 'Alex have two brothers.'], a: 'Alex has two brothers.', why: 'He → has, not have.' }
+    ], saved)}
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="checkPractice">Check answers</button>
+      <button type="button" class="btn ghost" id="resetPractice">Reset</button>
+    </div>
+    <div class="feedback" id="practiceFb"></div>
+  `;
+}
+
+function mc(group, items, saved) {
+  return items.map((item, i) => {
+    const id = group + i;
+    const picked = saved[id] || '';
+    const opts = item.opts.map((o) =>
+      `<button type="button" class="opt${picked === o ? ' selected' : ''}" data-g="${group}" data-i="${i}" data-v="${esc(o)}">${esc(o)}</button>`
+    ).join('');
+    return `<div class="q" data-qid="${id}" data-answer="${esc(item.a)}" data-why="${esc(item.why)}">
+      <p>${item.q}</p>
+      <div class="opts">${opts}</div>
+      <div class="why"></div>
+    </div>`;
+  }).join('');
+}
+
+function readingHTML() {
+  return `
+    <h4>Alex and Elena’s weekday</h4>
+    <p class="intro">Read. Then answer. Present simple = their usual day, not today only.</p>
+    <div class="reading">
+      <p>Alex <strong>wakes up</strong> at six. He <strong>gets up</strong>, <strong>drinks</strong> water, and <strong>walks</strong> to the train. He <strong>works</strong> in an office. He <strong>doesn’t</strong> cook at lunch — he <strong>buys</strong> a sandwich. After work he <strong>helps</strong> his neighbor with her bags. He <strong>doesn’t</strong> watch TV at night. He <strong>reads</strong> and then he <strong>sleeps</strong>.</p>
+      <p>Elena <strong>studies</strong> in the morning. She <strong>writes</strong> in a notebook and <strong>listens</strong> to English. She <strong>doesn’t</strong> go to the office. In the evening she <strong>cooks</strong> and her brother <strong>pays</strong> for the food when they eat out. They <strong>speak</strong> English at the table on Fridays.</p>
+    </div>
+    ${mc('R', [
+      { q: 'What time does Alex wake up?', opts: ['At six.', 'At eight.', 'At noon.'], a: 'At six.', why: 'The text says he wakes up at six.' },
+      { q: 'Does Alex cook at lunch?', opts: ['Yes, he does.', 'No, he doesn’t.', 'We don’t know.'], a: 'No, he doesn’t.', why: 'He doesn’t cook at lunch — he buys a sandwich.' },
+      { q: 'Elena ___ in the morning.', opts: ['works', 'studies', 'runs'], a: 'studies', why: 'She studies in the morning.' },
+      { q: 'Who pays when they eat out?', opts: ['Elena', 'Alex', 'Elena’s brother'], a: 'Elena’s brother', why: 'Her brother pays for the food.' }
+    ], state.practice || {})}
+    <button type="button" class="btn" id="checkReading" style="margin-top:12px">Check</button>
+    <div class="feedback" id="readFb"></div>
+  `;
+}
+
+function speakingHTML() {
+  const prompts = [
+    'What time do you usually wake up?',
+    'Do you drink coffee in the morning?',
+    'Where do you work or study?',
+    'Does anyone in your family cook every day?',
+    'What do you do after dinner?'
+  ];
+  const n = state.speakIndex || 0;
+  return `
+    <h4>Ask and answer about your real day.</h4>
+    <p class="intro">Use do / does and the verbs from the cards.</p>
+    <div class="prompt" id="speakPrompt">${prompts[n]}</div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="nextSpeak">Next prompt</button>
+    </div>
+  `;
+}
+
+function writingHTML() {
+  const text = state.writing || '';
+  return `
+    <h4>Write 6 sentences about your week.</h4>
+    <p class="intro">Use at least four verbs from the cards. Include one sentence with <strong>he</strong> or <strong>she</strong>, and one negative.</p>
+    <div class="stems">
+      <button type="button" class="stem">I usually…</button>
+      <button type="button" class="stem">I don’t…</button>
+      <button type="button" class="stem">She…</button>
+      <button type="button" class="stem">He doesn’t…</button>
+      <button type="button" class="stem">Do you…?</button>
+    </div>
+    <textarea id="writingBox" placeholder="I get up at seven. I don’t drink coffee.…">${esc(text)}</textarea>
+  `;
+}
+
+function candoHTML() {
+  const c = state.cando || {};
+  const items = [
+    ['verbs', 'I can name everyday verbs from a picture (go, eat, work, get up…).'],
+    ['i', 'I can make sentences with I / you / we / they + the base verb.'],
+    ['he', 'I can add -s / -es / -ies for he / she / it, and I remember has / does / goes.'],
+    ['q', 'I can ask with Do you…? and Does she…?'],
+    ['neg', 'I can say I don’t… and she doesn’t…']
+  ];
+  return `
+    <h4>Can-do</h4>
+    <p class="intro">Check what you can do with present simple.</p>
+    <div class="cando">
+      ${items.map(([id, label]) => `
+        <label>
+          <input type="checkbox" data-cando="${id}" ${c[id] ? 'checked' : ''}>
+          <span>${label}</span>
+        </label>`).join('')}
+    </div>
+  `;
+}
+
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, (ch) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;' }[ch]));
+}
+
+function showCard() {
+  const i = state.order[state.card];
+  const v = verbs[i];
+  const front = document.getElementById('frontImg');
+  const back = document.getElementById('backImg');
+  const name = document.getElementById('verbName');
+  const counter = document.getElementById('counter');
+  const flip = document.getElementById('flipCard');
+  if (!front) return;
+  front.src = `assets/front/${pad(v.n)}.jpg`;
+  front.alt = v.base;
+  back.src = `assets/back/${pad(v.n)}.png`;
+  back.alt = v.base + ' form';
+  name.textContent = `${v.base.toUpperCase()} · ${v.s}`;
+  counter.textContent = `${state.card + 1} / ${verbs.length}`;
+  flip.classList.toggle('is-flipped', state.flipped);
+}
+
+function bindVerbs() {
+  const flip = document.getElementById('flipCard');
+  const doFlip = () => { state.flipped = !state.flipped; save(); showCard(); };
+  flip.addEventListener('click', doFlip);
+  flip.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); doFlip(); }
+  });
+  document.getElementById('btnFlip').addEventListener('click', (e) => { e.stopPropagation(); doFlip(); });
+  document.getElementById('btnPrev').addEventListener('click', () => {
+    state.card = (state.card - 1 + verbs.length) % verbs.length;
+    save(); showCard();
+  });
+  document.getElementById('btnNext').addEventListener('click', () => {
+    state.card = (state.card + 1) % verbs.length;
+    save(); showCard();
+  });
+  document.getElementById('btnShuffle').addEventListener('click', () => {
+    const arr = verbs.map((_, i) => i);
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    state.order = arr; state.card = 0; save(); showCard();
+  });
+  document.getElementById('btnReset').addEventListener('click', () => {
+    state.order = verbs.map((_, i) => i); state.card = 0; state.flipped = false; save(); showCard();
+  });
+}
+
+function bindMc(checkId, fbId) {
+  document.querySelectorAll('.opt[data-g]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const g = btn.dataset.g, i = btn.dataset.i;
+      document.querySelectorAll(`.opt[data-g="${g}"][data-i="${i}"]`).forEach((o) => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.practice = state.practice || {};
+      state.practice[g + i] = btn.dataset.v;
+      save();
+    });
+  });
+  const check = document.getElementById(checkId);
+  if (!check) return;
+  check.addEventListener('click', () => {
+    let right = 0, total = 0;
+    document.querySelectorAll('.q[data-qid]').forEach((q) => {
+      total += 1;
+      const answer = q.dataset.answer;
+      const picked = q.querySelector('.opt.selected');
+      q.querySelectorAll('.opt').forEach((o) => {
+        o.classList.remove('correct', 'wrong');
+        if (o.dataset.v === answer) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      if (picked && picked.dataset.v === answer) right += 1;
+      q.classList.add('done');
+      const why = q.querySelector('.why');
+      if (why) why.textContent = q.dataset.why;
+    });
+    const fb = document.getElementById(fbId);
+    fb.className = 'feedback show ' + (right === total ? 'good' : 'warn');
+    fb.textContent = right === total ? `All ${total} correct.` : `${right} / ${total}. Read the note under each item.`;
+  });
+}
+
+function openTab(i) {
+  state.tab = i; save();
+  document.querySelectorAll('.tab').forEach((el, n) => el.classList.toggle('active', n === i));
+  const htmls = [verbsHTML, grammarHTML, practiceHTML, readingHTML, speakingHTML, writingHTML, candoHTML];
+  document.getElementById('panels').innerHTML = `<div class="panel active">${htmls[i]()}</div>`;
+  if (i === 0) bindVerbs();
+  if (i === 2) {
+    bindMc('checkPractice', 'practiceFb');
+    const reset = document.getElementById('resetPractice');
+    if (reset) reset.addEventListener('click', () => { state.practice = {}; save(); openTab(2); });
+  }
+  if (i === 3) bindMc('checkReading', 'readFb');
+  if (i === 4) {
+    const prompts = [
+      'What time do you usually wake up?',
+      'Do you drink coffee in the morning?',
+      'Where do you work or study?',
+      'Does anyone in your family cook every day?',
+      'What do you do after dinner?'
+    ];
+    document.getElementById('nextSpeak').addEventListener('click', () => {
+      state.speakIndex = ((state.speakIndex || 0) + 1) % prompts.length;
+      save();
+      document.getElementById('speakPrompt').textContent = prompts[state.speakIndex];
+    });
+  }
+  if (i === 5) {
+    const box = document.getElementById('writingBox');
+    box.addEventListener('input', () => { state.writing = box.value; save(); });
+    document.querySelectorAll('.stem').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const padTxt = box.value && !box.value.endsWith('\n') ? '\n' : '';
+        box.value += padTxt + btn.textContent + ' ';
+        box.focus();
+        state.writing = box.value; save();
+      });
+    });
+  }
+  if (i === 6) {
+    document.querySelectorAll('[data-cando]').forEach((el) => {
+      el.addEventListener('change', () => {
+        state.cando = state.cando || {};
+        state.cando[el.dataset.cando] = el.checked;
+        save();
+      });
+    });
+  }
+  const lesson = document.querySelector('.lesson');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+document.getElementById('tabs').innerHTML = sections.map((s, n) =>
+  `<button type="button" class="tab${n === (state.tab || 0) ? ' active' : ''}" data-tab="${n}">${s}</button>`
+).join('');
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-tab]');
+  if (btn) openTab(Number(btn.dataset.tab));
+});
+openTab(state.tab || 0);
+</script>
+</body>
+</html>
