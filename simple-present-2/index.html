@@ -206,33 +206,13 @@
     .film-dot.on { background: var(--teal); width: 22px; }
     .film .btn { background: var(--teal); color: var(--navy); }
     .film .btn.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.28); }
-
-    .mag { background: var(--cream); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
-    .mag-page[hidden] { display: none; }
-    .mag-page img.cover-pic, .mag-page .shot img {
-      width: 100%; display: block; object-fit: cover;
+    .who { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 16px; }
+    .who span {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid var(--line); border-radius: 999px;
+      padding: 6px 12px 6px 6px; font-size: 0.8rem; font-weight: 800; color: var(--navy);
     }
-    .cover-pic { aspect-ratio: 16 / 9; max-height: 380px; }
-    .cast-pic {
-      width: 28px; height: 28px; border-radius: 999px; object-fit: cover; display: block;
-    }
-    .shot { margin: 0; }
-    .shot img { aspect-ratio: 16 / 9; max-height: 280px; }
-    .shot figcaption {
-      padding: 10px 18px 0; font-size: 0.88rem; line-height: 1.55; color: var(--ink);
-    }
-    .shot figcaption strong { color: var(--teal-dark); }
-    .spread { display: grid; grid-template-columns: 1fr 1fr; }
-    .spot {
-      margin: 16px 22px 8px; padding: 14px 16px; border-radius: 12px;
-      background: #fff; border: 1px solid var(--line);
-    }
-    .spot p { margin: 8px 0 0; line-height: 1.6; }
-    .mag-nav {
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 14px; border-top: 1px solid var(--line); flex-wrap: wrap;
-    }
-    .mag-nav button.on { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .who img { width: 28px; height: 28px; border-radius: 999px; object-fit: cover; display: block; }
 
     .q { padding: 14px 0; border-bottom: 1px solid var(--line); }
     .q:last-child { border: 0; }
@@ -299,7 +279,6 @@
       .panel { padding: 18px; }
       .grid2, .grid3 { grid-template-columns: 1fr; }
       .beat { grid-template-columns: 1fr; gap: 4px; }
-      .spread { grid-template-columns: 1fr; }
       .hero::after { opacity: 0.08; width: 120px; }
     }
   </style>
@@ -325,8 +304,8 @@
         <span class="eyebrow">A1.2 · Daily life</span>
         <h2>She <span>opens</span> at dawn.</h2>
         <p>
-          Watch <strong>One day in the life of Nadia Brooks</strong>. Then read the Saturday magazine.
-          After that, you are the reporter: say what she does. Grammar for <strong>he, she, it</strong> waits in Reference.
+          Watch <strong>One day in the life of Nadia Brooks</strong>.
+          Read the reporter line under the film. Then you report what she, he, and it do.
         </p>
         <div class="path">
           <span>1 Story</span><span>2 Reference</span><span>3 Practice</span>
@@ -338,7 +317,7 @@
     <article class="lesson">
       <header class="lesson-head">
         <h3>From a Saturday film to he / she / it</h3>
-        <p>Watch. Read the magazine. Then you report what she does.</p>
+        <p>Watch the film. Then you report: she, he, it.</p>
       </header>
       <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
       <div id="panels"></div>
@@ -373,101 +352,26 @@ const panels = {
 
 function storyHTML() {
   return `
-    <h4>Film · One day in the life of Nadia Brooks</h4>
-    <p class="intro">A reporter follows her Saturday. Watch each shot. Read the line. Then you report what she does.</p>
+    <h4>One day in the life of Nadia Brooks</h4>
+    <p class="intro">Watch the film. Read the reporter line. Then you say what she, he, and it do.</p>
+    <div class="who">
+      <span><img src="assets/nadia-ref.jpg" alt=""> Nadia · she</span>
+      <span><img src="assets/ben-ref.jpg" alt=""> Ben · he</span>
+      <span><i class="dot">it</i> the bakery · it</span>
+    </div>
     <div class="film">
       <div class="film-bar">
         <span>Cedar Falls Review · Film</span>
         <span id="filmIndex">1 / 7</span>
       </div>
-      <video id="dayFilm" playsinline poster="assets/bakery-ref.jpg"></video>
+      <video id="dayFilm" playsinline poster="assets/bakery-ref.jpg" src="assets/one-day.mp4"></video>
       <div class="film-cap">
         <time id="filmTime">Dawn</time>
-        <p id="filmLine">One day in the life of Nadia Brooks.</p>
+        <p id="filmLine">This is one day in the life of Nadia Brooks.</p>
       </div>
       <div class="film-nav">
-        <button type="button" class="btn ghost" id="filmPrev">←</button>
         <button type="button" class="btn" id="filmPlay">Play</button>
-        <button type="button" class="btn ghost" id="filmNext">→</button>
         <div class="film-dots" id="filmDots"></div>
-      </div>
-    </div>
-
-    <h4>Magazine · Saturday profile</h4>
-    <p class="intro">Same day, on the page. Flip with the numbers.</p>
-    <div class="mag">
-      <div class="mag-page" data-mp="0">
-        <div class="issue-bar"><span>Cedar Falls Review</span><span>Saturday profile · Issue 07</span></div>
-        <img class="cover-pic" src="assets/bakery-ref.jpg" alt="The bakery on Main Street at dawn">
-        <div class="issue-hero">
-          <div class="issue-kicker">Cover story</div>
-          <h4 class="issue-title">One Saturday on Main Street</h4>
-          <p class="issue-lead">Nadia Brooks opens the bakery before the sun. Ben helps her. The shop sits on the corner. This is her day — then you tell it.</p>
-          <div class="cast">
-            <span><img class="cast-pic" src="assets/nadia-ref.jpg" alt=""> Nadia Brooks · baker</span>
-            <span><img class="cast-pic" src="assets/ben-ref.jpg" alt=""> Ben · her helper</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="mag-page" data-mp="1" hidden>
-        <div class="issue-bar"><span>Cedar Falls Review</span><span>02 · Morning</span></div>
-        <figure class="shot">
-          <img src="assets/still-coffee.jpg" alt="Nadia drinks coffee at 5:15">
-          <figcaption><strong>5:15 a.m.</strong> She gets up in the dark. She drinks coffee in a quiet kitchen.</figcaption>
-        </figure>
-        <div class="spread">
-          <figure class="shot">
-            <img src="assets/still-walk.jpg" alt="Nadia walks down Main Street">
-            <figcaption><strong>5:45 a.m.</strong> She walks down Main Street. The bakery stands on the corner.</figcaption>
-          </figure>
-          <figure class="shot">
-            <img src="assets/still-opens.jpg" alt="Nadia opens the bakery">
-            <figcaption><strong>6:00 a.m.</strong> She opens the door. It sits on the corner with warm light inside.</figcaption>
-          </figure>
-        </div>
-        <div style="height:16px"></div>
-      </div>
-
-      <div class="mag-page" data-mp="2" hidden>
-        <div class="issue-bar"><span>Cedar Falls Review</span><span>03 · The shop</span></div>
-        <figure class="shot">
-          <img src="assets/still-oven.jpg" alt="Nadia takes bread from the oven">
-          <figcaption><strong>Morning.</strong> The oven cooks the first bread. She works. It has a warm, sweet smell.</figcaption>
-        </figure>
-        <figure class="shot">
-          <img src="assets/still-gives.jpg" alt="Nadia gives bread. Ben helps.">
-          <figcaption><strong>Later.</strong> She gives people bread. Ben helps her. He takes trays. He stands at the counter.</figcaption>
-        </figure>
-        <div class="spot">
-          <div class="label">Language spotlight</div>
-          <p><strong>She</strong> opens. <strong>He</strong> helps. <strong>It</strong> sits on the corner.</p>
-        </div>
-      </div>
-
-      <div class="mag-page" data-mp="3" hidden>
-        <div class="issue-bar"><span>Cedar Falls Review</span><span>04 · Close</span></div>
-        <figure class="shot">
-          <img src="assets/still-closes.jpg" alt="Nadia closes the bakery at 4:00">
-          <figcaption><strong>4:00 p.m.</strong> On Saturday the bakery closes early. She closes the door. She walks home in the late light.</figcaption>
-        </figure>
-        <div class="spot">
-          <div class="label">Now you report</div>
-          <p>Look away from the page. Tell her day: <em>She gets up at 5:15. She opens the bakery. Ben helps her. It sits on Main Street. She closes at 4:00.</em></p>
-        </div>
-        <div class="beat">
-          <time>Night</time>
-          <p>At home she cooks a simple dinner. She watches a show. She sleeps at 9:30 — the bakery opens again on Monday.</p>
-        </div>
-      </div>
-
-      <div class="mag-nav">
-        <button type="button" class="btn ghost" id="magPrev">←</button>
-        <button type="button" class="opt on" data-mag="0">1</button>
-        <button type="button" class="opt" data-mag="1">2</button>
-        <button type="button" class="opt" data-mag="2">3</button>
-        <button type="button" class="opt" data-mag="3">4</button>
-        <button type="button" class="btn ghost" id="magNext">→</button>
       </div>
     </div>
   `;
@@ -490,8 +394,8 @@ function referenceHTML() {
       </div>
       <div class="card mint">
         <div class="label">It</div>
-        <p class="big-rule">It sits on the corner.</p>
-        <div class="example">The bakery opens at 6:00.</div>
+        <p class="big-rule">It opens at six.</p>
+        <div class="example">The bakery closes at four.</div>
       </div>
     </div>
 
@@ -538,7 +442,7 @@ function practiceHTML() {
     ${mcGroup('A', [
       { q: 'Nadia gets up at 5:15. ______ gets up early.', opts: ['He', 'She', 'It'], a: 'She', why: 'Nadia is one woman → she.' },
       { q: 'Ben stands at the counter. ______ helps Nadia.', opts: ['He', 'She', 'It'], a: 'He', why: 'Ben is one man → he.' },
-      { q: 'Brooks Bakery sits on the corner. ______ opens at 6:00.', opts: ['He', 'She', 'It'], a: 'It', why: 'A shop is a thing → it.' }
+      { q: 'The bakery opens at six. ______ opens at six.', opts: ['He', 'She', 'It'], a: 'It', why: 'A shop is a thing → it.' }
     ], saved)}
 
     <h5>B · The extra letter</h5>
@@ -625,13 +529,13 @@ function speakingHTML() {
     'You are the reporter. Start the film: One day in the life of Nadia Brooks. She ______ at 5:15.',
     'What does she do at 6:00? She ______ the bakery.',
     'What does Ben do? He ______ Nadia. He ______ trays.',
-    'The bakery is it. It ______ on the corner. It ______ at 6:00.',
+    'The bakery is it. It ______ at six. It ______ at four.',
     'Tell her whole Saturday in five sentences. Use she, he, and it.',
     'Now a real person you know. She / He gets up at ______. She / He works…'
   ];
   return `
     <h4>You are the reporter. Tell what she does.</h4>
-    <p class="intro">Use the film and the magazine. Full sentences. Affirmative only: She opens. He helps. It sits.</p>
+    <p class="intro">Use the film. Full sentences. Affirmative only: She opens. He helps. It opens.</p>
     <div class="speak" id="speakPrompts">
       ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
     </div>
@@ -643,8 +547,8 @@ function speakingHTML() {
       <div class="label">Models</div>
       <div class="example">She gets up at 5:15. She drinks coffee.</div>
       <div class="example">She opens the bakery at 6:00.</div>
-      <div class="example">Ben helps her. He takes trays from the oven.</div>
-      <div class="example">It sits on the corner. It opens at 6:00.</div>
+      <div class="example">She gives people bread. He helps her. He takes the trays.</div>
+      <div class="example">It opens at six. It closes at four.</div>
       <div class="example">She gets up at 5:15. She walks to Main Street. She opens the door. Ben helps her. She closes at 4:00.</div>
       <div class="example">Marta gets up at 7:00. She works in the morning.</div>
     </div>
@@ -660,7 +564,7 @@ function writingHTML() {
       <button type="button">She gets up at…</button>
       <button type="button">He walks…</button>
       <button type="button">The shop opens at…</button>
-      <button type="button">It stands…</button>
+      <button type="button">It opens at…</button>
       <button type="button">She studies…</button>
       <button type="button">He does…</button>
       <button type="button">She watches…</button>
@@ -686,7 +590,7 @@ function candoHTML() {
     ['es', 'I can spell goes, watches, and closes.'],
     ['ies', 'I can spell studies.'],
     ['has', 'I remember have → has and do → does.'],
-    ['day', 'I can report Nadia’s Saturday: She opens. He helps. It sits on the corner.']
+    ['day', 'I can report Nadia’s Saturday: She opens. He helps. It opens at six.']
   ];
   return `
     <h4>Can-do · He, she, it</h4>
@@ -744,68 +648,51 @@ function bindPanel(i) {
 
 function bindStory() {
   const shots = [
-    { src: 'assets/clip-town.mp4', poster: 'assets/bakery-ref.jpg', t: 'Dawn', line: 'One day in the life of Nadia Brooks.' },
-    { src: 'assets/clip-coffee.mp4', poster: 'assets/still-coffee.jpg', t: '5:15 a.m.', line: 'She gets up. She drinks coffee in a quiet kitchen.' },
-    { src: 'assets/clip-walk.mp4', poster: 'assets/still-walk.jpg', t: '5:45 a.m.', line: 'She walks down Main Street.' },
-    { src: 'assets/clip-opens.mp4', poster: 'assets/still-opens.jpg', t: '6:00 a.m.', line: 'She opens the bakery. It sits on the corner.' },
-    { src: 'assets/clip-oven.mp4', poster: 'assets/still-oven.jpg', t: 'Morning', line: 'The oven cooks the first bread. She works.' },
-    { src: 'assets/clip-gives.mp4', poster: 'assets/still-gives.jpg', t: 'Morning', line: 'She gives people bread. Ben helps her. He takes trays.' },
-    { src: 'assets/clip-closes.mp4', poster: 'assets/still-closes.jpg', t: '4:00 p.m.', line: 'She closes the door. She walks home in the late light.' }
+    { t: 'Dawn', line: 'This is one day in the life of Nadia Brooks.' },
+    { t: '5:15 a.m.', line: 'She gets up. She drinks coffee.' },
+    { t: '5:45 a.m.', line: 'She walks to the bakery.' },
+    { t: '6:00 a.m.', line: 'She opens the door. It opens at six.' },
+    { t: 'Morning', line: 'She takes the bread from the oven.' },
+    { t: 'Morning', line: 'She gives people bread. He helps her. He takes the trays.' },
+    { t: '4:00 p.m.', line: 'She closes the door. It closes at four.' }
   ];
+  const STEP = 6.04;
   const video = document.getElementById('dayFilm');
   const dots = document.getElementById('filmDots');
-  let i = 0;
   dots.innerHTML = shots.map((_, n) => `<button type="button" class="film-dot${n === 0 ? ' on' : ''}" data-shot="${n}" aria-label="Shot ${n + 1}"></button>`).join('');
-  function showShot(n) {
-    i = (n + shots.length) % shots.length;
-    const s = shots[i];
-    video.pause();
-    video.poster = s.poster;
-    video.src = s.src;
+  function shotAt(time) {
+    const n = Math.min(shots.length - 1, Math.max(0, Math.floor((time + 0.05) / STEP)));
+    return n;
+  }
+  function paint(n) {
+    const s = shots[n];
     document.getElementById('filmTime').textContent = s.t;
     document.getElementById('filmLine').textContent = s.line;
-    document.getElementById('filmIndex').textContent = `${i + 1} / ${shots.length}`;
-    document.getElementById('filmPlay').textContent = 'Play';
-    dots.querySelectorAll('.film-dot').forEach((d, k) => d.classList.toggle('on', k === i));
+    document.getElementById('filmIndex').textContent = `${n + 1} / ${shots.length}`;
+    dots.querySelectorAll('.film-dot').forEach((d, k) => d.classList.toggle('on', k === n));
   }
   function togglePlay() {
-    if (video.paused) {
-      video.play();
-      document.getElementById('filmPlay').textContent = 'Pause';
-    } else {
-      video.pause();
-      document.getElementById('filmPlay').textContent = 'Play';
-    }
+    if (video.paused) video.play();
+    else video.pause();
   }
-  showShot(0);
+  paint(0);
   document.getElementById('filmPlay').addEventListener('click', togglePlay);
-  document.getElementById('filmPrev').addEventListener('click', () => showShot(i - 1));
-  document.getElementById('filmNext').addEventListener('click', () => showShot(i + 1));
   dots.addEventListener('click', (e) => {
     const d = e.target.closest('[data-shot]');
-    if (d) showShot(Number(d.dataset.shot));
+    if (!d) return;
+    const n = Number(d.dataset.shot);
+    video.currentTime = n * STEP;
+    paint(n);
   });
+  video.addEventListener('timeupdate', () => paint(shotAt(video.currentTime)));
   video.addEventListener('ended', () => {
     document.getElementById('filmPlay').textContent = 'Play';
+    paint(shots.length - 1);
   });
   video.addEventListener('play', () => { document.getElementById('filmPlay').textContent = 'Pause'; });
   video.addEventListener('pause', () => {
     if (video.ended) return;
     document.getElementById('filmPlay').textContent = 'Play';
-  });
-
-  let mag = 0;
-  const pages = Array.from(document.querySelectorAll('.mag-page'));
-  function showMag(n) {
-    mag = (n + pages.length) % pages.length;
-    pages.forEach((p, k) => { p.hidden = k !== mag; });
-    document.querySelectorAll('[data-mag]').forEach((b) => b.classList.toggle('on', Number(b.dataset.mag) === mag));
-  }
-  showMag(0);
-  document.getElementById('magPrev').addEventListener('click', () => showMag(mag - 1));
-  document.getElementById('magNext').addEventListener('click', () => showMag(mag + 1));
-  document.querySelectorAll('[data-mag]').forEach((b) => {
-    b.addEventListener('click', () => showMag(Number(b.dataset.mag)));
   });
 }
 
