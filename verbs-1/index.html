@@ -189,17 +189,8 @@
     .btn-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
     .score-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 12px; }
     .stat { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-weight: 800; font-size: 0.82rem; color: var(--navy); background: #fff; }
-    .day-pool { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 14px; }
-    .day-board { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
-    .day-col { border: 1px dashed var(--line); border-radius: 14px; padding: 8px; background: var(--wash); min-height: 140px; }
-    .day-col.hot { border-color: var(--teal); background: #fff; }
-    .day-head { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--teal-dark); text-align: center; margin-bottom: 8px; }
-    .day-tile { border-radius: 12px; overflow: hidden; border: 2px solid var(--teal); background: #fff; cursor: pointer; }
-    .day-tile.on { box-shadow: 0 0 0 3px rgba(91,184,176,0.45); }
-    .day-tile.ok { border-color: #72b98c; }
-    .day-tile.bad { border-color: #d98989; }
-    .day-tile img { width: 100%; display: block; aspect-ratio: 1136/912; object-fit: cover; }
-    .day-tile span { display: block; padding: 6px 8px; font-size: 0.78rem; font-weight: 800; text-align: center; color: var(--navy); }
+    .stat em { font-style: normal; }
+    .stat.low { color: #9a6700; border-color: var(--gold); background: #fff8e8; }
     .bins { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
     .bin { border: 1px dashed var(--line); border-radius: 14px; padding: 10px; min-height: 120px; background: var(--wash); }
     .bin.hot { border-color: var(--teal); background: #fff; }
@@ -227,7 +218,7 @@
       .brand p { display: none; }
       .panel { padding: 18px; }
       .hero::after { opacity: 0.08; width: 120px; }
-      .day-board, .day-pool, .bins { grid-template-columns: 1fr; }
+      .bins { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -341,28 +332,39 @@
         </div>
       </details>
 
-      <details class="activity" id="act-day">
+      <details class="activity" id="act-speed">
         <summary>
           <span class="activity-num n3">03</span>
           <div class="activity-meta">
-            <h3>Three times of <span>day</span></h3>
-            <p>Tap a photo, then tap Morning, Afternoon, or Night. Nine photos.</p>
+            <h3>Speed <span>round</span></h3>
+            <p>45 seconds. One photo, four verbs. How many can you name?</p>
           </div>
           <span class="activity-chevron" aria-hidden="true">▾</span>
         </summary>
         <div class="activity-body">
           <div class="activity-body-inner">
-            <p class="intro">Build a simple day. Some verbs fit more than one time in real life — here, put each photo in the time on the card.</p>
-            <div class="day-pool" id="dayPool"></div>
-            <div class="day-board">
-              <div class="day-col" data-time="morning"><div class="day-head">Morning</div><div class="day-slots" id="day-morning"></div></div>
-              <div class="day-col" data-time="afternoon"><div class="day-head">Afternoon</div><div class="day-slots" id="day-afternoon"></div></div>
-              <div class="day-col" data-time="night"><div class="day-head">Night</div><div class="day-slots" id="day-night"></div></div>
+            <div class="score-row">
+              <span class="stat" id="speedTimeStat">Time <em id="speedTime">0:45</em></span>
+              <span class="stat">Score <em id="speedScore">0</em></span>
+              <span class="stat">Best <em id="speedBest">0</em></span>
             </div>
-            <p class="fb" id="dayFb" role="status"></p>
-            <div class="btn-row">
-              <button type="button" class="btn" id="btnDayCheck">Check</button>
-              <button type="button" class="btn ghost" id="btnDayReset">Reset</button>
+            <div id="speedIdle">
+              <p class="intro">Look at the photo. Tap the verb. The clock starts when you press Start.</p>
+              <div class="btn-row">
+                <button type="button" class="btn" id="btnSpeedStart">Start</button>
+              </div>
+            </div>
+            <div class="photo-quiz" id="speedPlay" hidden>
+              <img id="speedImg" alt="Daily-life photo">
+              <div class="opts" id="speedOpts" role="group" aria-label="Choose the verb"></div>
+              <p class="fb" id="speedFb" role="status"></p>
+            </div>
+            <div id="speedDone" hidden>
+              <p class="stem" id="speedFinal">0 in 45 seconds</p>
+              <p class="hint" id="speedHint">Press Play again to beat your score.</p>
+              <div class="btn-row">
+                <button type="button" class="btn" id="btnSpeedAgain">Play again</button>
+              </div>
             </div>
           </div>
         </div>
@@ -681,91 +683,120 @@ function showName() {
 }
 document.getElementById('btnNameNew').addEventListener('click', startName);
 
-/* ----- 03 Three times of day ----- */
-const dayItems = [
-  { i: 7, t: 'morning' },
-  { i: 8, t: 'morning' },
-  { i: 4, t: 'morning' },
-  { i: 19, t: 'afternoon' },
-  { i: 20, t: 'afternoon' },
-  { i: 9, t: 'afternoon' },
-  { i: 21, t: 'night' },
-  { i: 17, t: 'night' },
-  { i: 6, t: 'night' }
-];
-let dayPlace = {};
-let dayPick = null;
-let dayOrder = [];
+/* ----- 03 Speed round ----- */
+const SPEED_MS = 45000;
+let speedRunning = false;
+let speedLocked = false;
+let speedScore = 0;
+let speedCurrent = -1;
+let speedQueue = [];
+let speedEndsAt = 0;
+let speedTick = null;
+let speedNextTimer = null;
 
-function dayReset() {
-  dayPlace = {};
-  dayPick = null;
-  dayOrder = shuffle(dayItems.map((item) => item.i));
-  document.getElementById('dayFb').textContent = '';
-  renderDay();
+function formatTime(ms) {
+  const s = Math.max(0, Math.ceil(ms / 1000));
+  return '0:' + String(s).padStart(2, '0');
 }
-function renderDay() {
-  const pool = document.getElementById('dayPool');
-  pool.innerHTML = '';
-  ['morning', 'afternoon', 'night'].forEach((t) => {
-    document.getElementById('day-' + t).innerHTML = '';
-  });
-  dayOrder.forEach((idx) => {
-    const item = dayItems.find((d) => d.i === idx);
-    const loc = dayPlace[item.i] || 'pool';
-    const tile = document.createElement('button');
-    tile.type = 'button';
-    tile.className = 'day-tile' + (dayPick === item.i ? ' on' : '');
-    tile.dataset.i = String(item.i);
-    tile.innerHTML = `<img src="${front(item.i)}" alt=""><span>${verbs[item.i]}</span>`;
-    tile.addEventListener('click', (e) => {
-      e.stopPropagation();
-      document.querySelectorAll('.day-tile').forEach((el) => el.classList.remove('ok', 'bad'));
-      document.getElementById('dayFb').textContent = '';
-      if (dayPick === item.i) dayPick = null;
-      else dayPick = item.i;
-      renderDay();
+function showSpeedBest() {
+  document.getElementById('speedBest').textContent = String(state.speedBest || 0);
+}
+function setSpeedView(view) {
+  document.getElementById('speedIdle').hidden = view !== 'idle';
+  document.getElementById('speedPlay').hidden = view !== 'play';
+  document.getElementById('speedDone').hidden = view !== 'done';
+}
+function clearSpeedTimers() {
+  if (speedTick) { clearInterval(speedTick); speedTick = null; }
+  if (speedNextTimer) { clearTimeout(speedNextTimer); speedNextTimer = null; }
+}
+function paintSpeedClock() {
+  const left = speedRunning ? Math.max(0, speedEndsAt - Date.now()) : SPEED_MS;
+  const el = document.getElementById('speedTime');
+  const stat = document.getElementById('speedTimeStat');
+  el.textContent = formatTime(speedRunning ? left : SPEED_MS);
+  stat.classList.toggle('low', speedRunning && left <= 10000 && left > 0);
+}
+function speedFinish() {
+  if (!speedRunning) return;
+  speedRunning = false;
+  speedLocked = true;
+  clearSpeedTimers();
+  paintSpeedClock();
+  document.getElementById('speedTime').textContent = '0:00';
+  document.getElementById('speedTimeStat').classList.remove('low');
+  const prevBest = state.speedBest || 0;
+  if (speedScore > prevBest) {
+    state.speedBest = speedScore;
+    save();
+  }
+  showSpeedBest();
+  document.getElementById('speedFinal').textContent = speedScore + ' in 45 seconds';
+  document.getElementById('speedHint').textContent = speedScore > prevBest
+    ? 'New best. Press Play again to go higher.'
+    : 'Press Play again to beat your score.';
+  setSpeedView('done');
+}
+function speedShowPhoto() {
+  if (!speedRunning) return;
+  speedLocked = false;
+  if (!speedQueue.length) speedQueue = shuffle(verbs.map((_, i) => i));
+  if (speedQueue[0] === speedCurrent && speedQueue.length > 1) {
+    speedQueue.push(speedQueue.shift());
+  }
+  const i = speedQueue.shift();
+  speedCurrent = i;
+  document.getElementById('speedImg').src = front(i);
+  document.getElementById('speedImg').alt = 'What verb is this?';
+  document.getElementById('speedFb').textContent = '';
+  const others = shuffle(verbs.map((_, n) => n).filter((n) => n !== i)).slice(0, 3);
+  const opts = shuffle([i, ...others]);
+  document.getElementById('speedOpts').innerHTML = opts.map((n) =>
+    `<button type="button" class="opt" data-v="${n}">${verbs[n]}</button>`
+  ).join('');
+  document.querySelectorAll('#speedOpts .opt').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!speedRunning || speedLocked) return;
+      speedLocked = true;
+      const pick = Number(btn.dataset.v);
+      document.querySelectorAll('#speedOpts .opt').forEach((o) => {
+        if (Number(o.dataset.v) === i) o.classList.add('correct');
+        else if (o === btn) o.classList.add('wrong');
+      });
+      if (pick === i) {
+        speedScore += 1;
+        document.getElementById('speedScore').textContent = String(speedScore);
+        document.getElementById('speedFb').textContent = 'Yes.';
+      } else {
+        document.getElementById('speedFb').textContent = verbs[i] + '.';
+      }
+      speedNextTimer = setTimeout(speedShowPhoto, pick === i ? 280 : 520);
     });
-    if (loc === 'pool') pool.appendChild(tile);
-    else document.getElementById('day-' + loc).appendChild(tile);
   });
 }
-document.querySelectorAll('.day-col').forEach((col) => {
-  col.addEventListener('click', (e) => {
-    if (e.target.closest('.day-tile')) return;
-    if (dayPick == null) return;
-    dayPlace[dayPick] = col.dataset.time;
-    dayPick = null;
-    renderDay();
-  });
-});
-document.getElementById('dayPool').addEventListener('click', (e) => {
-  if (e.target.closest('.day-tile')) return;
-  if (dayPick == null) return;
-  delete dayPlace[dayPick];
-  dayPick = null;
-  renderDay();
-});
-document.getElementById('btnDayCheck').addEventListener('click', () => {
-  let right = 0;
-  dayItems.forEach((item) => {
-    const tile = document.querySelector(`.day-tile[data-i="${item.i}"]`);
-    if (!tile) return;
-    tile.classList.remove('ok', 'bad');
-    if (dayPlace[item.i] === item.t) {
-      tile.classList.add('ok');
-      right += 1;
-    } else {
-      tile.classList.add('bad');
-    }
-  });
-  const fb = document.getElementById('dayFb');
-  fb.textContent = right === dayItems.length
-    ? 'All nine photos are in the right time of day.'
-    : `${right} / 9. Tap a photo, then tap Morning, Afternoon, or Night.`;
-});
-document.getElementById('btnDayReset').addEventListener('click', dayReset);
-dayReset();
+function speedStart() {
+  clearSpeedTimers();
+  speedRunning = true;
+  speedLocked = false;
+  speedScore = 0;
+  speedCurrent = -1;
+  speedQueue = shuffle(verbs.map((_, i) => i));
+  speedEndsAt = Date.now() + SPEED_MS;
+  document.getElementById('speedScore').textContent = '0';
+  showSpeedBest();
+  setSpeedView('play');
+  paintSpeedClock();
+  speedTick = setInterval(() => {
+    paintSpeedClock();
+    if (Date.now() >= speedEndsAt) speedFinish();
+  }, 100);
+  speedShowPhoto();
+}
+document.getElementById('btnSpeedStart').addEventListener('click', speedStart);
+document.getElementById('btnSpeedAgain').addEventListener('click', speedStart);
+showSpeedBest();
+paintSpeedClock();
+setSpeedView('idle');
 
 /* ----- 04 Verb groups ----- */
 const binItems = [
@@ -923,7 +954,7 @@ document.getElementById('btnSayNew').addEventListener('click', startSay);
 const candoItems = [
   ['name', 'I can name these 30 daily-life verbs from a photo.'],
   ['say', 'I can say the verb out loud when I see the picture.'],
-  ['day', 'I can put some verbs in the morning, the afternoon, or at night.'],
+  ['speed', 'I can name verbs from a photo against the clock.'],
   ['group', 'I can group verbs: move, home, and words.'],
   ['write', 'I can write the verb for a photo.']
 ];
@@ -949,6 +980,7 @@ renderCando();
 const activityPanels = Array.from(document.querySelectorAll('.activity'));
 activityPanels.forEach((panel) => {
   panel.addEventListener('toggle', () => {
+    if (panel.id === 'act-speed' && !panel.open && speedRunning) speedFinish();
     if (!panel.open) return;
     activityPanels.forEach((other) => { if (other !== panel) other.open = false; });
     if (panel.id === 'act-name' && !nameSet.length) startName();
