@@ -17,7 +17,7 @@ Closes with *this / that / these / those*.
 - [In the City](./in-the-city/)
 - [Adjectives](./adjectives/)
 - [Possessives](./possessive-adjectives/)
-- This / that / these / those — *up next* (A1.1 closer)
+- [This / that / these / those](./this-that-these-those/) — A1.1 closer
 
 ### A1.2 — Daily life
 - [There is / There are](./there-is-there-are/)

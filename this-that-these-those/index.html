@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>This / That / These / Those | A1.1 closer | Israel Ventura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1e2d5a;
+      --teal: #5bb8b0;
+      --teal-dark: #238d85;
+      --gold: #d4a843;
+      --ink: #172033;
+      --muted: #6b7fa3;
+      --line: #e8ecf4;
+      --paper: #fff;
+      --wash: #f0faf9;
+      --soft: #f8fafc;
+      --warn: #fff7e6;
+      --good: #e9f8ef;
+      --bad: #fff0f0;
+      --shadow: 0 18px 45px rgba(30, 45, 90, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(91, 184, 176, 0.16), transparent 34rem),
+        linear-gradient(180deg, #f7fafc 0%, #eef4f7 100%);
+      min-height: 100vh;
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 960px; margin: 0 auto; padding: 24px; }
+
+    .topbar {
+      position: sticky; top: 16px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 18px;
+      margin-bottom: 18px; padding: 12px 16px;
+      background: var(--navy); color: #fff; border-radius: 18px;
+      box-shadow: 0 16px 34px rgba(30, 45, 90, 0.22);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 52px; height: 52px; border-radius: 999px;
+      display: grid; place-items: center; background: #fff;
+      overflow: hidden; padding: 3px; flex: 0 0 auto;
+    }
+    .brand-mark img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block; }
+    .brand h1 { margin: 0; color: #fff; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.1; font-weight: 800; }
+    .brand p { margin: 3px 0 0; color: #d7ecea; font-size: 0.82rem; }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .mode-pill {
+      border: 1px solid rgba(255, 255, 255, 0.18); color: #fff;
+      background: rgba(255, 255, 255, 0.10); border-radius: 999px;
+      padding: 8px 12px; font-size: 0.82rem; font-weight: 800; white-space: nowrap;
+    }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.28); color: #fff !important;
+      background: rgba(91, 184, 176, 0.28); border-radius: 999px;
+      padding: 8px 14px; font-size: 0.82rem; font-weight: 800;
+      text-decoration: none !important; white-space: nowrap;
+    }
+    .home-btn:hover { background: rgba(91, 184, 176, 0.48); }
+
+    .hero {
+      position: relative; overflow: hidden; border-radius: 20px;
+      background: #f4fbfa; color: var(--navy);
+      border: 1px solid rgba(30, 45, 90, 0.08); box-shadow: var(--shadow); margin-bottom: 22px;
+    }
+    .hero::after {
+      content: ""; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+      width: 200px; height: 200px; border-radius: 999px;
+      background: url("../favicon.png") center / contain no-repeat; opacity: 0.12; pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; padding: clamp(24px, 5vw, 42px); max-width: 640px; }
+    .eyebrow {
+      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.12em;
+      font-size: 0.75rem; font-weight: 800;
+    }
+    .hero h2 {
+      margin: 10px 0 0; font-size: clamp(2rem, 5vw, 3.4rem); line-height: 1;
+      letter-spacing: -0.03em; font-weight: 900;
+    }
+    .hero h2 span { color: var(--teal); }
+    .hero p { color: var(--muted); margin: 16px 0 0; line-height: 1.65; font-size: 1.02rem; }
+    .path { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 18px; }
+    .path span {
+      padding: 6px 10px; border-radius: 999px; background: var(--wash);
+      font-size: 0.72rem; font-weight: 800; color: var(--teal-dark);
+    }
+
+    .lesson {
+      background: var(--paper); border: 1px solid rgba(30, 45, 90, 0.08);
+      border-radius: 18px; box-shadow: var(--shadow); overflow: hidden;
+    }
+    .lesson-head { background: var(--navy); color: #fff; padding: 22px 24px; }
+    .lesson-head h3 { margin: 0; font-size: 1.15rem; }
+    .lesson-head p { color: #d7ecea; line-height: 1.55; margin: 6px 0 0; }
+    .tabs {
+      display: flex; overflow-x: auto; gap: 5px; padding: 12px 14px;
+      border-bottom: 1px solid var(--line); scrollbar-width: thin;
+    }
+    .tab {
+      border: 0; background: transparent; color: var(--muted);
+      font-size: 0.76rem; font-weight: 800; padding: 10px 12px; border-radius: 10px; white-space: nowrap;
+    }
+    .tab.active, .tab:hover { background: var(--wash); color: var(--navy); }
+    .panel { display: none; padding: 26px; }
+    .panel.active { display: block; }
+    .panel h4 { font-size: 1.15rem; margin: 0 0 10px; color: var(--navy); }
+    .panel h5 { font-size: 0.95rem; margin: 18px 0 8px; color: var(--navy); }
+    .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
+
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card {
+      border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff;
+    }
+    .card.mint { background: var(--wash); }
+    .card.soft { background: var(--soft); }
+    .label {
+      font-size: 0.7rem; letter-spacing: 0.08em; color: var(--teal-dark);
+      font-weight: 800; text-transform: uppercase;
+    }
+    .teal { color: var(--teal-dark); }
+    .big-rule { font-size: 1.2rem; font-weight: 800; margin: 8px 0 0; color: var(--navy); }
+    .example {
+      padding: 10px 12px; border-left: 3px solid var(--gold);
+      background: var(--soft); margin-top: 10px; font-weight: 700;
+    }
+    .note {
+      background: var(--warn); border-left: 4px solid var(--gold);
+      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin-top: 14px;
+    }
+    .tip {
+      background: var(--wash); border-left: 4px solid var(--teal);
+      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin: 12px 0;
+    }
+
+    .scene {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+      padding: 14px; background: var(--navy); border-radius: 16px; color: #fff;
+    }
+    .zone {
+      background: rgba(255, 255, 255, 0.96); color: var(--navy);
+      border-radius: 14px; padding: 14px;
+    }
+    .zone.far { background: #eef2f8; }
+    .zone h5 { margin: 0 0 10px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); }
+    .things { display: flex; flex-wrap: wrap; gap: 8px; }
+    .thing {
+      border: 0; background: #fff; border-radius: 12px; padding: 10px 8px;
+      width: calc(50% - 4px); min-width: 110px; text-align: center;
+      box-shadow: 0 1px 0 var(--line); font-weight: 800; font-size: 0.82rem;
+    }
+    .thing .ico { display: block; font-size: 1.7rem; line-height: 1.2; margin-bottom: 4px; }
+    .thing .sent { display: none; margin-top: 6px; font-size: 0.75rem; font-weight: 700; color: var(--teal-dark); }
+    .thing.on { background: var(--wash); box-shadow: 0 0 0 2px var(--teal); }
+    .thing.on .sent { display: block; }
+
+    .map {
+      display: grid; grid-template-columns: auto 1fr 1fr; gap: 8px; align-items: stretch;
+      font-size: 0.88rem;
+    }
+    .map b { display: grid; place-items: center; padding: 10px; }
+    .map .h { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 800; text-align: center; padding: 8px; }
+    .map .cell {
+      background: var(--wash); border-radius: 12px; padding: 14px; font-weight: 800; text-align: center;
+    }
+    .map .cell small { display: block; margin-top: 4px; font-weight: 600; color: var(--muted); }
+
+    .q { padding: 14px 0; border-bottom: 1px solid var(--line); }
+    .q:last-child { border: 0; }
+    .q p { margin: 0; font-weight: 700; line-height: 1.45; }
+    .q .why { display: none; margin-top: 8px; font-size: 0.84rem; color: var(--muted); line-height: 1.5; }
+    .q.done .why { display: block; }
+    .opts { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+    .opt, .btn {
+      border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 800;
+    }
+    .opt { background: #fff; border: 1px solid var(--line); }
+    .opt.selected { background: var(--wash); border-color: var(--teal); }
+    .opt.correct { background: var(--good); border-color: #72b98c; }
+    .opt.wrong { background: var(--bad); border-color: #d98989; }
+    .btn { background: var(--navy); color: #fff; }
+    .btn.secondary { background: var(--teal-dark); }
+    .btn.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
+    .feedback { display: none; margin-top: 12px; padding: 12px; border-radius: 10px; line-height: 1.55; font-weight: 600; }
+    .feedback.show { display: block; }
+    .feedback.good { background: var(--good); }
+    .feedback.warn { background: var(--warn); }
+
+    .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .hit {
+      cursor: pointer; border-radius: 6px; padding: 1px 4px;
+      border-bottom: 2px dotted var(--teal); font-weight: 800; color: var(--teal-dark);
+    }
+    .hit.found { background: var(--wash); border-bottom-color: var(--gold); }
+    .hit.miss { background: var(--bad); }
+
+    .speak {
+      display: grid; gap: 10px;
+    }
+    .prompt {
+      padding: 16px; background: var(--wash); border-radius: 14px;
+      font-weight: 700; line-height: 1.5; font-size: 1.05rem;
+    }
+    .stems { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+    .stems button {
+      border: 1px dashed var(--teal); background: var(--wash); color: var(--navy);
+      border-radius: 999px; padding: 7px 11px; font-size: 0.78rem; font-weight: 800;
+    }
+    textarea, input[type=text] {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; padding: 13px; line-height: 1.65;
+    }
+    textarea { min-height: 150px; resize: vertical; }
+
+    .cando { display: grid; gap: 10px; }
+    .cando label {
+      display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center;
+      border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+      background: var(--soft); cursor: pointer;
+    }
+    .cando input { width: 18px; height: 18px; }
+
+    .footer { text-align: center; color: var(--muted); font-size: 0.82rem; padding: 24px; }
+    .footer strong { color: var(--navy); }
+
+    @media (max-width: 720px) {
+      .shell { padding: 12px; }
+      .brand p, .mode-pill { display: none; }
+      .panel { padding: 18px; }
+      .grid2, .grid4, .scene { grid-template-columns: 1fr; }
+      .map { grid-template-columns: 64px 1fr 1fr; }
+      .hero::after { opacity: 0.08; width: 120px; }
+      .thing { width: calc(50% - 4px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><img src="../favicon.png" alt=""></div>
+        <div>
+          <h1>This / That / These / Those</h1>
+          <p>A1.1 closer · Point near and far</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <a class="home-btn" href="../">Home</a>
+        <span class="mode-pill">A1.1 · 35–40 min</span>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">A1.1 closer · Grammar in the room</span>
+        <h2>Point to <span>it</span></h2>
+        <p>
+          Maya is at Leo’s apartment. She names things next to her and things across the room.
+          Finish A1.1: one or many, near or far, and the right verb — <strong>is</strong> or <strong>are</strong>.
+        </p>
+        <div class="path">
+          <span>1 Notice</span><span>2 Grammar</span><span>3 Practice</span>
+          <span>4 Reading</span><span>5 Speaking</span><span>6 Writing</span><span>7 Can-do</span>
+        </div>
+      </div>
+    </section>
+
+    <article class="lesson">
+      <header class="lesson-head">
+        <h3>From pointing to sentences</h3>
+        <p>Look first. Then build the four words. Then speak and write about <em>your</em> room.</p>
+      </header>
+      <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
+      <div id="panels"></div>
+    </article>
+
+    <footer class="footer"><strong>Israel Ventura</strong> · A1.1 closer · Educational use</footer>
+  </div>
+
+<script>
+const sections = ['1 Notice', '2 Grammar', '3 Practice', '4 Reading', '5 Speaking', '6 Writing', '7 Can-do'];
+const KEY = 'thisThatA11v1';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+
+const panels = {
+  0: noticeHTML,
+  1: grammarHTML,
+  2: practiceHTML,
+  3: readingHTML,
+  4: speakingHTML,
+  5: writingHTML,
+  6: candoHTML
+};
+
+function noticeHTML() {
+  return `
+    <h4>Maya is on the sofa. Look where she points.</h4>
+    <p class="intro">Things <strong>next to Maya</strong> are near. Things <strong>across the room</strong> are far. Tap a thing to hear the sentence in your head — then say it.</p>
+    <div class="scene" aria-label="Leo's living room">
+      <div class="zone">
+        <h5>Near Maya · here</h5>
+        <div class="things">
+          <button type="button" class="thing" data-sent="This is my phone.">
+            <span class="ico" aria-hidden="true">📱</span>phone
+            <span class="sent">This is my phone.</span>
+          </button>
+          <button type="button" class="thing" data-sent="These are my keys.">
+            <span class="ico" aria-hidden="true">🔑</span>keys
+            <span class="sent">These are my keys.</span>
+          </button>
+        </div>
+      </div>
+      <div class="zone far">
+        <h5>Far from Maya · over there</h5>
+        <div class="things">
+          <button type="button" class="thing" data-sent="That is the door.">
+            <span class="ico" aria-hidden="true">🚪</span>door
+            <span class="sent">That is the door.</span>
+          </button>
+          <button type="button" class="thing" data-sent="Those are Leo’s shoes.">
+            <span class="ico" aria-hidden="true">👟</span>shoes
+            <span class="sent">Those are Leo’s shoes.</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <p class="tip"><strong>Teacher:</strong> Hold up a pen (<em>this</em>). Point to the door (<em>that</em>). Hold two books (<em>these</em>). Point to two windows (<em>those</em>).</p>
+  `;
+}
+
+function grammarHTML() {
+  return `
+    <h4>Four words. Two questions: near or far? One or many?</h4>
+    <p class="intro">The verb changes with one or many — not with near or far.</p>
+    <div class="map" role="table" aria-label="This that these those">
+      <b></b>
+      <div class="h">One</div>
+      <div class="h">Many</div>
+      <b>Near</b>
+      <div class="cell">this + <span class="teal">is</span><small>This is a bag.</small></div>
+      <div class="cell">these + <span class="teal">are</span><small>These are bags.</small></div>
+      <b>Far</b>
+      <div class="cell">that + <span class="teal">is</span><small>That is a window.</small></div>
+      <div class="cell">those + <span class="teal">are</span><small>Those are windows.</small></div>
+    </div>
+    <div class="grid2" style="margin-top:16px">
+      <div class="card mint">
+        <div class="label">Questions</div>
+        <p class="big-rule">What’s this? What’s that?</p>
+        <div class="example">What’s this? It’s my phone.</div>
+        <p class="big-rule" style="margin-top:14px">What are these? What are those?</p>
+        <div class="example">What are those? They’re Leo’s shoes.</div>
+      </div>
+      <div class="card">
+        <div class="label">With possessives</div>
+        <p class="intro" style="margin:8px 0 0">You already know <em>my / Leo’s</em>. Put them after the verb.</p>
+        <div class="example">This is <strong>my</strong> phone.</div>
+        <div class="example">Those are <strong>Leo’s</strong> shoes.</div>
+      </div>
+    </div>
+    <div class="note"><strong>The usual mistake:</strong> <s>This are my keys.</s> → <strong>These are</strong> my keys. One thing → <em>is</em>. Two or more → <em>are</em>.</div>
+  `;
+}
+
+function practiceHTML() {
+  const saved = state.practice || {};
+  return `
+    <h4>Choose, then check. The why matters.</h4>
+    <p class="intro">A: near or far, one or many. B: <em>is</em> or <em>are</em>. C: fix Maya’s mistakes.</p>
+
+    <h5>A · The pointing word</h5>
+    ${mcGroup('A', [
+      { q: 'Maya holds her phone. ______ is my phone.', opts: ['This', 'That', 'These', 'Those'], a: 'This', why: 'One thing, next to her → this + is.' },
+      { q: 'The door is across the room. ______ is the door.', opts: ['This', 'That', 'These', 'Those'], a: 'That', why: 'One thing, far → that + is.' },
+      { q: 'Her keys are on the sofa, next to her. ______ are my keys.', opts: ['This', 'That', 'These', 'Those'], a: 'These', why: 'Many things, near → these + are.' },
+      { q: 'Leo’s shoes are by the far wall. ______ are Leo’s shoes.', opts: ['This', 'That', 'These', 'Those'], a: 'Those', why: 'Many things, far → those + are.' }
+    ], saved)}
+
+    <h5>B · The verb</h5>
+    ${mcGroup('B', [
+      { q: 'This ______ my bag.', opts: ['is', 'are'], a: 'is', why: 'This = one → is.' },
+      { q: 'These ______ my books.', opts: ['is', 'are'], a: 'are', why: 'These = many → are.' },
+      { q: 'That ______ the bathroom.', opts: ['is', 'are'], a: 'is', why: 'That = one → is.' },
+      { q: 'Those ______ the windows.', opts: ['is', 'are'], a: 'are', why: 'Those = many → are.' }
+    ], saved)}
+
+    <h5>C · Fix the sentence</h5>
+    ${mcGroup('C', [
+      { q: 'This are my friends.', opts: ['This is my friends.', 'These are my friends.', 'These is my friends.'], a: 'These are my friends.', why: 'Friends = many, so these + are.' },
+      { q: 'Those is the chairs.', opts: ['Those are the chairs.', 'That are the chairs.', 'These is the chairs.'], a: 'Those are the chairs.', why: 'Chairs = many, far. Those + are.' },
+      { q: 'That are a lamp.', opts: ['That is a lamp.', 'Those is a lamp.', 'These are a lamp.'], a: 'That is a lamp.', why: 'A lamp = one. That + is.' }
+    ], saved)}
+
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="checkPractice">Check answers</button>
+      <button type="button" class="btn ghost" id="resetPractice">Reset</button>
+    </div>
+    <div class="feedback" id="practiceFb"></div>
+  `;
+}
+
+function mcGroup(group, items, saved) {
+  return items.map((item, i) => {
+    const id = group + i;
+    const picked = saved[id] || '';
+    const opts = item.opts.map((o) =>
+      `<button type="button" class="opt${picked === o ? ' selected' : ''}" data-g="${group}" data-i="${i}" data-v="${escapeAttr(o)}">${escapeHtml(o)}</button>`
+    ).join('');
+    return `<div class="q" data-qid="${id}" data-answer="${escapeAttr(item.a)}" data-why="${escapeAttr(item.why)}">
+      <p>${item.q}</p>
+      <div class="opts">${opts}</div>
+      <div class="why"></div>
+    </div>`;
+  }).join('');
+}
+
+function readingHTML() {
+  return `
+    <h4>Maya’s message. Tap every this / that / these / those.</h4>
+    <p class="intro">Find all 8. Then answer the two questions under the text.</p>
+    <div class="reading" id="reading">
+      Hi! I’m at Leo’s apartment. <span class="hit" data-ok="1">This</span> is a small sofa, and I’m on it now.
+      <span class="hit" data-ok="1">These</span> are my keys and <span class="hit" data-ok="1">this</span> is my phone.
+      Look over there: <span class="hit" data-ok="1">that</span> is the kitchen door, and <span class="hit" data-ok="1">those</span> are Leo’s shoes next to it.
+      <span class="hit" data-ok="1">That</span> is a big window. <span class="hit" data-ok="1">Those</span> are two green plants in front of it.
+      <span class="hit" data-ok="1">These</span> are my photos of the family — here, in my hand.
+    </div>
+    <div class="notice-bar" id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 8</div>
+    <div class="q">
+      <p>In the text, what is near Maya?</p>
+      <div class="opts" data-readq="near">
+        <button type="button" class="opt" data-v="sofa, keys, phone, photos">the sofa, keys, phone, photos</button>
+        <button type="button" class="opt" data-v="door, shoes, window">the door, shoes, and window</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>Why “those are Leo’s shoes”, not “that are”?</p>
+      <div class="opts" data-readq="why">
+        <button type="button" class="opt" data-v="many">Shoes are more than one, so those + are.</button>
+        <button type="button" class="opt" data-v="far">Because they are far — far always takes those.</button>
+      </div>
+    </div>
+    <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
+    <div class="feedback" id="readFb"></div>
+  `;
+}
+
+function speakingHTML() {
+  const prompts = [
+    'Hold one thing near you. Say: This is a ______.',
+    'Point to one thing far from you. Say: That is a ______.',
+    'Hold two things. Say: These are my ______.',
+    'Point to two things across the room. Say: Those are ______.',
+    'Ask a partner: What’s this? / What are those?'
+  ];
+  return `
+    <h4>Stand up. Point. Don’t read a list — look at the room.</h4>
+    <p class="intro">Teacher or a partner gives the prompt. You speak. Then swap.</p>
+    <div class="speak" id="speakPrompts">
+      ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
+    </div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn" id="nextSpeak">Next prompt</button>
+      <button type="button" class="btn ghost" id="showModel">Show a model</button>
+    </div>
+    <div class="card soft" id="speakModel" hidden style="margin-top:12px">
+      <div class="label">Models</div>
+      <div class="example">This is a pen.</div>
+      <div class="example">That is the door.</div>
+      <div class="example">These are my books.</div>
+      <div class="example">Those are the windows.</div>
+      <div class="example">What’s this? It’s a bag.</div>
+    </div>
+    <p class="tip"><strong>Classroom:</strong> Walk. Point at real objects. Correct only <em>is/are</em> and one/many. Don’t stop the flow for tiny pronunciation yet.</p>
+  `;
+}
+
+function writingHTML() {
+  const text = state.writing || '';
+  return `
+    <h4>Write 5 sentences about your room right now.</h4>
+    <p class="intro">Use all four words: <strong>this, that, these, those</strong>. Use <em>is</em> and <em>are</em> correctly.</p>
+    <div class="stems">
+      <button type="button" class="stem">This is my…</button>
+      <button type="button" class="stem">That is the…</button>
+      <button type="button" class="stem">These are my…</button>
+      <button type="button" class="stem">Those are…</button>
+      <button type="button" class="stem">What’s that? It’s…</button>
+    </div>
+    <textarea id="writingBox" placeholder="This is my notebook. That is the door.…">${escapeHtml(text)}</textarea>
+    <div class="cando" style="margin-top:12px">
+      <label><input type="checkbox" data-writechk="four"> I used this, that, these, and those.</label>
+      <label><input type="checkbox" data-writechk="verb"> I used is with this/that and are with these/those.</label>
+      <label><input type="checkbox" data-writechk="real"> The sentences are about things I can see now.</label>
+    </div>
+  `;
+}
+
+function candoHTML() {
+  const c = state.cando || {};
+  const items = [
+    ['near1', 'I can point to one thing near me and say This is…'],
+    ['far1', 'I can point to one thing far from me and say That is…'],
+    ['nearN', 'I can use these are with two or more things near me.'],
+    ['farN', 'I can use those are with two or more things far from me.'],
+    ['verb', 'I remember: this/that + is, these/those + are.'],
+    ['ask', 'I can ask What’s this? and What are those?']
+  ];
+  return `
+    <h4>A1.1 exit ticket</h4>
+    <p class="intro">If these are true, this stage is closed. Next stage (A1.2) starts with <em>there is / there are</em> — what exists in a place, not what you are pointing at.</p>
+    <div class="cando">
+      ${items.map(([id, label]) => `
+        <label>
+          <input type="checkbox" data-cando="${id}" ${c[id] ? 'checked' : ''}>
+          <span>${label}</span>
+        </label>`).join('')}
+    </div>
+    <div class="note" style="margin-top:16px"><strong>Closed:</strong> You can name who you are, things around you, and you can point. Tomorrow’s grammar is different: <em>There is a sofa in the living room.</em></div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;', "'":'&#39;' }[c]));
+}
+function escapeAttr(s) { return escapeHtml(s); }
+
+function renderTabs() {
+  const i = state.tab || 0;
+  document.getElementById('tabs').innerHTML = sections.map((s, n) =>
+    `<button type="button" class="tab ${n === i ? 'active' : ''}" data-tab="${n}">${s}</button>`
+  ).join('');
+  openTab(i);
+}
+
+function openTab(i) {
+  state.tab = i;
+  save();
+  document.querySelectorAll('.tab').forEach((el, n) => el.classList.toggle('active', n === i));
+  const host = document.getElementById('panels');
+  host.innerHTML = `<div class="panel active">${panels[i]()}</div>`;
+  bindPanel(i);
+  const lesson = document.querySelector('.lesson');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+
+function bindPanel(i) {
+  if (i === 0) {
+    document.querySelectorAll('.thing').forEach((btn) => {
+      btn.addEventListener('click', () => btn.classList.toggle('on'));
+    });
+  }
+  if (i === 2) bindPractice();
+  if (i === 3) bindReading();
+  if (i === 4) bindSpeaking();
+  if (i === 5) bindWriting();
+  if (i === 6) {
+    document.querySelectorAll('[data-cando]').forEach((el) => {
+      el.addEventListener('change', () => {
+        state.cando = state.cando || {};
+        state.cando[el.dataset.cando] = el.checked;
+        save();
+      });
+    });
+  }
+}
+
+function bindPractice() {
+  document.querySelectorAll('.opt[data-g]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const group = btn.dataset.g;
+      const idx = btn.dataset.i;
+      document.querySelectorAll(`.opt[data-g="${group}"][data-i="${idx}"]`).forEach((o) => o.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.practice = state.practice || {};
+      state.practice[group + idx] = btn.dataset.v;
+      save();
+    });
+  });
+  document.getElementById('checkPractice').addEventListener('click', () => {
+    let right = 0, total = 0;
+    document.querySelectorAll('.q[data-qid]').forEach((q) => {
+      total += 1;
+      const answer = q.dataset.answer;
+      const picked = q.querySelector('.opt.selected');
+      q.querySelectorAll('.opt').forEach((o) => {
+        o.classList.remove('correct', 'wrong');
+        if (o.dataset.v === answer) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      const ok = picked && picked.dataset.v === answer;
+      if (ok) right += 1;
+      q.classList.add('done');
+      q.querySelector('.why').textContent = q.dataset.why;
+    });
+    const fb = document.getElementById('practiceFb');
+    fb.className = 'feedback show ' + (right === total ? 'good' : 'warn');
+    fb.textContent = right === total
+      ? `All ${total} correct. You can point, and the verb matches.`
+      : `${right} / ${total}. Read the note under each item — is vs are is the closer.`;
+  });
+  document.getElementById('resetPractice').addEventListener('click', () => {
+    state.practice = {};
+    save();
+    openTab(2);
+  });
+}
+
+function bindReading() {
+  let found = 0;
+  const total = document.querySelectorAll('#reading .hit[data-ok]').length;
+  document.querySelectorAll('#reading .hit').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (el.classList.contains('found')) return;
+      el.classList.add(el.dataset.ok ? 'found' : 'miss');
+      if (el.dataset.ok) found += 1;
+      document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
+    });
+  });
+  const answers = { near: 'sofa, keys, phone, photos', why: 'many' };
+  document.querySelectorAll('.opt[data-v]').forEach((btn) => {
+    if (!btn.closest('[data-readq]')) return;
+    btn.addEventListener('click', () => {
+      btn.parentElement.querySelectorAll('.opt').forEach((o) => o.classList.remove('selected'));
+      btn.classList.add('selected');
+    });
+  });
+  document.getElementById('checkReading').addEventListener('click', () => {
+    let ok = found === total;
+    document.querySelectorAll('[data-readq]').forEach((box) => {
+      const key = box.dataset.readq;
+      const picked = box.querySelector('.opt.selected');
+      box.querySelectorAll('.opt').forEach((o) => {
+        o.classList.remove('correct', 'wrong');
+        if (o.dataset.v === answers[key]) o.classList.add('correct');
+        else if (o.classList.contains('selected')) o.classList.add('wrong');
+      });
+      if (!(picked && picked.dataset.v === answers[key])) ok = false;
+    });
+    const fb = document.getElementById('readFb');
+    fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+    fb.textContent = ok
+      ? 'Near = this/these. Far = that/those. Many shoes → those are, not that are.'
+      : 'Tap the eight pointing words in the message, then answer both questions.';
+  });
+}
+
+function bindSpeaking() {
+  let n = state.speakIndex || 0;
+  const prompts = document.querySelectorAll('[data-sp]');
+  function show() {
+    prompts.forEach((p, i) => { p.hidden = i !== n; });
+    state.speakIndex = n;
+    save();
+  }
+  show();
+  document.getElementById('nextSpeak').addEventListener('click', () => {
+    n = (n + 1) % prompts.length;
+    show();
+  });
+  document.getElementById('showModel').addEventListener('click', () => {
+    const box = document.getElementById('speakModel');
+    box.hidden = !box.hidden;
+  });
+}
+
+function bindWriting() {
+  const box = document.getElementById('writingBox');
+  box.addEventListener('input', () => { state.writing = box.value; save(); });
+  document.querySelectorAll('.stem').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pad = box.value && !box.value.endsWith('\n') ? '\n' : '';
+      box.value += pad + btn.textContent + ' ';
+      box.focus();
+      state.writing = box.value;
+      save();
+    });
+  });
+  document.querySelectorAll('[data-writechk]').forEach((el) => {
+    el.checked = !!(state.writechk && state.writechk[el.dataset.writechk]);
+    el.addEventListener('change', () => {
+      state.writechk = state.writechk || {};
+      state.writechk[el.dataset.writechk] = el.checked;
+      save();
+    });
+  });
+}
+
+document.getElementById('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('[data-tab]');
+  if (btn) openTab(Number(btn.dataset.tab));
+});
+
+renderTabs();
+</script>
+</body>
+</html>
