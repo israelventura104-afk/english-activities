@@ -303,7 +303,7 @@
                   <button type="button" class="action-btn" id="btnShuffle">Shuffle</button>
                   <button type="button" class="action-btn" id="btnReset">Reset order</button>
                 </div>
-                <p class="hint">Click or <strong>Space</strong> to flip · play is on the back · arrows keep the same side</p>
+                <p class="hint"><strong>Space</strong> to flip · <strong>← →</strong> on the keyboard keeps the same side</p>
               </div>
             </div>
           </div>
@@ -574,22 +574,44 @@ function flip() {
   flipped = !flipped;
   show();
 }
+function goPrev() {
+  card = (card - 1 + verbs.length) % verbs.length;
+  show();
+}
+function goNext() {
+  card = (card + 1) % verbs.length;
+  show();
+}
+function isTypingTarget(el) {
+  if (!el || el === document.body) return false;
+  const tag = (el.tagName || '').toLowerCase();
+  return tag === 'input' || tag === 'textarea' || tag === 'select' || el.isContentEditable;
+}
 document.getElementById('flipCard').addEventListener('click', (e) => {
   if (e.target.closest('#btnAudio')) return;
   flip();
 });
 document.getElementById('flipCard').addEventListener('keydown', (e) => {
   if (e.target.closest('#btnAudio')) return;
-  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); flip(); }
+  if (e.key === 'Enter') { e.preventDefault(); flip(); }
 });
 document.getElementById('btnFlip').addEventListener('click', (e) => { e.stopPropagation(); flip(); });
-document.getElementById('btnPrev').addEventListener('click', () => {
-  card = (card - 1 + verbs.length) % verbs.length;
-  show();
-});
-document.getElementById('btnNext').addEventListener('click', () => {
-  card = (card + 1) % verbs.length;
-  show();
+document.getElementById('btnPrev').addEventListener('click', goPrev);
+document.getElementById('btnNext').addEventListener('click', goNext);
+document.addEventListener('keydown', (e) => {
+  if (isTypingTarget(e.target)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (!document.getElementById('act-deck').open) return;
+  if (e.code === 'ArrowRight') {
+    e.preventDefault();
+    goNext();
+  } else if (e.code === 'ArrowLeft') {
+    e.preventDefault();
+    goPrev();
+  } else if (e.code === 'Space') {
+    e.preventDefault();
+    flip();
+  }
 });
 document.getElementById('btnShuffle').addEventListener('click', () => {
   order = shuffle(order);
