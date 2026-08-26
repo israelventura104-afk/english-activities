@@ -449,7 +449,7 @@ function mcGroup(group, items, saved) {
 function readingHTML() {
   return `
     <h4>Nina’s message. Tap every this / that / these / those.</h4>
-    <p class="intro">Find all 8. Then answer the two questions under the text.</p>
+    <p class="intro">Find all 8. Then answer the five questions under the text.</p>
     <div class="reading" id="reading">
       Hi! I’m at David’s apartment. <span class="hit" data-ok="1">This</span> is a small sofa, and I’m on it now.
       <span class="hit" data-ok="1">These</span> are my keys and <span class="hit" data-ok="1">this</span> is my phone.
@@ -459,17 +459,43 @@ function readingHTML() {
     </div>
     <div class="notice-bar" id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 8</div>
     <div class="q">
-      <p>In the text, what is near Nina?</p>
-      <div class="opts" data-readq="near">
-        <button type="button" class="opt" data-v="sofa, keys, phone, photos">the sofa, keys, phone, photos</button>
-        <button type="button" class="opt" data-v="door, shoes, window">the door, shoes, and window</button>
+      <p>1. Where is Nina?</p>
+      <div class="opts" data-readq="location">
+        <button type="button" class="opt" data-v="sofa">She is on the sofa.</button>
+        <button type="button" class="opt" data-v="door">She is next to the kitchen door.</button>
+        <button type="button" class="opt" data-v="window">She is in front of the big window.</button>
       </div>
     </div>
     <div class="q">
-      <p>Why “those are David’s shoes”, not “that are”?</p>
-      <div class="opts" data-readq="why">
-        <button type="button" class="opt" data-v="many">Shoes are more than one, so those + are.</button>
-        <button type="button" class="opt" data-v="far">Because they are far — far always takes those.</button>
+      <p>2. What is Nina holding in her hand?</p>
+      <div class="opts" data-readq="hand">
+        <button type="button" class="opt" data-v="photos">Her family photos.</button>
+        <button type="button" class="opt" data-v="shoes">David’s shoes.</button>
+        <button type="button" class="opt" data-v="keys">Her keys.</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>3. Which word points to one thing near Nina?</p>
+      <div class="opts" data-readq="nearOne">
+        <button type="button" class="opt" data-v="this">this</button>
+        <button type="button" class="opt" data-v="these">these</button>
+        <button type="button" class="opt" data-v="that">that</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>4. Which sentence points to more than one thing far from Nina?</p>
+      <div class="opts" data-readq="farMany">
+        <button type="button" class="opt" data-v="plants">Those are two green plants.</button>
+        <button type="button" class="opt" data-v="keys">These are my keys.</button>
+        <button type="button" class="opt" data-v="phone">This is my phone.</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>5. Why does Nina say “those are David’s shoes”?</p>
+      <div class="opts" data-readq="shoes">
+        <button type="button" class="opt" data-v="pluralFar">The shoes are plural and far, so she uses those + are.</button>
+        <button type="button" class="opt" data-v="owner">Because the shoes belong to David.</button>
+        <button type="button" class="opt" data-v="singular">Because shoes is one thing, so she uses those + are.</button>
       </div>
     </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
@@ -648,7 +674,7 @@ function bindReading() {
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { near: 'sofa, keys, phone, photos', why: 'many' };
+  const answers = { location: 'sofa', hand: 'photos', nearOne: 'this', farMany: 'plants', shoes: 'pluralFar' };
   document.querySelectorAll('.opt[data-v]').forEach((btn) => {
     if (!btn.closest('[data-readq]')) return;
     btn.addEventListener('click', () => {
@@ -671,8 +697,8 @@ function bindReading() {
     const fb = document.getElementById('readFb');
     fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
     fb.textContent = ok
-      ? 'Near = this/these. Far = that/those. Many shoes → those are, not that are.'
-      : 'Tap the eight pointing words in the message, then answer both questions.';
+      ? 'Excellent. You found all eight words and used near/far, one/many, and is/are correctly.'
+      : 'Tap all eight pointing words, then answer all five questions. Check the message for each answer.';
   });
 }
 
