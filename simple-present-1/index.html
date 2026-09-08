@@ -286,15 +286,47 @@
       font-size: 0.65rem; font-weight: 800; color: #fff;
     }
 
-    .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
+    .reading { line-height: 2; background: var(--soft); padding: 18px; border-radius: 14px; }
     .hit {
-      cursor: pointer; border-radius: 6px; padding: 1px 4px;
-      border-bottom: 2px dotted var(--teal); font-weight: 800; color: var(--teal-dark);
+      cursor: pointer; border-radius: 6px; padding: 2px 4px;
+      color: inherit; font-weight: inherit; background: transparent;
+      border-bottom: 2px solid transparent;
     }
-    .hit.found { background: var(--wash); border-bottom-color: var(--gold); }
+    .hit.found {
+      background: var(--wash); color: var(--teal-dark); font-weight: 800;
+      border-bottom-color: var(--gold);
+    }
     .hit.miss { background: var(--bad); }
 
     .speak { display: grid; gap: 10px; }
+    .mystery-wrap { margin-top: 8px; }
+    .mystery-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+      gap: 10px; margin: 14px 0 8px;
+    }
+    .mbox {
+      appearance: none; border: 0; cursor: pointer;
+      min-height: 92px; border-radius: 16px; padding: 12px 8px;
+      display: grid; place-items: center; gap: 4px;
+      background: linear-gradient(160deg, #1a3a5c, #0B1F3A);
+      color: #fff; box-shadow: 0 10px 22px rgba(11,31,58,.22);
+      transition: transform .15s ease, box-shadow .15s ease, opacity .2s;
+    }
+    .mbox:hover:not(:disabled) { transform: translateY(-2px); }
+    .mbox .lid { font-size: 1.55rem; line-height: 1; }
+    .mbox .tag { font-size: 0.72rem; font-weight: 800; letter-spacing: .02em; opacity: .9; }
+    .mbox.open {
+      cursor: default; background: var(--wash); color: var(--navy);
+      border: 1px solid #cfe8e5; box-shadow: none; opacity: .95;
+    }
+    .mbox.open .lid { font-size: 1.1rem; }
+    .mbox:disabled { cursor: default; }
+    .mystery-reveal {
+      margin-top: 12px; padding: 16px; border-radius: 14px;
+      background: var(--wash); border: 1px dashed var(--teal);
+      font-weight: 700; line-height: 1.5; font-size: 1.05rem; min-height: 3.2em;
+    }
+    .mystery-reveal.empty { color: var(--muted); font-weight: 600; border-style: solid; background: var(--soft); }
     .prompt {
       padding: 16px; background: var(--wash); border-radius: 14px;
       font-weight: 700; line-height: 1.5; font-size: 1.05rem;
@@ -547,7 +579,7 @@ function hintColor(h) {
 function readingHTML() {
   return `
     <h4>Jordan’s message to Priya. Tap every I, you, we, and they.</h4>
-    <p class="intro">Find all 8. Then answer the questions.</p>
+    <p class="intro">Tap every I, you, we, and they in the message. They are not marked yet. Find all 8, then answer all the questions.</p>
     <div class="reading" id="reading">
       Hi Priya. <span class="hit" data-ok="1">I</span> walk to Oak Street Park at 9:00.
       <span class="hit" data-ok="1">You</span> drink coffee on the bench, and <span class="hit" data-ok="1">we</span> sit in the sun.
@@ -571,36 +603,86 @@ function readingHTML() {
         <button type="button" class="opt" data-v="cook">cook</button>
       </div>
     </div>
+    <div class="q">
+      <p>Who drinks coffee on the bench?</p>
+      <div class="opts" data-readq="coffee">
+        <button type="button" class="opt" data-v="priya">Priya</button>
+        <button type="button" class="opt" data-v="owen">Owen</button>
+        <button type="button" class="opt" data-v="lila">Lila</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>Jordan and Priya eat sandwiches at ______.</p>
+      <div class="opts" data-readq="eat">
+        <button type="button" class="opt" data-v="9">9:00</button>
+        <button type="button" class="opt" data-v="12">12:00</button>
+        <button type="button" class="opt" data-v="night">at night</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>In the afternoon, Jordan says: I ______.</p>
+      <div class="opts" data-readq="afternoon">
+        <button type="button" class="opt" data-v="read">read under a tree</button>
+        <button type="button" class="opt" data-v="cook">cook dinner</button>
+        <button type="button" class="opt" data-v="run">run around the fountain</button>
+      </div>
+    </div>
+    <div class="q">
+      <p>At night, who cooks dinner?</p>
+      <div class="opts" data-readq="night">
+        <button type="button" class="opt" data-v="priya">Priya</button>
+        <button type="button" class="opt" data-v="owen">Owen</button>
+        <button type="button" class="opt" data-v="lila">Lila</button>
+      </div>
+    </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
     <div class="feedback" id="readFb"></div>
   `;
 }
 
+const MYSTERY_PROMPTS = [
+  { icon: '🌅', text: 'Open: I get up at…' },
+  { icon: '☕', text: 'Tell a partner: You drink ______ in the morning.' },
+  { icon: '🏫', text: 'We walk to ______ in the morning.' },
+  { icon: '🌙', text: 'They ______ at night.' },
+  { icon: '🥪', text: 'On Saturday we eat ______ at…' },
+  { icon: '🌳', text: 'In the afternoon I ______ under a tree / at home / in the park.' },
+  { icon: '🏃', text: 'Picture: two friends at the park. Say: They run…' },
+  { icon: '🪑', text: 'Look at a classmate. Say: You sit / study / wait…' },
+  { icon: '👪', text: 'You and a friend. Say: We ______ on Saturday.' },
+  { icon: '⏰', text: 'Three times: I ______ at 7:00. We ______ at 12:00. They ______ at night.' },
+  { icon: '📚', text: 'Open: I study English in the ______.' },
+  { icon: '🍽️', text: 'At night you cook ______. I help.' }
+];
+
 function speakingHTML() {
-  const prompts = [
-    'Talk about you. Say: I get up at ______.',
-    'Look at a classmate. Say: You study English in the afternoon.',
-    'You and a friend. Say: We walk to school in the morning.',
-    'Two people in your family or two friends. Say: They cook dinner at night.',
-    'Tell your Saturday in three sentences: I ______. We ______. They ______.'
-  ];
+  const opened = new Set(state.mysteryOpened || []);
+  const boxes = MYSTERY_PROMPTS.map((p, i) => {
+    const isOpen = opened.has(String(i));
+    return `
+      <button type="button" class="mbox ${isOpen ? 'open' : ''}" data-box="${i}" ${isOpen ? 'disabled' : ''} aria-label="Mystery box ${i + 1}">
+        <span class="lid">${isOpen ? '📭' : '🎁'}</span>
+        <span class="tag">${isOpen ? 'Opened' : 'Box ' + (i + 1)}</span>
+      </button>`;
+  }).join('');
   return `
-    <h4>Say the sentence. Don’t read a list — look at people in the room.</h4>
-    <p class="intro">A partner gives the prompt. You speak. Then swap. All sentences use I, you, we, they.</p>
-    <div class="speak" id="speakPrompts">
-      ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
-    </div>
-    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-      <button type="button" class="btn" id="nextSpeak">Next prompt</button>
-      <button type="button" class="btn ghost" id="showModel">Show a model</button>
-    </div>
-    <div class="card soft" id="speakModel" hidden style="margin-top:12px">
-      <div class="label">Models</div>
-      <div class="example">I get up at 7:00.</div>
-      <div class="example">You study English in the afternoon.</div>
-      <div class="example">We walk to school in the morning.</div>
-      <div class="example">They cook dinner at night.</div>
-      <div class="example">I read. We eat sandwiches. They wait for the bus.</div>
+    <h4>Mystery Box · speak with I, you, we, they</h4>
+    <p class="intro">Tap a closed box. Say the prompt to a partner. Opened boxes stay open. All prompts use I / you / we / they + a time.</p>
+    <div class="mystery-wrap">
+      <div class="mystery-grid" id="mysteryGrid">${boxes}</div>
+      <div class="mystery-reveal empty" id="mysteryReveal">Tap a box to open a speaking prompt.</div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn ghost" id="resetBoxes">Reset boxes</button>
+        <button type="button" class="btn ghost" id="showModel">Show a model</button>
+      </div>
+      <div class="card soft" id="speakModel" hidden style="margin-top:12px">
+        <div class="label">Models</div>
+        <div class="example">I get up at 7:00.</div>
+        <div class="example">You study English in the afternoon.</div>
+        <div class="example">We walk to school in the morning.</div>
+        <div class="example">They cook dinner at night.</div>
+        <div class="example">I read. We eat sandwiches. They wait for the bus.</div>
+      </div>
     </div>
   `;
 }
@@ -746,7 +828,14 @@ function bindReading() {
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { time: '9', do: 'run' };
+  const answers = {
+    time: '9',
+    do: 'run',
+    coffee: 'priya',
+    eat: '12',
+    afternoon: 'read',
+    night: 'priya'
+  };
   document.querySelectorAll('.opt[data-v]').forEach((btn) => {
     if (!btn.closest('[data-readq]')) return;
     btn.addEventListener('click', () => {
@@ -769,24 +858,52 @@ function bindReading() {
     const fb = document.getElementById('readFb');
     fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
     fb.textContent = ok
-      ? 'Great — I, you, we, they use walk / eat / go. Owen and Lila run around the fountain.'
-      : 'Tap the eight words I / you / we / they, then answer both questions.';
+      ? 'Great — I, you, we, they use walk / eat / go. You found the pronouns and answered every question.'
+      : 'Tap all eight I / you / we / they (they are not marked yet), then answer all six questions.';
   });
 }
 
 function bindSpeaking() {
-  let n = state.speakIndex || 0;
-  const prompts = document.querySelectorAll('[data-sp]');
-  function show() {
-    prompts.forEach((p, i) => { p.hidden = i !== n; });
-    state.speakIndex = n;
+  const opened = new Set((state.mysteryOpened || []).map(String));
+  const reveal = document.getElementById('mysteryReveal');
+  const grid = document.getElementById('mysteryGrid');
+
+  function persist() {
+    state.mysteryOpened = Array.from(opened);
     save();
   }
-  show();
-  document.getElementById('nextSpeak').addEventListener('click', () => {
-    n = (n + 1) % prompts.length;
-    show();
+
+  function openBox(i, btn) {
+    const key = String(i);
+    if (opened.has(key)) return;
+    opened.add(key);
+    persist();
+    const p = MYSTERY_PROMPTS[i];
+    btn.classList.add('open');
+    btn.disabled = true;
+    btn.querySelector('.lid').textContent = '📭';
+    btn.querySelector('.tag').textContent = 'Opened';
+    reveal.classList.remove('empty');
+    reveal.innerHTML = `<span aria-hidden="true">${p.icon}</span> ${p.text}`;
+  }
+
+  grid.querySelectorAll('.mbox').forEach((btn) => {
+    btn.addEventListener('click', () => openBox(Number(btn.dataset.box), btn));
   });
+
+  document.getElementById('resetBoxes').addEventListener('click', () => {
+    opened.clear();
+    persist();
+    reveal.classList.add('empty');
+    reveal.textContent = 'Tap a box to open a speaking prompt.';
+    grid.querySelectorAll('.mbox').forEach((btn, i) => {
+      btn.classList.remove('open');
+      btn.disabled = false;
+      btn.querySelector('.lid').textContent = '🎁';
+      btn.querySelector('.tag').textContent = 'Box ' + (i + 1);
+    });
+  });
+
   document.getElementById('showModel').addEventListener('click', () => {
     const box = document.getElementById('speakModel');
     box.hidden = !box.hidden;
