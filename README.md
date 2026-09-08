@@ -22,6 +22,7 @@ Closes with *this / that / these / those*.
 
 ### A1.2 — Daily life
 - [Verbs 1](./verbs-1/) — 30 daily-life verb cards
+- [Verbs 2](./verbs-2/) — 30 more verbs · photo first, flip the card
 
 ### A2 — Real possibilities
 - Zero & First live inside [Conditionals](./conditionals/) (start at Lesson 1)
