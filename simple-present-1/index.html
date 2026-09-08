@@ -157,7 +157,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      min-height: 210px;
+      min-height: 0;
       border: 3px solid rgba(91, 184, 176, 0.35);
       position: relative;
       overflow: hidden;
@@ -167,31 +167,18 @@
       position: absolute; top: 8px; right: 12px;
       font-size: 0.72rem; font-weight: 800; color: var(--muted); opacity: 0.7;
     }
-    .park-bg {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.12;
-      background:
-        radial-gradient(circle at 20% 80%, #5bb8b0 0 18%, transparent 19%),
-        radial-gradient(circle at 80% 30%, #d4a843 0 12%, transparent 13%),
-        linear-gradient(180deg, transparent 55%, #c8e8e4 100%);
+    .panel-art {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+      max-height: 200px;
+      position: relative;
+      z-index: 1;
+      background: #eef6f5;
     }
-    .cast {
-      display: flex; align-items: flex-end; gap: 8px; min-height: 56px;
-      position: relative; z-index: 1; margin-top: 4px;
-    }
-    .cast.center { justify-content: center; }
-    .avatar {
-      width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center;
-      font-weight: 800; color: #fff; flex: 0 0 auto; font-size: 0.95rem;
-      box-shadow: 0 4px 12px rgba(11, 31, 58, 0.18);
-      position: relative; z-index: 1;
-    }
-    .avatar.j { background: #238d85; }
-    .avatar.p { background: #d4a843; color: var(--navy); }
-    .avatar.o { background: #3d6ea5; }
-    .avatar.l { background: #8b6bb5; }
-    .avatar.sm { width: 40px; height: 40px; font-size: 0.82rem; }
-    .avatar.run { transform: rotate(-8deg); }
-    .avatar.run2 { transform: rotate(8deg); }
 
     .speech {
       position: relative; z-index: 1;
@@ -388,7 +375,7 @@
 
 <script>
 const sections = ['1 Notice', '2 Grammar', '3 Practice', '4 Reading', '5 Speaking', '6 Writing', '7 Can-do'];
-const KEY = 'simplePresent1A12v2';
+const KEY = 'simplePresent1A12v3';
 
 function loadState() {
   try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
@@ -416,53 +403,35 @@ function noticeHTML() {
     <p class="intro">Look at the park. Read each bubble. The verb looks the same. Tap a bubble for a soft glow.</p>
     <div class="comic" aria-label="Four-panel comic at the park">
       <div class="panel-comic" data-n="1">
-        <div class="park-bg" aria-hidden="true"></div>
+        <img class="panel-art" src="./assets/panel-i.png" alt="Jordan walks to the park">
         <button type="button" class="speech" data-who="I">
           I walk to the park at 9:00.
           <small>same verb · walk</small>
         </button>
-        <div class="cast">
-          <div class="avatar j" title="Jordan">J</div>
-        </div>
         <span class="pronoun-chip">I</span>
       </div>
       <div class="panel-comic" data-n="2">
-        <div class="park-bg" aria-hidden="true"></div>
+        <img class="panel-art" src="./assets/panel-you.png" alt="Priya drinks coffee on the bench">
         <button type="button" class="speech tail-right" data-who="You">
           You drink coffee on the bench.
           <small>same verb · drink</small>
         </button>
-        <div class="cast" style="justify-content:space-between">
-          <div class="avatar j sm" title="Jordan">J</div>
-          <div class="avatar p" title="Priya">P</div>
-        </div>
         <span class="pronoun-chip you">You</span>
       </div>
       <div class="panel-comic" data-n="3">
-        <div class="park-bg" aria-hidden="true"></div>
+        <img class="panel-art" src="./assets/panel-we.png" alt="Jordan and Priya sit in the sun">
         <button type="button" class="speech tail-center" data-who="We">
           We sit in the sun.
           <small>same verb · sit</small>
         </button>
-        <div class="cast center">
-          <div class="avatar j sm" title="Jordan">J</div>
-          <div class="avatar p sm" title="Priya">P</div>
-        </div>
         <span class="pronoun-chip we">We</span>
       </div>
       <div class="panel-comic" data-n="4">
-        <div class="park-bg" aria-hidden="true"></div>
+        <img class="panel-art" src="./assets/panel-they.png" alt="Owen and Lila run around the fountain">
         <button type="button" class="speech" data-who="They">
           They run around the fountain.
           <small>same verb · run</small>
         </button>
-        <div class="cast" style="justify-content:space-between;align-items:flex-end">
-          <div class="avatar j sm" title="Jordan" style="opacity:0.85">J</div>
-          <div style="display:flex;gap:6px">
-            <div class="avatar o sm run" title="Owen">O</div>
-            <div class="avatar l sm run2" title="Lila">L</div>
-          </div>
-        </div>
         <span class="pronoun-chip they">They</span>
       </div>
     </div>
