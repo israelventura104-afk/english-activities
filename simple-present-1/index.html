@@ -579,60 +579,60 @@ function hintColor(h) {
 function readingHTML() {
   return `
     <h4>Jordan’s message to Priya. Tap every I, you, we, and they.</h4>
-    <p class="intro">Tap every I, you, we, and they in the message. They are not marked yet. Find all 8, then answer all the questions.</p>
+    <p class="intro">Tap every I, you, we, and they in the message. They are not marked yet. Find all 14, then answer all the questions.</p>
     <div class="reading" id="reading">
-      Hi Priya. <span class="hit" data-ok="1">I</span> walk to Oak Street Park at 9:00.
-      <span class="hit" data-ok="1">You</span> drink coffee on the bench, and <span class="hit" data-ok="1">we</span> sit in the sun.
-      Owen and Lila are here too. <span class="hit" data-ok="1">They</span> run around the fountain, and then <span class="hit" data-ok="1">they</span> wait for friends.
-      At 12:00 <span class="hit" data-ok="1">we</span> eat sandwiches. In the afternoon <span class="hit" data-ok="1">I</span> read under a tree.
-      At night <span class="hit" data-ok="1">you</span> cook dinner — and I help.
+      <p>Hi Priya. On Saturday <span class="hit" data-ok="1">I</span> walk to Oak Street Park at 9:00. <span class="hit" data-ok="1">You</span> drink coffee on the bench, and <span class="hit" data-ok="1">we</span> sit in the sun. <span class="hit" data-ok="1">We</span> talk about school and our friends.</p>
+      <p>Owen and Lila are here too. <span class="hit" data-ok="1">They</span> run around the fountain. Then <span class="hit" data-ok="1">they</span> wait for friends near the big tree. From the bench <span class="hit" data-ok="1">you</span> and <span class="hit" data-ok="1">I</span> watch the park.</p>
+      <p>At 12:00 <span class="hit" data-ok="1">we</span> eat sandwiches under the trees. In the afternoon <span class="hit" data-ok="1">I</span> read a book. <span class="hit" data-ok="1">You</span> draw in your notebook next to me.</p>
+      <p>Later <span class="hit" data-ok="1">we</span> walk home together. At night <span class="hit" data-ok="1">you</span> cook dinner — and <span class="hit" data-ok="1">I</span> help.</p>
     </div>
-    <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 8</div>
+    <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 14</div>
     <div class="q">
-      <p>Jordan is at the park at ______.</p>
-      <div class="opts" data-readq="time">
-        <button type="button" class="opt" data-v="9">9:00</button>
-        <button type="button" class="opt" data-v="12">12:00</button>
+      <p>Jordan and Priya talk about ______.</p>
+      <div class="opts" data-readq="talk">
+        <button type="button" class="opt" data-v="school">school and friends</button>
+        <button type="button" class="opt" data-v="dinner">dinner and juice</button>
+        <button type="button" class="opt" data-v="books">books and notebooks</button>
       </div>
     </div>
     <div class="q">
-      <p>What do Owen and Lila do?</p>
-      <div class="opts" data-readq="do">
-        <button type="button" class="opt" data-v="run">run</button>
-        <button type="button" class="opt" data-v="sit">sit</button>
-        <button type="button" class="opt" data-v="cook">cook</button>
+      <p>Owen and Lila wait for friends ______.</p>
+      <div class="opts" data-readq="wait">
+        <button type="button" class="opt" data-v="tree">near the big tree</button>
+        <button type="button" class="opt" data-v="bench">on the bench</button>
+        <button type="button" class="opt" data-v="home">at home</button>
       </div>
     </div>
     <div class="q">
-      <p>Who drinks coffee on the bench?</p>
-      <div class="opts" data-readq="coffee">
-        <button type="button" class="opt" data-v="priya">Priya</button>
-        <button type="button" class="opt" data-v="owen">Owen</button>
-        <button type="button" class="opt" data-v="lila">Lila</button>
+      <p>From the bench, who watches the park?</p>
+      <div class="opts" data-readq="watch">
+        <button type="button" class="opt" data-v="jp">Jordan and Priya</button>
+        <button type="button" class="opt" data-v="ol">Owen and Lila</button>
+        <button type="button" class="opt" data-v="friends">their friends</button>
       </div>
     </div>
     <div class="q">
-      <p>Jordan and Priya eat sandwiches at ______.</p>
-      <div class="opts" data-readq="eat">
-        <button type="button" class="opt" data-v="9">9:00</button>
-        <button type="button" class="opt" data-v="12">12:00</button>
-        <button type="button" class="opt" data-v="night">at night</button>
+      <p>At 12:00 they eat sandwiches ______.</p>
+      <div class="opts" data-readq="lunch">
+        <button type="button" class="opt" data-v="trees">under the trees</button>
+        <button type="button" class="opt" data-v="fountain">around the fountain</button>
+        <button type="button" class="opt" data-v="home">at home</button>
       </div>
     </div>
     <div class="q">
-      <p>In the afternoon, Jordan says: I ______.</p>
+      <p>In the afternoon, Priya ______.</p>
       <div class="opts" data-readq="afternoon">
-        <button type="button" class="opt" data-v="read">read under a tree</button>
-        <button type="button" class="opt" data-v="cook">cook dinner</button>
-        <button type="button" class="opt" data-v="run">run around the fountain</button>
+        <button type="button" class="opt" data-v="draw">draws in her notebook</button>
+        <button type="button" class="opt" data-v="read">reads a book</button>
+        <button type="button" class="opt" data-v="run">runs around the fountain</button>
       </div>
     </div>
     <div class="q">
-      <p>At night, who cooks dinner?</p>
-      <div class="opts" data-readq="night">
-        <button type="button" class="opt" data-v="priya">Priya</button>
-        <button type="button" class="opt" data-v="owen">Owen</button>
-        <button type="button" class="opt" data-v="lila">Lila</button>
+      <p>Later, Jordan and Priya ______.</p>
+      <div class="opts" data-readq="home">
+        <button type="button" class="opt" data-v="walk">walk home together</button>
+        <button type="button" class="opt" data-v="cook">cook dinner at the park</button>
+        <button type="button" class="opt" data-v="wait">wait near the big tree</button>
       </div>
     </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
@@ -829,12 +829,12 @@ function bindReading() {
     });
   });
   const answers = {
-    time: '9',
-    do: 'run',
-    coffee: 'priya',
-    eat: '12',
-    afternoon: 'read',
-    night: 'priya'
+    talk: 'school',
+    wait: 'tree',
+    watch: 'jp',
+    lunch: 'trees',
+    afternoon: 'draw',
+    home: 'walk'
   };
   document.querySelectorAll('.opt[data-v]').forEach((btn) => {
     if (!btn.closest('[data-readq]')) return;
@@ -859,7 +859,7 @@ function bindReading() {
     fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
     fb.textContent = ok
       ? 'Great — I, you, we, they use walk / eat / go. You found the pronouns and answered every question.'
-      : 'Tap all eight I / you / we / they (they are not marked yet), then answer all six questions.';
+      : 'Tap all fourteen I / you / we / they (they are not marked yet), then answer all six questions.';
   });
 }
 
