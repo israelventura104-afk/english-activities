@@ -123,7 +123,6 @@
     .intro { color: var(--muted); line-height: 1.65; margin: 0 0 18px; }
 
     .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .grid4 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .card {
       border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff;
     }
@@ -133,56 +132,137 @@
       font-size: 0.7rem; letter-spacing: 0.08em; color: var(--teal-dark);
       font-weight: 800; text-transform: uppercase;
     }
-    .teal { color: var(--teal-dark); }
     .big-rule { font-size: 1.2rem; font-weight: 800; margin: 8px 0 0; color: var(--navy); }
     .example {
       padding: 10px 12px; border-left: 3px solid var(--gold);
       background: var(--soft); margin-top: 10px; font-weight: 700;
-    }
-    .note {
-      background: var(--warn); border-left: 4px solid var(--gold);
-      padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin-top: 14px;
     }
     .tip {
       background: var(--wash); border-left: 4px solid var(--teal);
       padding: 12px 14px; border-radius: 8px; line-height: 1.55; margin: 12px 0;
     }
 
-    .scene {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-      padding: 14px; background: var(--navy); border-radius: 16px; color: #fff;
+    .comic {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+      background: linear-gradient(145deg, #0B1F3A 0%, #163a5c 100%);
+      border-radius: 18px;
     }
-    .zone {
-      background: rgba(255, 255, 255, 0.96); color: var(--navy);
-      border-radius: 14px; padding: 14px;
+    .panel-comic {
+      background: #fff;
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 210px;
+      border: 3px solid rgba(91, 184, 176, 0.35);
+      position: relative;
+      overflow: hidden;
     }
-    .zone h5 { margin: 0 0 10px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-dark); }
-    .who { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .panel-comic::before {
+      content: attr(data-n);
+      position: absolute; top: 8px; right: 12px;
+      font-size: 0.72rem; font-weight: 800; color: var(--muted); opacity: 0.7;
+    }
+    .park-bg {
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.12;
+      background:
+        radial-gradient(circle at 20% 80%, #5bb8b0 0 18%, transparent 19%),
+        radial-gradient(circle at 80% 30%, #d4a843 0 12%, transparent 13%),
+        linear-gradient(180deg, transparent 55%, #c8e8e4 100%);
+    }
+    .cast {
+      display: flex; align-items: flex-end; gap: 8px; min-height: 56px;
+      position: relative; z-index: 1; margin-top: 4px;
+    }
+    .cast.center { justify-content: center; }
     .avatar {
-      width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center;
-      background: var(--wash); font-weight: 800; color: var(--teal-dark); flex: 0 0 auto;
+      width: 48px; height: 48px; border-radius: 999px; display: grid; place-items: center;
+      font-weight: 800; color: #fff; flex: 0 0 auto; font-size: 0.95rem;
+      box-shadow: 0 4px 12px rgba(11, 31, 58, 0.18);
+      position: relative; z-index: 1;
     }
-    .who strong { display: block; font-size: 0.92rem; }
-    .who span { color: var(--muted); font-size: 0.78rem; font-weight: 700; }
-    .bubble {
-      border: 0; width: 100%; text-align: left; background: var(--soft);
-      border-radius: 12px; padding: 12px 14px; font-weight: 800; color: var(--navy);
-      box-shadow: 0 1px 0 var(--line);
-    }
-    .bubble.on { background: var(--wash); box-shadow: 0 0 0 2px var(--teal); }
-    .bubble small { display: none; margin-top: 6px; font-size: 0.78rem; font-weight: 700; color: var(--teal-dark); }
-    .bubble.on small { display: block; }
+    .avatar.j { background: #238d85; }
+    .avatar.p { background: #d4a843; color: var(--navy); }
+    .avatar.o { background: #3d6ea5; }
+    .avatar.l { background: #8b6bb5; }
+    .avatar.sm { width: 40px; height: 40px; font-size: 0.82rem; }
+    .avatar.run { transform: rotate(-8deg); }
+    .avatar.run2 { transform: rotate(8deg); }
 
-    .map {
-      display: grid; grid-template-columns: 88px 1fr; gap: 8px; align-items: stretch;
-      font-size: 0.95rem;
+    .speech {
+      position: relative; z-index: 1;
+      border: 0; width: 100%; text-align: left;
+      background: var(--soft);
+      border-radius: 18px;
+      padding: 14px 16px 16px;
+      font-weight: 800; color: var(--navy);
+      box-shadow: 0 2px 0 var(--line);
+      transition: box-shadow 0.2s, background 0.2s, transform 0.15s;
     }
-    .map b { display: grid; place-items: center; padding: 10px; color: var(--navy); }
-    .map .h { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 800; text-align: center; padding: 8px; }
-    .map .cell {
-      background: var(--wash); border-radius: 12px; padding: 14px; font-weight: 800; text-align: center;
+    .speech::after {
+      content: "";
+      position: absolute;
+      bottom: -10px; left: 22px;
+      width: 0; height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 12px solid var(--soft);
+      transition: border-top-color 0.2s;
     }
-    .map .cell small { display: block; margin-top: 4px; font-weight: 600; color: var(--muted); }
+    .speech.tail-right::after { left: auto; right: 22px; }
+    .speech.tail-center::after { left: 50%; margin-left: -10px; }
+    .speech.on {
+      background: var(--wash);
+      box-shadow: 0 0 0 3px var(--teal), 0 8px 24px rgba(91, 184, 176, 0.35);
+      transform: translateY(-1px);
+    }
+    .speech.on::after { border-top-color: var(--wash); }
+    .speech small {
+      display: none; margin-top: 8px; font-size: 0.78rem;
+      font-weight: 700; color: var(--teal-dark);
+    }
+    .speech.on small { display: block; }
+    .pronoun-chip {
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-top: 4px; align-self: flex-start;
+      background: var(--navy); color: #fff;
+      border-radius: 999px; padding: 4px 12px;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.04em;
+      position: relative; z-index: 1;
+    }
+    .pronoun-chip.you { background: #d4a843; color: var(--navy); }
+    .pronoun-chip.we { background: var(--teal-dark); }
+    .pronoun-chip.they { background: #3d6ea5; }
+
+    .mini-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 8px 0 16px;
+    }
+    .mini-bubble {
+      background: var(--wash);
+      border: 2px solid rgba(91, 184, 176, 0.4);
+      border-radius: 16px;
+      padding: 14px 10px;
+      text-align: center;
+      font-weight: 800;
+      color: var(--navy);
+      position: relative;
+    }
+    .mini-bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -8px; left: 50%; transform: translateX(-50%);
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid var(--wash);
+    }
+    .mini-bubble .verb { color: var(--teal-dark); background: #fff; padding: 1px 6px; border-radius: 6px; }
 
     .times { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
     .times span {
@@ -209,6 +289,15 @@
     .feedback.show { display: block; }
     .feedback.good { background: var(--good); }
     .feedback.warn { background: var(--warn); }
+
+    .scene-hint {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.78rem; font-weight: 700; color: var(--muted); margin-bottom: 6px;
+    }
+    .scene-hint .dot {
+      width: 22px; height: 22px; border-radius: 999px; display: grid; place-items: center;
+      font-size: 0.65rem; font-weight: 800; color: #fff;
+    }
 
     .reading { line-height: 1.85; background: var(--soft); padding: 18px; border-radius: 14px; }
     .hit {
@@ -248,7 +337,8 @@
       .shell { padding: 12px; }
       .brand p { display: none; }
       .panel { padding: 18px; }
-      .grid2, .grid4, .scene { grid-template-columns: 1fr; }
+      .grid2, .comic { grid-template-columns: 1fr; }
+      .mini-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .hero::after { opacity: 0.08; width: 120px; }
     }
   </style>
@@ -274,8 +364,8 @@
         <span class="eyebrow">A1.2 · Daily life</span>
         <h2>I <span>walk</span>. We sit.</h2>
         <p>
-          Jordan is at Oak Street Park with Priya. Owen and Lila are there too.
-          Today you talk about people with <strong>I, you, we, they</strong> — and the verb stays the same.
+          Look at the park. Read each bubble. The verb looks the same —
+          with <strong>I, you, we, they</strong>.
         </p>
         <div class="path">
           <span>1 Notice</span><span>2 Grammar</span><span>3 Practice</span>
@@ -286,8 +376,8 @@
 
     <article class="lesson">
       <header class="lesson-head">
-        <h3>Four people, one verb form</h3>
-        <p>Look at Saturday at the park. Then build sentences about your day — morning, afternoon, and night.</p>
+        <h3>Four bubbles at the park</h3>
+        <p>Read the comic. Then build sentences about your day — morning, afternoon, and night.</p>
       </header>
       <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
       <div id="panels"></div>
@@ -298,7 +388,7 @@
 
 <script>
 const sections = ['1 Notice', '2 Grammar', '3 Practice', '4 Reading', '5 Speaking', '6 Writing', '7 Can-do'];
-const KEY = 'simplePresent1A12v1';
+const KEY = 'simplePresent1A12v2';
 
 function loadState() {
   try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
@@ -323,72 +413,76 @@ const panels = {
 function noticeHTML() {
   return `
     <h4>Saturday at Oak Street Park</h4>
-    <p class="intro">Tap a card. Read the sentence. The verb does not change: walk, drink, sit, run.</p>
-    <div class="scene" aria-label="Four voices at the park">
-      <div class="zone">
-        <div class="who">
-          <div class="avatar">J</div>
-          <div><strong>Jordan</strong><span>talks about himself</span></div>
-        </div>
-        <button type="button" class="bubble" data-who="I">
+    <p class="intro">Look at the park. Read each bubble. The verb looks the same. Tap a bubble for a soft glow.</p>
+    <div class="comic" aria-label="Four-panel comic at the park">
+      <div class="panel-comic" data-n="1">
+        <div class="park-bg" aria-hidden="true"></div>
+        <button type="button" class="speech" data-who="I">
           I walk to the park at 9:00.
-          <small>I + walk</small>
+          <small>same verb · walk</small>
         </button>
-      </div>
-      <div class="zone">
-        <div class="who">
-          <div class="avatar">P</div>
-          <div><strong>Priya</strong><span>Jordan talks to her</span></div>
+        <div class="cast">
+          <div class="avatar j" title="Jordan">J</div>
         </div>
-        <button type="button" class="bubble" data-who="You">
+        <span class="pronoun-chip">I</span>
+      </div>
+      <div class="panel-comic" data-n="2">
+        <div class="park-bg" aria-hidden="true"></div>
+        <button type="button" class="speech tail-right" data-who="You">
           You drink coffee on the bench.
-          <small>You + drink</small>
+          <small>same verb · drink</small>
         </button>
-      </div>
-      <div class="zone">
-        <div class="who">
-          <div class="avatar">W</div>
-          <div><strong>Jordan + Priya</strong><span>together</span></div>
+        <div class="cast" style="justify-content:space-between">
+          <div class="avatar j sm" title="Jordan">J</div>
+          <div class="avatar p" title="Priya">P</div>
         </div>
-        <button type="button" class="bubble" data-who="We">
+        <span class="pronoun-chip you">You</span>
+      </div>
+      <div class="panel-comic" data-n="3">
+        <div class="park-bg" aria-hidden="true"></div>
+        <button type="button" class="speech tail-center" data-who="We">
           We sit in the sun.
-          <small>We + sit</small>
+          <small>same verb · sit</small>
         </button>
-      </div>
-      <div class="zone">
-        <div class="who">
-          <div class="avatar">OL</div>
-          <div><strong>Owen and Lila</strong><span>two friends</span></div>
+        <div class="cast center">
+          <div class="avatar j sm" title="Jordan">J</div>
+          <div class="avatar p sm" title="Priya">P</div>
         </div>
-        <button type="button" class="bubble" data-who="They">
+        <span class="pronoun-chip we">We</span>
+      </div>
+      <div class="panel-comic" data-n="4">
+        <div class="park-bg" aria-hidden="true"></div>
+        <button type="button" class="speech" data-who="They">
           They run around the fountain.
-          <small>They + run</small>
+          <small>same verb · run</small>
         </button>
+        <div class="cast" style="justify-content:space-between;align-items:flex-end">
+          <div class="avatar j sm" title="Jordan" style="opacity:0.85">J</div>
+          <div style="display:flex;gap:6px">
+            <div class="avatar o sm run" title="Owen">O</div>
+            <div class="avatar l sm run2" title="Lila">L</div>
+          </div>
+        </div>
+        <span class="pronoun-chip they">They</span>
       </div>
     </div>
-    <div class="tip"><strong>Listen for the pattern:</strong> I walk. You drink. We sit. They run. The verb looks the same.</div>
+    <div class="tip"><strong>Look:</strong> I walk. You drink. We sit. They run. The verb looks the same in every bubble.</div>
   `;
 }
 
 function grammarHTML() {
   return `
     <h4>I / you / we / they + the verb</h4>
-    <p class="intro">The verb stays in the base form. No extra letter at the end.</p>
-    <div class="map" role="table" aria-label="I you we they plus verb">
-      <div class="h"></div>
-      <div class="h">Verb</div>
-      <b>I</b>
-      <div class="cell">walk <small>I walk to the park.</small></div>
-      <b>You</b>
-      <div class="cell">walk <small>You walk to the park.</small></div>
-      <b>We</b>
-      <div class="cell">walk <small>We walk to the park.</small></div>
-      <b>They</b>
-      <div class="cell">walk <small>They walk to the park.</small></div>
+    <p class="intro">Four mini-bubbles. Same verb every time.</p>
+    <div class="mini-row" aria-label="I you we they walk">
+      <div class="mini-bubble">I <span class="verb">walk</span></div>
+      <div class="mini-bubble">You <span class="verb">walk</span></div>
+      <div class="mini-bubble">We <span class="verb">walk</span></div>
+      <div class="mini-bubble">They <span class="verb">walk</span></div>
     </div>
-    <div class="grid2" style="margin-top:16px">
+    <div class="grid2" style="margin-top:8px">
       <div class="card mint">
-        <div class="label">The same verb</div>
+        <div class="label">More examples</div>
         <p class="big-rule">I eat. You eat. We eat. They eat.</p>
         <div class="example">I get up at 7:00.</div>
         <div class="example">You work in the morning.</div>
@@ -410,33 +504,35 @@ function grammarHTML() {
         <div class="example">They wait for the bus at 1:00.</div>
       </div>
     </div>
-    <div class="note"><strong>Remember:</strong> I / you / we / they + eat, work, study, go. Not <s>eats</s>, not <s>works</s>, not <s>studies</s>, not <s>goes</s>.</div>
+    <div class="tip" style="margin-top:14px"><strong>Remember:</strong> With I, you, we, they — use walk / eat / go / study / watch.</div>
   `;
 }
 
 function practiceHTML() {
   const saved = state.practice || {};
   return `
-    <h4>Choose, then check.</h4>
-    <p class="intro">A: who is speaking. B: the verb with no extra letter. C: a full Saturday sentence.</p>
+    <h4>Match the comic. Then check.</h4>
+    <p class="intro">A: whose bubble? B: finish the bubble with a verb. C: time words.</p>
 
-    <h5>A · I, you, we, or they</h5>
+    <h5>A · Whose bubble?</h5>
+    <p class="intro" style="margin-top:-6px">Look at the comic. Who says this line?</p>
     ${mcGroup('A', [
-      { q: 'Jordan talks about himself. ______ walk to the park at 9:00.', opts: ['I', 'You', 'They'], a: 'I', why: 'Jordan = I when he talks about himself.' },
-      { q: 'Jordan talks to Priya. ______ drink coffee on the bench.', opts: ['I', 'You', 'We'], a: 'You', why: 'To one person in front of you → you.' },
-      { q: 'Jordan and Priya together. ______ sit in the sun.', opts: ['You', 'We', 'They'], a: 'We', why: 'The speaker and one more person → we.' },
-      { q: 'Owen and Lila. ______ run around the fountain.', opts: ['I', 'We', 'They'], a: 'They', why: 'Two other people → they.' }
+      { q: '______ walk to the park at 9:00.', hint: 'J', hintLabel: 'Jordan alone', opts: ['I', 'You', 'They'], a: 'I', why: 'Jordan alone in panel 1 → I walk…' },
+      { q: '______ drink coffee on the bench.', hint: 'P', hintLabel: 'to Priya', opts: ['I', 'You', 'We'], a: 'You', why: 'Bubble to Priya in panel 2 → You drink…' },
+      { q: '______ sit in the sun.', hint: 'JP', hintLabel: 'Jordan + Priya', opts: ['You', 'We', 'They'], a: 'We', why: 'Jordan and Priya together → We sit…' },
+      { q: '______ run around the fountain.', hint: 'OL', hintLabel: 'Owen & Lila', opts: ['I', 'We', 'They'], a: 'They', why: 'Owen and Lila in panel 4 → They run…' }
     ], saved)}
 
-    <h5>B · The verb stays the same</h5>
+    <h5>B · Build the bubble</h5>
+    <p class="intro" style="margin-top:-6px">Choose a verb to finish the sentence.</p>
     ${mcGroup('B', [
-      { q: 'I ______ breakfast at 8:00.', opts: ['eat', 'eats'], a: 'eat', why: 'I + eat. No extra letter.' },
-      { q: 'You ______ English in the afternoon.', opts: ['study', 'studies'], a: 'study', why: 'You + study. No extra letter.' },
-      { q: 'We ______ to work at 7:30.', opts: ['go', 'goes'], a: 'go', why: 'We + go. No extra letter.' },
-      { q: 'They ______ TV at night.', opts: ['watch', 'watches'], a: 'watch', why: 'They + watch. No extra letter.' }
+      { q: 'I ______ breakfast at 8:00.', opts: ['eat', 'drink', 'cook'], a: 'eat', why: 'I eat breakfast at 8:00.' },
+      { q: 'You ______ English in the afternoon.', opts: ['study', 'run', 'sit'], a: 'study', why: 'You study English in the afternoon.' },
+      { q: 'We ______ to work at 7:30.', opts: ['go', 'cook', 'read'], a: 'go', why: 'We go to work at 7:30.' },
+      { q: 'They ______ TV at night.', opts: ['watch', 'walk', 'wait'], a: 'watch', why: 'They watch TV at night.' }
     ], saved)}
 
-    <h5>C · Finish the sentence</h5>
+    <h5>C · Time words</h5>
     ${mcGroup('C', [
       { q: 'I get up ______.', opts: ['at 7:00', 'on 7:00', 'in 7:00'], a: 'at 7:00', why: 'Clock time takes at.' },
       { q: 'We walk to the park ______.', opts: ['in Saturday', 'on Saturday', 'at Saturday'], a: 'on Saturday', why: 'Days take on: on Saturday.' },
@@ -459,7 +555,11 @@ function mcGroup(group, items, saved) {
     const opts = item.opts.map((o) =>
       `<button type="button" class="opt${picked === o ? ' selected' : ''}" data-g="${group}" data-i="${i}" data-v="${escapeAttr(o)}">${escapeHtml(o)}</button>`
     ).join('');
+    const hint = item.hint
+      ? `<div class="scene-hint"><span class="dot" style="background:${hintColor(item.hint)}">${escapeHtml(item.hint.length > 2 ? item.hint.slice(0,2) : item.hint)}</span>${escapeHtml(item.hintLabel || '')}</div>`
+      : '';
     return `<div class="q" data-qid="${id}" data-answer="${escapeAttr(item.a)}" data-why="${escapeAttr(item.why)}">
+      ${hint}
       <p>${item.q}</p>
       <div class="opts">${opts}</div>
       <div class="why"></div>
@@ -467,10 +567,18 @@ function mcGroup(group, items, saved) {
   }).join('');
 }
 
+function hintColor(h) {
+  if (h === 'J') return '#238d85';
+  if (h === 'P') return '#d4a843';
+  if (h === 'JP') return '#238d85';
+  if (h === 'OL') return '#3d6ea5';
+  return '#0B1F3A';
+}
+
 function readingHTML() {
   return `
     <h4>Jordan’s message to Priya. Tap every I, you, we, and they.</h4>
-    <p class="intro">Find all 8. Then choose the right ending for each line.</p>
+    <p class="intro">Find all 8. Then answer the questions.</p>
     <div class="reading" id="reading">
       Hi Priya. <span class="hit" data-ok="1">I</span> walk to Oak Street Park at 9:00.
       <span class="hit" data-ok="1">You</span> drink coffee on the bench, and <span class="hit" data-ok="1">we</span> sit in the sun.
@@ -480,17 +588,18 @@ function readingHTML() {
     </div>
     <div id="readCount" style="margin-top:12px;font-weight:800;color:var(--teal-dark)">Found 0 / 8</div>
     <div class="q">
-      <p>Jordan walks to the park at ______.</p>
+      <p>Jordan is at the park at ______.</p>
       <div class="opts" data-readq="time">
         <button type="button" class="opt" data-v="9">9:00</button>
         <button type="button" class="opt" data-v="12">12:00</button>
       </div>
     </div>
     <div class="q">
-      <p>Owen and Lila ______ around the fountain.</p>
-      <div class="opts" data-readq="run">
+      <p>What do Owen and Lila do?</p>
+      <div class="opts" data-readq="do">
         <button type="button" class="opt" data-v="run">run</button>
-        <button type="button" class="opt" data-v="runs">runs</button>
+        <button type="button" class="opt" data-v="sit">sit</button>
+        <button type="button" class="opt" data-v="cook">cook</button>
       </div>
     </div>
     <button type="button" class="btn" id="checkReading" style="margin-top:8px">Check</button>
@@ -508,7 +617,7 @@ function speakingHTML() {
   ];
   return `
     <h4>Say the sentence. Don’t read a list — look at people in the room.</h4>
-    <p class="intro">A partner gives the prompt. You speak. Then swap. All sentences are about real days — I, you, we, they.</p>
+    <p class="intro">A partner gives the prompt. You speak. Then swap. All sentences use I, you, we, they.</p>
     <div class="speak" id="speakPrompts">
       ${prompts.map((p, i) => `<div class="prompt" data-sp="${i}" hidden>${p}</div>`).join('')}
     </div>
@@ -543,8 +652,8 @@ function writingHTML() {
     <textarea id="writingBox" placeholder="I get up at 8:00. I eat breakfast with my family.…">${escapeHtml(text)}</textarea>
     <div class="cando" style="margin-top:12px">
       <label><input type="checkbox" data-writechk="people"> I used I, you, we, and they.</label>
-      <label><input type="checkbox" data-writechk="base"> The verb has no extra letter (eat, not eats).</label>
       <label><input type="checkbox" data-writechk="time"> Every sentence has a time: at 7:00, in the morning, on Saturday, at night.</label>
+      <label><input type="checkbox" data-writechk="clear"> My sentences are clear and about a real Saturday.</label>
     </div>
   `;
 }
@@ -556,12 +665,11 @@ function candoHTML() {
     ['you', 'I can make a sentence with you + a verb: You drink coffee.'],
     ['we', 'I can make a sentence with we + a verb: We sit in the park.'],
     ['they', 'I can make a sentence with they + a verb: They run in the morning.'],
-    ['form', 'I remember: I / you / we / they use the verb with no extra letter.'],
     ['time', 'I can add a time: in the morning, in the afternoon, at night, at 7:00, on Saturday.']
   ];
   return `
     <h4>Can-do · I, you, we, they</h4>
-    <p class="intro">Check what is true for you now. Next lesson: one person — he, she, it — and a letter on the verb.</p>
+    <p class="intro">Check what is true for you now.</p>
     <div class="cando">
       ${items.map(([id, label]) => `
         <label>
@@ -598,7 +706,7 @@ function openTab(i) {
 
 function bindPanel(i) {
   if (i === 0) {
-    document.querySelectorAll('.bubble').forEach((btn) => {
+    document.querySelectorAll('.speech').forEach((btn) => {
       btn.addEventListener('click', () => btn.classList.toggle('on'));
     });
   }
@@ -648,7 +756,7 @@ function bindPractice() {
     const fb = document.getElementById('practiceFb');
     fb.className = 'feedback show ' + (right === total ? 'good' : 'warn');
     fb.textContent = right === total
-      ? `All ${total} correct. I, you, we, they — the verb stays the same.`
+      ? `All ${total} correct. Great — I, you, we, they use walk / eat / go.`
       : `${right} / ${total}. Read the note under each item.`;
   });
   document.getElementById('resetPractice').addEventListener('click', () => {
@@ -669,7 +777,7 @@ function bindReading() {
       document.getElementById('readCount').textContent = `Found ${found} / ${total}`;
     });
   });
-  const answers = { time: '9', run: 'run' };
+  const answers = { time: '9', do: 'run' };
   document.querySelectorAll('.opt[data-v]').forEach((btn) => {
     if (!btn.closest('[data-readq]')) return;
     btn.addEventListener('click', () => {
@@ -692,8 +800,8 @@ function bindReading() {
     const fb = document.getElementById('readFb');
     fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
     fb.textContent = ok
-      ? 'I, you, we, they — and they run, not they runs.'
-      : 'Tap the eight words I / you / we / they, then finish both lines.';
+      ? 'Great — I, you, we, they use walk / eat / go. Owen and Lila run around the fountain.'
+      : 'Tap the eight words I / you / we / they, then answer both questions.';
   });
 }
 
