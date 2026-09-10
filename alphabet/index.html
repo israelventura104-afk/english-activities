@@ -227,33 +227,81 @@ function speak(text, rate) {
 function letterByCh(ch) {
   return letters.find(l => l.ch === ch.toUpperCase());
 }
-function speakLetter(ch) {
+
+const letterPlayer = new Audio();
+let letterPlayId = 0;
+function letterFile(ch) {
+  return `assets/audio/${String(ch).toLowerCase()}.mp3`;
+}
+function stopLetterAudio() {
+  letterPlayId += 1;
+  letterPlayer.onended = null;
+  letterPlayer.onerror = null;
+  letterPlayer.pause();
+  letterPlayer.removeAttribute('src');
+  try { letterPlayer.load(); } catch { /* ignore */ }
+  if (window.speechSynthesis) speechSynthesis.cancel();
+}
+function speakLetterTTS(ch, onend) {
   const item = letterByCh(ch);
-  speak(item ? item.say : ch);
+  const text = item ? item.say : ch;
+  if (!window.speechSynthesis) {
+    if (onend) setTimeout(onend, 400);
+    return;
+  }
+  const u = makeUtterance(text, 0.88);
+  u.onend = onend || null;
+  speechSynthesis.speak(u);
+}
+function speakLetter(ch, onend) {
+  const id = ++letterPlayId;
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  letterPlayer.pause();
+  const done = () => {
+    if (id !== letterPlayId) return;
+    if (onend) onend();
+  };
+  letterPlayer.onended = done;
+  letterPlayer.onerror = () => {
+    if (id !== letterPlayId) return;
+    speakLetterTTS(ch, done);
+  };
+  letterPlayer.src = letterFile(ch);
+  letterPlayer.play().catch(() => {
+    if (id !== letterPlayId) return;
+    speakLetterTTS(ch, done);
+  });
+}
+function playLetterSequence(chars, gap, onEach, onDone) {
+  const list = chars.map(c => String(c).toUpperCase());
+  let i = 0;
+  function next() {
+    if (i >= list.length) {
+      if (onDone) onDone();
+      return;
+    }
+    if (onEach) onEach(list[i], i);
+    speakLetter(list[i], () => {
+      i += 1;
+      setTimeout(next, gap || 160);
+    });
+  }
+  next();
 }
 
 let alphaChain = false;
 function stopAlphabet() {
   alphaChain = false;
-  if (window.speechSynthesis) speechSynthesis.cancel();
+  stopLetterAudio();
   document.querySelectorAll('.letter.playing').forEach(el => el.classList.remove('playing'));
 }
 function playAlphabet() {
-  if (!window.speechSynthesis) return;
   stopAlphabet();
   alphaChain = true;
-  let i = 0;
-  function next() {
-    if (!alphaChain || i >= letters.length) {
-      stopAlphabet();
-      return;
-    }
-    highlightLetter(letters[i].ch);
-    const u = makeUtterance(letters[i].say, 0.92);
-    u.onend = () => { i += 1; next(); };
-    speechSynthesis.speak(u);
-  }
-  next();
+  playLetterSequence(letters.map(l => l.ch), 80, (ch) => {
+    if (!alphaChain) return;
+    highlightLetter(ch);
+  }, () => stopAlphabet());
 }
 function highlightLetter(ch) {
   document.querySelectorAll('.letter').forEach(el => {
@@ -662,17 +710,7 @@ function setupChain() {
   if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
 }
 function playChain() {
-  if (!window.speechSynthesis) return;
-  speechSynthesis.cancel();
-  let i = 0;
-  function next() {
-    if (i >= chainTarget.length) return;
-    const item = letterByCh(chainTarget[i]);
-    const u = makeUtterance(item.say, 0.82);
-    u.onend = () => { i += 1; setTimeout(next, 220); };
-    speechSynthesis.speak(u);
-  }
-  next();
+  playLetterSequence(chainTarget, 220);
 }
 function tapChain(ch) {
   const need = chainTarget[chainProgress.length];
@@ -792,18 +830,7 @@ function setupHear() {
   if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
 }
 function playDictation() {
-  const chars = spellNames[hearIndex].name.toUpperCase().split('');
-  if (!window.speechSynthesis) return;
-  speechSynthesis.cancel();
-  let i = 0;
-  function next() {
-    if (i >= chars.length) return;
-    const item = letterByCh(chars[i]);
-    const u = makeUtterance(item ? item.say : chars[i], 0.8);
-    u.onend = () => { i += 1; setTimeout(next, 180); };
-    speechSynthesis.speak(u);
-  }
-  next();
+  playLetterSequence(spellNames[hearIndex].name.toUpperCase().split(''), 200);
 }
 function tapHear(ch) {
   const target = spellNames[hearIndex].name.toUpperCase().split('');
@@ -857,17 +884,8 @@ function clearMyName() {
   drawMyName();
 }
 function playMyName() {
-  if (!myLetters.length || !window.speechSynthesis) return;
-  speechSynthesis.cancel();
-  let i = 0;
-  function next() {
-    if (i >= myLetters.length) return;
-    const item = letterByCh(myLetters[i]);
-    const u = makeUtterance(item ? item.say : myLetters[i], 0.85);
-    u.onend = () => { i += 1; setTimeout(next, 120); };
-    speechSynthesis.speak(u);
-  }
-  next();
+  if (!myLetters.length) return;
+  playLetterSequence(myLetters, 140);
 }
 
 function renderCando() {
