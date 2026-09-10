@@ -77,18 +77,13 @@
     .why-box.show{display:block}.why-box strong{color:var(--navy)}
     .feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}
     .feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}
-    .error-card{border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:10px}
-    .error-card .wrong-line{font-weight:800;color:#a33;text-decoration:line-through;text-decoration-thickness:2px}
-    .error-card .explain{margin-top:8px;font-size:.84rem;color:var(--slate);display:none}
-    .error-card.solved .explain{display:block}
-    .error-card.solved.ok{background:#f3f7fb;border-color:#9bb0c4}
-    .error-card.solved.miss{background:var(--warn);border-color:#d4b56a}
-    .match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .match-col{display:grid;gap:8px}
-    .pair{border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;font-weight:800;text-align:center}
-    .pair.on{background:var(--mint);border-color:var(--teal)}
-    .pair.good{background:var(--good);border-color:#72b98c}
-    .pair.bad{background:var(--bad);border-color:#d98989}
+    .hear-play{width:100px;height:100px;border:0;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:grid;place-items:center;margin:10px auto 0}
+    .hear-play:hover{filter:brightness(1.06)}
+    .choice-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+    .choice{border:1px solid var(--line);background:#fff;border-radius:16px;padding:26px 8px;font-size:2.1rem;font-weight:800}
+    .choice:disabled{cursor:default}
+    .choice .tiny{display:block;margin-top:6px;font-size:.72rem;font-weight:700;color:var(--slate)}
+    .choice.correct .tiny,.choice.wrong .tiny{color:inherit;opacity:.85}
     .spell-stage{display:grid;gap:14px}
     .name-card{background:var(--navy);color:#fff;border-radius:16px;padding:20px;text-align:center}
     .name-card .who{font-size:2rem;font-weight:800;letter-spacing:.04em}
@@ -112,7 +107,8 @@
     .footer{text-align:center;color:var(--slate);font-size:.78rem;padding:24px}
     @media(max-width:760px){
       .shell{padding:12px}.brand p{display:none}.panel{padding:18px}
-      .grid2,.match{grid-template-columns:1fr}.hero:after{opacity:.04}
+      .grid2{grid-template-columns:1fr}.hero:after{opacity:.04}
+      .choice{padding:18px 6px;font-size:1.7rem}
       .cando label{grid-template-columns:auto 1fr}
       .cando .lvl{display:none}
     }
@@ -373,44 +369,69 @@ const watchHTML = `
   <div class="note"><strong>Keep this list:</strong> H aitch · J jay · W double u · Y why · B bee · V vee.</div>
 </section>`;
 
-const matchLeft = ['A','B','D','G','M','R'];
-const matchRight = ['g','a','r','b','m','d'];
-const missingQs = [
-  { q:'A, B, ___', opts:['C','E','G'], ans:0, why:'The alphabet goes A, B, <strong>C</strong>.' },
-  { q:'H, I, ___', opts:['G','J','K'], ans:1, why:'H, I, <strong>J</strong>.' },
-  { q:'Which group is ONLY vowels?', opts:['A, E, I, O, U','A, E, I, K, U','A, B, I, O, U'], ans:0, why:'The five vowels are <strong>A E I O U</strong>. K and B are consonants.' },
-  { q:'How do you say the letter H?', opts:['hache','aitch','hatch'], ans:1, why:'The English name is <strong>aitch</strong> — the H is silent.' },
-  { q:'How do you say the letter W?', opts:['doble ve','double u','vee'], ans:1, why:'W = <strong>double u</strong>, not doble ve.' },
-  { q:'The letter J is…', opts:['jota','jay','gee'], ans:1, why:'J = <strong>jay</strong>. G is “jee”.' }
+const confusable = [
+  ['H','J','G'],
+  ['B','V','P'],
+  ['I','Y','E'],
+  ['A','E','I'],
+  ['C','S','Z'],
+  ['U','W','V'],
+  ['J','G','Y'],
+  ['W','U','V'],
+  ['Y','I','J'],
+  ['G','J','H']
 ];
-const errorClinic = [
-  { wrong:'The letter H is “hache”.', opts:['The letter H is “hache”.','The letter H is “aitch”.','The letter H is “hatch”.'], ans:1, why:'English name = <strong>aitch</strong>. Spanish <em>hache</em> is a different name.' },
-  { wrong:'J is “jota”.', opts:['J is “jota”.','J is “jay”.','J is “jee”.'], ans:1, why:'<strong>Jay</strong>. “Jee” is the name of G.' },
-  { wrong:'W is “doble ve”.', opts:['W is “doble ve”.','W is “double u”.','W is “vee”.'], ans:1, why:'W looks like two U’s — <strong>double u</strong>.' },
-  { wrong:'B and V sound the same in English.', opts:['B and V sound the same in English.','B is “bee”, V is “vee” — they are different.','B and V are both “bee”.'], ans:1, why:'Spanish often merges them. English keeps <strong>bee</strong> vs <strong>vee</strong>.' }
-];
+const WHICH_ROUNDS = 10;
+const CHAIN_ROUNDS = 5;
+let practiceMode = 'which';
+let whichRound = 0;
+let whichScore = 0;
+let whichAnswer = '';
+let whichLocked = false;
+let chainRound = 0;
+let chainScore = 0;
+let chainTarget = [];
+let chainProgress = [];
 
 const practiceHTML = `
 <section class="panel">
-  <h4>3 · Practice · short and checked</h4>
-  <p class="intro">Three quick jobs. Feedback says <em>why</em>, not only right/wrong.</p>
+  <h4>3 · Practice · hear the English name</h4>
+  <p class="intro">You already know <strong>Aa</strong> from Spanish. The work here is the <em>name</em> in English — especially H, J, W, Y, B and V.</p>
 
-  <h5>A · Match uppercase and lowercase</h5>
-  <p class="intro" style="margin-bottom:8px">Tap a capital, then tap its small letter. On a phone this is easier than dragging.</p>
-  <div class="match">
-    <div class="match-col" id="matchL"></div>
-    <div class="match-col" id="matchR"></div>
+  <div class="filters" id="practiceModes">
+    <button type="button" class="chip on" data-mode="which" onclick="setPracticeMode('which')">1 · Which one?</button>
+    <button type="button" class="chip" data-mode="chain" onclick="setPracticeMode('chain')">2 · Chain of 3</button>
   </div>
-  <div class="feedback" id="matchFb"></div>
-  <button type="button" class="btn ghost" style="margin-top:8px" onclick="resetMatch()">Reset match</button>
 
-  <h5>B · Choose the correct letter</h5>
-  <div id="missingBox"></div>
+  <div id="whichGame">
+    <div class="name-card">
+      <p>Listen. Then tap the letter you heard — not the Spanish name.</p>
+      <button type="button" class="hear-play" onclick="playWhich()">Play</button>
+      <div class="choice-row" id="whichChoices"></div>
+    </div>
+    <div class="game-nav">
+      <div class="score" id="whichScore">Round 1 / ${WHICH_ROUNDS}</div>
+      <button type="button" class="btn ghost" onclick="playWhich()">Hear it again</button>
+    </div>
+    <div class="feedback" id="whichFb"></div>
+  </div>
 
-  <h5>C · Error clinic</h5>
-  <p class="intro" style="margin-bottom:8px">Each line is a typical classroom mistake. Pick the best repair.</p>
-  <div id="errorBox"></div>
-  <div class="feedback" id="errorFb"></div>
+  <div id="chainGame" style="display:none">
+    <div class="name-card">
+      <p>Three letter names. Tap them in the same order.</p>
+      <button type="button" class="hear-play" onclick="playChain()">Play</button>
+      <div class="slots" id="chainSlots"></div>
+    </div>
+    <div class="pad" id="chainPad"></div>
+    <div class="game-nav">
+      <div class="score" id="chainScore">Chain 1 / ${CHAIN_ROUNDS}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn ghost" onclick="playChain()">Hear again</button>
+        <button type="button" class="btn ghost" onclick="resetChainRound()">Clear</button>
+      </div>
+    </div>
+    <div class="feedback" id="chainFb"></div>
+  </div>
 </section>`;
 
 const spellNames = [
@@ -516,9 +537,8 @@ function render() {
   ).join('');
   document.getElementById('panels').innerHTML = [lettersHTML, watchHTML, practiceHTML, spellHTML, checkHTML].join('');
   openTab(state.tab || 0);
-  renderMatch();
-  renderQuiz('missingBox', missingQs, 'missing');
-  renderErrors();
+  setupWhich();
+  setupChain();
   setupSpell();
   setupHear();
   setupMyPad();
@@ -544,143 +564,148 @@ function shuffle(arr) {
   return copy;
 }
 
-let matchPick = null;
-function renderMatch() {
-  const L = document.getElementById('matchL');
-  const R = document.getElementById('matchR');
-  if (!L || !R) return;
-  matchPick = null;
-  L.innerHTML = matchLeft.map(ch =>
-    `<button type="button" class="pair" data-side="L" data-ch="${ch}" onclick="pickMatch(this)">${ch}</button>`
+function setPracticeMode(mode) {
+  practiceMode = mode;
+  document.querySelectorAll('#practiceModes .chip').forEach(c => c.classList.toggle('on', c.dataset.mode === mode));
+  document.getElementById('whichGame').style.display = mode === 'which' ? '' : 'none';
+  document.getElementById('chainGame').style.display = mode === 'chain' ? '' : 'none';
+}
+function whyLetter(ch) {
+  const map = {
+    H: 'H is <strong>aitch</strong> — not hache.',
+    J: 'J is <strong>jay</strong> — not jota. G is “jee”.',
+    G: 'G is <strong>jee</strong>. J is “jay”.',
+    B: 'B is <strong>bee</strong> (lips together). V is “vee”.',
+    V: 'V is <strong>vee</strong> (teeth on the lip). B is “bee”.',
+    W: 'W is <strong>double u</strong> — not doble ve.',
+    Y: 'Y is <strong>why</strong> — not i griega.',
+    I: 'I is <strong>eye</strong>. Y is “why”.',
+    U: 'U is <strong>you</strong>. W is “double u”.'
+  };
+  return map[ch] || `That letter is <strong>${letterByCh(ch).say}</strong>.`;
+}
+function setupWhich() {
+  if (whichRound >= WHICH_ROUNDS) whichRound = 0;
+  whichLocked = false;
+  const set = confusable[whichRound % confusable.length];
+  const opts = shuffle([...set]);
+  whichAnswer = set[Math.floor(Math.random() * set.length)];
+  const box = document.getElementById('whichChoices');
+  if (!box) return;
+  box.innerHTML = opts.map(ch =>
+    `<button type="button" class="choice" data-ch="${ch}" onclick="pickWhich('${ch}')">${ch}</button>`
   ).join('');
-  R.innerHTML = shuffle(matchRight).map(ch =>
-    `<button type="button" class="pair" data-side="R" data-ch="${ch}" onclick="pickMatch(this)">${ch}</button>`
-  ).join('');
-  const fb = document.getElementById('matchFb');
+  const score = document.getElementById('whichScore');
+  if (score) score.textContent = `Round ${whichRound + 1} / ${WHICH_ROUNDS} · ${whichScore} correct`;
+  const fb = document.getElementById('whichFb');
   if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
 }
-function resetMatch() { renderMatch(); }
-function pickMatch(btn) {
-  if (btn.classList.contains('good')) return;
-  if (!matchPick) {
-    document.querySelectorAll('.pair.on').forEach(x => x.classList.remove('on'));
-    matchPick = btn;
-    btn.classList.add('on');
-    speakLetter(btn.dataset.ch);
+function playWhich() {
+  speakLetter(whichAnswer);
+}
+function pickWhich(ch) {
+  if (whichLocked) return;
+  whichLocked = true;
+  const ok = ch === whichAnswer;
+  document.querySelectorAll('#whichChoices .choice').forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.ch === whichAnswer) btn.classList.add('correct');
+    if (btn.dataset.ch === ch && !ok) btn.classList.add('wrong');
+  });
+  if (ok) whichScore += 1;
+  const fb = document.getElementById('whichFb');
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.innerHTML = ok
+    ? `Yes — ${whichAnswer} is “${letterByCh(whichAnswer).say}”.`
+    : `It was <strong>${whichAnswer}</strong>. ${whyLetter(whichAnswer)}`;
+  const score = document.getElementById('whichScore');
+  if (score) score.textContent = `Round ${whichRound + 1} / ${WHICH_ROUNDS} · ${whichScore} correct`;
+  state.whichScore = whichScore;
+  save();
+  setTimeout(() => {
+    whichRound += 1;
+    if (whichRound >= WHICH_ROUNDS) {
+      const total = whichScore;
+      fb.className = 'feedback show good';
+      fb.innerHTML = `Done · ${total} / ${WHICH_ROUNDS}. Try <strong>Chain of 3</strong>, or play again.`;
+      document.getElementById('whichChoices').innerHTML =
+        `<button type="button" class="btn secondary" style="grid-column:1/-1" onclick="restartWhich()">Play again</button>`;
+      whichRound = 0;
+      whichScore = 0;
+      return;
+    }
+    setupWhich();
+    playWhich();
+  }, 1100);
+}
+function restartWhich() {
+  whichRound = 0;
+  whichScore = 0;
+  setupWhich();
+  playWhich();
+}
+function setupChain() {
+  chainProgress = [];
+  const pool = shuffle(['H','J','G','B','V','W','Y','I','U','A','E','C']);
+  chainTarget = pool.slice(0, 3);
+  const padLetters = shuffle([...new Set([...chainTarget, ...pool.slice(3, 8)])]);
+  const slots = document.getElementById('chainSlots');
+  const pad = document.getElementById('chainPad');
+  if (!slots || !pad) return;
+  slots.innerHTML = chainTarget.map((_, i) => `<div class="slot" id="cslot-${i}"></div>`).join('');
+  pad.innerHTML = padLetters.map(ch =>
+    `<button type="button" onclick="tapChain('${ch}')">${ch}</button>`
+  ).join('');
+  const score = document.getElementById('chainScore');
+  if (score) score.textContent = `Chain ${chainRound + 1} / ${CHAIN_ROUNDS} · ${chainScore} clear`;
+  const fb = document.getElementById('chainFb');
+  if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
+}
+function playChain() {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  let i = 0;
+  function next() {
+    if (i >= chainTarget.length) return;
+    const item = letterByCh(chainTarget[i]);
+    const u = makeUtterance(item.say, 0.82);
+    u.onend = () => { i += 1; setTimeout(next, 220); };
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+function tapChain(ch) {
+  const need = chainTarget[chainProgress.length];
+  speakLetter(ch);
+  if (ch !== need) {
+    const fb = document.getElementById('chainFb');
+    fb.className = 'feedback show warn';
+    fb.innerHTML = `Not ${ch}. Hear it again. ${whyLetter(need)}`;
     return;
   }
-  if (matchPick === btn) {
-    btn.classList.remove('on');
-    matchPick = null;
-    return;
-  }
-  const a = matchPick.dataset.ch.toUpperCase();
-  const b = btn.dataset.ch.toUpperCase();
-  const ok = a === b && matchPick.dataset.side !== btn.dataset.side;
-  if (ok) {
-    matchPick.classList.remove('on');
-    matchPick.classList.add('good');
-    btn.classList.add('good');
-    speakLetter(a);
-  } else {
-    btn.classList.add('bad');
-    matchPick.classList.add('bad');
-    const first = matchPick;
+  const slot = document.getElementById('cslot-' + chainProgress.length);
+  if (slot) { slot.textContent = ch; slot.classList.add('filled'); }
+  chainProgress.push(ch);
+  if (chainProgress.length === chainTarget.length) {
+    chainScore += 1;
+    const fb = document.getElementById('chainFb');
+    fb.className = 'feedback show good';
+    fb.textContent = chainTarget.map(c => letterByCh(c).say).join(' · ');
+    state.chainScore = chainScore;
+    save();
     setTimeout(() => {
-      btn.classList.remove('bad');
-      first.classList.remove('bad', 'on');
-    }, 500);
-  }
-  matchPick = null;
-  const total = matchLeft.length;
-  const done = document.querySelectorAll('#matchL .pair.good').length;
-  const fb = document.getElementById('matchFb');
-  if (fb && done) {
-    fb.className = 'feedback show ' + (done === total ? 'good' : 'warn');
-    fb.textContent = done === total ? 'All six pairs — go to B.' : `${done} / ${total} pairs`;
+      chainRound += 1;
+      if (chainRound >= CHAIN_ROUNDS) {
+        fb.className = 'feedback show good';
+        fb.textContent = `Nice · ${chainScore} / ${CHAIN_ROUNDS} chains. Ready to spell a name.`;
+        chainRound = 0;
+        chainScore = 0;
+      }
+      setupChain();
+    }, 1100);
   }
 }
-
-function renderQuiz(id, qs, key) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  quizBank[key] = qs;
-  el.innerHTML = qs.map((item, i) => `
-    <div class="q">
-      <strong>${i + 1}. ${item.q}</strong>
-      <div class="opts">
-        ${item.opts.map((o, j) =>
-          `<button type="button" class="opt" data-quiz="${key}" data-q="${i}" data-a="${j}" onclick="answer(this)">${o}</button>`
-        ).join('')}
-      </div>
-      <div class="why-box" id="why-${key}-${i}"></div>
-    </div>
-  `).join('') + `<div class="feedback" id="fb-${key}"></div>`;
-}
-function answer(btn) {
-  const k = btn.dataset.quiz;
-  const q = Number(btn.dataset.q);
-  const item = quizBank[k][q];
-  const ok = Number(btn.dataset.a) === item.ans;
-  document.querySelectorAll(`[data-quiz="${k}"][data-q="${q}"]`).forEach(x => {
-    x.classList.remove('selected', 'correct', 'wrong');
-    if (Number(x.dataset.a) === item.ans) x.classList.add('correct');
-  });
-  if (!ok) btn.classList.add('wrong');
-  const whyEl = document.getElementById(`why-${k}-${q}`);
-  if (whyEl) {
-    whyEl.classList.add('show');
-    whyEl.innerHTML = (ok ? '✓ ' : '→ ') + item.why;
-  }
-  state[k] = state[k] || {};
-  state[k][q] = ok;
-  save();
-  const total = quizBank[k].length;
-  const done = Object.keys(state[k]).length;
-  const score = Object.values(state[k]).filter(Boolean).length;
-  const fb = document.getElementById(`fb-${k}`);
-  if (!fb) return;
-  fb.className = 'feedback show ' + (done >= total && score === total ? 'good' : 'warn');
-  fb.textContent = `Progress: ${score} correct · ${done} answered`;
-}
-
-function renderErrors() {
-  const box = document.getElementById('errorBox');
-  if (!box) return;
-  box.innerHTML = errorClinic.map((item, i) => `
-    <div class="error-card" id="err-${i}">
-      <div class="wrong-line">${i + 1}. ${item.wrong}</div>
-      <div class="opts">
-        ${item.opts.map((o, j) =>
-          `<button type="button" class="opt" onclick="answerError(${i},${j})">${o}</button>`
-        ).join('')}
-      </div>
-      <div class="explain" id="err-why-${i}"></div>
-    </div>
-  `).join('');
-}
-function answerError(i, j) {
-  const item = errorClinic[i];
-  const card = document.getElementById(`err-${i}`);
-  const ok = j === item.ans;
-  card.querySelectorAll('.opt').forEach((b, idx) => {
-    b.classList.remove('correct', 'wrong');
-    if (idx === item.ans) b.classList.add('correct');
-    if (idx === j && !ok) b.classList.add('wrong');
-  });
-  card.classList.add('solved', ok ? 'ok' : 'miss');
-  document.getElementById(`err-why-${i}`).innerHTML = item.why;
-  state.errors = state.errors || {};
-  state.errors[i] = ok;
-  save();
-  const vals = Object.values(state.errors);
-  const fb = document.getElementById('errorFb');
-  if (fb && vals.length === errorClinic.length) {
-    const score = vals.filter(Boolean).length;
-    fb.className = 'feedback show ' + (score === errorClinic.length ? 'good' : 'warn');
-    fb.textContent = `Error clinic: ${score}/${errorClinic.length} first-try correct.`;
-  }
-}
+function resetChainRound() { setupChain(); }
 
 function setSpellMode(mode) {
   spellMode = mode;
