@@ -4,7 +4,8 @@ const verbs = [
 'show','hear','play','move','live','believe','bring','happen','call','need'
 ];
 const pad = (n) => String(n).padStart(2, '0');
-const front = (i) => `assets/front/${pad(i + 1)}.png`;
+const ASSET_V = '20260910b';
+const front = (i) => `assets/front/${pad(i + 1)}.png?v=${ASSET_V}`;
 const audioSrc = (i) => `assets/audio/${verbs[i].replace(/\s+/g, '-')}.mp3`;
 const KEY = 'verbs2A12v1';
 function loadState() {
@@ -66,7 +67,7 @@ stopAudio();
 const i = order[card];
 document.getElementById('frontImg').src = front(i);
 document.getElementById('frontImg').alt = verbs[i];
-document.getElementById('backImg').src = `assets/back/${pad(i + 1)}.png`;
+document.getElementById('backImg').src = `assets/back/${pad(i + 1)}.png?v=${ASSET_V}`;
 document.getElementById('backImg').alt = verbs[i];
 document.getElementById('verbName').textContent = verbs[i].toUpperCase();
 document.getElementById('counter').textContent = `${card + 1} / ${verbs.length}`;
