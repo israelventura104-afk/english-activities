@@ -12,6 +12,7 @@ The hub is organized by **stage**, not by a numbered list. Access codes and stud
 Closes with *this / that / these / those*.
 
 - [First English Flow](https://first-english-flow.base44.app/) — starter course (alphabet, numbers, greetings, nationality, to be, family)
+- [The Alphabet & Pronunciation](./alphabet/) — starter lesson 1: letter names, then spell a name
 - [Verb to Be](./verb-to-be/) — story pass (Sofia, Maya, Carlos)
 - [Around the House](./around-the-house/)
 - [In the City](./in-the-city/)
