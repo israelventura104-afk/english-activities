@@ -105,6 +105,7 @@
     textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;line-height:1.65}
     textarea{min-height:110px;resize:vertical}
     .footer{text-align:center;color:var(--slate);font-size:.78rem;padding:24px}
+    a.inline{color:var(--teal);font-weight:800;text-decoration:none}
     @media(max-width:760px){
       .shell{padding:12px}.brand p{display:none}.panel{padding:18px}
       .grid2{grid-template-columns:1fr}.hero:after{opacity:.04}
@@ -576,7 +577,7 @@ const checkHTML = `
   <input type="text" id="exitName" placeholder="S-O-F-I-A" value="${(state.exitName || '').replace(/"/g, '&quot;')}">
   <button type="button" class="btn" style="margin-top:10px" onclick="saveExit()">Save exit ticket</button>
   <div class="feedback" id="exitFb"></div>
-  <div class="tip"><strong>Ready for Lesson 2?</strong> If you can spell your name without looking at the grid, you are ready for Numbers.</div>
+  <div class="tip"><strong>Ready for Lesson 2?</strong> If you can spell your name without looking at the grid, go to <a class="inline" href="../numbers/">Numbers 1–100</a>.</div>
 </section>`;
 
 function render() {

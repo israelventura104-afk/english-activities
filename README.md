@@ -13,6 +13,7 @@ Closes with *this / that / these / those*.
 
 - [First English Flow](https://first-english-flow.base44.app/) — starter course (alphabet, numbers, greetings, nationality, to be, family)
 - [The Alphabet & Pronunciation](./alphabet/) — starter lesson 1: letter names, then spell a name
+- [Numbers 1–100](./numbers/) — starter lesson 2: 0–20, the 21–99 machine, then a phone number
 - [Verb to Be](./verb-to-be/) — story pass (Sofia, Maya, Carlos)
 - [Around the House](./around-the-house/)
 - [In the City](./in-the-city/)
@@ -39,6 +40,7 @@ Not the next A-level.
 - [Conditionals intensive](./conditionals/) — Zero → Mixed (TOEFL repair pack)
 - [Business English](https://israelventura104-afk.github.io/business-english/)
 - [TOEFL ITP Boost](https://israelventura104-afk.github.io/toefl-itp-boost-lms/)
+- [TOEIC Boost](https://israelventura104-afk.github.io/toeic-lr-boost-lms/) — Listening & Reading (local: `C:\Users\Dell\toeic-lr-boost-lms`)
 
 ## How to add a module
 

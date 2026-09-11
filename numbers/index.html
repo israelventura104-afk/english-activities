@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <title>Numbers 1–100 | A1.1 | Israel Ventura</title>
+  <meta name="description" content="A1.1 starter: numbers 0–100, teens vs tens, then say a phone number.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#0B1F3A;--teal:#168C8C;--gold:#C8A96A;--slate:#667085;--line:#D6DEE7;--mint:#DDF3F1;--gray:#F4F6F8;--white:#fff;--good:#e8f7ef;--bad:#fff0f0;--warn:#fff8e8;--shadow:0 18px 45px rgba(11,31,58,.10)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:"Plus Jakarta Sans",sans-serif;color:var(--navy);background:linear-gradient(180deg,#f8fbfc,#edf4f5);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}
+    .shell{max-width:1080px;margin:auto;padding:24px}
+    .topbar{position:sticky;top:14px;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 16px;margin-bottom:18px;background:var(--navy);color:#fff;border-radius:18px;box-shadow:0 16px 34px rgba(11,31,58,.22)}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand img{width:50px;height:50px;border-radius:50%;background:#fff;padding:3px;object-fit:contain}
+    .brand h1{font-size:1.1rem;margin:0}.brand p{font-size:.8rem;color:#d6e7e7;margin:3px 0 0}
+    .actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .home,.pill{border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800}
+    .home{color:#fff;text-decoration:none;background:rgba(22,140,140,.35)}
+    .pill{border:1px solid rgba(255,255,255,.2)}
+    .hero{position:relative;overflow:hidden;background:#f4fbfa;border:1px solid rgba(11,31,58,.08);border-radius:20px;box-shadow:var(--shadow);padding:clamp(26px,5vw,48px);margin-bottom:22px}
+    .hero:after{content:"";position:absolute;right:24px;top:50%;transform:translateY(-50%);width:230px;height:230px;background:url('../favicon.png') center/contain no-repeat;opacity:.07}
+    .eyebrow{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;color:var(--teal);font-weight:800}
+    .hero h2{font-size:clamp(2rem,5vw,3.4rem);line-height:1.02;margin:12px 0;color:var(--navy);max-width:720px}
+    .hero h2 span{color:var(--teal)}
+    .hero p{color:var(--slate);line-height:1.7;max-width:640px;margin:0}
+    .path{display:flex;gap:7px;flex-wrap:wrap;margin-top:18px}
+    .path span{padding:6px 10px;border-radius:999px;background:var(--mint);font-size:.72rem;font-weight:800;color:var(--teal)}
+    .lesson{background:#fff;border:1px solid rgba(11,31,58,.08);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+    .lesson-head{background:var(--navy);color:#fff;padding:22px 24px}
+    .lesson-head h3{margin:0}.lesson-head p{color:#d7e7e8;line-height:1.55;margin:6px 0 0}
+    .tabs{display:flex;overflow-x:auto;gap:5px;padding:12px 14px;border-bottom:1px solid var(--line);scrollbar-width:thin}
+    .tab{border:0;background:transparent;color:var(--slate);font-size:.76rem;font-weight:800;padding:10px 12px;border-radius:10px;white-space:nowrap}
+    .tab.active,.tab:hover{background:var(--mint);color:var(--navy)}
+    .panel{display:none;padding:26px}.panel.active{display:block}
+    .panel h4{font-size:1.15rem;margin:0 0 10px}
+    .panel h5{font-size:.95rem;margin:18px 0 8px}
+    .intro{color:var(--slate);line-height:1.65;margin:0 0 18px}
+    .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+    .card.tint{background:var(--gray)}.card.mint{background:var(--mint)}.card.bad{background:var(--bad)}
+    .label{font-size:.7rem;letter-spacing:.08em;color:var(--teal);font-weight:800;text-transform:uppercase}
+    .big-rule{font-size:1.2rem;font-weight:800;margin:10px 0}
+    .teal{color:var(--teal)}
+    .example{padding:10px 12px;border-left:3px solid var(--gold);background:var(--gray);margin-top:10px;font-weight:700}
+    .note{background:var(--warn);border-left:4px solid var(--gold);padding:12px 14px;border-radius:8px;line-height:1.55;margin-top:14px}
+    .tip{background:var(--mint);border-left:4px solid var(--teal);padding:12px 14px;border-radius:8px;line-height:1.55;margin:12px 0}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:.78rem;font-weight:800;color:var(--navy)}
+    .chip.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .alpha-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .num-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}
+    .num{border:1px solid var(--line);background:#fff;border-radius:14px;padding:10px 6px 8px;text-align:center;min-height:88px}
+    .num .ch{font-size:1.45rem;font-weight:800;display:block;line-height:1.1}
+    .num .say{display:block;margin-top:4px;font-size:.68rem;color:var(--slate);font-weight:600}
+    .num.teen{background:var(--mint);border-color:#9ad4cf}
+    .num.ten{box-shadow:inset 0 0 0 2px var(--gold)}
+    .num.playing{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .num.playing .say{color:#d7e7e8}
+    .num.on{background:var(--mint);border-color:var(--teal)}
+    .btn,.opt{border:0;border-radius:10px;padding:10px 14px;font-weight:800}
+    .btn{background:var(--navy);color:#fff}
+    .btn.secondary{background:var(--teal)}
+    .btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+    .btn:disabled{opacity:.55;cursor:not-allowed}
+    .opt{background:#fff;border:1px solid var(--line)}
+    .opt.correct{background:var(--good);border-color:#72b98c}
+    .opt.wrong{background:var(--bad);border-color:#d98989}
+    .feedback{display:none;margin-top:12px;padding:12px;border-radius:10px;line-height:1.55}
+    .feedback.show{display:block}.feedback.good{background:var(--good)}.feedback.warn{background:var(--warn)}
+    .hear-play{width:100px;height:100px;border:0;border-radius:50%;background:var(--teal);color:#fff;font-weight:800;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;display:grid;place-items:center;margin:10px auto 0}
+    .choice-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+    .choice{border:1px solid var(--line);background:#fff;border-radius:16px;padding:26px 8px;font-size:2.1rem;font-weight:800}
+    .choice:disabled{cursor:default}
+    .name-card{background:var(--navy);color:#fff;border-radius:16px;padding:20px;text-align:center}
+    .name-card .who{font-size:2rem;font-weight:800;letter-spacing:.04em}
+    .name-card p{margin:6px 0 0;color:#d7e7e8;font-size:.9rem}
+    .slots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+    .slot{min-width:42px;height:48px;border-radius:10px;border:2px dashed rgba(255,255,255,.4);display:grid;place-items:center;font-weight:800;font-size:1.2rem}
+    .slot.filled{border-style:solid;border-color:var(--gold);background:rgba(255,255,255,.08)}
+    .pad{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+    .pad button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:12px 0;font-weight:800;font-size:1.05rem}
+    .game-nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .score{font-weight:800;color:var(--teal)}
+    .builder{display:grid;grid-template-columns:1fr minmax(160px,220px) 1fr;gap:12px;align-items:stretch}
+    .stack{display:grid;gap:7px}
+    .stack button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;font-weight:800;text-align:left}
+    .stack button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+    .result{background:var(--navy);color:#fff;border-radius:16px;padding:22px 16px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:6px}
+    .result .n{font-size:3rem;font-weight:800;line-height:1}
+    .result .w{color:#d7e7e8;font-weight:700}
+    .cando{display:grid;gap:10px}
+    .cando label{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--gray);cursor:pointer}
+    .cando input{width:18px;height:18px}
+    .cando .lvl{font-size:.72rem;font-weight:800;color:var(--teal)}
+    .progress-mini{height:10px;background:var(--line);border-radius:999px;overflow:hidden;margin:10px 0 4px}
+    .progress-mini span{display:block;height:100%;background:var(--teal);width:0;transition:width .3s}
+    textarea,input[type=text]{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;line-height:1.65}
+    .footer{text-align:center;color:var(--slate);font-size:.78rem;padding:24px}
+    a.inline{color:var(--teal);font-weight:800;text-decoration:none}
+    @media(max-width:760px){
+      .shell{padding:12px}.brand p{display:none}.panel{padding:18px}
+      .grid2,.builder{grid-template-columns:1fr}.hero:after{opacity:.04}
+      .choice{padding:18px 6px;font-size:1.7rem}
+      .cando label{grid-template-columns:auto 1fr}
+      .cando .lvl{display:none}
+      .result .n{font-size:2.4rem}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand">
+      <img src="../favicon.png" alt="">
+      <div>
+        <h1>Numbers 1–100</h1>
+        <p>First English Flow · Lesson 2 of 12</p>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="home" href="../alphabet/">Lesson 1</a>
+      <a class="home" href="../">Home</a>
+      <span class="pill">A1.1</span>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">General English · Starter</span>
+    <h2>Count it. Build it. <span>Say your number.</span></h2>
+    <p>Zero to twenty, then the pattern for 21–99. The goal is not a worksheet: it is to say an <strong>age</strong> and a <strong>phone number</strong>.</p>
+    <div class="path">
+      <span>1 Hear 0–20</span><span>2 Build 21–99</span><span>3 Watch out</span><span>4 Play</span><span>5 Check</span>
+    </div>
+  </section>
+
+  <article class="lesson">
+    <header class="lesson-head">
+      <h3>Words first, then the pattern</h3>
+      <p>Tap a number to hear the English word. Teens are new words. After 20, you build: twenty + one.</p>
+    </header>
+    <nav class="tabs" id="tabs" aria-label="Lesson sections"></nav>
+    <div id="panels"></div>
+  </article>
+
+  <footer class="footer">English by Israel Ventura · A1.1 starter · Progress stays in this browser</footer>
+</div>
+
+<script>
+const sections = ['1 Hear', '2 Build', '3 Watch out', '4 Play', '5 Check'];
+const KEY = 'numbersA1v1';
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+  catch { return {}; }
+}
+function save() {
+  try { localStorage.setItem(KEY, JSON.stringify(state)); }
+  catch { /* ignore */ }
+}
+const state = loadState();
+
+const ONES = ['zero','one','two','three','four','five','six','seven','eight','nine'];
+const TEENS = ['ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+const TENS = {20:'twenty',30:'thirty',40:'forty',50:'fifty',60:'sixty',70:'seventy',80:'eighty',90:'ninety',100:'one hundred'};
+
+function wordOf(n) {
+  n = Number(n);
+  if (n < 10) return ONES[n];
+  if (n < 20) return TEENS[n - 10];
+  if (n === 100) return 'one hundred';
+  const t = Math.floor(n / 10) * 10;
+  const u = n % 10;
+  if (u === 0) return TENS[t];
+  return TENS[t] + '-' + ONES[u];
+}
+function speakText(text) {
+  const said = String(text).replace(/-/g, ' ');
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(said);
+  u.lang = 'en-US';
+  u.rate = 0.88;
+  const voices = speechSynthesis.getVoices();
+  const v = voices.find(x => /en-US/i.test(x.lang) && /Google|Female|Samantha|Jenny|Aria|Zira/i.test(x.name))
+    || voices.find(x => /^en/i.test(x.lang));
+  if (v) { u.voice = v; u.lang = v.lang; }
+  speechSynthesis.speak(u);
+}
+function speakNumber(n) { speakText(wordOf(n)); }
+function speakDigits(digits, gap) {
+  if (!window.speechSynthesis) return;
+  speechSynthesis.cancel();
+  let i = 0;
+  function next() {
+    if (i >= digits.length) return;
+    const d = digits[i];
+    const u = new SpeechSynthesisUtterance(d === 0 ? 'oh' : ONES[d]);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    u.onend = () => { i += 1; setTimeout(next, gap || 140); };
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+
+if (window.speechSynthesis) {
+  speechSynthesis.getVoices();
+  speechSynthesis.onvoiceschanged = () => speechSynthesis.getVoices();
+}
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function numTile(n, extra) {
+  const teen = n >= 13 && n <= 19;
+  const ten = n >= 20 && n % 10 === 0;
+  const cls = ['num', teen ? 'teen' : '', ten ? 'ten' : '', extra || ''].filter(Boolean).join(' ');
+  return `<button type="button" class="${cls}" data-n="${n}" onclick="tapNum(${n})">
+    <span class="ch">${n}</span>
+    <span class="say">${wordOf(n)}</span>
+  </button>`;
+}
+
+let numFilter = 'all';
+let seqPlaying = false;
+function setNumFilter(id) {
+  numFilter = id;
+  document.querySelectorAll('#numFilters .chip').forEach(c => c.classList.toggle('on', c.dataset.filter === id));
+  document.querySelectorAll('#numGrid .num').forEach(el => {
+    const n = Number(el.dataset.n);
+    const show = id === 'all' || (id === 'ones' && n <= 10) || (id === 'teens' && n >= 11 && n <= 20);
+    el.style.display = show ? '' : 'none';
+  });
+}
+function highlightNum(n) {
+  document.querySelectorAll('#numGrid .num, #tensGrid .num').forEach(el => {
+    el.classList.toggle('playing', Number(el.dataset.n) === n);
+  });
+}
+function tapNum(n) {
+  seqPlaying = false;
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  highlightNum(n);
+  speakNumber(n);
+}
+function playRange(from, to) {
+  seqPlaying = true;
+  let n = from;
+  function next() {
+    if (!seqPlaying || n > to) {
+      seqPlaying = false;
+      highlightNum(-1);
+      return;
+    }
+    highlightNum(n);
+    const u = new SpeechSynthesisUtterance(wordOf(n).replace(/-/g, ' '));
+    u.lang = 'en-US';
+    u.rate = 0.92;
+    u.onend = () => { n += 1; setTimeout(next, 60); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(u);
+  }
+  next();
+}
+function stopSeq() {
+  seqPlaying = false;
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  highlightNum(-1);
+}
+
+const hearHTML = `
+<section class="panel">
+  <h4>1 · Hear 0–20</h4>
+  <p class="intro">Tap a tile. <strong>0–12</strong> are new words. <strong>13–19</strong> share a pattern: three → thir<strong>teen</strong>.</p>
+  <div class="alpha-toolbar">
+    <div class="filters" id="numFilters">
+      <button type="button" class="chip on" data-filter="all" onclick="setNumFilter('all')">0–20</button>
+      <button type="button" class="chip" data-filter="ones" onclick="setNumFilter('ones')">0–10</button>
+      <button type="button" class="chip" data-filter="teens" onclick="setNumFilter('teens')">11–20</button>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button type="button" class="btn secondary" onclick="playRange(0,20)">Play 0 → 20</button>
+      <button type="button" class="btn ghost" onclick="stopSeq()">Stop</button>
+    </div>
+  </div>
+  <div class="num-grid" id="numGrid">${Array.from({length:21}, (_, n) => numTile(n)).join('')}</div>
+  <div class="grid2" style="margin-top:16px">
+    <div class="card mint">
+      <span class="label">Teens</span>
+      <div class="big-rule">13–19 end in <span class="teal">-teen</span></div>
+      <p style="margin:0;color:var(--slate)">thirteen, fourteen, fifteen… The stress is on <em>teen</em>.</p>
+    </div>
+    <div class="card tint">
+      <span class="label">Irregular</span>
+      <div class="example">11 eleven · 12 twelve · 13 thirteen · 15 fifteen</div>
+      <p style="margin:10px 0 0;color:var(--slate);font-size:.9rem">These four do not follow “three-teen / five-teen”.</p>
+    </div>
+  </div>
+</section>`;
+
+let tenPick = 20;
+let onePick = 1;
+function currentBuilt() { return tenPick === 100 ? 100 : tenPick + onePick; }
+function setupBuilder() {
+  const tensBox = document.getElementById('tensCol');
+  const onesBox = document.getElementById('onesCol');
+  if (!tensBox) return;
+  tensBox.innerHTML = [20,30,40,50,60,70,80,90].map(n =>
+    `<button type="button" class="${n === tenPick ? 'on' : ''}" onclick="pickTen(${n})">${n} · ${wordOf(n)}</button>`
+  ).join('');
+  onesBox.innerHTML = [1,2,3,4,5,6,7,8,9].map(n =>
+    `<button type="button" class="${n === onePick ? 'on' : ''}" onclick="pickOne(${n})">${n} · ${wordOf(n)}</button>`
+  ).join('');
+  drawBuilt();
+}
+function pickTen(n) { tenPick = n; setupBuilder(); speakNumber(currentBuilt()); }
+function pickOne(n) { onePick = n; setupBuilder(); speakNumber(currentBuilt()); }
+function drawBuilt() {
+  const n = currentBuilt();
+  const elN = document.getElementById('builtN');
+  const elW = document.getElementById('builtW');
+  if (elN) elN.textContent = n;
+  if (elW) elW.textContent = wordOf(n);
+}
+function newMakeTarget() {
+  const t = [20,30,40,50,60,70,80,90][Math.floor(Math.random() * 8)];
+  const u = 1 + Math.floor(Math.random() * 9);
+  state.makeTarget = t + u;
+  save();
+  const el = document.getElementById('makeTarget');
+  if (el) el.textContent = state.makeTarget;
+  const fb = document.getElementById('makeFb');
+  if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
+}
+function checkMake() {
+  const target = state.makeTarget || 73;
+  const n = currentBuilt();
+  const fb = document.getElementById('makeFb');
+  const ok = n === target;
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.innerHTML = ok
+    ? `Yes — ${n} is <strong>${wordOf(n)}</strong>.`
+    : `You built ${n} (${wordOf(n)}). Need <strong>${target}</strong> = ${wordOf(target)}.`;
+  if (ok) speakNumber(n);
+}
+
+const buildHTML = `
+<section class="panel">
+  <h4>2 · Build 21–99</h4>
+  <p class="intro">After 20, English is a machine: <strong>ten + hyphen + unit</strong>. twenty-one, thirty-two, forty-three.</p>
+
+  <h5>The tens</h5>
+  <div class="num-grid" id="tensGrid">${[10,20,30,40,50,60,70,80,90,100].map(n => numTile(n)).join('')}</div>
+  <div class="note">Stress is on the <strong>first</strong> part: <em>THIR-ty</em>, not thir-TEEN. That is how 13 and 30 stay different.</div>
+
+  <h5>The machine</h5>
+  <p class="intro" style="margin-bottom:10px">Tap a ten, then a unit. Hear the full number.</p>
+  <div class="builder">
+    <div>
+      <span class="label">Tens</span>
+      <div class="stack" id="tensCol" style="margin-top:8px"></div>
+    </div>
+    <div class="result">
+      <span class="label" style="color:#9ad4cf">You built</span>
+      <div class="n" id="builtN">21</div>
+      <div class="w" id="builtW">twenty-one</div>
+      <button type="button" class="btn secondary" style="margin-top:10px" onclick="speakNumber(currentBuilt())">Hear it</button>
+    </div>
+    <div>
+      <span class="label">Units</span>
+      <div class="stack" id="onesCol" style="margin-top:8px"></div>
+    </div>
+  </div>
+
+  <h5>Make this number</h5>
+  <p class="intro" style="margin-bottom:8px">Use the machine. Target: <strong id="makeTarget">${state.makeTarget || 73}</strong></p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button type="button" class="btn" onclick="checkMake()">Check</button>
+    <button type="button" class="btn ghost" onclick="newMakeTarget()">New number</button>
+  </div>
+  <div class="feedback" id="makeFb"></div>
+</section>`;
+
+const watchHTML = `
+<section class="panel">
+  <h4>3 · Watch out · Spanish speakers</h4>
+  <p class="intro">Four traps that show up in every first week. Tap a card to hear the English.</p>
+  <div class="grid2">
+    <button type="button" class="card" onclick="speakNumber(40)">
+      <span class="label">40</span>
+      <div class="big-rule">Say <span class="teal">forty</span></div>
+      <p style="margin:0">No <em>u</em>. four → four, but 40 is <strong>forty</strong>.</p>
+      <div class="example">40 ✓ forty &nbsp;·&nbsp; ✗ fourty</div>
+    </button>
+    <button type="button" class="card" onclick="speakText('fifteen. fifty')">
+      <span class="label">15 vs 50</span>
+      <div class="big-rule"><span class="teal">fifTEEN</span> / <span class="teal">FIFty</span></div>
+      <p style="margin:0">-teen = the end is strong. -ty = the start is strong.</p>
+      <div class="example">13 / 30 · 14 / 40 · 16 / 60 · 18 / 80</div>
+    </button>
+    <button type="button" class="card" onclick="speakDigits([5,5,5,1,2,3,4], 180)">
+      <span class="label">Phone numbers</span>
+      <div class="big-rule">Say <span class="teal">one digit at a time</span></div>
+      <p style="margin:0">555-1234 is not “five hundred fifty-five”. It is five-five-five, one-two-three-four.</p>
+      <div class="example">0 in a phone number is often “oh”</div>
+    </button>
+    <button type="button" class="card" onclick="speakText('I am twenty years old')">
+      <span class="label">Age</span>
+      <div class="big-rule">I am <span class="teal">20 years old</span></div>
+      <p style="margin:0">Not “I have 20 years”. English uses <em>be</em>, not <em>have</em>.</p>
+      <div class="example">How old are you? — I'm 19.</div>
+    </button>
+  </div>
+  <div class="note"><strong>Keep this list:</strong> forty (no u) · fifteen ≠ fifty · phone = digits · age = I am … years old.</div>
+</section>`;
+
+const WHICH_ROUNDS = 10;
+const PHONE_ROUNDS = 5;
+let playMode = 'which';
+let whichRound = 0;
+let whichScore = 0;
+let whichAnswer = 15;
+let whichLocked = false;
+const confusable = [
+  [15,50,16],[13,30,14],[14,40,15],[18,80,19],[19,90,18],
+  [16,60,17],[17,70,16],[12,20,21],[40,14,4],[21,12,31]
+];
+let phoneRound = 0;
+let phoneScore = 0;
+let phoneDigits = [5,5,5,1,2,3,4];
+let phoneProgress = [];
+
+function setPlayMode(mode) {
+  playMode = mode;
+  document.querySelectorAll('#playModes .chip').forEach(c => c.classList.toggle('on', c.dataset.mode === mode));
+  document.getElementById('whichGame').style.display = mode === 'which' ? '' : 'none';
+  document.getElementById('phoneGame').style.display = mode === 'phone' ? '' : 'none';
+  document.getElementById('pairGame').style.display = mode === 'pair' ? '' : 'none';
+}
+function whyNum(n) {
+  const map = {
+    15: '<strong>fifTEEN</strong> — stress on teen. 50 is FIFty.',
+    50: '<strong>FIFty</strong> — stress on FIF. 15 is fifTEEN.',
+    13: '13 is thirTEEN. 30 is THIRty.',
+    30: '30 is THIRty. 13 is thirTEEN.',
+    14: '14 is fourTEEN. 40 is FORty (no u).',
+    40: '40 is <strong>forty</strong> — no u. 14 is fourTEEN.',
+    12: '12 is twelve. 20 is twenty.',
+    21: '21 is twenty-one — ten + unit.'
+  };
+  return map[n] || `${n} is <strong>${wordOf(n)}</strong>.`;
+}
+function setupWhich() {
+  whichLocked = false;
+  const set = confusable[whichRound % confusable.length];
+  const opts = shuffle([...set]);
+  whichAnswer = set[Math.floor(Math.random() * set.length)];
+  const box = document.getElementById('whichChoices');
+  if (!box) return;
+  box.innerHTML = opts.map(n =>
+    `<button type="button" class="choice" data-n="${n}" onclick="pickWhich(${n})">${n}</button>`
+  ).join('');
+  const score = document.getElementById('whichScore');
+  if (score) score.textContent = `Round ${whichRound + 1} / ${WHICH_ROUNDS} · ${whichScore} correct`;
+  const fb = document.getElementById('whichFb');
+  if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
+}
+function playWhich() { speakNumber(whichAnswer); }
+function pickWhich(n) {
+  if (whichLocked) return;
+  whichLocked = true;
+  const ok = n === whichAnswer;
+  document.querySelectorAll('#whichChoices .choice').forEach(btn => {
+    btn.disabled = true;
+    if (Number(btn.dataset.n) === whichAnswer) btn.classList.add('correct');
+    if (Number(btn.dataset.n) === n && !ok) btn.classList.add('wrong');
+  });
+  if (ok) whichScore += 1;
+  const fb = document.getElementById('whichFb');
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.innerHTML = ok
+    ? `Yes — ${whichAnswer} is “${wordOf(whichAnswer)}”.`
+    : `It was <strong>${whichAnswer}</strong>. ${whyNum(whichAnswer)}`;
+  const score = document.getElementById('whichScore');
+  if (score) score.textContent = `Round ${whichRound + 1} / ${WHICH_ROUNDS} · ${whichScore} correct`;
+  setTimeout(() => {
+    whichRound += 1;
+    if (whichRound >= WHICH_ROUNDS) {
+      const total = whichScore;
+      fb.className = 'feedback show good';
+      fb.innerHTML = `Done · ${total} / ${WHICH_ROUNDS}. Try the phone game.`;
+      document.getElementById('whichChoices').innerHTML =
+        `<button type="button" class="btn secondary" style="grid-column:1/-1" onclick="restartWhich()">Play again</button>`;
+      whichRound = 0;
+      whichScore = 0;
+      return;
+    }
+    setupWhich();
+    playWhich();
+  }, 1100);
+}
+function restartWhich() {
+  whichRound = 0;
+  whichScore = 0;
+  setupWhich();
+  playWhich();
+}
+
+function newPhone() {
+  phoneProgress = [];
+  const len = 7;
+  phoneDigits = Array.from({length: len}, () => Math.floor(Math.random() * 10));
+  if (phoneDigits[0] === 0) phoneDigits[0] = 5;
+  const slots = document.getElementById('phoneSlots');
+  const pad = document.getElementById('phonePad');
+  if (!slots) return;
+  slots.innerHTML = phoneDigits.map((_, i) =>
+    `<div class="slot" id="pslot-${i}"></div>${i === 2 ? '<span style="opacity:.5">-</span>' : ''}`
+  ).join('');
+  pad.innerHTML = [1,2,3,4,5,6,7,8,9,0].map(d =>
+    `<button type="button" onclick="tapPhone(${d})">${d}</button>`
+  ).join('');
+  const score = document.getElementById('phoneScore');
+  if (score) score.textContent = `Number ${phoneRound + 1} / ${PHONE_ROUNDS} · ${phoneScore} clear`;
+  const fb = document.getElementById('phoneFb');
+  if (fb) { fb.className = 'feedback'; fb.textContent = ''; }
+}
+function playPhone() { speakDigits(phoneDigits, 160); }
+function tapPhone(d) {
+  const need = phoneDigits[phoneProgress.length];
+  speakText(d === 0 ? 'oh' : ONES[d]);
+  if (d !== need) {
+    const fb = document.getElementById('phoneFb');
+    fb.className = 'feedback show warn';
+    fb.textContent = 'Not that digit. Hear it again.';
+    return;
+  }
+  const slot = document.getElementById('pslot-' + phoneProgress.length);
+  if (slot) { slot.textContent = d; slot.classList.add('filled'); }
+  phoneProgress.push(d);
+  if (phoneProgress.length === phoneDigits.length) {
+    phoneScore += 1;
+    const shown = phoneDigits.slice(0,3).join('') + '-' + phoneDigits.slice(3).join('');
+    const fb = document.getElementById('phoneFb');
+    fb.className = 'feedback show good';
+    fb.textContent = shown + ' · digit by digit.';
+    setTimeout(() => {
+      phoneRound += 1;
+      if (phoneRound >= PHONE_ROUNDS) {
+        fb.textContent = `Done · ${phoneScore} / ${PHONE_ROUNDS}. Now say YOUR number to a partner.`;
+        phoneRound = 0;
+        phoneScore = 0;
+      }
+      newPhone();
+    }, 1100);
+  }
+}
+
+const playHTML = `
+<section class="panel">
+  <h4>4 · Play</h4>
+  <p class="intro">Two ear games, then a 2-minute pair task. This is the speaking for numbers: not a speech, a <strong>phone number</strong>.</p>
+  <div class="filters" id="playModes">
+    <button type="button" class="chip on" data-mode="which" onclick="setPlayMode('which')">1 · Which number?</button>
+    <button type="button" class="chip" data-mode="phone" onclick="setPlayMode('phone')">2 · Phone</button>
+    <button type="button" class="chip" data-mode="pair" onclick="setPlayMode('pair')">3 · Pair work</button>
+  </div>
+
+  <div id="whichGame">
+    <div class="name-card">
+      <p>Listen. Tap the number you heard — watch 13/30 and 15/50.</p>
+      <button type="button" class="hear-play" onclick="playWhich()">Play</button>
+      <div class="choice-row" id="whichChoices"></div>
+    </div>
+    <div class="game-nav">
+      <div class="score" id="whichScore">Round 1 / ${WHICH_ROUNDS}</div>
+      <button type="button" class="btn ghost" onclick="playWhich()">Hear it again</button>
+    </div>
+    <div class="feedback" id="whichFb"></div>
+  </div>
+
+  <div id="phoneGame" style="display:none">
+    <div class="name-card">
+      <p>A 7-digit number, one digit at a time. 0 is “oh”.</p>
+      <button type="button" class="hear-play" onclick="playPhone()">Play</button>
+      <div class="slots" id="phoneSlots"></div>
+    </div>
+    <div class="pad" id="phonePad"></div>
+    <div class="game-nav">
+      <div class="score" id="phoneScore">Number 1 / ${PHONE_ROUNDS}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" class="btn ghost" onclick="playPhone()">Hear again</button>
+        <button type="button" class="btn ghost" onclick="newPhone()">Clear</button>
+      </div>
+    </div>
+    <div class="feedback" id="phoneFb"></div>
+  </div>
+
+  <div id="pairGame" style="display:none">
+    <div class="card mint">
+      <span class="label">Pair work · 2 minutes</span>
+      <p style="margin:8px 0 0;line-height:1.65"><strong>A:</strong> How old are you?<br><strong>B:</strong> I’m 19. How old are you?<br><strong>A:</strong> What’s your phone number?<br><strong>B:</strong> 555-0182 — five five five, oh one eight two.</p>
+    </div>
+    <div class="tip"><strong>Frames:</strong> “How old are you?” · “I’m …” · “What’s your number?” · “Can you repeat, please?”</div>
+  </div>
+</section>`;
+
+const candoItems = [
+  'I can say numbers 0–20.',
+  'I can build 21–99 (twenty-one, forty-three…).',
+  'I can hear fifteen and fifty as different.',
+  'I can say a phone number digit by digit.'
+];
+
+const checkHTML = `
+<section class="panel">
+  <h4>5 · Check</h4>
+  <p class="intro">Honest boxes, then write three numbers in words.</p>
+  <div class="cando" id="candoBox"></div>
+  <div class="progress-mini"><span id="candoBar"></span></div>
+  <p style="margin:0;font-size:.85rem;color:var(--slate)" id="candoLabel">0 / 4</p>
+  <h5>Write it</h5>
+  <p class="intro" style="margin-bottom:8px">Your age, a ten (40 / 50 / 60), and a phone-style line of digits in words. Example: <strong>nineteen · forty · five five five</strong></p>
+  <input type="text" id="exitWrite" placeholder="nineteen · forty · five oh two…" value="${(state.exitWrite || '').replace(/"/g, '&quot;')}">
+  <button type="button" class="btn" style="margin-top:10px" onclick="saveExit()">Save exit ticket</button>
+  <div class="feedback" id="exitFb"></div>
+  <div class="tip"><strong>Ready for Lesson 3?</strong> If you can say your age and a phone number, you are ready for Greetings. <a class="inline" href="../alphabet/">← Alphabet</a></div>
+</section>`;
+
+function render() {
+  document.getElementById('tabs').innerHTML = sections.map((s, i) =>
+    `<button type="button" class="tab ${i === (state.tab || 0) ? 'active' : ''}" onclick="openTab(${i})">${s}</button>`
+  ).join('');
+  document.getElementById('panels').innerHTML = [hearHTML, buildHTML, watchHTML, playHTML, checkHTML].join('');
+  openTab(state.tab || 0);
+  if (!state.makeTarget) newMakeTarget();
+  else {
+    const el = document.getElementById('makeTarget');
+    if (el) el.textContent = state.makeTarget;
+  }
+  setupBuilder();
+  setupWhich();
+  newPhone();
+  renderCando();
+}
+function openTab(i) {
+  state.tab = i;
+  save();
+  stopSeq();
+  document.querySelectorAll('.tab').forEach((x, n) => x.classList.toggle('active', n === i));
+  document.querySelectorAll('.panel').forEach((x, n) => x.classList.toggle('active', n === i));
+  const lesson = document.querySelector('.lesson');
+  if (lesson) window.scrollTo({ top: lesson.offsetTop - 80, behavior: 'smooth' });
+}
+function renderCando() {
+  const box = document.getElementById('candoBox');
+  if (!box) return;
+  const saved = state.cando || [];
+  box.innerHTML = candoItems.map((t, i) => `
+    <label>
+      <input type="checkbox" data-cando="${i}" ${saved[i] ? 'checked' : ''} onchange="saveCando()">
+      <span>${t}</span>
+      <span class="lvl">A1</span>
+    </label>
+  `).join('');
+  updateCandoBar();
+}
+function saveCando() {
+  state.cando = [...document.querySelectorAll('[data-cando]')].map(el => el.checked);
+  save();
+  updateCandoBar();
+}
+function updateCandoBar() {
+  const n = (state.cando || []).filter(Boolean).length;
+  const bar = document.getElementById('candoBar');
+  const lab = document.getElementById('candoLabel');
+  if (bar) bar.style.width = `${(n / candoItems.length) * 100}%`;
+  if (lab) lab.textContent = `${n} / ${candoItems.length} can-do statements`;
+}
+function saveExit() {
+  const t = (document.getElementById('exitWrite').value || '').trim();
+  state.exitWrite = t;
+  save();
+  const fb = document.getElementById('exitFb');
+  const ok = t.split(/[·,;]+/).filter(Boolean).length >= 2 || t.split(/\s+/).length >= 3;
+  fb.className = 'feedback show ' + (ok ? 'good' : 'warn');
+  fb.textContent = ok ? 'Saved. Lesson 2 exit is done.' : 'Write at least your age and one more number in words.';
+}
+
+render();
+</script>
+</body>
+</html>
