@@ -192,17 +192,24 @@ function speakText(text) {
   speechSynthesis.speak(u);
 }
 function speakNumber(n) { speakText(wordOf(n)); }
+let dictationId = 0;
 function speakDigits(digits, gap) {
   if (!window.speechSynthesis) return;
+  const id = ++dictationId;
   speechSynthesis.cancel();
   let i = 0;
   function next() {
+    if (id !== dictationId) return;
     if (i >= digits.length) return;
     const d = digits[i];
     const u = new SpeechSynthesisUtterance(d === 0 ? 'oh' : ONES[d]);
     u.lang = 'en-US';
     u.rate = 0.9;
-    u.onend = () => { i += 1; setTimeout(next, gap || 140); };
+    u.onend = () => {
+      if (id !== dictationId) return;
+      i += 1;
+      setTimeout(next, gap || 140);
+    };
     speechSynthesis.speak(u);
   }
   next();
@@ -518,6 +525,8 @@ function restartWhich() {
 }
 
 function newPhone() {
+  dictationId += 1;
+  if (window.speechSynthesis) speechSynthesis.cancel();
   phoneProgress = [];
   const len = 7;
   phoneDigits = Array.from({length: len}, () => Math.floor(Math.random() * 10));
@@ -539,11 +548,10 @@ function newPhone() {
 function playPhone() { speakDigits(phoneDigits, 160); }
 function tapPhone(d) {
   const need = phoneDigits[phoneProgress.length];
-  speakText(d === 0 ? 'oh' : ONES[d]);
   if (d !== need) {
     const fb = document.getElementById('phoneFb');
     fb.className = 'feedback show warn';
-    fb.textContent = 'Not that digit. Hear it again.';
+    fb.textContent = 'Not that digit.';
     return;
   }
   const slot = document.getElementById('pslot-' + phoneProgress.length);
