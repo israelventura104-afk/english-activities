@@ -264,10 +264,7 @@
       padding: 14px; background: var(--navy); color: #fff; border-radius: 12px; margin-bottom: 12px;
     }
     .audio-bar p { margin: 0; color: #d7ecea; font-size: 0.82rem; line-height: 1.45; flex: 1 1 200px; }
-    .play-big {
-      width: 46px; height: 46px; border: 0; border-radius: 999px; background: var(--teal);
-      color: var(--navy); font-weight: 900; font-size: 1rem; flex: 0 0 auto;
-    }
+    .audio-bar audio { width: min(100%, 340px); height: 40px; }
     .dialogue { display: grid; gap: 8px; }
     .dialogue-line { padding: 10px 12px; border-radius: 10px; background: #fff; border: 1px solid var(--line); line-height: 1.55; }
     .dialogue-line:nth-child(even) { background: var(--wash); }
@@ -353,6 +350,7 @@
       .panel { padding: 18px; }
       .home-btn .home-btn-label { display: none; }
       .cando label { grid-template-columns: auto 1fr; }
+      .audio-bar audio { width: 100%; }
     }
   </style>
 </head>
@@ -767,14 +765,15 @@ function readingHTML() {
 function listeningHTML() {
   return `
     <h4>5 · Listening · Leo cleans up the extra beats</h4>
-    <p class="intro">Use the browser voice (headphones help). Listen once for the story, once for the three endings. Then answer.</p>
+    <p class="intro">Play the recording (headphones help). Listen once for the story, once for the three endings. Then answer.</p>
     <div class="audio-bar">
-      <button type="button" class="play-big" onclick="playDialogue()" aria-label="Play dialogue">▶</button>
       <div>
         <strong>Maya &amp; Leo after the interview</strong>
-        <p>B1 dialogue · target words: walked, missed, wanted, needed, decided, called, explained, agreed, booked</p>
+        <p>Recorded listening · target words: walked, missed, wanted, needed, decided, called, explained, agreed, booked</p>
       </div>
-      <button type="button" class="btn ghost" style="color:#fff;border-color:rgba(255,255,255,.3);background:transparent" onclick="stopTalk()">Stop</button>
+      <audio id="listenAudio" controls preload="metadata" controlsList="nodownload">
+        <source src="assets/ed-pronunciation.mp3" type="audio/mpeg">
+      </audio>
     </div>
     <div class="listening-focus">
       <div class="focus-card"><strong>/ɪd/</strong>wanted · needed · decided · completed</div>
@@ -1121,13 +1120,6 @@ function updateReadScore() {
 }
 
 /* ========== LISTENING ========== */
-function playDialogue() {
-  const text = listeningScript.map(([who, line]) => `${who}. ${line}`).join(' ');
-  speak(text, 0.9);
-}
-function stopTalk() {
-  if (window.speechSynthesis) speechSynthesis.cancel();
-}
 function toggleTranscript() {
   const el = document.getElementById('transcript');
   if (el) el.classList.toggle('show');
